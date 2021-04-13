@@ -28,7 +28,7 @@ public class ConectaBD
             //Cargamos el driver de mysql
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost/citaplus",usuario,pass);
-            JOptionPane.showMessageDialog(null, "Conectado");
+            //JOptionPane.showMessageDialog(null, "Conectado");
         } catch (HeadlessException | ClassNotFoundException | SQLException e)
         {
             JOptionPane.showMessageDialog(null, "Error de conexion");

@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import seguridad.Encoder;
 
 /**
  *
@@ -34,7 +35,10 @@ public class MetodosBD
             resultado = sentencia.executeQuery();
             if (resultado.next())
             {
-                return true;
+                if (resultado.getString("usuario").equals(usr) && resultado.getString("contraseña").equals(pass))
+                {
+                    return true;
+                }
             }
         } catch (SQLException e)
         {

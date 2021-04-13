@@ -5,9 +5,13 @@
  */
 package interfaces;
 
+import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.JOptionPane;
+import metodosBD.MetodosBD;
 import rojeru_san.complementos.RSUtilities;
+import seguridad.Encoder;
 
 /**
  *
@@ -34,6 +38,7 @@ public class InicioSesion extends javax.swing.JFrame
     {
         jLErrorUsuario.setText(null);
         jLErrorContra.setText(null);
+        jLCorrrecto.setText(null);
     }
 
     /**
@@ -52,13 +57,14 @@ public class InicioSesion extends javax.swing.JFrame
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         JTFUsuario = new RSMaterialComponent.RSTextFieldMaterialIcon();
-        jTFUsuario = new RSMaterialComponent.RSPasswordMaterialIcon();
+        JTFContraseña = new RSMaterialComponent.RSPasswordMaterialIcon();
         jLErrorUsuario = new javax.swing.JLabel();
         jLErrorContra = new javax.swing.JLabel();
         rSButtonIcon_new1 = new newscomponents.RSButtonIcon_new();
         rSButtonIcon_new3 = new newscomponents.RSButtonIcon_new();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLCorrrecto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -92,13 +98,13 @@ public class InicioSesion extends javax.swing.JFrame
         JTFUsuario.setPlaceholder("Ingrese Usuario");
         JTFUsuario.setSelectionColor(new java.awt.Color(0, 0, 0));
 
-        jTFUsuario.setForeground(new java.awt.Color(0, 0, 0));
-        jTFUsuario.setColorIcon(new java.awt.Color(0, 0, 0));
-        jTFUsuario.setColorMaterial(new java.awt.Color(0, 0, 0));
-        jTFUsuario.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jTFUsuario.setPhColor(new java.awt.Color(0, 0, 0));
-        jTFUsuario.setPlaceholder("Ingrese contraseña");
-        jTFUsuario.setSelectionColor(new java.awt.Color(0, 0, 0));
+        JTFContraseña.setForeground(new java.awt.Color(0, 0, 0));
+        JTFContraseña.setColorIcon(new java.awt.Color(0, 0, 0));
+        JTFContraseña.setColorMaterial(new java.awt.Color(0, 0, 0));
+        JTFContraseña.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        JTFContraseña.setPhColor(new java.awt.Color(0, 0, 0));
+        JTFContraseña.setPlaceholder("Ingrese contraseña");
+        JTFContraseña.setSelectionColor(new java.awt.Color(0, 0, 0));
 
         jLErrorUsuario.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         jLErrorUsuario.setForeground(new java.awt.Color(255, 51, 51));
@@ -114,6 +120,13 @@ public class InicioSesion extends javax.swing.JFrame
         rSButtonIcon_new1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         rSButtonIcon_new1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ARROW_FORWARD);
         rSButtonIcon_new1.setRound(10);
+        rSButtonIcon_new1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                rSButtonIcon_new1ActionPerformed(evt);
+            }
+        });
 
         rSButtonIcon_new3.setBackground(new java.awt.Color(255, 51, 51));
         rSButtonIcon_new3.setText("Salir");
@@ -133,6 +146,9 @@ public class InicioSesion extends javax.swing.JFrame
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
         jLabel7.setText("2021 - H4x0r Developers");
+
+        jLCorrrecto.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
+        jLCorrrecto.setText("Ing");
 
         javax.swing.GroupLayout rSPanelMaterial1Layout = new javax.swing.GroupLayout(rSPanelMaterial1);
         rSPanelMaterial1.setLayout(rSPanelMaterial1Layout);
@@ -161,15 +177,18 @@ public class InicioSesion extends javax.swing.JFrame
                                         .addGap(114, 114, 114)
                                         .addComponent(rSButtonIcon_new3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(JTFUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTFUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(JTFContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 18, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(138, 138, 138)
+                .addComponent(jLCorrrecto, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         rSPanelMaterial1Layout.setVerticalGroup(
             rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,14 +204,16 @@ public class InicioSesion extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLErrorUsuario)
                 .addGap(26, 26, 26)
-                .addComponent(jTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JTFContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLErrorContra)
                 .addGap(27, 27, 27)
                 .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rSButtonIcon_new1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rSButtonIcon_new3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLCorrrecto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
@@ -235,39 +256,40 @@ public class InicioSesion extends javax.swing.JFrame
        System.exit(0);
     }//GEN-LAST:event_rSButtonIcon_new3ActionPerformed
 
+    private void rSButtonIcon_new1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSButtonIcon_new1ActionPerformed
+    {//GEN-HEADEREND:event_rSButtonIcon_new1ActionPerformed
+        if (JTFUsuario.getText().isEmpty())
+        {
+            jLErrorUsuario.setText("Este campo es requerido");
+        }
+        if (JTFContraseña.getText().isEmpty())
+        {
+            jLErrorContra.setText("Este campo es requerido");
+        }
+        
+        
+        
+        if (!JTFUsuario.getText().isEmpty() && !JTFContraseña.getText().isEmpty())
+        {
+            
+            if (MetodosBD.ingresoSys(JTFUsuario.getText(), Encoder.encode(JTFContraseña.getText().trim())))
+            {
+                //Si retorna true
+                JOptionPane.showMessageDialog(this, "Ingreso correcto");
+            }else
+            {
+                jLCorrrecto.setForeground(Color.RED);
+                jLCorrrecto.setText("Las credenciales son incorrectas");
+            }
+        }
+    }//GEN-LAST:event_rSButtonIcon_new1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[])
     {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex)
-        {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        
         //</editor-fold>
 
         /* Create and display the form */
@@ -281,7 +303,9 @@ public class InicioSesion extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private RSMaterialComponent.RSPasswordMaterialIcon JTFContraseña;
     private RSMaterialComponent.RSTextFieldMaterialIcon JTFUsuario;
+    private javax.swing.JLabel jLCorrrecto;
     private javax.swing.JLabel jLErrorContra;
     private javax.swing.JLabel jLErrorUsuario;
     private javax.swing.JLabel jLabel1;
@@ -289,7 +313,6 @@ public class InicioSesion extends javax.swing.JFrame
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private RSMaterialComponent.RSPasswordMaterialIcon jTFUsuario;
     private newscomponents.RSButtonIcon_new rSButtonIcon_new1;
     private newscomponents.RSButtonIcon_new rSButtonIcon_new3;
     private RSMaterialComponent.RSPanelMaterial rSPanelMaterial1;

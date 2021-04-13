@@ -105,22 +105,26 @@
                                               <Component id="rSButtonIcon_new3" min="-2" pref="160" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="JTFUsuario" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTFUsuario" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="JTFContraseña" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel6" min="-2" pref="474" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel6" min="-2" pref="474" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="28" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
+                      <Component id="jLCorrrecto" min="-2" pref="293" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -138,7 +142,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLErrorUsuario" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="jTFUsuario" min="-2" max="-2" attributes="0"/>
+                      <Component id="JTFContraseña" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLErrorContra" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -146,7 +150,9 @@
                           <Component id="rSButtonIcon_new1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="rSButtonIcon_new3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLCorrrecto" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="9" max="32767" attributes="0"/>
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
@@ -207,7 +213,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="RSMaterialComponent.RSPasswordMaterialIcon" name="jTFUsuario">
+            <Component class="RSMaterialComponent.RSPasswordMaterialIcon" name="JTFContrase&#xf1;a">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
@@ -267,6 +273,9 @@
                 </Property>
                 <Property name="round" type="int" value="10"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonIcon_new1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="newscomponents.RSButtonIcon_new" name="rSButtonIcon_new3">
               <Properties>
@@ -302,6 +311,14 @@
                   <Font name="Segoe UI Semibold" size="11" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="2021 - H4x0r Developers"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLCorrrecto">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="11" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Ing"/>
               </Properties>
             </Component>
           </SubComponents>
