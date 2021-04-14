@@ -1,3 +1,5 @@
+CREATE DATABASE citaplus;
+USE citaplus;
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
 -- Versión del servidor:         8.0.23 - MySQL Community Server - GPL
@@ -24,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `sexo` enum('Hombre','Mujer') DEFAULT NULL,
   `foto` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla citaplus.usuarios: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
