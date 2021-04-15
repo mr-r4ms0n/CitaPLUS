@@ -25,15 +25,15 @@ public class InicioSesion extends javax.swing.JFrame
      */
     public InicioSesion()
     {
-        
+
         initComponents();
         setLocationRelativeTo(null);
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
         setShape(forma);
-        
+
         iniciarLabels();
     }
-    
+
     public void iniciarLabels()
     {
         jLErrorUsuario.setText(null);
@@ -253,7 +253,7 @@ public class InicioSesion extends javax.swing.JFrame
 
     private void rSButtonIcon_new3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSButtonIcon_new3ActionPerformed
     {//GEN-HEADEREND:event_rSButtonIcon_new3ActionPerformed
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_rSButtonIcon_new3ActionPerformed
 
     private void rSButtonIcon_new1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSButtonIcon_new1ActionPerformed
@@ -266,17 +266,15 @@ public class InicioSesion extends javax.swing.JFrame
         {
             jLErrorContra.setText("Este campo es requerido");
         }
-        
-        
-        
+
         if (!JTFUsuario.getText().isEmpty() && !JTFContraseña.getText().isEmpty())
         {
-            
-            if (MetodosBD.ingresoSys(JTFUsuario.getText(), Encoder.encode(JTFContraseña.getText().trim())))
+            Object resultados[] = MetodosBD.ingresoSys(JTFUsuario.getText().trim(), Encoder.encode(JTFContraseña.getText().trim()));
+            if ((boolean) resultados[0])
             {
-                //Si retorna true
-                JOptionPane.showMessageDialog(this, "Ingreso correcto");
-            }else
+                new MenuPrincipal((String) resultados[1], (String) resultados[2], (String) resultados[3]).setVisible(true);
+                dispose();
+            } else
             {
                 jLCorrrecto.setForeground(Color.RED);
                 jLCorrrecto.setText("Las credenciales son incorrectas");
@@ -289,7 +287,7 @@ public class InicioSesion extends javax.swing.JFrame
      */
     public static void main(String args[])
     {
-        
+
         //</editor-fold>
 
         /* Create and display the form */

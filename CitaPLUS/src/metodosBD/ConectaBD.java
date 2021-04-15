@@ -19,7 +19,7 @@ public class ConectaBD
 {
     static Connection con = null;
     static String usuario = "root";
-    static String pass = "";
+    static String pass = "r4ms0n";
 
     public static Connection ConectaBD()
     {

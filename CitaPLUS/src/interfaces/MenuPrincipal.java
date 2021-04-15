@@ -5,6 +5,11 @@
  */
 package interfaces;
 
+import java.awt.Shape;
+import java.awt.geom.RoundRectangle2D;
+import javax.swing.ImageIcon;
+import javax.swing.UIManager;
+
 /**
  *
  * @author David Vergara
@@ -14,10 +19,25 @@ public class MenuPrincipal extends javax.swing.JFrame
 
     /**
      * Creates new form MenuPrincipal
+     * @param usuario
+     * @param nombre
+     * @param foto
      */
-    public MenuPrincipal()
+    public MenuPrincipal(String usuario, String nombre, String foto)
     {
         initComponents();
+        setLocationRelativeTo(null);
+        Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
+        setShape(forma);
+        //Establecemos los campos segun esto corresponda de lo que se encontro registrado en la BD
+        jLNombre.setText(nombre);
+        jLUsuario.setText(usuario);
+        imagenDePerfil.setImagen(new ImageIcon(getClass().getResource("/imagenes/"+foto)));
+    }
+
+    private MenuPrincipal()
+    {
+       
     }
 
     /**
@@ -29,76 +49,218 @@ public class MenuPrincipal extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents()
     {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         pnlMenu = new RSMaterialComponent.RSPanelMaterial();
-        rSButtonMaterialIconOne2 = new RSMaterialComponent.RSButtonMaterialIconOne();
-        rSPanelBorderImage1 = new RSMaterialComponent.RSPanelBorderImage();
+        imagenDePerfil = new RSMaterialComponent.RSPanelBorderImage();
+        jLNombre = new javax.swing.JLabel();
+        rSButtonMaterialIconOne1 = new RSMaterialComponent.RSButtonMaterialIconOne();
+        rSButtonMaterialIconOne3 = new RSMaterialComponent.RSButtonMaterialIconOne();
+        rSButtonMaterialIconOne4 = new RSMaterialComponent.RSButtonMaterialIconOne();
+        rSButtonMaterialIconOne5 = new RSMaterialComponent.RSButtonMaterialIconOne();
+        rSButtonMaterialIconOne6 = new RSMaterialComponent.RSButtonMaterialIconOne();
+        jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLUsuario = new javax.swing.JLabel();
         pnlTopBar = new RSMaterialComponent.RSPanelMaterial();
         jLabel1 = new javax.swing.JLabel();
         rSLabelIcon1 = new RSMaterialComponent.RSLabelIcon();
         btnCerrar = new RSMaterialComponent.RSButtonIconOne();
         jPanel2 = new javax.swing.JPanel();
-        pnlSlider = new RSMaterialComponent.RSPanelMaterial();
+        pnlSlider = new newscomponents.RSPanelEffect();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlMenu.setBackground(new java.awt.Color(255, 255, 255));
+        pnlMenu.setBackground(new java.awt.Color(255, 251, 239));
         pnlMenu.setIntensity(10);
-        pnlMenu.setShadowBottom(false);
+        pnlMenu.setRound(20);
         pnlMenu.setShadowLeft(false);
-        pnlMenu.setShadowTop(false);
-        pnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlMenu.setShadowRight(false);
 
-        rSButtonMaterialIconOne2.setText("Inicio");
-        rSButtonMaterialIconOne2.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                rSButtonMaterialIconOne2ActionPerformed(evt);
-            }
-        });
-        pnlMenu.add(rSButtonMaterialIconOne2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 183, 230, -1));
+        imagenDePerfil.setBackground(new java.awt.Color(255, 255, 255));
+        imagenDePerfil.setImagen(new javax.swing.ImageIcon(getClass().getResource("/imagenes/doctor.png"))); // NOI18N
+        imagenDePerfil.setShapePanel(rojeru_san.efectos.ValoresEnum.PANEL_FORMA.CIRCLE);
 
-        rSPanelBorderImage1.setShapePanel(rojeru_san.efectos.ValoresEnum.PANEL_FORMA.CIRCLE);
-
-        javax.swing.GroupLayout rSPanelBorderImage1Layout = new javax.swing.GroupLayout(rSPanelBorderImage1);
-        rSPanelBorderImage1.setLayout(rSPanelBorderImage1Layout);
-        rSPanelBorderImage1Layout.setHorizontalGroup(
-            rSPanelBorderImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout imagenDePerfilLayout = new javax.swing.GroupLayout(imagenDePerfil);
+        imagenDePerfil.setLayout(imagenDePerfilLayout);
+        imagenDePerfilLayout.setHorizontalGroup(
+            imagenDePerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 110, Short.MAX_VALUE)
         );
-        rSPanelBorderImage1Layout.setVerticalGroup(
-            rSPanelBorderImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        imagenDePerfilLayout.setVerticalGroup(
+            imagenDePerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        pnlMenu.add(rSPanelBorderImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, -1));
+        jLNombre.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLNombre.setText("NombreN");
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("$Usuario");
-        pnlMenu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 240, 30));
+        rSButtonMaterialIconOne1.setBackground(new java.awt.Color(112, 190, 186));
+        rSButtonMaterialIconOne1.setText("Inicio");
+        rSButtonMaterialIconOne1.setBackgroundHover(new java.awt.Color(178, 218, 216));
+        rSButtonMaterialIconOne1.setRound(20);
 
+        rSButtonMaterialIconOne3.setBackground(new java.awt.Color(68, 165, 160));
+        rSButtonMaterialIconOne3.setText("Citas registradas");
+        rSButtonMaterialIconOne3.setBackgroundHover(new java.awt.Color(178, 218, 216));
+        rSButtonMaterialIconOne3.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RECEIPT);
+        rSButtonMaterialIconOne3.setRound(20);
+
+        rSButtonMaterialIconOne4.setBackground(new java.awt.Color(68, 165, 160));
+        rSButtonMaterialIconOne4.setText("Pacientes");
+        rSButtonMaterialIconOne4.setBackgroundHover(new java.awt.Color(178, 218, 216));
+        rSButtonMaterialIconOne4.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
+        rSButtonMaterialIconOne4.setRound(20);
+
+        rSButtonMaterialIconOne5.setBackground(new java.awt.Color(68, 165, 160));
+        rSButtonMaterialIconOne5.setText("Servicios");
+        rSButtonMaterialIconOne5.setBackgroundHover(new java.awt.Color(178, 218, 216));
+        rSButtonMaterialIconOne5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP_TWO);
+        rSButtonMaterialIconOne5.setRound(20);
+
+        rSButtonMaterialIconOne6.setBackground(new java.awt.Color(68, 165, 160));
+        rSButtonMaterialIconOne6.setText("Acerda De");
+        rSButtonMaterialIconOne6.setBackgroundHover(new java.awt.Color(178, 218, 216));
+        rSButtonMaterialIconOne6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.INFO);
+        rSButtonMaterialIconOne6.setRound(20);
+
+        jPanel3.setBackground(new java.awt.Color(253, 241, 205));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel2.setText("Navegación");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel5.setBackground(new java.awt.Color(253, 241, 205));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel4.setText("Extras");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jLUsuario.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLUsuario.setText("UsuarioN");
+
+        javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
+        pnlMenu.setLayout(pnlMenuLayout);
+        pnlMenuLayout.setHorizontalGroup(
+            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rSButtonMaterialIconOne1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rSButtonMaterialIconOne3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rSButtonMaterialIconOne4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rSButtonMaterialIconOne5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rSButtonMaterialIconOne6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlMenuLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(imagenDePerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(jLUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlMenuLayout.setVerticalGroup(
+            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMenuLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(imagenDePerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(rSButtonMaterialIconOne1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(rSButtonMaterialIconOne3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(rSButtonMaterialIconOne4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(rSButtonMaterialIconOne5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(rSButtonMaterialIconOne6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(243, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 126, 240, 870));
+
+        pnlTopBar.setBackground(new java.awt.Color(72, 202, 228));
         pnlTopBar.setIntensity(10);
         pnlTopBar.setShadowBottom(false);
         pnlTopBar.setShadowLeft(false);
         pnlTopBar.setShadowRight(false);
         pnlTopBar.setShadowTop(false);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Sistema de CitaPlus");
+        jLabel1.setText("Cita Plus");
 
         rSLabelIcon1.setBackground(new java.awt.Color(255, 255, 255));
         rSLabelIcon1.setForeground(new java.awt.Color(255, 255, 255));
         rSLabelIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.LIBRARY_BOOKS);
         rSLabelIcon1.setSizeIcon(50.0F);
 
+        btnCerrar.setBackground(new java.awt.Color(72, 202, 228));
         btnCerrar.setToolTipText("Cerrar");
+        btnCerrar.setBackgroundHover(new java.awt.Color(159, 221, 234));
         btnCerrar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.KEYBOARD_ARROW_RIGHT);
+        btnCerrar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlTopBarLayout = new javax.swing.GroupLayout(pnlTopBar);
         pnlTopBar.setLayout(pnlTopBarLayout);
@@ -109,7 +271,7 @@ public class MenuPrincipal extends javax.swing.JFrame
                 .addComponent(rSLabelIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 865, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1046, Short.MAX_VALUE)
                 .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -120,83 +282,45 @@ public class MenuPrincipal extends javax.swing.JFrame
                 .addGroup(pnlTopBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(rSLabelIcon1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTopBarLayout.createSequentialGroup()
-                        .addGap(0, 12, Short.MAX_VALUE)
-                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlTopBarLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 34, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
+        jPanel1.add(pnlTopBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -3, -1, 130));
+
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        pnlSlider.setBackground(new java.awt.Color(255, 255, 255));
-        pnlSlider.setShadowBottom(false);
-        pnlSlider.setShadowLeft(false);
-        pnlSlider.setShadowRight(false);
-        pnlSlider.setShadowTop(false);
-
-        javax.swing.GroupLayout pnlSliderLayout = new javax.swing.GroupLayout(pnlSlider);
-        pnlSlider.setLayout(pnlSliderLayout);
-        pnlSliderLayout.setHorizontalGroup(
-            pnlSliderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        pnlSliderLayout.setVerticalGroup(
-            pnlSliderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        pnlSlider.setBackground(new java.awt.Color(255, 153, 51));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(pnlSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(pnlSlider, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1215, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlSlider, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 874, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlTopBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(pnlTopBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 116, 1215, 997));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 1000));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rSButtonMaterialIconOne2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSButtonMaterialIconOne2ActionPerformed
-    {//GEN-HEADEREND:event_rSButtonMaterialIconOne2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rSButtonMaterialIconOne2ActionPerformed
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCerrarActionPerformed
+    {//GEN-HEADEREND:event_btnCerrarActionPerformed
+       dispose();
+       new InicioSesion().setVisible(true);
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,7 +338,7 @@ public class MenuPrincipal extends javax.swing.JFrame
             {
                 if ("Nimbus".equals(info.getName()))
                 {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    javax.swing.UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                     break;
                 }
             }
@@ -245,15 +369,26 @@ public class MenuPrincipal extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private RSMaterialComponent.RSButtonIconOne btnCerrar;
+    private RSMaterialComponent.RSPanelBorderImage imagenDePerfil;
+    private javax.swing.JLabel jLNombre;
+    private javax.swing.JLabel jLUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private RSMaterialComponent.RSPanelMaterial pnlMenu;
-    private RSMaterialComponent.RSPanelMaterial pnlSlider;
+    private newscomponents.RSPanelEffect pnlSlider;
     private RSMaterialComponent.RSPanelMaterial pnlTopBar;
-    private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne2;
+    private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne1;
+    private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne3;
+    private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne4;
+    private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne5;
+    private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne6;
     private RSMaterialComponent.RSLabelIcon rSLabelIcon1;
-    private RSMaterialComponent.RSPanelBorderImage rSPanelBorderImage1;
     // End of variables declaration//GEN-END:variables
 }

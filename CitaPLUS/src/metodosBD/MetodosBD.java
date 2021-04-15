@@ -24,8 +24,20 @@ public class MetodosBD
     private static PreparedStatement sentencia;
     private static ResultSet resultado;
 
-    public static boolean ingresoSys(String usr, String pass)
+    /**
+     * Metodo que retorna un arreglo de objetos con los valores que requerimos para ingresar al sistema
+     * posteriormente se carga el usuario, nombre completo e imagen en el menu principal si es que se encontro
+     * @param usr el usuario a buscar
+     * @param pass la contraseña encriptada
+     * @return objeto con 4 valores
+     * [0] = true o false para saber si si existe el usuario y se le permite el acceso
+     * [1] = nombre de usuario de la persona
+     * [2] = nombre completo de la persona
+     * [3] = foto de perfil de la persona
+     */
+    public static Object[] ingresoSys(String usr, String pass)
     {
+        Object ret[] = new Object[4];
         try
         {
             dbCon = ConectaBD.ConectaBD();
@@ -37,16 +49,17 @@ public class MetodosBD
             {
                 if (resultado.getString("usuario").equals(usr) && resultado.getString("contraseña").equals(pass))
                 {
-                    return true;
+                    ret[0] = true;
+                    ret[1] = resultado.getString("usuario");
+                    ret[2] = resultado.getString("nombre")+" "+resultado.getString("apellidoPaterno")+" "+resultado.getString("apellidoMaterno");
+                    ret[3] = resultado.getString("foto");
                 }
             }
         } catch (SQLException e)
         {
             System.out.println("Error de consulta en Inicio de sesion "+e);
         }
-        return false;
+        return ret;
     }
-    
-    
     
 }
