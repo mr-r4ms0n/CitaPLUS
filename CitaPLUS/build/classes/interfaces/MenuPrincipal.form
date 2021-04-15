@@ -61,31 +61,27 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="rSButtonMaterialIconOne1" max="32767" attributes="0"/>
-                                  <Component id="rSButtonMaterialIconOne3" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="rSButtonMaterialIconOne4" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="rSButtonMaterialIconOne5" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="rSButtonMaterialIconOne6" alignment="1" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPanel5" alignment="1" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="rSButtonMaterialIconOne1" max="32767" attributes="0"/>
+                          <Component id="rSButtonMaterialIconOne3" alignment="1" max="32767" attributes="0"/>
+                          <Component id="rSButtonMaterialIconOne4" alignment="1" max="32767" attributes="0"/>
+                          <Component id="rSButtonMaterialIconOne5" alignment="1" max="32767" attributes="0"/>
+                          <Component id="rSButtonMaterialIconOne6" alignment="1" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="60" pref="60" max="-2" attributes="0"/>
-                              <Component id="imagenDePerfil" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jLNombre" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jPanel5" alignment="1" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="1" groupAlignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="60" pref="60" max="-2" attributes="0"/>
+                          <Component id="imagenDePerfil" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="jLNombre" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLUsuario" max="32767" attributes="0"/>
               </Group>
@@ -439,7 +435,7 @@
             <Container class="newscomponents.RSPanelEffect" name="pnlSlider">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="33" green="99" red="ff" type="rgb"/>
+                  <Color blue="cc" green="cc" red="ff" type="rgb"/>
                 </Property>
               </Properties>
 
