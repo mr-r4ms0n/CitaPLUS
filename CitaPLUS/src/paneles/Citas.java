@@ -9,13 +9,13 @@ package paneles;
  *
  * @author Kevin
  */
-public class citas extends javax.swing.JPanel
+public class Citas extends javax.swing.JPanel
 {
 
     /**
      * Creates new form citas
      */
-    public citas()
+    public Citas()
     {
         initComponents();
     }
@@ -37,7 +37,7 @@ public class citas extends javax.swing.JPanel
         tabCanceladas = new newscomponents.RSButtonIcon_new();
         tabTodas = new newscomponents.RSButtonIcon_new();
         tabProximas1 = new newscomponents.RSButtonIcon_new();
-        tablaContenidoCitas1 = new paneles.tablaContenidoCitas();
+        tablaContenidoCitas1 = new paneles.TablaContenidoCitas();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 4, 0, new java.awt.Color(26, 117, 159)));
@@ -156,6 +156,6 @@ public class citas extends javax.swing.JPanel
     private newscomponents.RSButtonIcon_new tabProximas;
     private newscomponents.RSButtonIcon_new tabProximas1;
     private newscomponents.RSButtonIcon_new tabTodas;
-    private paneles.tablaContenidoCitas tablaContenidoCitas1;
+    private paneles.TablaContenidoCitas tablaContenidoCitas1;
     // End of variables declaration//GEN-END:variables
 }

@@ -222,7 +222,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="paneles.tablaContenidoCitas" name="tablaContenidoCitas1">
+    <Component class="paneles.TablaContenidoCitas" name="tablaContenidoCitas1">
     </Component>
   </SubComponents>
 </Form>

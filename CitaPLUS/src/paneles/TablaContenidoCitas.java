@@ -9,13 +9,13 @@ package paneles;
  *
  * @author Kevin
  */
-public class tablaContenidoCitas extends javax.swing.JPanel
+public class TablaContenidoCitas extends javax.swing.JPanel
 {
 
     /**
      * Creates new form tablaContenidoCitas
      */
-    public tablaContenidoCitas()
+    public TablaContenidoCitas()
     {
         initComponents();
     }

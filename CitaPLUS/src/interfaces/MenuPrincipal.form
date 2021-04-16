@@ -445,7 +445,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
               <SubComponents>
-                <Component class="paneles.citas" name="pnlCitas">
+                <Component class="paneles.Citas" name="pnlCitas">
                   <Properties>
                     <Property name="name" type="java.lang.String" value="pnlCitas" noResource="true"/>
                   </Properties>

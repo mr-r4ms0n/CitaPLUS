@@ -70,7 +70,7 @@ public class MenuPrincipal extends javax.swing.JFrame
         btnCerrar = new RSMaterialComponent.RSButtonIconOne();
         rSPanelMaterial1 = new RSMaterialComponent.RSPanelMaterial();
         pnlSlider = new newscomponents.RSPanelEffect();
-        pnlCitas = new paneles.citas();
+        pnlCitas = new paneles.Citas();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -381,7 +381,7 @@ public class MenuPrincipal extends javax.swing.JFrame
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private paneles.citas pnlCitas;
+    private paneles.Citas pnlCitas;
     private RSMaterialComponent.RSPanelMaterial pnlMenu;
     private newscomponents.RSPanelEffect pnlSlider;
     private RSMaterialComponent.RSPanelMaterial pnlTopBar;
