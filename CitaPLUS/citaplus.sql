@@ -16,7 +16,7 @@
 CREATE TABLE IF NOT EXISTS `citas` (
   `id` int NOT NULL AUTO_INCREMENT,
   `pacienteId` int NOT NULL,
-  `nombrePaciente` varchar(80) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `nombrePaciente` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
   `estatusCitasId` int NOT NULL DEFAULT '1',
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `citas` (
   `fechaRegistro` date NOT NULL,
   `fechaCancelo` date DEFAULT NULL,
   `usuarioEdito` date DEFAULT NULL,
-  `descripcionCancelo` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `descripcionCancelo` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `fechaEdito` date DEFAULT NULL,
   `usuarioAtiende` int DEFAULT NULL,
   `fechaAtendida` date DEFAULT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `citas` (
 -- Volcando estructura para tabla citaplus.estatuscitas
 CREATE TABLE IF NOT EXISTS `estatuscitas` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(80) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `descripcion` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `estatus` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `estatuscitas_descripcion` (`descripcion`)
@@ -64,13 +64,13 @@ INSERT INTO `estatuscitas` (`id`, `descripcion`, `estatus`) VALUES
 -- Volcando estructura para tabla citaplus.pacientes
 CREATE TABLE IF NOT EXISTS `pacientes` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `foto` varchar(80) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `nombre` varchar(80) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `apellidoPaterno` varchar(80) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `apellidoMaterno` varchar(80) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `sexo` enum('Hombre','Mujer') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Hombre',
+  `foto` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nombre` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `apellidoPaterno` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `apellidoMaterno` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `sexo` enum('Hombre','Mujer') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'Hombre',
   `telefono` bigint DEFAULT NULL,
-  `correo` varchar(80) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `correo` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `estatus` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `pacientes_nombre` (`nombre`),
