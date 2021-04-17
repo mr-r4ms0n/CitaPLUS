@@ -17,7 +17,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel2" max="32767" attributes="0"/>
-          <Component id="tablaContenidoCitas1" alignment="1" pref="1121" max="32767" attributes="0"/>
+          <Component id="tablaContenidoServicios1" alignment="0" pref="1121" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -25,7 +25,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="tablaContenidoCitas1" pref="559" max="32767" attributes="0"/>
+              <Component id="tablaContenidoServicios1" pref="559" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -62,8 +62,6 @@
                           <Component id="tabProximas1" min="-2" pref="140" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="tabCanceladas" min="-2" pref="146" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="tabTodas" min="-2" pref="91" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -78,7 +76,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="tabProximas" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tabCanceladas" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tabTodas" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tabProximas1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -101,7 +98,7 @@
               <Color blue="ef" green="e0" red="90" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
-            <Property name="text" type="java.lang.String" value="Citas"/>
+            <Property name="text" type="java.lang.String" value="Servicos"/>
             <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
               <Value id="SHOP_TWO"/>
             </Property>
@@ -112,13 +109,13 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="a0" green="a5" red="44" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Agendar nueva cita"/>
             <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="d8" green="da" red="b2" type="rgb"/>
             </Property>
             <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
-              <Value id="LOCAL_PHARMACY"/>
+              <Value id="ADD_CIRCLE"/>
             </Property>
+            <Property name="label" type="java.lang.String" value="Agendar nuevo servicio"/>
             <Property name="round" type="int" value="20"/>
           </Properties>
         </Component>
@@ -127,7 +124,7 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Proximas (0)"/>
+            <Property name="text" type="java.lang.String" value="Activos (0)"/>
             <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="80" green="b6" red="cc" type="rgb"/>
             </Property>
@@ -141,18 +138,21 @@
               <Color blue="9f" green="75" red="1a" type="rgb"/>
             </Property>
             <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
-              <Value id="ACCESS_TIME"/>
+              <Value id="SHOP_TWO"/>
             </Property>
             <Property name="round" type="int" value="20"/>
             <Property name="selected" type="boolean" value="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabProximasActionPerformed"/>
+          </Events>
         </Component>
         <Component class="newscomponents.RSButtonIcon_new" name="tabCanceladas">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Canceladas (0)"/>
+            <Property name="text" type="java.lang.String" value="Inactivos (0)"/>
             <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="92" green="92" red="ef" type="rgb"/>
             </Property>
@@ -166,41 +166,20 @@
               <Color blue="9f" green="75" red="1a" type="rgb"/>
             </Property>
             <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
-              <Value id="REMOVE_CIRCLE"/>
+              <Value id="SHOP_TWO"/>
             </Property>
             <Property name="round" type="int" value="20"/>
           </Properties>
-        </Component>
-        <Component class="newscomponents.RSButtonIcon_new" name="tabTodas">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Todas"/>
-            <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="dd" green="d2" red="99" type="rgb"/>
-            </Property>
-            <Property name="foregroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="9f" green="75" red="1a" type="rgb"/>
-            </Property>
-            <Property name="foregroundIcon" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="9f" green="75" red="1a" type="rgb"/>
-            </Property>
-            <Property name="foregroundText" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="9f" green="75" red="1a" type="rgb"/>
-            </Property>
-            <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
-              <Value id="REORDER"/>
-            </Property>
-            <Property name="round" type="int" value="20"/>
-          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabCanceladasActionPerformed"/>
+          </Events>
         </Component>
         <Component class="newscomponents.RSButtonIcon_new" name="tabProximas1">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Atendidas (0)"/>
+            <Property name="text" type="java.lang.String" value="Todos (0)"/>
             <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="70" green="bf" red="8a" type="rgb"/>
             </Property>
@@ -215,14 +194,14 @@
               <Color blue="9f" green="75" red="1a" type="rgb"/>
             </Property>
             <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
-              <Value id="CHECK_BOX"/>
+              <Value id="SHOP_TWO"/>
             </Property>
             <Property name="round" type="int" value="20"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="paneles.TablaContenidoCitas" name="tablaContenidoCitas1">
+    <Component class="paneles.TablaContenidoServicios" name="tablaContenidoServicios1">
     </Component>
   </SubComponents>
 </Form>

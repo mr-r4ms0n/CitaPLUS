@@ -35,60 +35,64 @@ public class Servicios extends javax.swing.JPanel
         rSButtonIcon_new1 = new newscomponents.RSButtonIcon_new();
         tabProximas = new newscomponents.RSButtonIcon_new();
         tabCanceladas = new newscomponents.RSButtonIcon_new();
-        tabTodas = new newscomponents.RSButtonIcon_new();
         tabProximas1 = new newscomponents.RSButtonIcon_new();
-        tablaContenidoCitas1 = new paneles.TablaContenidoCitas();
+        tablaContenidoServicios1 = new paneles.TablaContenidoServicios();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 4, 0, new java.awt.Color(26, 117, 159)));
 
         rSLabelTextIcon1.setForeground(new java.awt.Color(144, 224, 239));
         rSLabelTextIcon1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        rSLabelTextIcon1.setText("Citas");
+        rSLabelTextIcon1.setText("Servicos");
         rSLabelTextIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP_TWO);
 
         rSButtonIcon_new1.setBackground(new java.awt.Color(68, 165, 160));
-        rSButtonIcon_new1.setText("Agendar nueva cita");
         rSButtonIcon_new1.setBackgroundHover(new java.awt.Color(178, 218, 216));
-        rSButtonIcon_new1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.LOCAL_PHARMACY);
+        rSButtonIcon_new1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ADD_CIRCLE);
+        rSButtonIcon_new1.setLabel("Agendar nuevo servicio");
         rSButtonIcon_new1.setRound(20);
 
         tabProximas.setBackground(new java.awt.Color(255, 255, 255));
-        tabProximas.setText("Proximas (0)");
+        tabProximas.setText("Activos (0)");
         tabProximas.setBackgroundHover(new java.awt.Color(204, 182, 128));
         tabProximas.setForegroundHover(new java.awt.Color(26, 117, 159));
         tabProximas.setForegroundIcon(new java.awt.Color(233, 196, 106));
         tabProximas.setForegroundText(new java.awt.Color(26, 117, 159));
-        tabProximas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ACCESS_TIME);
+        tabProximas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP_TWO);
         tabProximas.setRound(20);
         tabProximas.setSelected(true);
+        tabProximas.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                tabProximasActionPerformed(evt);
+            }
+        });
 
         tabCanceladas.setBackground(new java.awt.Color(255, 255, 255));
-        tabCanceladas.setText("Canceladas (0)");
+        tabCanceladas.setText("Inactivos (0)");
         tabCanceladas.setBackgroundHover(new java.awt.Color(239, 146, 146));
         tabCanceladas.setForegroundHover(new java.awt.Color(26, 117, 159));
         tabCanceladas.setForegroundIcon(new java.awt.Color(255, 51, 51));
         tabCanceladas.setForegroundText(new java.awt.Color(26, 117, 159));
-        tabCanceladas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.REMOVE_CIRCLE);
+        tabCanceladas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP_TWO);
         tabCanceladas.setRound(20);
-
-        tabTodas.setBackground(new java.awt.Color(255, 255, 255));
-        tabTodas.setText("Todas");
-        tabTodas.setBackgroundHover(new java.awt.Color(153, 210, 221));
-        tabTodas.setForegroundHover(new java.awt.Color(26, 117, 159));
-        tabTodas.setForegroundIcon(new java.awt.Color(26, 117, 159));
-        tabTodas.setForegroundText(new java.awt.Color(26, 117, 159));
-        tabTodas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.REORDER);
-        tabTodas.setRound(20);
+        tabCanceladas.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                tabCanceladasActionPerformed(evt);
+            }
+        });
 
         tabProximas1.setBackground(new java.awt.Color(255, 255, 255));
-        tabProximas1.setText("Atendidas (0)");
+        tabProximas1.setText("Todos (0)");
         tabProximas1.setBackgroundHover(new java.awt.Color(138, 191, 112));
         tabProximas1.setFocusable(false);
         tabProximas1.setForegroundHover(new java.awt.Color(26, 117, 159));
         tabProximas1.setForegroundIcon(new java.awt.Color(51, 153, 0));
         tabProximas1.setForegroundText(new java.awt.Color(26, 117, 159));
-        tabProximas1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CHECK_BOX);
+        tabProximas1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP_TWO);
         tabProximas1.setRound(20);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -108,8 +112,6 @@ public class Servicios extends javax.swing.JPanel
                         .addComponent(tabProximas1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tabCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tabTodas, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -120,7 +122,6 @@ public class Servicios extends javax.swing.JPanel
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tabProximas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tabCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tabTodas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tabProximas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -136,16 +137,26 @@ public class Servicios extends javax.swing.JPanel
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tablaContenidoCitas1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1121, Short.MAX_VALUE)
+            .addComponent(tablaContenidoServicios1, javax.swing.GroupLayout.DEFAULT_SIZE, 1121, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tablaContenidoCitas1, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE))
+                .addComponent(tablaContenidoServicios1, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tabProximasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabProximasActionPerformed
+    {//GEN-HEADEREND:event_tabProximasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tabProximasActionPerformed
+
+    private void tabCanceladasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabCanceladasActionPerformed
+    {//GEN-HEADEREND:event_tabCanceladasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tabCanceladasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -155,7 +166,6 @@ public class Servicios extends javax.swing.JPanel
     private newscomponents.RSButtonIcon_new tabCanceladas;
     private newscomponents.RSButtonIcon_new tabProximas;
     private newscomponents.RSButtonIcon_new tabProximas1;
-    private newscomponents.RSButtonIcon_new tabTodas;
-    private paneles.TablaContenidoCitas tablaContenidoCitas1;
+    private paneles.TablaContenidoServicios tablaContenidoServicios1;
     // End of variables declaration//GEN-END:variables
 }
