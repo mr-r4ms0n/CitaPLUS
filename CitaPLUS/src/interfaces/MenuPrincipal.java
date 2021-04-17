@@ -58,12 +58,13 @@ public class MenuPrincipal extends javax.swing.JFrame
         rSButtonMaterialIconOne3 = new RSMaterialComponent.RSButtonMaterialIconOne();
         rSButtonMaterialIconOne4 = new RSMaterialComponent.RSButtonMaterialIconOne();
         rSButtonMaterialIconOne5 = new RSMaterialComponent.RSButtonMaterialIconOne();
-        rSButtonMaterialIconOne6 = new RSMaterialComponent.RSButtonMaterialIconOne();
+        rSButtonMaterialIconOne7 = new RSMaterialComponent.RSButtonMaterialIconOne();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLUsuario = new javax.swing.JLabel();
+        rSButtonMaterialIconOne6 = new RSMaterialComponent.RSButtonMaterialIconOne();
         pnlTopBar = new RSMaterialComponent.RSPanelMaterial();
         jLabel1 = new javax.swing.JLabel();
         rSLabelIcon1 = new RSMaterialComponent.RSLabelIcon();
@@ -71,6 +72,7 @@ public class MenuPrincipal extends javax.swing.JFrame
         rSPanelMaterial1 = new RSMaterialComponent.RSPanelMaterial();
         pnlSlider = new newscomponents.RSPanelEffect();
         pnlCitas = new paneles.Citas();
+        pnlPacientes = new paneles.Pacientes();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -127,11 +129,11 @@ public class MenuPrincipal extends javax.swing.JFrame
         rSButtonMaterialIconOne5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP_TWO);
         rSButtonMaterialIconOne5.setRound(20);
 
-        rSButtonMaterialIconOne6.setBackground(new java.awt.Color(68, 165, 160));
-        rSButtonMaterialIconOne6.setText("Acerda De");
-        rSButtonMaterialIconOne6.setBackgroundHover(new java.awt.Color(178, 218, 216));
-        rSButtonMaterialIconOne6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.INFO);
-        rSButtonMaterialIconOne6.setRound(20);
+        rSButtonMaterialIconOne7.setBackground(new java.awt.Color(68, 165, 160));
+        rSButtonMaterialIconOne7.setText("Acerda De");
+        rSButtonMaterialIconOne7.setBackgroundHover(new java.awt.Color(178, 218, 216));
+        rSButtonMaterialIconOne7.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.INFO);
+        rSButtonMaterialIconOne7.setRound(20);
 
         jPanel3.setBackground(new java.awt.Color(253, 241, 205));
 
@@ -181,28 +183,40 @@ public class MenuPrincipal extends javax.swing.JFrame
         jLUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLUsuario.setText("UsuarioN");
 
+        rSButtonMaterialIconOne6.setBackground(new java.awt.Color(68, 165, 160));
+        rSButtonMaterialIconOne6.setText("Usuarios");
+        rSButtonMaterialIconOne6.setBackgroundHover(new java.awt.Color(178, 218, 216));
+        rSButtonMaterialIconOne6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PEOPLE);
+        rSButtonMaterialIconOne6.setRound(20);
+
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
         pnlMenuLayout.setHorizontalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlMenuLayout.createSequentialGroup()
-                    .addGap(60, 60, 60)
-                    .addComponent(imagenDePerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jLNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlMenuLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(imagenDePerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addComponent(jLUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rSButtonMaterialIconOne6, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(rSButtonMaterialIconOne5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                        .addComponent(rSButtonMaterialIconOne4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(rSButtonMaterialIconOne3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(rSButtonMaterialIconOne1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlMenuLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rSButtonMaterialIconOne7, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(rSButtonMaterialIconOne5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                                .addComponent(rSButtonMaterialIconOne4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rSButtonMaterialIconOne3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rSButtonMaterialIconOne1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(rSButtonMaterialIconOne6, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +241,9 @@ public class MenuPrincipal extends javax.swing.JFrame
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(rSButtonMaterialIconOne6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(rSButtonMaterialIconOne7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         jPanel1.add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 126, 230, 870));
@@ -294,6 +310,9 @@ public class MenuPrincipal extends javax.swing.JFrame
 
         pnlCitas.setName("pnlCitas"); // NOI18N
         pnlSlider.add(pnlCitas, "card2");
+
+        pnlPacientes.setName("pnlPacientes"); // NOI18N
+        pnlSlider.add(pnlPacientes, "card3");
 
         javax.swing.GroupLayout rSPanelMaterial1Layout = new javax.swing.GroupLayout(rSPanelMaterial1);
         rSPanelMaterial1.setLayout(rSPanelMaterial1Layout);
@@ -383,6 +402,7 @@ public class MenuPrincipal extends javax.swing.JFrame
     private javax.swing.JPanel jPanel5;
     private paneles.Citas pnlCitas;
     private RSMaterialComponent.RSPanelMaterial pnlMenu;
+    private paneles.Pacientes pnlPacientes;
     private newscomponents.RSPanelEffect pnlSlider;
     private RSMaterialComponent.RSPanelMaterial pnlTopBar;
     private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne1;
@@ -390,6 +410,7 @@ public class MenuPrincipal extends javax.swing.JFrame
     private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne4;
     private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne5;
     private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne6;
+    private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne7;
     private RSMaterialComponent.RSLabelIcon rSLabelIcon1;
     private RSMaterialComponent.RSPanelMaterial rSPanelMaterial1;
     // End of variables declaration//GEN-END:variables
