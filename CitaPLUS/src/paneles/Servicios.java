@@ -45,7 +45,7 @@ public class Servicios extends javax.swing.JPanel
         rSLabelTextIcon1.setForeground(new java.awt.Color(144, 224, 239));
         rSLabelTextIcon1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         rSLabelTextIcon1.setText("Citas");
-        rSLabelTextIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RECEIPT);
+        rSLabelTextIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP_TWO);
 
         rSButtonIcon_new1.setBackground(new java.awt.Color(68, 165, 160));
         rSButtonIcon_new1.setText("Agendar nueva cita");

@@ -76,7 +76,7 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
         rSLabelTextIcon1.setForeground(new java.awt.Color(51, 153, 0));
         rSLabelTextIcon1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         rSLabelTextIcon1.setText("Pacientes Activos");
-        rSLabelTextIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PEOPLE);
+        rSLabelTextIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
         rSLabelTextIcon1.setSizeIcon(30.0F);
 
         rSTextFieldMaterialIcon1.setForeground(new java.awt.Color(26, 117, 159));

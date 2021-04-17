@@ -44,12 +44,12 @@ public class Pacientes extends javax.swing.JPanel
         rSLabelTextIcon1.setForeground(new java.awt.Color(144, 224, 239));
         rSLabelTextIcon1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         rSLabelTextIcon1.setText("Pacientes");
-        rSLabelTextIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PEOPLE);
+        rSLabelTextIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
 
         rSButtonIcon_new1.setBackground(new java.awt.Color(68, 165, 160));
         rSButtonIcon_new1.setText("Nuevo Paciente");
         rSButtonIcon_new1.setBackgroundHover(new java.awt.Color(178, 218, 216));
-        rSButtonIcon_new1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.LOCAL_PHARMACY);
+        rSButtonIcon_new1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON_ADD);
         rSButtonIcon_new1.setRound(20);
         rSButtonIcon_new1.addActionListener(new java.awt.event.ActionListener()
         {
@@ -65,7 +65,7 @@ public class Pacientes extends javax.swing.JPanel
         tabProximas.setForegroundHover(new java.awt.Color(26, 117, 159));
         tabProximas.setForegroundIcon(new java.awt.Color(233, 196, 106));
         tabProximas.setForegroundText(new java.awt.Color(26, 117, 159));
-        tabProximas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PEOPLE);
+        tabProximas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
         tabProximas.setRound(20);
         tabProximas.setSelected(true);
 
@@ -75,7 +75,7 @@ public class Pacientes extends javax.swing.JPanel
         tabCanceladas.setForegroundHover(new java.awt.Color(26, 117, 159));
         tabCanceladas.setForegroundIcon(new java.awt.Color(255, 51, 51));
         tabCanceladas.setForegroundText(new java.awt.Color(26, 117, 159));
-        tabCanceladas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PEOPLE);
+        tabCanceladas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
         tabCanceladas.setRound(20);
         tabCanceladas.addActionListener(new java.awt.event.ActionListener()
         {
@@ -92,7 +92,7 @@ public class Pacientes extends javax.swing.JPanel
         tabProximas1.setForegroundHover(new java.awt.Color(26, 117, 159));
         tabProximas1.setForegroundIcon(new java.awt.Color(26, 117, 159));
         tabProximas1.setForegroundText(new java.awt.Color(26, 117, 159));
-        tabProximas1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PEOPLE);
+        tabProximas1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
         tabProximas1.setRound(20);
         tabProximas1.addActionListener(new java.awt.event.ActionListener()
         {
