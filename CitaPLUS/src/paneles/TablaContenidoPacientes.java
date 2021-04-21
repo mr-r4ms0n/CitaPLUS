@@ -5,6 +5,10 @@
  */
 package paneles;
 
+import RSMaterialComponent.RSTableMetroCustom;
+import metodosAux.MetodosAux;
+import metodosBD.MetodosBD;
+
 /**
  *
  * @author Kevin
@@ -18,6 +22,16 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
     public TablaContenidoPacientes()
     {
         initComponents();
+        listarPacientes(tblCitas, 1);
+    }
+
+    public void listarPacientes(RSTableMetroCustom tabla, int tab)
+    {
+        String[] columnas =
+        {
+            "nombre", "apellidoPaterno", "apellidoMaterno", "sexo", "telefono", "correo"
+        };
+        MetodosAux.listarTablas(MetodosBD.rsListarPacientes(tab), tabla, columnas);
     }
 
     /**
@@ -133,6 +147,6 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
     private javax.swing.JScrollPane jScrollPane1;
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon1;
     private RSMaterialComponent.RSTextFieldMaterialIcon rSTextFieldMaterialIcon1;
-    private RSMaterialComponent.RSTableMetroCustom tblCitas;
+    public RSMaterialComponent.RSTableMetroCustom tblCitas;
     // End of variables declaration//GEN-END:variables
 }

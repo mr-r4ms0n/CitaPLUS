@@ -53,15 +53,15 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="rSLabelTextIcon1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="701" max="32767" attributes="0"/>
                           <Component id="rSButtonIcon_new1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="tabProximas" min="-2" pref="132" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="tabProximas1" min="-2" pref="140" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="tabCanceladas" min="-2" pref="146" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="tabProximas1" min="-2" pref="140" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -122,11 +122,11 @@
         <Component class="newscomponents.RSButtonIcon_new" name="tabProximas">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+              <Color blue="4b" green="bf" red="72" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Activos (0)"/>
             <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="b6" red="cc" type="rgb"/>
+              <Color blue="81" green="c2" red="97" type="rgb"/>
             </Property>
             <Property name="foregroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="9f" green="75" red="1a" type="rgb"/>
@@ -181,14 +181,14 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Todos (0)"/>
             <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="70" green="bf" red="8a" type="rgb"/>
+              <Color blue="a7" green="94" red="6c" type="rgb"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="foregroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="9f" green="75" red="1a" type="rgb"/>
             </Property>
             <Property name="foregroundIcon" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="99" red="33" type="rgb"/>
+              <Color blue="9f" green="75" red="1a" type="rgb"/>
             </Property>
             <Property name="foregroundText" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="9f" green="75" red="1a" type="rgb"/>

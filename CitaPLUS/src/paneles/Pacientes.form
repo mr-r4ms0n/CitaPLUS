@@ -17,10 +17,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel2" max="32767" attributes="0"/>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="tablaContenidoPacientes2" pref="1111" max="32767" attributes="0"/>
-          </Group>
+          <Component id="tablaContenidoPacientes2" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -56,15 +53,15 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="rSLabelTextIcon1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="735" max="32767" attributes="0"/>
                           <Component id="rSButtonIcon_new1" min="-2" pref="166" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="tabProximas" min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="tabActivos" min="-2" pref="132" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="tabProximas1" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="tabInactivos" min="-2" pref="146" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="tabCanceladas" min="-2" pref="146" max="-2" attributes="0"/>
+                          <Component id="tabTodos" min="-2" pref="140" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -77,9 +74,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tabProximas" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tabCanceladas" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tabProximas1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabActivos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabInactivos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabTodos" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -125,14 +122,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonIcon_new1ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="newscomponents.RSButtonIcon_new" name="tabProximas">
+        <Component class="newscomponents.RSButtonIcon_new" name="tabActivos">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Activos (0)"/>
             <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="b6" red="cc" type="rgb"/>
+              <Color blue="81" green="c2" red="97" type="rgb"/>
             </Property>
             <Property name="foregroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="9f" green="75" red="1a" type="rgb"/>
@@ -149,8 +146,11 @@
             <Property name="round" type="int" value="20"/>
             <Property name="selected" type="boolean" value="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabActivosActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="newscomponents.RSButtonIcon_new" name="tabCanceladas">
+        <Component class="newscomponents.RSButtonIcon_new" name="tabInactivos">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -174,17 +174,17 @@
             <Property name="round" type="int" value="20"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabCanceladasActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabInactivosActionPerformed"/>
           </Events>
         </Component>
-        <Component class="newscomponents.RSButtonIcon_new" name="tabProximas1">
+        <Component class="newscomponents.RSButtonIcon_new" name="tabTodos">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Todos"/>
             <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="70" green="bf" red="8a" type="rgb"/>
+              <Color blue="c2" green="a1" red="90" type="rgb"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="foregroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -202,7 +202,7 @@
             <Property name="round" type="int" value="20"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabProximas1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabTodosActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

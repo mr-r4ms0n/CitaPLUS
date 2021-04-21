@@ -19,6 +19,7 @@ public class MenuPrincipal extends javax.swing.JFrame
 
     /**
      * Creates new form MenuPrincipal
+     *
      * @param usuario
      * @param nombre
      * @param foto
@@ -32,12 +33,12 @@ public class MenuPrincipal extends javax.swing.JFrame
         //Establecemos los campos segun esto corresponda de lo que se encontro registrado en la BD
         jLNombre.setText(nombre);
         jLUsuario.setText(usuario);
-        imagenDePerfil.setImagen(new ImageIcon(getClass().getResource("/imagenes/"+foto)));
+        imagenDePerfil.setImagen(new ImageIcon(getClass().getResource("/imagenes/" + foto)));
     }
 
     private MenuPrincipal()
     {
-       
+
     }
 
     /**
@@ -54,17 +55,17 @@ public class MenuPrincipal extends javax.swing.JFrame
         pnlMenu = new RSMaterialComponent.RSPanelMaterial();
         imagenDePerfil = new RSMaterialComponent.RSPanelBorderImage();
         jLNombre = new javax.swing.JLabel();
-        rSButtonMaterialIconOne1 = new RSMaterialComponent.RSButtonMaterialIconOne();
-        rSButtonMaterialIconOne3 = new RSMaterialComponent.RSButtonMaterialIconOne();
-        rSButtonMaterialIconOne4 = new RSMaterialComponent.RSButtonMaterialIconOne();
-        rSButtonMaterialIconOne5 = new RSMaterialComponent.RSButtonMaterialIconOne();
-        rSButtonMaterialIconOne7 = new RSMaterialComponent.RSButtonMaterialIconOne();
+        btnInicio = new RSMaterialComponent.RSButtonMaterialIconOne();
+        btnCitas = new RSMaterialComponent.RSButtonMaterialIconOne();
+        btnPacientes = new RSMaterialComponent.RSButtonMaterialIconOne();
+        btnServicios = new RSMaterialComponent.RSButtonMaterialIconOne();
+        btnAcercaDe = new RSMaterialComponent.RSButtonMaterialIconOne();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLUsuario = new javax.swing.JLabel();
-        rSButtonMaterialIconOne6 = new RSMaterialComponent.RSButtonMaterialIconOne();
+        btnUsuarios = new RSMaterialComponent.RSButtonMaterialIconOne();
         pnlTopBar = new RSMaterialComponent.RSPanelMaterial();
         jLabel1 = new javax.swing.JLabel();
         rSLabelIcon1 = new RSMaterialComponent.RSLabelIcon();
@@ -73,6 +74,7 @@ public class MenuPrincipal extends javax.swing.JFrame
         pnlSlider = new newscomponents.RSPanelEffect();
         pnlCitas = new paneles.Citas();
         pnlPacientes = new paneles.Pacientes();
+        pnlServicios = new paneles.Servicios();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -106,34 +108,69 @@ public class MenuPrincipal extends javax.swing.JFrame
         jLNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLNombre.setText("NombreN");
 
-        rSButtonMaterialIconOne1.setBackground(new java.awt.Color(112, 190, 186));
-        rSButtonMaterialIconOne1.setText("Inicio");
-        rSButtonMaterialIconOne1.setBackgroundHover(new java.awt.Color(178, 218, 216));
-        rSButtonMaterialIconOne1.setRound(20);
+        btnInicio.setBackground(new java.awt.Color(112, 190, 186));
+        btnInicio.setText("Inicio");
+        btnInicio.setBackgroundHover(new java.awt.Color(178, 218, 216));
+        btnInicio.setRound(20);
+        btnInicio.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnInicioActionPerformed(evt);
+            }
+        });
 
-        rSButtonMaterialIconOne3.setBackground(new java.awt.Color(68, 165, 160));
-        rSButtonMaterialIconOne3.setText("Citas registradas");
-        rSButtonMaterialIconOne3.setBackgroundHover(new java.awt.Color(178, 218, 216));
-        rSButtonMaterialIconOne3.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RECEIPT);
-        rSButtonMaterialIconOne3.setRound(20);
+        btnCitas.setBackground(new java.awt.Color(68, 165, 160));
+        btnCitas.setText("Citas registradas");
+        btnCitas.setBackgroundHover(new java.awt.Color(178, 218, 216));
+        btnCitas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RECEIPT);
+        btnCitas.setRound(20);
+        btnCitas.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCitasActionPerformed(evt);
+            }
+        });
 
-        rSButtonMaterialIconOne4.setBackground(new java.awt.Color(68, 165, 160));
-        rSButtonMaterialIconOne4.setText("Pacientes");
-        rSButtonMaterialIconOne4.setBackgroundHover(new java.awt.Color(178, 218, 216));
-        rSButtonMaterialIconOne4.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
-        rSButtonMaterialIconOne4.setRound(20);
+        btnPacientes.setBackground(new java.awt.Color(68, 165, 160));
+        btnPacientes.setText("Pacientes");
+        btnPacientes.setBackgroundHover(new java.awt.Color(178, 218, 216));
+        btnPacientes.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
+        btnPacientes.setRound(20);
+        btnPacientes.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnPacientesActionPerformed(evt);
+            }
+        });
 
-        rSButtonMaterialIconOne5.setBackground(new java.awt.Color(68, 165, 160));
-        rSButtonMaterialIconOne5.setText("Servicios");
-        rSButtonMaterialIconOne5.setBackgroundHover(new java.awt.Color(178, 218, 216));
-        rSButtonMaterialIconOne5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP_TWO);
-        rSButtonMaterialIconOne5.setRound(20);
+        btnServicios.setBackground(new java.awt.Color(68, 165, 160));
+        btnServicios.setText("Servicios");
+        btnServicios.setBackgroundHover(new java.awt.Color(178, 218, 216));
+        btnServicios.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP_TWO);
+        btnServicios.setRound(20);
+        btnServicios.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnServiciosActionPerformed(evt);
+            }
+        });
 
-        rSButtonMaterialIconOne7.setBackground(new java.awt.Color(68, 165, 160));
-        rSButtonMaterialIconOne7.setText("Acerda De");
-        rSButtonMaterialIconOne7.setBackgroundHover(new java.awt.Color(178, 218, 216));
-        rSButtonMaterialIconOne7.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.INFO);
-        rSButtonMaterialIconOne7.setRound(20);
+        btnAcercaDe.setBackground(new java.awt.Color(68, 165, 160));
+        btnAcercaDe.setText("Acerda De");
+        btnAcercaDe.setBackgroundHover(new java.awt.Color(178, 218, 216));
+        btnAcercaDe.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.INFO);
+        btnAcercaDe.setRound(20);
+        btnAcercaDe.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnAcercaDeActionPerformed(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(253, 241, 205));
 
@@ -183,11 +220,18 @@ public class MenuPrincipal extends javax.swing.JFrame
         jLUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLUsuario.setText("UsuarioN");
 
-        rSButtonMaterialIconOne6.setBackground(new java.awt.Color(68, 165, 160));
-        rSButtonMaterialIconOne6.setText("Usuarios");
-        rSButtonMaterialIconOne6.setBackgroundHover(new java.awt.Color(178, 218, 216));
-        rSButtonMaterialIconOne6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PEOPLE);
-        rSButtonMaterialIconOne6.setRound(20);
+        btnUsuarios.setBackground(new java.awt.Color(68, 165, 160));
+        btnUsuarios.setText("Usuarios");
+        btnUsuarios.setBackgroundHover(new java.awt.Color(178, 218, 216));
+        btnUsuarios.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PEOPLE);
+        btnUsuarios.setRound(20);
+        btnUsuarios.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnUsuariosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
@@ -209,13 +253,13 @@ public class MenuPrincipal extends javax.swing.JFrame
                     .addGroup(pnlMenuLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rSButtonMaterialIconOne7, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAcercaDe, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(rSButtonMaterialIconOne5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                                .addComponent(rSButtonMaterialIconOne4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(rSButtonMaterialIconOne3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(rSButtonMaterialIconOne1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(rSButtonMaterialIconOne6, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnServicios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                                .addComponent(btnPacientes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCitas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnInicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         pnlMenuLayout.setVerticalGroup(
@@ -230,19 +274,19 @@ public class MenuPrincipal extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(rSButtonMaterialIconOne1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(rSButtonMaterialIconOne3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCitas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(rSButtonMaterialIconOne4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(rSButtonMaterialIconOne5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnServicios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(rSButtonMaterialIconOne6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(rSButtonMaterialIconOne7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAcercaDe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(185, Short.MAX_VALUE))
         );
 
@@ -314,6 +358,9 @@ public class MenuPrincipal extends javax.swing.JFrame
         pnlPacientes.setName("pnlPacientes"); // NOI18N
         pnlSlider.add(pnlPacientes, "card3");
 
+        pnlServicios.setName("pnlServicios"); // NOI18N
+        pnlSlider.add(pnlServicios, "card4");
+
         javax.swing.GroupLayout rSPanelMaterial1Layout = new javax.swing.GroupLayout(rSPanelMaterial1);
         rSPanelMaterial1.setLayout(rSPanelMaterial1Layout);
         rSPanelMaterial1Layout.setHorizontalGroup(
@@ -340,9 +387,94 @@ public class MenuPrincipal extends javax.swing.JFrame
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCerrarActionPerformed
     {//GEN-HEADEREND:event_btnCerrarActionPerformed
-       dispose();
-       new InicioSesion().setVisible(true);
+        dispose();
+        new InicioSesion().setVisible(true);
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnCitasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCitasActionPerformed
+    {//GEN-HEADEREND:event_btnCitasActionPerformed
+        if (!btnCitas.isSelected())
+        {
+            btnCitas.setSelected(true);
+            btnInicio.setSelected(false);
+            btnPacientes.setSelected(false);
+            btnServicios.setSelected(false);
+            btnUsuarios.setSelected(false);
+            btnAcercaDe.setSelected(false);
+            
+            pnlSlider.setPanelNormal(pnlCitas);
+        }
+    }//GEN-LAST:event_btnCitasActionPerformed
+
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnInicioActionPerformed
+    {//GEN-HEADEREND:event_btnInicioActionPerformed
+        if (!btnInicio.isSelected())
+        {
+            btnInicio.setSelected(true);
+            btnCitas.setSelected(false);
+            btnPacientes.setSelected(false);
+            btnServicios.setSelected(false);
+            btnUsuarios.setSelected(false);
+            btnAcercaDe.setSelected(false);
+        }
+    }//GEN-LAST:event_btnInicioActionPerformed
+
+    private void btnPacientesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPacientesActionPerformed
+    {//GEN-HEADEREND:event_btnPacientesActionPerformed
+        if (!btnPacientes.isSelected())
+        {
+            btnPacientes.setSelected(true);
+            btnCitas.setSelected(false);
+            btnInicio.setSelected(false);
+            btnServicios.setSelected(false);
+            btnUsuarios.setSelected(false);
+            btnAcercaDe.setSelected(false);
+            
+            pnlSlider.setPanelNormal(pnlPacientes);
+        }
+
+    }//GEN-LAST:event_btnPacientesActionPerformed
+
+    private void btnServiciosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnServiciosActionPerformed
+    {//GEN-HEADEREND:event_btnServiciosActionPerformed
+        if (!btnServicios.isSelected())
+        {
+            btnServicios.setSelected(true);
+            btnCitas.setSelected(false);
+            btnPacientes.setSelected(false);
+            btnInicio.setSelected(false);
+            btnUsuarios.setSelected(false);
+            btnAcercaDe.setSelected(false);
+        }
+
+    }//GEN-LAST:event_btnServiciosActionPerformed
+
+    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnUsuariosActionPerformed
+    {//GEN-HEADEREND:event_btnUsuariosActionPerformed
+        if (!btnUsuarios.isSelected())
+        {
+            btnUsuarios.setSelected(true);
+            btnCitas.setSelected(false);
+            btnPacientes.setSelected(false);
+            btnServicios.setSelected(false);
+            btnInicio.setSelected(false);
+            btnAcercaDe.setSelected(false);
+        }
+
+    }//GEN-LAST:event_btnUsuariosActionPerformed
+
+    private void btnAcercaDeActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAcercaDeActionPerformed
+    {//GEN-HEADEREND:event_btnAcercaDeActionPerformed
+        if (!btnAcercaDe.isSelected())
+        {
+            btnAcercaDe.setSelected(true);
+            btnCitas.setSelected(false);
+            btnPacientes.setSelected(false);
+            btnServicios.setSelected(false);
+            btnUsuarios.setSelected(false);
+            btnInicio.setSelected(false);
+        }
+    }//GEN-LAST:event_btnAcercaDeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -390,7 +522,13 @@ public class MenuPrincipal extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private RSMaterialComponent.RSButtonMaterialIconOne btnAcercaDe;
     private RSMaterialComponent.RSButtonIconOne btnCerrar;
+    private RSMaterialComponent.RSButtonMaterialIconOne btnCitas;
+    private RSMaterialComponent.RSButtonMaterialIconOne btnInicio;
+    private RSMaterialComponent.RSButtonMaterialIconOne btnPacientes;
+    private RSMaterialComponent.RSButtonMaterialIconOne btnServicios;
+    private RSMaterialComponent.RSButtonMaterialIconOne btnUsuarios;
     private RSMaterialComponent.RSPanelBorderImage imagenDePerfil;
     private javax.swing.JLabel jLNombre;
     private javax.swing.JLabel jLUsuario;
@@ -403,14 +541,9 @@ public class MenuPrincipal extends javax.swing.JFrame
     private paneles.Citas pnlCitas;
     private RSMaterialComponent.RSPanelMaterial pnlMenu;
     private paneles.Pacientes pnlPacientes;
+    private paneles.Servicios pnlServicios;
     private newscomponents.RSPanelEffect pnlSlider;
     private RSMaterialComponent.RSPanelMaterial pnlTopBar;
-    private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne1;
-    private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne3;
-    private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne4;
-    private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne5;
-    private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne6;
-    private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne7;
     private RSMaterialComponent.RSLabelIcon rSLabelIcon1;
     private RSMaterialComponent.RSPanelMaterial rSPanelMaterial1;
     // End of variables declaration//GEN-END:variables

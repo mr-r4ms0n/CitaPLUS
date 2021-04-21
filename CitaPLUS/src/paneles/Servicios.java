@@ -52,9 +52,9 @@ public class Servicios extends javax.swing.JPanel
         rSButtonIcon_new1.setLabel("Agendar nuevo servicio");
         rSButtonIcon_new1.setRound(20);
 
-        tabProximas.setBackground(new java.awt.Color(255, 255, 255));
+        tabProximas.setBackground(new java.awt.Color(114, 191, 75));
         tabProximas.setText("Activos (0)");
-        tabProximas.setBackgroundHover(new java.awt.Color(204, 182, 128));
+        tabProximas.setBackgroundHover(new java.awt.Color(151, 194, 129));
         tabProximas.setForegroundHover(new java.awt.Color(26, 117, 159));
         tabProximas.setForegroundIcon(new java.awt.Color(233, 196, 106));
         tabProximas.setForegroundText(new java.awt.Color(26, 117, 159));
@@ -87,10 +87,10 @@ public class Servicios extends javax.swing.JPanel
 
         tabProximas1.setBackground(new java.awt.Color(255, 255, 255));
         tabProximas1.setText("Todos (0)");
-        tabProximas1.setBackgroundHover(new java.awt.Color(138, 191, 112));
+        tabProximas1.setBackgroundHover(new java.awt.Color(108, 148, 167));
         tabProximas1.setFocusable(false);
         tabProximas1.setForegroundHover(new java.awt.Color(26, 117, 159));
-        tabProximas1.setForegroundIcon(new java.awt.Color(51, 153, 0));
+        tabProximas1.setForegroundIcon(new java.awt.Color(26, 117, 159));
         tabProximas1.setForegroundText(new java.awt.Color(26, 117, 159));
         tabProximas1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP_TWO);
         tabProximas1.setRound(20);
@@ -104,14 +104,14 @@ public class Servicios extends javax.swing.JPanel
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(rSLabelTextIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 701, Short.MAX_VALUE)
                         .addComponent(rSButtonIcon_new1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(tabProximas, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tabProximas1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tabCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tabProximas1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );

@@ -81,14 +81,14 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="rSButtonMaterialIconOne7" min="-2" pref="209" max="-2" attributes="0"/>
+                                  <Component id="btnAcercaDe" min="-2" pref="209" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="rSButtonMaterialIconOne5" alignment="0" pref="210" max="32767" attributes="0"/>
-                                      <Component id="rSButtonMaterialIconOne4" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="rSButtonMaterialIconOne3" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="rSButtonMaterialIconOne1" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="btnServicios" alignment="0" pref="210" max="32767" attributes="0"/>
+                                      <Component id="btnPacientes" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="btnCitas" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="btnInicio" alignment="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="rSButtonMaterialIconOne6" alignment="0" min="-2" pref="209" max="-2" attributes="0"/>
+                                  <Component id="btnUsuarios" alignment="0" min="-2" pref="209" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -108,19 +108,19 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="rSButtonMaterialIconOne1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnInicio" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="rSButtonMaterialIconOne3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCitas" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="rSButtonMaterialIconOne4" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnPacientes" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="rSButtonMaterialIconOne5" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnServicios" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="rSButtonMaterialIconOne6" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnUsuarios" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="rSButtonMaterialIconOne7" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnAcercaDe" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="185" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -162,7 +162,7 @@
                 <Property name="text" type="java.lang.String" value="NombreN"/>
               </Properties>
             </Component>
-            <Component class="RSMaterialComponent.RSButtonMaterialIconOne" name="rSButtonMaterialIconOne1">
+            <Component class="RSMaterialComponent.RSButtonMaterialIconOne" name="btnInicio">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ba" green="be" red="70" type="rgb"/>
@@ -173,8 +173,11 @@
                 </Property>
                 <Property name="round" type="int" value="20"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInicioActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="RSMaterialComponent.RSButtonMaterialIconOne" name="rSButtonMaterialIconOne3">
+            <Component class="RSMaterialComponent.RSButtonMaterialIconOne" name="btnCitas">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="a0" green="a5" red="44" type="rgb"/>
@@ -188,8 +191,11 @@
                 </Property>
                 <Property name="round" type="int" value="20"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCitasActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="RSMaterialComponent.RSButtonMaterialIconOne" name="rSButtonMaterialIconOne4">
+            <Component class="RSMaterialComponent.RSButtonMaterialIconOne" name="btnPacientes">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="a0" green="a5" red="44" type="rgb"/>
@@ -203,8 +209,11 @@
                 </Property>
                 <Property name="round" type="int" value="20"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPacientesActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="RSMaterialComponent.RSButtonMaterialIconOne" name="rSButtonMaterialIconOne5">
+            <Component class="RSMaterialComponent.RSButtonMaterialIconOne" name="btnServicios">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="a0" green="a5" red="44" type="rgb"/>
@@ -218,8 +227,11 @@
                 </Property>
                 <Property name="round" type="int" value="20"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnServiciosActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="RSMaterialComponent.RSButtonMaterialIconOne" name="rSButtonMaterialIconOne7">
+            <Component class="RSMaterialComponent.RSButtonMaterialIconOne" name="btnAcercaDe">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="a0" green="a5" red="44" type="rgb"/>
@@ -233,6 +245,9 @@
                 </Property>
                 <Property name="round" type="int" value="20"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAcercaDeActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel3">
               <Properties>
@@ -319,7 +334,7 @@
                 <Property name="text" type="java.lang.String" value="UsuarioN"/>
               </Properties>
             </Component>
-            <Component class="RSMaterialComponent.RSButtonMaterialIconOne" name="rSButtonMaterialIconOne6">
+            <Component class="RSMaterialComponent.RSButtonMaterialIconOne" name="btnUsuarios">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="a0" green="a5" red="44" type="rgb"/>
@@ -333,6 +348,9 @@
                 </Property>
                 <Property name="round" type="int" value="20"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsuariosActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -488,6 +506,16 @@
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card3"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="paneles.Servicios" name="pnlServicios">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="pnlServicios" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="card4"/>
                     </Constraint>
                   </Constraints>
                 </Component>
