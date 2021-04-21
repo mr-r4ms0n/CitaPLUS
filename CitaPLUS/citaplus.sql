@@ -12,6 +12,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+-- Volcando estructura de base de datos para citaplus
+CREATE DATABASE IF NOT EXISTS `citaplus` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `citaplus`;
+
 -- Volcando estructura para tabla citaplus.citas
 CREATE TABLE IF NOT EXISTS `citas` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -53,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `estatuscitas` (
   UNIQUE KEY `estatuscitas_descripcion` (`descripcion`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla citaplus.estatuscitas: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla citaplus.estatuscitas: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `estatuscitas` DISABLE KEYS */;
 INSERT INTO `estatuscitas` (`id`, `descripcion`, `estatus`) VALUES
 	(1, 'proxima', 1),
@@ -76,10 +81,13 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
   UNIQUE KEY `pacientes_nombre` (`nombre`),
   UNIQUE KEY `pacientes_telefono` (`telefono`),
   UNIQUE KEY `pacientes_correo` (`correo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla citaplus.pacientes: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `pacientes` DISABLE KEYS */;
+INSERT INTO `pacientes` (`id`, `foto`, `nombre`, `apellidoPaterno`, `apellidoMaterno`, `sexo`, `telefono`, `correo`, `estatus`) VALUES
+	(3, 'hombre.jpg', 'Fausto', 'Martinez', 'Mendez', 'Hombre', 7225568985, 'vava34@gmail.com', 1),
+	(4, 'hombre.jpg', 'Martin', 'Vuldovinos', 'Jaira', 'Hombre', 7224156985, 'mvuld@yahoo.com', 1);
 /*!40000 ALTER TABLE `pacientes` ENABLE KEYS */;
 
 -- Volcando estructura para tabla citaplus.usuarios
