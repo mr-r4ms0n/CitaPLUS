@@ -54,20 +54,20 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
         tblCitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String []
             {
-                "Nombre", "Apellido Paterno", "Apellido Materno", "Sexo", "Teléfono", "Correo"
+                "Nombre", "Apellido Paterno", "Apellido Materno", "Sexo", "Teléfono", "Correo", "Estatus"
             }
         )
         {
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false, false, true
+                false, false, false, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex)
