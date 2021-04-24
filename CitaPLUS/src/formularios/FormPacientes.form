@@ -3,6 +3,7 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="undecorated" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -23,7 +24,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="pnlFondo" alignment="0" max="32767" attributes="0"/>
+          <Component id="pnlFondo" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -44,9 +45,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="86" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="rSPanelBorder1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="86" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -81,25 +82,17 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="263" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="nombre" pref="400" max="32767" attributes="0"/>
-                                          <Component id="apellidoPaterno" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="error_nombre" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="error_apellidoPaterno" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="btnRegistrar" min="-2" pref="160" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="275" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="nombre" max="32767" attributes="0"/>
+                                  <Component id="apellidoPaterno" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="error_nombre" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="error_apellidoPaterno" alignment="0" max="32767" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="34" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="apellidoMaterno" alignment="0" max="32767" attributes="0"/>
                                   <Component id="error_apellidoMaterno" alignment="0" max="32767" attributes="0"/>
@@ -120,6 +113,11 @@
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="237" max="-2" attributes="0"/>
+                      <Component id="btnRegistrar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -170,9 +168,9 @@
                               <Component id="error_telefono" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="45" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                       <Component id="btnRegistrar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -190,10 +188,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel1" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnCerrar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -214,7 +212,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="24" style="1"/>
+                      <Font name="Segoe UI Semibold" size="24" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -234,7 +232,7 @@
                     <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
                       <Value id="CLOSE"/>
                     </Property>
-                    <Property name="round" type="int" value="20"/>
+                    <Property name="round" type="int" value="50"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCerrarActionPerformed"/>
@@ -250,6 +248,9 @@
                 <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Light" size="14" style="0"/>
+                </Property>
                 <Property name="phColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
@@ -262,7 +263,7 @@
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                  <Font name="Segoe UI Semibold" size="16" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nombre*"/>
               </Properties>
@@ -270,7 +271,7 @@
             <Component class="javax.swing.JLabel" name="error_nombre">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                  <Font name="Segoe UI Semibold" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Etiqueta de Error"/>
               </Properties>
@@ -278,7 +279,7 @@
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                  <Font name="Segoe UI Semibold" size="16" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Apellido Paterno*"/>
               </Properties>
@@ -286,7 +287,7 @@
             <Component class="javax.swing.JLabel" name="error_apellidoPaterno">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                  <Font name="Segoe UI Semibold" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Etiqueta de Error"/>
               </Properties>
@@ -298,6 +299,9 @@
                 </Property>
                 <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Light" size="14" style="0"/>
                 </Property>
                 <Property name="phColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
@@ -316,6 +320,9 @@
                 <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Light" size="14" style="0"/>
+                </Property>
                 <Property name="phColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
@@ -328,7 +335,7 @@
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                  <Font name="Segoe UI Semibold" size="16" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Apellido Materno"/>
               </Properties>
@@ -336,7 +343,7 @@
             <Component class="javax.swing.JLabel" name="error_apellidoMaterno">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                  <Font name="Segoe UI Semibold" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Etiqueta de Error"/>
               </Properties>
@@ -348,6 +355,9 @@
                 </Property>
                 <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Light" size="14" style="0"/>
                 </Property>
                 <Property name="phColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
@@ -361,7 +371,7 @@
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                  <Font name="Segoe UI Semibold" size="16" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Tel&#xe9;fono"/>
               </Properties>
@@ -369,7 +379,7 @@
             <Component class="javax.swing.JLabel" name="error_telefono">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                  <Font name="Segoe UI Semibold" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Etiqueta de Error"/>
               </Properties>
@@ -381,6 +391,9 @@
                 </Property>
                 <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Light" size="14" style="0"/>
                 </Property>
                 <Property name="phColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
@@ -394,7 +407,7 @@
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                  <Font name="Segoe UI Semibold" size="16" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Correo"/>
               </Properties>
@@ -402,7 +415,7 @@
             <Component class="javax.swing.JLabel" name="error_correo">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                  <Font name="Segoe UI Semibold" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Etiqueta de Error"/>
               </Properties>
@@ -411,7 +424,7 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
-                    <StringItem index="0" value="&lt;Seleccionar&gt;"/>
+                    <StringItem index="0" value="Seleccione Sexo"/>
                     <StringItem index="1" value="Hombre"/>
                     <StringItem index="2" value="Mujer"/>
                   </StringArray>
@@ -429,6 +442,9 @@
                   <Color blue="a0" green="a5" red="44" type="rgb"/>
                 </Property>
                 <Property name="disabledIdex" type="java.lang.String" value="0"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="16" style="1"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sexoActionPerformed"/>
@@ -437,7 +453,7 @@
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                  <Font name="Segoe UI Semibold" size="16" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sexo*"/>
               </Properties>
@@ -445,7 +461,7 @@
             <Component class="javax.swing.JLabel" name="error_sexo">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                  <Font name="Segoe UI Semibold" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Etiqueta de Error"/>
               </Properties>

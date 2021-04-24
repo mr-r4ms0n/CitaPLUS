@@ -6,6 +6,8 @@
 package paneles;
 
 import RSMaterialComponent.RSTableMetroCustom;
+import java.awt.Color;
+import metodosAux.ColoresSys;
 import metodosAux.MetodosAux;
 import metodosBD.MetodosBD;
 
@@ -15,23 +17,47 @@ import metodosBD.MetodosBD;
  */
 public class TablaContenidoPacientes extends javax.swing.JPanel
 {
-
     /**
      * Creates new form tablaContenidoCitas
      */
     public TablaContenidoPacientes()
     {
         initComponents();
-        listarPacientes(tblCitas, 1);
+        listarPacientes(tblCitas, 1, jTBuscarPaciente.getText().trim());
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
     }
 
-    public void listarPacientes(RSTableMetroCustom tabla, int tab)
+    public static void listarPacientes(RSTableMetroCustom tabla, int tab, String filtro)
     {
+        if (filtro == null)
+        {
+            filtro = "";
+        }
         String[] columnas =
         {
-            "nombre", "apellidoPaterno", "apellidoMaterno", "sexo", "telefono", "correo"
+            "nombre", "apellidoPaterno", "apellidoMaterno", "sexo", "telefono", "correo","estatusPac"
         };
-        MetodosAux.listarTablas(MetodosBD.rsListarPacientes(tab), tabla, columnas);
+        MetodosAux.listarTablas(MetodosBD.rsListarPacientes(tab, filtro), tabla, columnas);
+    }
+    
+    public static void actualizarTitulo(int tab)
+    {
+        switch (tab)
+        {
+            case 1:
+               JLTitulo.setText("Clientes Activos");
+               JLTitulo.setForeground(ColoresSys.cl_activos);
+                break;
+            case 2:
+                JLTitulo.setText("Clientes Inactivos");
+               JLTitulo.setForeground(ColoresSys.cl_inactivos);
+                break;
+            case 0:
+                JLTitulo.setText("Todos los Clientes");
+               JLTitulo.setForeground(ColoresSys.cl_todos);
+                break;
+                
+        }
     }
 
     /**
@@ -46,8 +72,8 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCitas = new RSMaterialComponent.RSTableMetroCustom();
-        rSLabelTextIcon1 = new RSMaterialComponent.RSLabelTextIcon();
-        rSTextFieldMaterialIcon1 = new RSMaterialComponent.RSTextFieldMaterialIcon();
+        JLTitulo = new RSMaterialComponent.RSLabelTextIcon();
+        jTBuscarPaciente = new RSMaterialComponent.RSTextFieldMaterialIcon();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -87,26 +113,32 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
         tblCitas.setSelectionBackground(new java.awt.Color(26, 117, 159));
         jScrollPane1.setViewportView(tblCitas);
 
-        rSLabelTextIcon1.setForeground(new java.awt.Color(51, 153, 0));
-        rSLabelTextIcon1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        rSLabelTextIcon1.setText("Pacientes Activos");
-        rSLabelTextIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
-        rSLabelTextIcon1.setSizeIcon(30.0F);
+        JLTitulo.setForeground(new java.awt.Color(51, 153, 0));
+        JLTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        JLTitulo.setText("Pacientes Activos");
+        JLTitulo.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
+        JLTitulo.setSizeIcon(30.0F);
 
-        rSTextFieldMaterialIcon1.setForeground(new java.awt.Color(26, 117, 159));
-        rSTextFieldMaterialIcon1.setText("Buscar Paciente");
-        rSTextFieldMaterialIcon1.setColorIcon(new java.awt.Color(26, 117, 159));
-        rSTextFieldMaterialIcon1.setColorMaterial(new java.awt.Color(26, 117, 159));
-        rSTextFieldMaterialIcon1.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        rSTextFieldMaterialIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
-        rSTextFieldMaterialIcon1.setPhColor(new java.awt.Color(26, 117, 159));
-        rSTextFieldMaterialIcon1.setPlaceholder("Buscar cita");
-        rSTextFieldMaterialIcon1.setSelectionColor(new java.awt.Color(26, 117, 159));
-        rSTextFieldMaterialIcon1.addActionListener(new java.awt.event.ActionListener()
+        jTBuscarPaciente.setForeground(new java.awt.Color(26, 117, 159));
+        jTBuscarPaciente.setColorIcon(new java.awt.Color(26, 117, 159));
+        jTBuscarPaciente.setColorMaterial(new java.awt.Color(26, 117, 159));
+        jTBuscarPaciente.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        jTBuscarPaciente.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
+        jTBuscarPaciente.setPhColor(new java.awt.Color(26, 117, 159));
+        jTBuscarPaciente.setPlaceholder("Buscar paciente");
+        jTBuscarPaciente.setSelectionColor(new java.awt.Color(26, 117, 159));
+        jTBuscarPaciente.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                rSTextFieldMaterialIcon1ActionPerformed(evt);
+                jTBuscarPacienteActionPerformed(evt);
+            }
+        });
+        jTBuscarPaciente.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyReleased(java.awt.event.KeyEvent evt)
+            {
+                jTBuscarPacienteKeyReleased(evt);
             }
         });
 
@@ -119,9 +151,9 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(rSLabelTextIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JLTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 415, Short.MAX_VALUE)
-                        .addComponent(rSTextFieldMaterialIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTBuscarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -129,24 +161,31 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rSLabelTextIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSTextFieldMaterialIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JLTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTBuscarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rSTextFieldMaterialIcon1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSTextFieldMaterialIcon1ActionPerformed
-    {//GEN-HEADEREND:event_rSTextFieldMaterialIcon1ActionPerformed
+    private void jTBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTBuscarPacienteActionPerformed
+    {//GEN-HEADEREND:event_jTBuscarPacienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rSTextFieldMaterialIcon1ActionPerformed
+    }//GEN-LAST:event_jTBuscarPacienteActionPerformed
+
+    private void jTBuscarPacienteKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTBuscarPacienteKeyReleased
+    {//GEN-HEADEREND:event_jTBuscarPacienteKeyReleased
+        System.out.println(jTBuscarPaciente.getText().trim());
+        listarPacientes(tblCitas, Pacientes.tabSelecc, jTBuscarPaciente.getText().trim());
+
+    }//GEN-LAST:event_jTBuscarPacienteKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static RSMaterialComponent.RSLabelTextIcon JLTitulo;
     private javax.swing.JScrollPane jScrollPane1;
-    private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon1;
-    private RSMaterialComponent.RSTextFieldMaterialIcon rSTextFieldMaterialIcon1;
+    private RSMaterialComponent.RSTextFieldMaterialIcon jTBuscarPaciente;
     public RSMaterialComponent.RSTableMetroCustom tblCitas;
     // End of variables declaration//GEN-END:variables
 }

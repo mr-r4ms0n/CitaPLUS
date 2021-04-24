@@ -5,6 +5,8 @@
  */
 package paneles;
 
+import java.awt.Color;
+
 /**
  *
  * @author Kevin
@@ -18,6 +20,7 @@ public class TablaContenidoServicios extends javax.swing.JPanel
     public TablaContenidoServicios()
     {
         initComponents();
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
     }
 
     /**

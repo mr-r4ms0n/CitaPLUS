@@ -5,6 +5,8 @@
  */
 package paneles;
 
+import java.awt.Color;
+
 /**
  *
  * @author Kevin
@@ -18,6 +20,8 @@ public class TablaContenidoCitas extends javax.swing.JPanel
     public TablaContenidoCitas()
     {
         initComponents();
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        
     }
 
     /**

@@ -5,12 +5,18 @@
  */
 package formularios;
 
+import interfaces.MenuPrincipal;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.JOptionPane;
 import rojeru_san.complementos.RSUtilities;
-import rojeru_san.efectos.Roboto;
 import metodosAux.*;
+import metodosBD.MetodosBD;
+import paneles.Pacientes;
+import static paneles.Pacientes.tabSelecc;
+import static paneles.Pacientes.tablaContenidoPacientes2;
+import paneles.TablaContenidoPacientes;
 
 /**
  *
@@ -24,11 +30,13 @@ public class FormPacientes extends javax.swing.JFrame
      */
     public FormPacientes()
     {
-        RSUtilities.setFullScreenJFrame(this);
         initComponents();
         setLocationRelativeTo(null);
         RSUtilities.setOpaqueWindow(this, false);
         RSUtilities.setOpacityComponent(this.pnlFondo, 150);
+        Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
+        setShape(forma);
+        iniCampos();
     }
 
     public void iniCampos()
@@ -39,7 +47,7 @@ public class FormPacientes extends javax.swing.JFrame
         this.error_sexo.setForeground(Color.white);
         this.error_telefono.setForeground(Color.white);
         this.error_correo.setForeground(Color.white);
-        
+
         this.nombre.setText(null);
         this.apellidoPaterno.setText(null);
         this.apellidoMaterno.setText(null);
@@ -84,6 +92,7 @@ public class FormPacientes extends javax.swing.JFrame
         btnRegistrar = new newscomponents.RSButtonIcon_new();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         pnlFondo.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -92,7 +101,7 @@ public class FormPacientes extends javax.swing.JFrame
 
         jPanel1.setBackground(new java.awt.Color(68, 165, 160));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Registrar Nuevo Paciente");
 
@@ -100,7 +109,7 @@ public class FormPacientes extends javax.swing.JFrame
         btnCerrar.setToolTipText("Cerrar");
         btnCerrar.setBackgroundHover(new java.awt.Color(255, 51, 51));
         btnCerrar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CLOSE);
-        btnCerrar.setRound(20);
+        btnCerrar.setRound(50);
         btnCerrar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -115,10 +124,10 @@ public class FormPacientes extends javax.swing.JFrame
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,70 +141,76 @@ public class FormPacientes extends javax.swing.JFrame
 
         nombre.setForeground(new java.awt.Color(51, 51, 51));
         nombre.setBorderColor(new java.awt.Color(51, 51, 51));
+        nombre.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         nombre.setPhColor(new java.awt.Color(51, 51, 51));
         nombre.setPlaceholder("Nombre");
         nombre.setSelectionColor(new java.awt.Color(51, 51, 51));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel2.setText("Nombre*");
 
-        error_nombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        error_nombre.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         error_nombre.setText("Etiqueta de Error");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel3.setText("Apellido Paterno*");
 
-        error_apellidoPaterno.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        error_apellidoPaterno.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         error_apellidoPaterno.setText("Etiqueta de Error");
 
         apellidoPaterno.setForeground(new java.awt.Color(51, 51, 51));
         apellidoPaterno.setBorderColor(new java.awt.Color(51, 51, 51));
+        apellidoPaterno.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         apellidoPaterno.setPhColor(new java.awt.Color(51, 51, 51));
         apellidoPaterno.setPlaceholder("Apellido Paterno");
         apellidoPaterno.setSelectionColor(new java.awt.Color(51, 51, 51));
 
         apellidoMaterno.setForeground(new java.awt.Color(51, 51, 51));
         apellidoMaterno.setBorderColor(new java.awt.Color(51, 51, 51));
+        apellidoMaterno.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         apellidoMaterno.setPhColor(new java.awt.Color(51, 51, 51));
         apellidoMaterno.setPlaceholder("Apellido Materno");
         apellidoMaterno.setSelectionColor(new java.awt.Color(51, 51, 51));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel5.setText("Apellido Materno");
 
-        error_apellidoMaterno.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        error_apellidoMaterno.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         error_apellidoMaterno.setText("Etiqueta de Error");
 
         telefono.setForeground(new java.awt.Color(51, 51, 51));
         telefono.setBorderColor(new java.awt.Color(51, 51, 51));
+        telefono.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         telefono.setPhColor(new java.awt.Color(51, 51, 51));
         telefono.setPlaceholder("Teléfono");
         telefono.setSelectionColor(new java.awt.Color(51, 51, 51));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel6.setText("Teléfono");
 
-        error_telefono.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        error_telefono.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         error_telefono.setText("Etiqueta de Error");
 
         correo.setForeground(new java.awt.Color(51, 51, 51));
         correo.setBorderColor(new java.awt.Color(51, 51, 51));
+        correo.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         correo.setPhColor(new java.awt.Color(51, 51, 51));
         correo.setPlaceholder("Correo");
         correo.setSelectionColor(new java.awt.Color(51, 51, 51));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel7.setText("Correo");
 
-        error_correo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        error_correo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         error_correo.setText("Etiqueta de Error");
 
-        sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>", "Hombre", "Mujer" }));
+        sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione Sexo", "Hombre", "Mujer" }));
         sexo.setColorArrow(new java.awt.Color(68, 165, 160));
         sexo.setColorBorde(new java.awt.Color(68, 165, 160));
         sexo.setColorFondo(new java.awt.Color(68, 165, 160));
         sexo.setColorSeleccion(new java.awt.Color(68, 165, 160));
         sexo.setDisabledIdex("0");
+        sexo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         sexo.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -204,10 +219,10 @@ public class FormPacientes extends javax.swing.JFrame
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel8.setText("Sexo*");
 
-        error_sexo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        error_sexo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         error_sexo.setText("Etiqueta de Error");
 
         btnRegistrar.setBackground(new java.awt.Color(68, 165, 160));
@@ -235,20 +250,15 @@ public class FormPacientes extends javax.swing.JFrame
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
                         .addGap(263, 263, 263)
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
-                                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                                    .addComponent(apellidoPaterno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(error_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(error_apellidoPaterno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(39, 39, 39))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
-                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(275, 275, 275))))
+                            .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(apellidoPaterno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(error_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(error_apellidoPaterno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(39, 39, 39))
                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 34, Short.MAX_VALUE)
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(apellidoMaterno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(error_apellidoMaterno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -265,6 +275,10 @@ public class FormPacientes extends javax.swing.JFrame
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(error_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30))))
+            .addGroup(rSPanelBorder1Layout.createSequentialGroup()
+                .addGap(237, 237, 237)
+                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         rSPanelBorder1Layout.setVerticalGroup(
             rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,9 +323,9 @@ public class FormPacientes extends javax.swing.JFrame
                         .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(error_telefono)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout pnlFondoLayout = new javax.swing.GroupLayout(pnlFondo);
@@ -319,9 +333,9 @@ public class FormPacientes extends javax.swing.JFrame
         pnlFondoLayout.setHorizontalGroup(
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFondoLayout.createSequentialGroup()
-                .addContainerGap(86, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(rSPanelBorder1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlFondoLayout.setVerticalGroup(
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,7 +349,7 @@ public class FormPacientes extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,13 +366,26 @@ public class FormPacientes extends javax.swing.JFrame
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRegistrarActionPerformed
     {//GEN-HEADEREND:event_btnRegistrarActionPerformed
-        String nombre = MetodosAux.validarFormu(this.nombre, error_nombre, "requerid");
-        String apellidoPaterno = MetodosAux.validarFormu(this.apellidoPaterno, error_apellidoPaterno, "requerid");
-        String sexo = MetodosAux.validarBox(this.sexo, error_sexo, "requerid");
-        
-        if(nombre.equals("success") && apellidoPaterno.equals("success") && sexo.equals("success"))
+        boolean nombreCorrect = MetodosAux.validarFormu(nombre, error_nombre, "required");
+        boolean apePCorrect = MetodosAux.validarFormu(apellidoPaterno, error_apellidoPaterno, "required");
+        boolean sexoCorrect = MetodosAux.validarBox(sexo, error_sexo, "required");
+        if (nombreCorrect && apePCorrect && sexoCorrect)
         {
+            Object[] datosInsert =
+            {
+                nombre.getText().trim(), apellidoPaterno.getText().trim(), apellidoMaterno.getText().trim(),
+                sexo.getSelectedItem().toString(), telefono.getText().trim(), correo.getText().trim()
+            };
             
+            boolean insercionCorr = MetodosBD.insertarPaciente(datosInsert);
+            if (insercionCorr)
+            {
+                dispose();
+                //Actualizamos los usuariosd de las tablas
+                TablaContenidoPacientes.listarPacientes(tablaContenidoPacientes2.tblCitas, tabSelecc, null);
+                //Actualizamos el contador
+                Pacientes.actualizarNumPacientes();
+            }
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 

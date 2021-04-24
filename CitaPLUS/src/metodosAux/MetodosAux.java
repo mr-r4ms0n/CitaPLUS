@@ -9,8 +9,14 @@ import RSMaterialComponent.RSComboBox;
 import RSMaterialComponent.RSTableMetroCustom;
 import RSMaterialComponent.RSTextFieldOne;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -21,13 +27,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MetodosAux
 {
-
-    public static Color bg_primary = new Color(1, 56, 228);
-    public static Color bg_success = new Color(40, 167, 69);
-    public static Color bg_danger = new Color(220, 53, 69);
-    public static Color bg_warning = new Color(255, 136, 0);
-    public static Color bg_info = new Color(51, 181, 229);
-    public static Color bg_white = new Color(255, 255, 255);
 
     public static void listarTablas(ResultSet rs, RSTableMetroCustom tabla, String columnas[])
     {
@@ -62,40 +61,110 @@ public class MetodosAux
         }
     }
 
-    public static String validarFormu(RSTextFieldOne field, JLabel error, String tipo)
+    public static PreparedStatement generaSQLInsercion(String tabla, String columnas[], Object datos[], Connection dbC, PreparedStatement sentencia)
     {
-        String resultado = "error";
+        String sql = "INSERT INTO " + tabla + " (";
+        //Primero armamos la parte de los atributos a insertar
+        for (int i = 0; i < columnas.length; i++)
+        {
+            //Para la posicion ultima a insertar
+            if (i == (columnas.length - 1))
+            {
+                sql += columnas[i];
+            } else
+            {
+                sql += columnas[i] + ", ";
+            }
+        }
+        // INSERT INTO "INSERT INTO person (name, email) values (?, ?)"
+
+        //Despues se arma la insercion de los VALUES junto al anti sql injection
+        sql += ") VALUES (";
+
+        for (int i = 0; i < datos.length; i++)
+        {
+            if (i == (datos.length - 1))
+            {
+                sql += "?";
+            } else
+            {
+                sql += "?, ";
+            }
+        }
+
+        sql += ") ";
+        
+        try
+        {
+            sentencia = dbC.prepareStatement(sql);
+            for (int i = 0; i < datos.length; i++)
+            {
+                if (datos[i] instanceof String)
+                {
+                    sentencia.setString((i+1), (String) datos[i]);
+                }
+                if (datos[i] instanceof Integer)
+                {
+                    sentencia.setInt((i+1), (int) datos[i]);
+                }
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(MetodosAux.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sentencia;
+    }
+    
+    public static String getFecha()
+    {
+        DateTimeFormatter dff = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        return dff.format(now);
+    }
+
+    public static boolean validarFormu(RSTextFieldOne field, JLabel error, String tipo)
+    {
+        boolean resultado = false;
         switch (tipo)
         {
-            case "requerid":
-                if (field.getText().equals(""))
+            case "required":
+                if (field.getText().trim().isEmpty())
                 {
                     error.setText("Este campo es requerido");
-                    error.setForeground(MetodosAux.bg_danger);
+                    error.setForeground(ColoresSys.bg_danger);
                 } else
                 {
-                    error.setForeground(MetodosAux.bg_white);
-                    resultado = "success";
+                    error.setForeground(ColoresSys.bg_white);
+                    resultado = true;
                 }
                 break;
         }
         return resultado;
     }
-    
-        public static String validarBox(RSComboBox field, JLabel error, String tipo)
+
+    /**
+     * Método usado para validar que el index de un combobox sea distinto de
+     * default o 0
+     *
+     * @param field combobox a evaluar
+     * @param error label donde se mostrara el error en dado caso de existir
+     * @param tipo tipo de validacion que se requiere
+     * @return
+     */
+    public static boolean validarBox(RSComboBox field, JLabel error, String tipo)
     {
-        String resultado = "error";
+        boolean resultado = false;
         switch (tipo)
         {
-            case "requerid":
+            case "required":
                 if (field.getSelectedIndex() == 0)
                 {
                     error.setText("Este campo es requerido");
-                    error.setForeground(MetodosAux.bg_danger);
+                    error.setForeground(ColoresSys.bg_danger);
                 } else
                 {
-                    error.setForeground(MetodosAux.bg_white);
-                    resultado = "success";
+                    error.setForeground(ColoresSys.bg_white);
+                    resultado = true;
                 }
                 break;
         }

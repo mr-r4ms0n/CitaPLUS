@@ -5,6 +5,7 @@
  */
 package paneles;
 
+import formularios.FormPacientes;
 import metodosBD.MetodosBD;
 
 /**
@@ -14,13 +15,19 @@ import metodosBD.MetodosBD;
 public class Pacientes extends javax.swing.JPanel
 {
 
+    public static int tabSelecc = 1;
+
     /**
      * Creates new form citas
      */
     public Pacientes()
     {
         initComponents();
+        actualizarNumPacientes();
+    }
 
+    public static void actualizarNumPacientes()
+    {
         int todos = MetodosBD.contarPacientes(0);
         int activos = MetodosBD.contarPacientes(1);
         int inactivos = MetodosBD.contarPacientes(2);
@@ -35,12 +42,11 @@ public class Pacientes extends javax.swing.JPanel
             tabActivos.setText("Activos (" + activos + ")");
         }
 
-        if (inactivos!=-1)
+        if (inactivos != -1)
         {
             tabInactivos.setText("Inactivos (" + inactivos + ")");
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -185,11 +191,12 @@ public class Pacientes extends javax.swing.JPanel
 
     private void rSButtonIcon_new1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSButtonIcon_new1ActionPerformed
     {//GEN-HEADEREND:event_rSButtonIcon_new1ActionPerformed
-
+        new FormPacientes().setVisible(true);
     }//GEN-LAST:event_rSButtonIcon_new1ActionPerformed
 
     private void tabTodosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabTodosActionPerformed
     {//GEN-HEADEREND:event_tabTodosActionPerformed
+        tabSelecc = 0;
         if (!tabTodos.isSelected())
         {
             tabTodos.setSelected(true);
@@ -197,11 +204,13 @@ public class Pacientes extends javax.swing.JPanel
             tabActivos.setSelected(false);
         }
 
-        tablaContenidoPacientes2.listarPacientes(tablaContenidoPacientes2.tblCitas, 0);
+        tablaContenidoPacientes2.listarPacientes(tablaContenidoPacientes2.tblCitas, tabSelecc, null);
+        tablaContenidoPacientes2.actualizarTitulo(0);
     }//GEN-LAST:event_tabTodosActionPerformed
 
     private void tabInactivosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabInactivosActionPerformed
     {//GEN-HEADEREND:event_tabInactivosActionPerformed
+        tabSelecc = 2;
         if (!tabInactivos.isSelected())
         {
             tabTodos.setSelected(false);
@@ -209,19 +218,22 @@ public class Pacientes extends javax.swing.JPanel
             tabActivos.setSelected(false);
         }
 
-        tablaContenidoPacientes2.listarPacientes(tablaContenidoPacientes2.tblCitas, 2);
+        tablaContenidoPacientes2.listarPacientes(tablaContenidoPacientes2.tblCitas, tabSelecc, null);
+        tablaContenidoPacientes2.actualizarTitulo(2);
     }//GEN-LAST:event_tabInactivosActionPerformed
 
     private void tabActivosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabActivosActionPerformed
     {//GEN-HEADEREND:event_tabActivosActionPerformed
-        if (!tabInactivos.isSelected())
+        tabSelecc = 1;
+        if (!tabActivos.isSelected())
         {
             tabTodos.setSelected(false);
             tabInactivos.setSelected(false);
             tabActivos.setSelected(true);
         }
 
-        tablaContenidoPacientes2.listarPacientes(tablaContenidoPacientes2.tblCitas, 1);
+        tablaContenidoPacientes2.listarPacientes(tablaContenidoPacientes2.tblCitas, tabSelecc, null);
+        tablaContenidoPacientes2.actualizarTitulo(1);
     }//GEN-LAST:event_tabActivosActionPerformed
 
 
@@ -229,9 +241,9 @@ public class Pacientes extends javax.swing.JPanel
     private javax.swing.JPanel jPanel2;
     private newscomponents.RSButtonIcon_new rSButtonIcon_new1;
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon1;
-    private newscomponents.RSButtonIcon_new tabActivos;
-    private newscomponents.RSButtonIcon_new tabInactivos;
-    private newscomponents.RSButtonIcon_new tabTodos;
-    private paneles.TablaContenidoPacientes tablaContenidoPacientes2;
+    public static newscomponents.RSButtonIcon_new tabActivos;
+    private static newscomponents.RSButtonIcon_new tabInactivos;
+    private static newscomponents.RSButtonIcon_new tabTodos;
+    public static paneles.TablaContenidoPacientes tablaContenidoPacientes2;
     // End of variables declaration//GEN-END:variables
 }

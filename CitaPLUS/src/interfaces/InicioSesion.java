@@ -8,9 +8,8 @@ package interfaces;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
-import javax.swing.JOptionPane;
 import metodosBD.MetodosBD;
-import rojeru_san.complementos.RSUtilities;
+import rojeru_san.complementos.RSEffectFade;
 import seguridad.Encoder;
 
 /**
@@ -30,7 +29,7 @@ public class InicioSesion extends javax.swing.JFrame
         setLocationRelativeTo(null);
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
         setShape(forma);
-
+        RSEffectFade.setFadeWindowIn(this, 30, 0.1f);
         iniciarLabels();
     }
 

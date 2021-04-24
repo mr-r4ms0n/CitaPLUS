@@ -31,8 +31,9 @@ public class MetodosBD
     private static ResultSet resultado;
 
     /**
-     * Método que nos permite evaluar si un ResultSet es nulo o no sin recorrer el RsultSet evitando perder registros de 
-     * una consulta
+     * Método que nos permite evaluar si un ResultSet es nulo o no sin recorrer
+     * el RsultSet evitando perder registros de una consulta
+     *
      * @param rs ResultSet a evaluar
      * @return true = tiene datos | false = no tiene datos
      */
@@ -82,8 +83,12 @@ public class MetodosBD
                     ret[1] = resultado.getString("usuario");
                     ret[2] = resultado.getString("nombre") + " " + resultado.getString("apellidoPaterno") + " " + resultado.getString("apellidoMaterno");
                     ret[3] = resultado.getString("foto");
+                } else
+                {
+                    ret[0] = false;
                 }
             }
+            dbCon.close();
         } catch (SQLException e)
         {
             System.out.println("Error de consulta en Inicio de sesion " + e);
@@ -103,25 +108,58 @@ public class MetodosBD
             {
                 return resultado.getString("id");
             }
+            dbCon.close();
         } catch (SQLException e)
         {
             System.err.println("Error em obtener pacientes de sql: " + e);
         }
+
         return null;
     }
 
-    public static ResultSet rsListarPacientes(int tab)
+    /**
+     * Método que lista la tabla de pacientes tomando como parametro el tipo de
+     * tab que se seleccione
+     *
+     * @param tab 1 = Activos | 2 = Inactivos | 0 = Todos los pacientes
+     * @return resultset con los pacientes hechos
+     */
+    public static ResultSet rsListarPacientes(int tab, String filtro)
     {
         try
         {
             dbCon = ConectaBD.ConectaBD();
-            if (tab != 0)
+            if (tab != 0 && filtro.equals(""))
             {
-                sentencia = dbCon.prepareStatement("SELECT * FROM pacientes WHERE estatus = ?");
+                //Para el caso de que se seleccione activos o inactivos y no se haga busqueda
+                sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes WHERE estatus = ?");
                 sentencia.setInt(1, tab);
             } else
             {
-                sentencia = dbCon.prepareStatement("SELECT * FROM pacientes");
+                String auxFiltro = filtro + "%";
+                if (filtro != null && (tab == 1 || tab == 2))
+                {
+                    //Para el caso de que se seleccione activos o inactivos y se haga una busqueda
+                    sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes WHERE estatus = ? AND (nombre LIKE ? OR apellidoPaterno LIKE ?)");
+                    sentencia.setInt(1, tab);
+                    sentencia.setString(2, auxFiltro);
+                    sentencia.setString(3, auxFiltro);
+                } else
+                {
+                    //Para el caso de que se entre en la pestaña de todos pero se haga una busqueda
+                    if (tab == 0 && filtro != null)
+                    {
+                        sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes WHERE nombre LIKE ? OR apellidoPaterno LIKE ?");
+                        sentencia.setString(1, auxFiltro);
+                        sentencia.setString(2, auxFiltro);
+                    } else
+                    {
+                        //Para el caso de que se entre en la pestaña de todos y no se consulten busquedas
+                        sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes");
+                    }
+
+                }
+
             }
 
             resultado = sentencia.executeQuery();
@@ -129,20 +167,27 @@ public class MetodosBD
             {
                 return resultado;
             }
-
+            dbCon.close();
         } catch (SQLException e)
         {
             System.out.println("Error en obtener el ResultSet de Pacientes: " + e);
         }
         return null;
     }
-    
+
+    /**
+     * Método que regresa la cantidad de pacientes y es auxiliar de la funcion
+     * de los labels encargados de mostrar la cantidad de pacientes.
+     *
+     * @param tab el tipo de filtro del paciente 1 = Activos | 2 = Inactivos | 3
+     * = Todos los pacientes
+     * @return cantidad de pacientes seleccionados
+     */
     public static int contarPacientes(int tab)
     {
         int total = -1;
         try
         {
-            dbCon = ConectaBD.ConectaBD();
             dbCon = ConectaBD.ConectaBD();
             if (tab != 0)
             {
@@ -159,11 +204,45 @@ public class MetodosBD
                 resultado.next();
                 total = resultado.getInt("total");
             }
+            dbCon.close();
         } catch (SQLException e)
         {
-            System.err.println("Error al contar Pacientes: "+e);
+            System.err.println("Error al contar Pacientes: " + e);
+        } finally
+        {
+            try
+            {
+                dbCon.close();
+            } catch (SQLException ex)
+            {
+                Logger.getLogger(MetodosBD.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return total;
+    }
+
+    public static boolean insertarPaciente(Object[] datos)
+    {
+        String columnas[] =
+        {
+            "nombre", "apellidoPaterno", "apellidoMaterno", "sexo", "telefono", "correo"
+        };
+        try
+        {
+            dbCon = ConectaBD.ConectaBD();
+            sentencia = MetodosAux.generaSQLInsercion("pacientes", columnas, datos, dbCon, sentencia);
+
+            int r = sentencia.executeUpdate();
+
+            if (r > 0)
+            {
+                return true;
+            }
+        } catch (SQLException e)
+        {
+            System.out.println("Error al insertar paciente: " + e.toString());
+        }
+        return false;
     }
 
 }

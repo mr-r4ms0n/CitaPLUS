@@ -9,6 +9,7 @@ import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import rojeru_san.complementos.RSEffectFade;
 
 /**
  *
@@ -27,6 +28,7 @@ public class MenuPrincipal extends javax.swing.JFrame
     public MenuPrincipal(String usuario, String nombre, String foto)
     {
         initComponents();
+        RSEffectFade.setFadeWindowIn(this, 30, 0.1f);
         setLocationRelativeTo(null);
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
         setShape(forma);
@@ -445,6 +447,8 @@ public class MenuPrincipal extends javax.swing.JFrame
             btnInicio.setSelected(false);
             btnUsuarios.setSelected(false);
             btnAcercaDe.setSelected(false);
+            
+            pnlSlider.setPanelNormal(pnlServicios);
         }
 
     }//GEN-LAST:event_btnServiciosActionPerformed
@@ -540,7 +544,7 @@ public class MenuPrincipal extends javax.swing.JFrame
     private javax.swing.JPanel jPanel5;
     private paneles.Citas pnlCitas;
     private RSMaterialComponent.RSPanelMaterial pnlMenu;
-    private paneles.Pacientes pnlPacientes;
+    public static paneles.Pacientes pnlPacientes;
     private paneles.Servicios pnlServicios;
     private newscomponents.RSPanelEffect pnlSlider;
     private RSMaterialComponent.RSPanelMaterial pnlTopBar;
