@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package formularios_Registros;
+package formularios;
 
 import RSMaterialComponent.RSTextFieldOne;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
-import java.io.File;
-import javax.swing.UIManager;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 import rojeru_san.complementos.RSUtilities;
 import metodosAux.*;
 import metodosBD.MetodosBD;
@@ -29,8 +30,6 @@ public class FormPacientes extends javax.swing.JDialog
     /**
      * Creates new form FormPacientes
      */
-    String foto = null;
-
     public FormPacientes()
     {
         initComponents();
@@ -41,18 +40,13 @@ public class FormPacientes extends javax.swing.JDialog
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
         setShape(forma);
         iniCampos();
-        //Deshabilitamos el copiar y pegar de los campos de texto
-        RSTextFieldOne rs[] =
-        {
-            nombre, apellidoMaterno, apellidoPaterno, telefono, correo
-        };
+        RSTextFieldOne rs[] = {nombre,apellidoMaterno,apellidoPaterno,telefono,correo};
         Validaciones.disableCP(rs);
-        /////////////////////////
     }
 
     /**
      * Método encargado de incializar los campos del formulario y los coloca por
-     * default.
+     * default
      */
     public void iniCampos()
     {
@@ -104,9 +98,9 @@ public class FormPacientes extends javax.swing.JDialog
         jLabel8 = new javax.swing.JLabel();
         error_sexo = new javax.swing.JLabel();
         btnRegistrar = new newscomponents.RSButtonIcon_new();
-        btnCargarImagen = new RSMaterialComponent.RSButtonIconOne();
-        jlFoto = new javax.swing.JLabel();
-        btnRestaurar = new RSMaterialComponent.RSButtonIconOne();
+        jLabel4 = new javax.swing.JLabel();
+        btnOpenFoto = new RSMaterialComponent.RSButtonIconOne();
+        btnRemove = new RSMaterialComponent.RSButtonIconOne();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -307,36 +301,29 @@ public class FormPacientes extends javax.swing.JDialog
             }
         });
 
-        btnCargarImagen.setBackground(new java.awt.Color(68, 165, 160));
-        btnCargarImagen.setToolTipText("Cargar Imagen");
-        btnCargarImagen.setBackgroundHover(new java.awt.Color(57, 140, 136));
-        btnCargarImagen.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.FOLDER_OPEN);
-        btnCargarImagen.setRound(10);
-        btnCargarImagen.setSizeIcon(25.0F);
-        btnCargarImagen.addActionListener(new java.awt.event.ActionListener()
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
+
+        btnOpenFoto.setBackground(new java.awt.Color(68, 165, 160));
+        btnOpenFoto.setToolTipText("Buscar foto");
+        btnOpenFoto.setBackgroundHover(new java.awt.Color(57, 140, 136));
+        btnOpenFoto.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.FOLDER_OPEN);
+        btnOpenFoto.setRound(5);
+        btnOpenFoto.setSizeIcon(25.0F);
+        btnOpenFoto.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                btnCargarImagenActionPerformed(evt);
+                btnOpenFotoActionPerformed(evt);
             }
         });
 
-        jlFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
-
-        btnRestaurar.setBackground(new java.awt.Color(68, 165, 160));
-        btnRestaurar.setToolTipText("Cargar Imagen");
-        btnRestaurar.setBackgroundHover(new java.awt.Color(57, 140, 136));
-        btnRestaurar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RESTORE);
-        btnRestaurar.setRound(10);
-        btnRestaurar.setSizeIcon(25.0F);
-        btnRestaurar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                btnRestaurarActionPerformed(evt);
-            }
-        });
+        btnRemove.setBackground(new java.awt.Color(102, 102, 102));
+        btnRemove.setToolTipText("Remover foto");
+        btnRemove.setBackgroundHover(new java.awt.Color(117, 116, 116));
+        btnRemove.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RESTORE);
+        btnRemove.setRound(5);
+        btnRemove.setSizeIcon(25.0F);
 
         javax.swing.GroupLayout rSPanelBorder1Layout = new javax.swing.GroupLayout(rSPanelBorder1);
         rSPanelBorder1.setLayout(rSPanelBorder1Layout);
@@ -344,16 +331,16 @@ public class FormPacientes extends javax.swing.JDialog
             rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
+                        .addGap(18, 18, 18)
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                                .addComponent(btnCargarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnOpenFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnRestaurar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -362,36 +349,40 @@ public class FormPacientes extends javax.swing.JDialog
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(error_apellidoPaterno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(39, 39, 39))
+                        .addGap(9, 9, 9))
                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                        .addGap(0, 34, Short.MAX_VALUE)
-                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(apellidoMaterno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(error_apellidoMaterno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(error_telefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(telefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(error_sexo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sexo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(correo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(error_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30))))
-            .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                .addGap(237, 237, 237)
-                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(rSPanelBorder1Layout.createSequentialGroup()
+                                .addGap(203, 203, 203)
+                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(rSPanelBorder1Layout.createSequentialGroup()
+                                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(apellidoMaterno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(error_apellidoMaterno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(error_telefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(telefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(rSPanelBorder1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(sexo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(correo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(error_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(rSPanelBorder1Layout.createSequentialGroup()
+                                        .addGap(4, 4, 4)
+                                        .addComponent(error_sexo, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap())))
         );
         rSPanelBorder1Layout.setVerticalGroup(
             rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(26, 26, 26)
+                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -402,32 +393,35 @@ public class FormPacientes extends javax.swing.JDialog
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(apellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(error_apellidoPaterno))
+                    .addGroup(rSPanelBorder1Layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(error_apellidoPaterno)
+                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnOpenFoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRemove, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(sexo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(error_sexo)
-                        .addGap(18, 18, 18)
+                        .addGap(49, 49, 49)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(error_correo))
-                    .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                        .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnCargarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRestaurar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(apellidoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(error_apellidoMaterno)
+                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(error_apellidoMaterno)
+                            .addComponent(error_sexo))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -436,7 +430,7 @@ public class FormPacientes extends javax.swing.JDialog
                         .addComponent(error_telefono)))
                 .addGap(43, 43, 43)
                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout pnlFondoLayout = new javax.swing.GroupLayout(pnlFondo);
@@ -460,7 +454,7 @@ public class FormPacientes extends javax.swing.JDialog
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -480,23 +474,11 @@ public class FormPacientes extends javax.swing.JDialog
         boolean nombreCorrect = MetodosAux.validarFormu(nombre, error_nombre, "required");
         boolean apePCorrect = MetodosAux.validarFormu(apellidoPaterno, error_apellidoPaterno, "required");
         boolean sexoCorrect = MetodosAux.validarBox(sexo, error_sexo, "required");
-        String fotoPerfil = null;
-        //Añadir la condicion de que si la foto es distinta de null la conviertamos a bigint para almacenarla en la base de datos
         if (nombreCorrect && apePCorrect && sexoCorrect)
         {
-            if (foto != null)
-            {
-                fotoPerfil = "paciente_" + MetodosAux.getFecha() + ".png";
-
-            } else
-            {
-                fotoPerfil = sexo.getSelectedItem().toString() + ".png";
-            }
-
-            MetodosAux.copiarImagen(foto, SysConfigs.RESOURCES + fotoPerfil);
             Object[] datosInsert =
             {
-                fotoPerfil, nombre.getText().trim(), apellidoPaterno.getText().trim(), apellidoMaterno.getText().trim(),
+                nombre.getText().trim(), apellidoPaterno.getText().trim(), apellidoMaterno.getText().trim(),
                 sexo.getSelectedItem().toString(), telefono.getText().trim(), correo.getText().trim()
             };
 
@@ -534,7 +516,7 @@ public class FormPacientes extends javax.swing.JDialog
             evt.consume();
         }
         setTransferHandler(null);
-        Validaciones.entradaLetrasNum(evt, 1);
+         Validaciones.entradaLetrasNum(evt, 1);
     }//GEN-LAST:event_apellidoPaternoKeyTyped
 
     private void apellidoMaternoKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoMaternoKeyTyped
@@ -548,7 +530,7 @@ public class FormPacientes extends javax.swing.JDialog
 
     private void telefonoKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_telefonoKeyTyped
     {//GEN-HEADEREND:event_telefonoKeyTyped
-        if (telefono.getText().length() >= 11)
+        if (telefono.getText().length()>=11)
         {
             evt.consume();
         }
@@ -557,7 +539,7 @@ public class FormPacientes extends javax.swing.JDialog
 
     private void correoKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_correoKeyTyped
     {//GEN-HEADEREND:event_correoKeyTyped
-        if (correo.getText().length() >= 40)
+        if (correo.getText().length()>=40)
         {
             evt.consume();
         }
@@ -566,38 +548,30 @@ public class FormPacientes extends javax.swing.JDialog
 
     private void nombreKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_nombreKeyReleased
     {//GEN-HEADEREND:event_nombreKeyReleased
-
+        
     }//GEN-LAST:event_nombreKeyReleased
 
     private void apellidoPaternoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoPaternoKeyReleased
     {//GEN-HEADEREND:event_apellidoPaternoKeyReleased
-
+       
     }//GEN-LAST:event_apellidoPaternoKeyReleased
 
     private void apellidoMaternoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoMaternoKeyReleased
     {//GEN-HEADEREND:event_apellidoMaternoKeyReleased
-
+       
     }//GEN-LAST:event_apellidoMaternoKeyReleased
 
     private void telefonoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_telefonoKeyReleased
     {//GEN-HEADEREND:event_telefonoKeyReleased
-
+        
     }//GEN-LAST:event_telefonoKeyReleased
 
-    private void btnCargarImagenActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCargarImagenActionPerformed
-    {//GEN-HEADEREND:event_btnCargarImagenActionPerformed
-        foto = MetodosAux.getFoto(this);
-        if (foto != null)
-        {
-            rsscalelabel.RSScaleLabel.setScaleLabel(jlFoto, foto);
-        }
-    }//GEN-LAST:event_btnCargarImagenActionPerformed
+    private void btnOpenFotoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnOpenFotoActionPerformed
+    {//GEN-HEADEREND:event_btnOpenFotoActionPerformed
+        
 
-    private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRestaurarActionPerformed
-    {//GEN-HEADEREND:event_btnRestaurarActionPerformed
-        jlFoto.setIcon(null);
-        foto = null;
-    }//GEN-LAST:event_btnRestaurarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOpenFotoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -615,7 +589,7 @@ public class FormPacientes extends javax.swing.JDialog
             {
                 if ("Nimbus".equals(info.getName()))
                 {
-                    javax.swing.UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
@@ -649,10 +623,10 @@ public class FormPacientes extends javax.swing.JDialog
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private RSMaterialComponent.RSTextFieldOne apellidoMaterno;
     private RSMaterialComponent.RSTextFieldOne apellidoPaterno;
-    private RSMaterialComponent.RSButtonIconOne btnCargarImagen;
     private RSMaterialComponent.RSButtonIconOne btnCerrar;
+    private RSMaterialComponent.RSButtonIconOne btnOpenFoto;
     private newscomponents.RSButtonIcon_new btnRegistrar;
-    private RSMaterialComponent.RSButtonIconOne btnRestaurar;
+    private RSMaterialComponent.RSButtonIconOne btnRemove;
     private RSMaterialComponent.RSTextFieldOne correo;
     private javax.swing.JLabel error_apellidoMaterno;
     private javax.swing.JLabel error_apellidoPaterno;
@@ -663,12 +637,12 @@ public class FormPacientes extends javax.swing.JDialog
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel jlFoto;
     private RSMaterialComponent.RSTextFieldOne nombre;
     private javax.swing.JPanel pnlFondo;
     private RSMaterialComponent.RSPanelBorder rSPanelBorder1;
