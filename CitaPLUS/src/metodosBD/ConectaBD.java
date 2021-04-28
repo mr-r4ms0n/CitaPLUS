@@ -17,23 +17,32 @@ import javax.swing.JOptionPane;
  */
 public class ConectaBD
 {
+
     static Connection con = null;
     static String usuario = "root";
     static String pass = "r4ms0n";
 
+    /**
+     * Método que realiza la conexion a la base de datos
+     * @return Connection
+     */
     public static Connection ConectaBD()
     {
         try
         {
             //Cargamos el driver de mysql
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/citaplus",usuario,pass);
+            con = DriverManager.getConnection("jdbc:mysql://localhost/citaplus", usuario, pass);
             //JOptionPane.showMessageDialog(null, "Conectado");
+            if (con == null)
+            {
+                pass = "";
+                con = DriverManager.getConnection("jdbc:mysql://localhost/citaplus", usuario, pass);
+            }
         } catch (HeadlessException | ClassNotFoundException | SQLException e)
         {
             JOptionPane.showMessageDialog(null, "Error de conexion");
         }
         return con;
     }
-    
 }

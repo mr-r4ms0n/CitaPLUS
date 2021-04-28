@@ -5,11 +5,13 @@
  */
 package formularios;
 
-import interfaces.MenuPrincipal;
+import RSMaterialComponent.RSTextFieldOne;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
-import javax.swing.JOptionPane;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 import rojeru_san.complementos.RSUtilities;
 import metodosAux.*;
 import metodosBD.MetodosBD;
@@ -22,7 +24,7 @@ import paneles.TablaContenidoPacientes;
  *
  * @author David Vergara
  */
-public class FormPacientes extends javax.swing.JFrame
+public class FormPacientes extends javax.swing.JDialog
 {
 
     /**
@@ -31,14 +33,21 @@ public class FormPacientes extends javax.swing.JFrame
     public FormPacientes()
     {
         initComponents();
+        setModal(true);
         setLocationRelativeTo(null);
         RSUtilities.setOpaqueWindow(this, false);
-        RSUtilities.setOpacityComponent(this.pnlFondo, 150);
+        RSUtilities.setOpacityComponent(pnlFondo, 150);
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
         setShape(forma);
         iniCampos();
+        RSTextFieldOne rs[] = {nombre,apellidoMaterno,apellidoPaterno,telefono,correo};
+        Validaciones.disableCP(rs);
     }
 
+    /**
+     * Método encargado de incializar los campos del formulario y los coloca por
+     * default
+     */
     public void iniCampos()
     {
         this.error_nombre.setForeground(Color.white);
@@ -47,7 +56,6 @@ public class FormPacientes extends javax.swing.JFrame
         this.error_sexo.setForeground(Color.white);
         this.error_telefono.setForeground(Color.white);
         this.error_correo.setForeground(Color.white);
-
         this.nombre.setText(null);
         this.apellidoPaterno.setText(null);
         this.apellidoMaterno.setText(null);
@@ -91,7 +99,7 @@ public class FormPacientes extends javax.swing.JFrame
         error_sexo = new javax.swing.JLabel();
         btnRegistrar = new newscomponents.RSButtonIcon_new();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
         pnlFondo.setBackground(new java.awt.Color(0, 0, 0));
@@ -145,6 +153,17 @@ public class FormPacientes extends javax.swing.JFrame
         nombre.setPhColor(new java.awt.Color(51, 51, 51));
         nombre.setPlaceholder("Nombre");
         nombre.setSelectionColor(new java.awt.Color(51, 51, 51));
+        nombre.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyReleased(java.awt.event.KeyEvent evt)
+            {
+                nombreKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                nombreKeyTyped(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel2.setText("Nombre*");
@@ -164,6 +183,17 @@ public class FormPacientes extends javax.swing.JFrame
         apellidoPaterno.setPhColor(new java.awt.Color(51, 51, 51));
         apellidoPaterno.setPlaceholder("Apellido Paterno");
         apellidoPaterno.setSelectionColor(new java.awt.Color(51, 51, 51));
+        apellidoPaterno.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyReleased(java.awt.event.KeyEvent evt)
+            {
+                apellidoPaternoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                apellidoPaternoKeyTyped(evt);
+            }
+        });
 
         apellidoMaterno.setForeground(new java.awt.Color(51, 51, 51));
         apellidoMaterno.setBorderColor(new java.awt.Color(51, 51, 51));
@@ -171,6 +201,17 @@ public class FormPacientes extends javax.swing.JFrame
         apellidoMaterno.setPhColor(new java.awt.Color(51, 51, 51));
         apellidoMaterno.setPlaceholder("Apellido Materno");
         apellidoMaterno.setSelectionColor(new java.awt.Color(51, 51, 51));
+        apellidoMaterno.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyReleased(java.awt.event.KeyEvent evt)
+            {
+                apellidoMaternoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                apellidoMaternoKeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel5.setText("Apellido Materno");
@@ -184,6 +225,17 @@ public class FormPacientes extends javax.swing.JFrame
         telefono.setPhColor(new java.awt.Color(51, 51, 51));
         telefono.setPlaceholder("Teléfono");
         telefono.setSelectionColor(new java.awt.Color(51, 51, 51));
+        telefono.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyReleased(java.awt.event.KeyEvent evt)
+            {
+                telefonoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                telefonoKeyTyped(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel6.setText("Teléfono");
@@ -197,6 +249,13 @@ public class FormPacientes extends javax.swing.JFrame
         correo.setPhColor(new java.awt.Color(51, 51, 51));
         correo.setPlaceholder("Correo");
         correo.setSelectionColor(new java.awt.Color(51, 51, 51));
+        correo.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                correoKeyTyped(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel7.setText("Correo");
@@ -376,7 +435,7 @@ public class FormPacientes extends javax.swing.JFrame
                 nombre.getText().trim(), apellidoPaterno.getText().trim(), apellidoMaterno.getText().trim(),
                 sexo.getSelectedItem().toString(), telefono.getText().trim(), correo.getText().trim()
             };
-            
+
             boolean insercionCorr = MetodosBD.insertarPaciente(datosInsert);
             if (insercionCorr)
             {
@@ -393,6 +452,73 @@ public class FormPacientes extends javax.swing.JFrame
     {//GEN-HEADEREND:event_btnCerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void nombreKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_nombreKeyTyped
+    {//GEN-HEADEREND:event_nombreKeyTyped
+        if (nombre.getText().length() >= 25)
+        {
+            evt.consume();
+        }
+        setTransferHandler(null);
+        Validaciones.entradaLetrasNum(evt, 1);
+    }//GEN-LAST:event_nombreKeyTyped
+
+    private void apellidoPaternoKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoPaternoKeyTyped
+    {//GEN-HEADEREND:event_apellidoPaternoKeyTyped
+        if (apellidoPaterno.getText().length() >= 25)
+        {
+            evt.consume();
+        }
+        setTransferHandler(null);
+         Validaciones.entradaLetrasNum(evt, 1);
+    }//GEN-LAST:event_apellidoPaternoKeyTyped
+
+    private void apellidoMaternoKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoMaternoKeyTyped
+    {//GEN-HEADEREND:event_apellidoMaternoKeyTyped
+        if (apellidoMaterno.getText().length() >= 25)
+        {
+            evt.consume();
+        }
+        Validaciones.entradaLetrasNum(evt, 1);
+    }//GEN-LAST:event_apellidoMaternoKeyTyped
+
+    private void telefonoKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_telefonoKeyTyped
+    {//GEN-HEADEREND:event_telefonoKeyTyped
+        if (telefono.getText().length()>=11)
+        {
+            evt.consume();
+        }
+        Validaciones.entradaLetrasNum(evt, 2);
+    }//GEN-LAST:event_telefonoKeyTyped
+
+    private void correoKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_correoKeyTyped
+    {//GEN-HEADEREND:event_correoKeyTyped
+        if (correo.getText().length()>=40)
+        {
+            evt.consume();
+        }
+        setTransferHandler(null);
+    }//GEN-LAST:event_correoKeyTyped
+
+    private void nombreKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_nombreKeyReleased
+    {//GEN-HEADEREND:event_nombreKeyReleased
+        
+    }//GEN-LAST:event_nombreKeyReleased
+
+    private void apellidoPaternoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoPaternoKeyReleased
+    {//GEN-HEADEREND:event_apellidoPaternoKeyReleased
+       
+    }//GEN-LAST:event_apellidoPaternoKeyReleased
+
+    private void apellidoMaternoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoMaternoKeyReleased
+    {//GEN-HEADEREND:event_apellidoMaternoKeyReleased
+       
+    }//GEN-LAST:event_apellidoMaternoKeyReleased
+
+    private void telefonoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_telefonoKeyReleased
+    {//GEN-HEADEREND:event_telefonoKeyReleased
+        
+    }//GEN-LAST:event_telefonoKeyReleased
 
     /**
      * @param args the command line arguments
@@ -432,12 +558,14 @@ public class FormPacientes extends javax.swing.JFrame
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
         {
+            @Override
             public void run()
             {
                 new FormPacientes().setVisible(true);
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private RSMaterialComponent.RSTextFieldOne apellidoMaterno;

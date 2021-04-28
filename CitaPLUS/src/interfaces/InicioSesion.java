@@ -24,7 +24,6 @@ public class InicioSesion extends javax.swing.JFrame
      */
     public InicioSesion()
     {
-
         initComponents();
         setLocationRelativeTo(null);
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
@@ -65,7 +64,7 @@ public class InicioSesion extends javax.swing.JFrame
         jLabel7 = new javax.swing.JLabel();
         jLCorrrecto = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
         rSPanelMaterialImage1.setImagen(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
@@ -269,15 +268,21 @@ public class InicioSesion extends javax.swing.JFrame
         if (!JTFUsuario.getText().isEmpty() && !JTFContraseña.getText().isEmpty())
         {
             Object resultados[] = MetodosBD.ingresoSys(JTFUsuario.getText().trim(), Encoder.encode(JTFContraseña.getText().trim()));
-            if ((boolean) resultados[0])
+            if (resultados != null)
             {
-                new MenuPrincipal((String) resultados[1], (String) resultados[2], (String) resultados[3]).setVisible(true);
-                dispose();
+                if ((boolean) resultados[0])
+                {
+                    new MenuPrincipal((String) resultados[1], (String) resultados[2], (String) resultados[3]).setVisible(true);
+                    dispose();
+                }
             } else
             {
                 jLCorrrecto.setForeground(Color.RED);
                 jLCorrrecto.setText("Las credenciales son incorrectas");
+                JTFUsuario.setText(null);
+                JTFContraseña.setText(null);
             }
+
         }
     }//GEN-LAST:event_rSButtonIcon_new1ActionPerformed
 
@@ -292,6 +297,7 @@ public class InicioSesion extends javax.swing.JFrame
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
         {
+            @Override
             public void run()
             {
                 new InicioSesion().setVisible(true);

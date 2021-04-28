@@ -8,7 +8,6 @@ package metodosAux;
 import RSMaterialComponent.RSComboBox;
 import RSMaterialComponent.RSTableMetroCustom;
 import RSMaterialComponent.RSTextFieldOne;
-import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,7 +26,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MetodosAux
 {
-
+    /**
+     * Método generico que enlista cualquier tabla
+     * @param rs ResultSet con los datos extraidos de la consulta previa a la base de datos
+     * @param tabla Modelo de la tabla que se rellenara con los datos
+     * @param columnas Columnas de la tabla en la base de datos
+     */
     public static void listarTablas(ResultSet rs, RSTableMetroCustom tabla, String columnas[])
     {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
@@ -60,8 +64,16 @@ public class MetodosAux
             System.out.println("Error al listar tabla: " + e);
         }
     }
-
-    public static PreparedStatement generaSQLInsercion(String tabla, String columnas[], Object datos[], Connection dbC, PreparedStatement sentencia)
+    /**
+     * Método general que inserta datos en cualquier tabla
+     * @param tabla nombre de la tabla donde se hara el INSERT
+     * @param columnas columnas de la tabla (Nombres en la base de datos)
+     * @param datos datos que se insertatan (Valores)
+     * @param dbC conexion instanciada previamente
+     * @param sentencia PreparedStatement al que se le asignara el Query final
+     * @return PreparedStatement listo para insertarse
+     */
+    public static PreparedStatement SQLInserta(String tabla, String columnas[], Object datos[], Connection dbC, PreparedStatement sentencia)
     {
         String sql = "INSERT INTO " + tabla + " (";
         //Primero armamos la parte de los atributos a insertar
@@ -115,13 +127,23 @@ public class MetodosAux
         return sentencia;
     }
     
+    /**
+     * Método encargado de obtener la fecha y hota actual
+     * @return fecha formateada
+     */
     public static String getFecha()
     {
         DateTimeFormatter dff = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         return dff.format(now);
     }
-
+    /**
+     * Método encargado de validar que un TextField no este vacio
+     * @param field TextField a validar
+     * @param error Label donde se mostrara el error si esta vacio
+     * @param tipo Parametro para identificar si es requerido o no
+     * @return true si no esta vacio | false si esta vacio
+     */
     public static boolean validarFormu(RSTextFieldOne field, JLabel error, String tipo)
     {
         boolean resultado = false;

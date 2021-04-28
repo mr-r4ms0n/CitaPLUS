@@ -27,6 +27,12 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
         jScrollPane1.getViewport().setBackground(Color.WHITE);
     }
 
+    /**
+     * Método encargado de mostrar graficamente los datos de los pacientes dentro de la tabla correspondiente
+     * @param tabla tabla de pacientes
+     * @param tab categoria seleccionada
+     * @param filtro Nombre de un paciente en especifico (Para busqueda filtrada y puede ser null)
+     */
     public static void listarPacientes(RSTableMetroCustom tabla, int tab, String filtro)
     {
         if (filtro == null)
@@ -40,6 +46,10 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
         MetodosAux.listarTablas(MetodosBD.rsListarPacientes(tab, filtro), tabla, columnas);
     }
     
+    /**
+     * M;etodo que actualiza el titulo que se depliega en la parte inferior dependiendo del tab que se seleccione
+     * @param tab tab seleccionado
+     */
     public static void actualizarTitulo(int tab)
     {
         switch (tab)

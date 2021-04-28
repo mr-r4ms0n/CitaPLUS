@@ -5,16 +5,13 @@
  */
 package metodosBD;
 
-import RSMaterialComponent.RSTableMetroCustom;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 import metodosAux.MetodosAux;
-import seguridad.Encoder;
 
 /**
  *
@@ -67,7 +64,7 @@ public class MetodosBD
      */
     public static Object[] ingresoSys(String usr, String pass)
     {
-        Object ret[] = new Object[4];
+        Object ret[] = null;
         try
         {
             dbCon = ConectaBD.ConectaBD();
@@ -79,13 +76,11 @@ public class MetodosBD
             {
                 if (resultado.getString("usuario").equals(usr) && resultado.getString("contraseña").equals(pass))
                 {
+                    ret = new Object[4];
                     ret[0] = true;
                     ret[1] = resultado.getString("usuario");
                     ret[2] = resultado.getString("nombre") + " " + resultado.getString("apellidoPaterno") + " " + resultado.getString("apellidoMaterno");
                     ret[3] = resultado.getString("foto");
-                } else
-                {
-                    ret[0] = false;
                 }
             }
             dbCon.close();
@@ -142,16 +137,16 @@ public class MetodosBD
                     //Para el caso de que se seleccione activos o inactivos y se haga una busqueda
                     sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes WHERE estatus = ? AND (nombre LIKE ? OR apellidoPaterno LIKE ?)");
                     sentencia.setInt(1, tab);
-                    sentencia.setString(2, auxFiltro);
-                    sentencia.setString(3, auxFiltro);
+                    sentencia.setString(2, (auxFiltro + "%"));
+                    sentencia.setString(3, (auxFiltro + "%"));
                 } else
                 {
                     //Para el caso de que se entre en la pestaña de todos pero se haga una busqueda
                     if (tab == 0 && filtro != null)
                     {
                         sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes WHERE nombre LIKE ? OR apellidoPaterno LIKE ?");
-                        sentencia.setString(1, auxFiltro);
-                        sentencia.setString(2, auxFiltro);
+                        sentencia.setString(1, (auxFiltro + "%"));
+                        sentencia.setString(2, (auxFiltro + "%"));
                     } else
                     {
                         //Para el caso de que se entre en la pestaña de todos y no se consulten busquedas
@@ -189,12 +184,14 @@ public class MetodosBD
         try
         {
             dbCon = ConectaBD.ConectaBD();
+            //Si se selecciona alguna tab (Activos o Inactivos)
             if (tab != 0)
             {
                 sentencia = dbCon.prepareStatement("SELECT COUNT(*)AS total FROM pacientes WHERE estatus = ?");
                 sentencia.setInt(1, tab);
             } else
             {
+                //Si se entra dentro de consulta general es decir sin tab seleccionada
                 sentencia = dbCon.prepareStatement("SELECT COUNT(*)AS total FROM pacientes");
             }
             resultado = sentencia.executeQuery();
@@ -221,6 +218,14 @@ public class MetodosBD
         return total;
     }
 
+    /**
+     * Método que realiza la insercion de unicamente pacientes dentro de la base
+     * de datos
+     *
+     * @param datos Datos a insertar proporcionados en el siguiente orden
+     * (Nombre,ApellidoPaterno,ApellidoMaterno,Sexo,Telefono,Correo)
+     * @return true si la insercion se hizo correctamente
+     */
     public static boolean insertarPaciente(Object[] datos)
     {
         String columnas[] =
@@ -230,7 +235,7 @@ public class MetodosBD
         try
         {
             dbCon = ConectaBD.ConectaBD();
-            sentencia = MetodosAux.generaSQLInsercion("pacientes", columnas, datos, dbCon, sentencia);
+            sentencia = MetodosAux.SQLInserta("pacientes", columnas, datos, dbCon, sentencia);
 
             int r = sentencia.executeUpdate();
 

@@ -6,8 +6,10 @@
 package interfaces;
 
 import java.awt.Shape;
+import java.awt.Window;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.UIManager;
 import rojeru_san.complementos.RSEffectFade;
 
@@ -17,7 +19,7 @@ import rojeru_san.complementos.RSEffectFade;
  */
 public class MenuPrincipal extends javax.swing.JFrame
 {
-
+    public static JFrame vtn;
     /**
      * Creates new form MenuPrincipal
      *
@@ -28,6 +30,7 @@ public class MenuPrincipal extends javax.swing.JFrame
     public MenuPrincipal(String usuario, String nombre, String foto)
     {
         initComponents();
+        vtn = this;
         RSEffectFade.setFadeWindowIn(this, 30, 0.1f);
         setLocationRelativeTo(null);
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
