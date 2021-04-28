@@ -11,7 +11,9 @@ import java.awt.Component;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import rojeru_san.complementos.RSUtilities;
 import metodosAux.*;
 import metodosBD.MetodosBD;
@@ -568,7 +570,18 @@ public class FormPacientes extends javax.swing.JDialog
 
     private void btnOpenFotoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnOpenFotoActionPerformed
     {//GEN-HEADEREND:event_btnOpenFotoActionPerformed
+        JFileChooser fc = new JFileChooser();
         
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG", "jpg", "png", "JPEG", "jpeg");
+        
+        fc.setFileFilter(filtro);
+        
+        int res = fc.showOpenDialog(this);
+        
+        if(res== JFileChooser.APPROVE_OPTION)
+        {
+            
+        }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnOpenFotoActionPerformed
