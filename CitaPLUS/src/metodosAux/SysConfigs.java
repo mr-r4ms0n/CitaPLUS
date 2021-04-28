@@ -11,15 +11,19 @@ import java.awt.Color;
  *
  * @author Kevin
  */
-public class ColoresSys
+public class SysConfigs
 {
+
     public static Color bg_primary = new Color(1, 56, 228);
     public static Color bg_success = new Color(40, 167, 69);
     public static Color bg_danger = new Color(220, 53, 69);
     public static Color bg_warning = new Color(255, 136, 0);
     public static Color bg_info = new Color(51, 181, 229);
     public static Color bg_white = new Color(255, 255, 255);
-    public static Color cl_activos = new Color(51,153,0);
-    public static Color cl_inactivos = new Color(255,51,51);
-    public static Color cl_todos = new Color(26,117,159);
+    public static Color cl_activos = new Color(51, 153, 0);
+    public static Color cl_inactivos = new Color(255, 51, 51);
+    public static Color cl_todos = new Color(26, 117, 159);
+
+    //Ruta donde se van a cargar las imagenes de los pacientes
+    public static String RESOURCES = "/img_regs/";
 }

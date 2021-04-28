@@ -7,7 +7,7 @@ package paneles;
 
 import RSMaterialComponent.RSTableMetroCustom;
 import java.awt.Color;
-import metodosAux.ColoresSys;
+import metodosAux.SysConfigs;
 import metodosAux.MetodosAux;
 import metodosBD.MetodosBD;
 
@@ -56,15 +56,15 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
         {
             case 1:
                JLTitulo.setText("Clientes Activos");
-               JLTitulo.setForeground(ColoresSys.cl_activos);
+               JLTitulo.setForeground(SysConfigs.cl_activos);
                 break;
             case 2:
                 JLTitulo.setText("Clientes Inactivos");
-               JLTitulo.setForeground(ColoresSys.cl_inactivos);
+               JLTitulo.setForeground(SysConfigs.cl_inactivos);
                 break;
             case 0:
                 JLTitulo.setText("Todos los Clientes");
-               JLTitulo.setForeground(ColoresSys.cl_todos);
+               JLTitulo.setForeground(SysConfigs.cl_todos);
                 break;
                 
         }

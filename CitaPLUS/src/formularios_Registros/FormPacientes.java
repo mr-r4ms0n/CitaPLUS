@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package formularios;
+package formularios_Registros;
 
 import RSMaterialComponent.RSTextFieldOne;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
-import javax.swing.JComponent;
-import javax.swing.KeyStroke;
+import java.io.File;
+import javax.swing.UIManager;
 import rojeru_san.complementos.RSUtilities;
 import metodosAux.*;
 import metodosBD.MetodosBD;
@@ -30,6 +29,8 @@ public class FormPacientes extends javax.swing.JDialog
     /**
      * Creates new form FormPacientes
      */
+    String foto = null;
+
     public FormPacientes()
     {
         initComponents();
@@ -40,13 +41,18 @@ public class FormPacientes extends javax.swing.JDialog
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
         setShape(forma);
         iniCampos();
-        RSTextFieldOne rs[] = {nombre,apellidoMaterno,apellidoPaterno,telefono,correo};
+        //Deshabilitamos el copiar y pegar de los campos de texto
+        RSTextFieldOne rs[] =
+        {
+            nombre, apellidoMaterno, apellidoPaterno, telefono, correo
+        };
         Validaciones.disableCP(rs);
+        /////////////////////////
     }
 
     /**
      * Método encargado de incializar los campos del formulario y los coloca por
-     * default
+     * default.
      */
     public void iniCampos()
     {
@@ -98,6 +104,9 @@ public class FormPacientes extends javax.swing.JDialog
         jLabel8 = new javax.swing.JLabel();
         error_sexo = new javax.swing.JLabel();
         btnRegistrar = new newscomponents.RSButtonIcon_new();
+        btnCargarImagen = new RSMaterialComponent.RSButtonIconOne();
+        jlFoto = new javax.swing.JLabel();
+        btnRestaurar = new RSMaterialComponent.RSButtonIconOne();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -298,6 +307,37 @@ public class FormPacientes extends javax.swing.JDialog
             }
         });
 
+        btnCargarImagen.setBackground(new java.awt.Color(68, 165, 160));
+        btnCargarImagen.setToolTipText("Cargar Imagen");
+        btnCargarImagen.setBackgroundHover(new java.awt.Color(57, 140, 136));
+        btnCargarImagen.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.FOLDER_OPEN);
+        btnCargarImagen.setRound(10);
+        btnCargarImagen.setSizeIcon(25.0F);
+        btnCargarImagen.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCargarImagenActionPerformed(evt);
+            }
+        });
+
+        jlFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
+
+        btnRestaurar.setBackground(new java.awt.Color(68, 165, 160));
+        btnRestaurar.setToolTipText("Cargar Imagen");
+        btnRestaurar.setBackgroundHover(new java.awt.Color(57, 140, 136));
+        btnRestaurar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RESTORE);
+        btnRestaurar.setRound(10);
+        btnRestaurar.setSizeIcon(25.0F);
+        btnRestaurar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnRestaurarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout rSPanelBorder1Layout = new javax.swing.GroupLayout(rSPanelBorder1);
         rSPanelBorder1.setLayout(rSPanelBorder1Layout);
         rSPanelBorder1Layout.setHorizontalGroup(
@@ -307,7 +347,14 @@ public class FormPacientes extends javax.swing.JDialog
                 .addContainerGap()
                 .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
-                        .addGap(263, 263, 263)
+                        .addGap(22, 22, 22)
+                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(rSPanelBorder1Layout.createSequentialGroup()
+                                .addComponent(btnCargarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnRestaurar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(apellidoPaterno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -344,19 +391,19 @@ public class FormPacientes extends javax.swing.JDialog
             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(error_nombre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(apellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(error_apellidoPaterno)
-                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
+                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(rSPanelBorder1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(error_nombre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(apellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(error_apellidoPaterno)
                         .addGap(41, 41, 41)
                         .addComponent(sexo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -367,8 +414,13 @@ public class FormPacientes extends javax.swing.JDialog
                         .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(error_correo))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                    .addGroup(rSPanelBorder1Layout.createSequentialGroup()
+                        .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCargarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRestaurar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(jLabel8))
@@ -428,11 +480,23 @@ public class FormPacientes extends javax.swing.JDialog
         boolean nombreCorrect = MetodosAux.validarFormu(nombre, error_nombre, "required");
         boolean apePCorrect = MetodosAux.validarFormu(apellidoPaterno, error_apellidoPaterno, "required");
         boolean sexoCorrect = MetodosAux.validarBox(sexo, error_sexo, "required");
+        String fotoPerfil = null;
+        //Añadir la condicion de que si la foto es distinta de null la conviertamos a bigint para almacenarla en la base de datos
         if (nombreCorrect && apePCorrect && sexoCorrect)
         {
+            if (foto != null)
+            {
+                fotoPerfil = "paciente_" + MetodosAux.getFecha() + ".png";
+
+            } else
+            {
+                fotoPerfil = sexo.getSelectedItem().toString() + ".png";
+            }
+
+            MetodosAux.copiarImagen(foto, SysConfigs.RESOURCES + fotoPerfil);
             Object[] datosInsert =
             {
-                nombre.getText().trim(), apellidoPaterno.getText().trim(), apellidoMaterno.getText().trim(),
+                fotoPerfil, nombre.getText().trim(), apellidoPaterno.getText().trim(), apellidoMaterno.getText().trim(),
                 sexo.getSelectedItem().toString(), telefono.getText().trim(), correo.getText().trim()
             };
 
@@ -470,7 +534,7 @@ public class FormPacientes extends javax.swing.JDialog
             evt.consume();
         }
         setTransferHandler(null);
-         Validaciones.entradaLetrasNum(evt, 1);
+        Validaciones.entradaLetrasNum(evt, 1);
     }//GEN-LAST:event_apellidoPaternoKeyTyped
 
     private void apellidoMaternoKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoMaternoKeyTyped
@@ -484,7 +548,7 @@ public class FormPacientes extends javax.swing.JDialog
 
     private void telefonoKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_telefonoKeyTyped
     {//GEN-HEADEREND:event_telefonoKeyTyped
-        if (telefono.getText().length()>=11)
+        if (telefono.getText().length() >= 11)
         {
             evt.consume();
         }
@@ -493,7 +557,7 @@ public class FormPacientes extends javax.swing.JDialog
 
     private void correoKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_correoKeyTyped
     {//GEN-HEADEREND:event_correoKeyTyped
-        if (correo.getText().length()>=40)
+        if (correo.getText().length() >= 40)
         {
             evt.consume();
         }
@@ -502,23 +566,38 @@ public class FormPacientes extends javax.swing.JDialog
 
     private void nombreKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_nombreKeyReleased
     {//GEN-HEADEREND:event_nombreKeyReleased
-        
+
     }//GEN-LAST:event_nombreKeyReleased
 
     private void apellidoPaternoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoPaternoKeyReleased
     {//GEN-HEADEREND:event_apellidoPaternoKeyReleased
-       
+
     }//GEN-LAST:event_apellidoPaternoKeyReleased
 
     private void apellidoMaternoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoMaternoKeyReleased
     {//GEN-HEADEREND:event_apellidoMaternoKeyReleased
-       
+
     }//GEN-LAST:event_apellidoMaternoKeyReleased
 
     private void telefonoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_telefonoKeyReleased
     {//GEN-HEADEREND:event_telefonoKeyReleased
-        
+
     }//GEN-LAST:event_telefonoKeyReleased
+
+    private void btnCargarImagenActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCargarImagenActionPerformed
+    {//GEN-HEADEREND:event_btnCargarImagenActionPerformed
+        foto = MetodosAux.getFoto(this);
+        if (foto != null)
+        {
+            rsscalelabel.RSScaleLabel.setScaleLabel(jlFoto, foto);
+        }
+    }//GEN-LAST:event_btnCargarImagenActionPerformed
+
+    private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRestaurarActionPerformed
+    {//GEN-HEADEREND:event_btnRestaurarActionPerformed
+        jlFoto.setIcon(null);
+        foto = null;
+    }//GEN-LAST:event_btnRestaurarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -536,7 +615,7 @@ public class FormPacientes extends javax.swing.JDialog
             {
                 if ("Nimbus".equals(info.getName()))
                 {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    javax.swing.UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                     break;
                 }
             }
@@ -570,8 +649,10 @@ public class FormPacientes extends javax.swing.JDialog
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private RSMaterialComponent.RSTextFieldOne apellidoMaterno;
     private RSMaterialComponent.RSTextFieldOne apellidoPaterno;
+    private RSMaterialComponent.RSButtonIconOne btnCargarImagen;
     private RSMaterialComponent.RSButtonIconOne btnCerrar;
     private newscomponents.RSButtonIcon_new btnRegistrar;
+    private RSMaterialComponent.RSButtonIconOne btnRestaurar;
     private RSMaterialComponent.RSTextFieldOne correo;
     private javax.swing.JLabel error_apellidoMaterno;
     private javax.swing.JLabel error_apellidoPaterno;
@@ -587,6 +668,7 @@ public class FormPacientes extends javax.swing.JDialog
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jlFoto;
     private RSMaterialComponent.RSTextFieldOne nombre;
     private javax.swing.JPanel pnlFondo;
     private RSMaterialComponent.RSPanelBorder rSPanelBorder1;

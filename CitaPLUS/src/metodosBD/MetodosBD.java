@@ -230,7 +230,7 @@ public class MetodosBD
     {
         String columnas[] =
         {
-            "nombre", "apellidoPaterno", "apellidoMaterno", "sexo", "telefono", "correo"
+            "foto","nombre", "apellidoPaterno", "apellidoMaterno", "sexo", "telefono", "correo"
         };
         try
         {

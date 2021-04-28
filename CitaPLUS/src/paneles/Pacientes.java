@@ -5,7 +5,7 @@
  */
 package paneles;
 
-import formularios.FormPacientes;
+import formularios_Registros.FormPacientes;
 import metodosBD.MetodosBD;
 
 /**

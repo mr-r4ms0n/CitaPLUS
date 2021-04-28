@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package detalles;
+package formularios_Detalles;
 
-import formularios.*;
 import interfaces.MenuPrincipal;
 import java.awt.Color;
 import java.awt.Shape;
@@ -167,27 +166,27 @@ public class InfoPacientes extends javax.swing.JFrame
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRegistrarActionPerformed
     {//GEN-HEADEREND:event_btnRegistrarActionPerformed
-        boolean nombreCorrect = MetodosAux.validarFormu(nombre, error_nombre, "required");
-        boolean apePCorrect = MetodosAux.validarFormu(apellidoPaterno, error_apellidoPaterno, "required");
-        boolean sexoCorrect = MetodosAux.validarBox(sexo, error_sexo, "required");
-        if (nombreCorrect && apePCorrect && sexoCorrect)
-        {
-            Object[] datosInsert =
-            {
-                nombre.getText().trim(), apellidoPaterno.getText().trim(), apellidoMaterno.getText().trim(),
-                sexo.getSelectedItem().toString(), telefono.getText().trim(), correo.getText().trim()
-            };
+        //boolean nombreCorrect = MetodosAux.validarFormu(nombre, error_nombre, "required");
+       // boolean apePCorrect = MetodosAux.validarFormu(apellidoPaterno, error_apellidoPaterno, "required");
+        //boolean sexoCorrect = MetodosAux.validarBox(sexo, error_sexo, "required");
+        //if (nombreCorrect && apePCorrect && sexoCorrect)
+        //{
+           // Object[] datosInsert =
+           // {
+           //     nombre.getText().trim(), apellidoPaterno.getText().trim(), apellidoMaterno.getText().trim(),
+           //     sexo.getSelectedItem().toString(), telefono.getText().trim(), correo.getText().trim()
+           // };
 
-            boolean insercionCorr = MetodosBD.insertarPaciente(datosInsert);
-            if (insercionCorr)
-            {
-                dispose();
+           // boolean insercionCorr = MetodosBD.insertarPaciente(datosInsert);
+           // if (insercionCorr)
+            //{
+            //    dispose();
                 //Actualizamos los usuariosd de las tablas
-                TablaContenidoPacientes.listarPacientes(tablaContenidoPacientes2.tblCitas, tabSelecc, null);
+           //     TablaContenidoPacientes.listarPacientes(tablaContenidoPacientes2.tblCitas, tabSelecc, null);
                 //Actualizamos el contador
-                Pacientes.actualizarNumPacientes();
-            }
-        }
+            //    Pacientes.actualizarNumPacientes();
+           // }
+       // }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCerrarActionPerformed

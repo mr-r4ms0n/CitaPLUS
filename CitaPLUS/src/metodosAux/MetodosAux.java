@@ -8,6 +8,14 @@ package metodosAux;
 import RSMaterialComponent.RSComboBox;
 import RSMaterialComponent.RSTableMetroCustom;
 import RSMaterialComponent.RSTextFieldOne;
+import formularios_Registros.FormPacientes;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,8 +24,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,9 +38,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MetodosAux
 {
+    
     /**
      * Método generico que enlista cualquier tabla
-     * @param rs ResultSet con los datos extraidos de la consulta previa a la base de datos
+     *
+     * @param rs ResultSet con los datos extraidos de la consulta previa a la
+     * base de datos
      * @param tabla Modelo de la tabla que se rellenara con los datos
      * @param columnas Columnas de la tabla en la base de datos
      */
@@ -64,8 +79,10 @@ public class MetodosAux
             System.out.println("Error al listar tabla: " + e);
         }
     }
+
     /**
      * Método general que inserta datos en cualquier tabla
+     *
      * @param tabla nombre de la tabla donde se hara el INSERT
      * @param columnas columnas de la tabla (Nombres en la base de datos)
      * @param datos datos que se insertatan (Valores)
@@ -105,7 +122,7 @@ public class MetodosAux
         }
 
         sql += ") ";
-        
+
         try
         {
             sentencia = dbC.prepareStatement(sql);
@@ -113,11 +130,11 @@ public class MetodosAux
             {
                 if (datos[i] instanceof String)
                 {
-                    sentencia.setString((i+1), (String) datos[i]);
+                    sentencia.setString((i + 1), (String) datos[i]);
                 }
                 if (datos[i] instanceof Integer)
                 {
-                    sentencia.setInt((i+1), (int) datos[i]);
+                    sentencia.setInt((i + 1), (int) datos[i]);
                 }
             }
         } catch (SQLException ex)
@@ -126,19 +143,22 @@ public class MetodosAux
         }
         return sentencia;
     }
-    
+
     /**
      * Método encargado de obtener la fecha y hota actual
+     *
      * @return fecha formateada
      */
     public static String getFecha()
     {
-        DateTimeFormatter dff = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter dff = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime now = LocalDateTime.now();
         return dff.format(now);
     }
+
     /**
      * Método encargado de validar que un TextField no este vacio
+     *
      * @param field TextField a validar
      * @param error Label donde se mostrara el error si esta vacio
      * @param tipo Parametro para identificar si es requerido o no
@@ -153,10 +173,10 @@ public class MetodosAux
                 if (field.getText().trim().isEmpty())
                 {
                     error.setText("Este campo es requerido");
-                    error.setForeground(ColoresSys.bg_danger);
+                    error.setForeground(SysConfigs.bg_danger);
                 } else
                 {
-                    error.setForeground(ColoresSys.bg_white);
+                    error.setForeground(SysConfigs.bg_white);
                     resultado = true;
                 }
                 break;
@@ -182,14 +202,73 @@ public class MetodosAux
                 if (field.getSelectedIndex() == 0)
                 {
                     error.setText("Este campo es requerido");
-                    error.setForeground(ColoresSys.bg_danger);
+                    error.setForeground(SysConfigs.bg_danger);
                 } else
                 {
-                    error.setForeground(ColoresSys.bg_white);
+                    error.setForeground(SysConfigs.bg_white);
                     resultado = true;
                 }
                 break;
         }
         return resultado;
+    }
+
+    public static String getFoto(JDialog jd)
+    {
+        //Esta parte es para que neustro jfilechooser se vea como una ventana de windows
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
+                    javax.swing.UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex)
+        {
+            java.util.logging.Logger.getLogger(FormPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex)
+        {
+            java.util.logging.Logger.getLogger(FormPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex)
+        {
+            java.util.logging.Logger.getLogger(FormPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
+            java.util.logging.Logger.getLogger(FormPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+        JFileChooser fc = new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG", "jpg", "png");
+        fc.setFileFilter(filtro);
+        int res = fc.showOpenDialog(jd);
+        if (res == JFileChooser.APPROVE_OPTION)
+        {
+            File archivoIm = fc.getSelectedFile();
+            return archivoIm.getAbsolutePath();
+        }
+        return null;
+    }
+
+    public static void copiarImagen(String origen, String destino)
+    {
+        Path orig = Paths.get(origen);
+        Path desti = Paths.get(destino);
+
+        CopyOption[] opciones =
+        {
+            StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES
+        };
+
+        try
+        {
+            Files.copy(orig, desti, opciones);
+        } catch (IOException e)
+        {
+            System.err.println("Error al copiar la imagen: " + e);
+        }
+
     }
 }
