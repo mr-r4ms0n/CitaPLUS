@@ -11,12 +11,6 @@ import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.JOptionPane;
 import rojeru_san.complementos.RSUtilities;
-import metodosAux.*;
-import metodosBD.MetodosBD;
-import paneles.Pacientes;
-import static paneles.Pacientes.tabSelecc;
-import static paneles.Pacientes.tablaContenidoPacientes2;
-import paneles.TablaContenidoPacientes;
 import rojeru_san.complementos.RSEffectFade;
 
 /**

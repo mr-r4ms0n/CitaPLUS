@@ -23,10 +23,10 @@ import javax.swing.table.TableCellRenderer;
 //Header
 public class StyleHeadTable implements TableCellRenderer {
 
-    public int hightHead = 35;
-    public Font fontHead = new Font("Segoe UI Semibold", Font.BOLD, 12);
-    public Color backgoundHead = new Color(0,0,0);
-    public Color roregroundHead = new Color(255, 255, 255);
+    public int hightHead = 30;
+    public Font fontHead = new Font("Segoe UI Semibold", Font.BOLD, 14);
+    public Color backgroundHead = new Color(0,0,0);
+    public Color foregroundHead = new Color(255, 255, 255);
 
     @Override
     public Component getTableCellRendererComponent(JTable jtable, Object value, boolean bln, boolean bln1, int row, int column) {
@@ -42,8 +42,8 @@ public class StyleHeadTable implements TableCellRenderer {
 
         jcomponent.setEnabled(true);
         jcomponent.setOpaque(true);
-        jcomponent.setBackground(backgoundHead);
-        jcomponent.setForeground(roregroundHead);
+        jcomponent.setBackground(backgroundHead);
+        jcomponent.setForeground(foregroundHead);
         jcomponent.setFont(fontHead);
 
         return jcomponent;

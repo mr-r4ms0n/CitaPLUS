@@ -30,14 +30,14 @@ public class RSRenderButtonsTable extends JPanel {
             RSButtonIconOne b = new RSButtonIconOne();
             b.setPreferredSize(new Dimension(25, 25));
             b.setRound(10);
-            b.setSizeIcon(25f);
+            b.setSizeIcon(22f);
             if (a.toString().equals("Ver")) {
-                b.setBackground(new Color(0, 176, 255));
+                b.setBackground(new Color(72,202,228));
                 b.setIcons(ValoresEnum.ICONS.INFO);
                 b.setToolTipText("Ver información");
             }
             if (a.toString().equals("Editar")) {
-                b.setBackground(new Color(0, 78, 203));
+                b.setBackground(new Color(26,117,159));
                 b.setIcons(ValoresEnum.ICONS.EDIT);
                 b.setToolTipText("Editar información");
             }

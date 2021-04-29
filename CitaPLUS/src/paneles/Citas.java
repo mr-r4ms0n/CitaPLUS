@@ -37,7 +37,12 @@ public class Citas extends javax.swing.JPanel
         tabCanceladas = new newscomponents.RSButtonIcon_new();
         tabTodas = new newscomponents.RSButtonIcon_new();
         tabProximas1 = new newscomponents.RSButtonIcon_new();
-        tablaContenidoCitas1 = new paneles.TablaContenidoCitas();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblCitas = new RSMaterialComponent.RSTableMetroCustom();
+        rSLabelTextIcon2 = new RSMaterialComponent.RSLabelTextIcon();
+        rSTextFieldMaterialIcon1 = new RSMaterialComponent.RSTextFieldMaterialIcon();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 4, 0, new java.awt.Color(26, 117, 159)));
@@ -110,7 +115,7 @@ public class Citas extends javax.swing.JPanel
                         .addComponent(tabCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tabTodas, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 562, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -131,31 +136,98 @@ public class Citas extends javax.swing.JPanel
                 .addContainerGap(78, Short.MAX_VALUE))
         );
 
+        tblCitas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String []
+            {
+                "Id", "Cliente", "Fecha Cita", "Fecha Hora", "Atiende"
+            }
+        )
+        {
+            boolean[] canEdit = new boolean []
+            {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
+            }
+        });
+        tblCitas.setBackgoundHead(new java.awt.Color(26, 117, 159));
+        tblCitas.setBackgoundHover(new java.awt.Color(26, 117, 159));
+        tblCitas.setColorPrimaryText(new java.awt.Color(26, 117, 159));
+        tblCitas.setColorSecondary(new java.awt.Color(255, 255, 255));
+        tblCitas.setColorSecundaryText(new java.awt.Color(26, 117, 159));
+        tblCitas.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        tblCitas.setFontHead(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        tblCitas.setFontRowHover(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        tblCitas.setFontRowSelect(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        tblCitas.setSelectionBackground(new java.awt.Color(26, 117, 159));
+        jScrollPane1.setViewportView(tblCitas);
+
+        rSLabelTextIcon2.setForeground(new java.awt.Color(233, 196, 106));
+        rSLabelTextIcon2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        rSLabelTextIcon2.setText("Citas próximas");
+        rSLabelTextIcon2.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ACCESS_TIME);
+        rSLabelTextIcon2.setSizeIcon(30.0F);
+
+        rSTextFieldMaterialIcon1.setForeground(new java.awt.Color(26, 117, 159));
+        rSTextFieldMaterialIcon1.setColorIcon(new java.awt.Color(26, 117, 159));
+        rSTextFieldMaterialIcon1.setColorMaterial(new java.awt.Color(26, 117, 159));
+        rSTextFieldMaterialIcon1.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        rSTextFieldMaterialIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
+        rSTextFieldMaterialIcon1.setPhColor(new java.awt.Color(26, 117, 159));
+        rSTextFieldMaterialIcon1.setPlaceholder("Buscar cita");
+        rSTextFieldMaterialIcon1.setSelectionColor(new java.awt.Color(26, 117, 159));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tablaContenidoCitas1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1121, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(rSLabelTextIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rSTextFieldMaterialIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tablaContenidoCitas1, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rSLabelTextIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rSTextFieldMaterialIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private newscomponents.RSButtonIcon_new rSButtonIcon_new1;
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon1;
+    private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon2;
+    private RSMaterialComponent.RSTextFieldMaterialIcon rSTextFieldMaterialIcon1;
     private newscomponents.RSButtonIcon_new tabCanceladas;
     private newscomponents.RSButtonIcon_new tabProximas;
     private newscomponents.RSButtonIcon_new tabProximas1;
     private newscomponents.RSButtonIcon_new tabTodas;
-    private paneles.TablaContenidoCitas tablaContenidoCitas1;
+    private RSMaterialComponent.RSTableMetroCustom tblCitas;
     // End of variables declaration//GEN-END:variables
 }

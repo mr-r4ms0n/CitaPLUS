@@ -6,9 +6,10 @@
 package metodosAux;
 
 import RSMaterialComponent.RSComboBox;
-import RSMaterialComponent.RSTableMetroCustom;
 import RSMaterialComponent.RSTextFieldOne;
 import formularios_Registros.FormPacientes;
+import java.awt.Color;
+import java.awt.Font;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -30,6 +31,7 @@ import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
@@ -40,7 +42,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MetodosAux
 {
-
+    //Variables auxiliares que usen los métodos de aqui
+    private static StyleHeadTable headTable = new StyleHeadTable(); //Usada para darle estilo a una tabla
+    ///////////////////////////////////////
+    
+    
+    
     /**
      * Método generico que enlista cualquier tabla
      *
@@ -49,7 +56,7 @@ public class MetodosAux
      * @param tabla Modelo de la tabla que se rellenara con los datos
      * @param columnas Columnas de la tabla en la base de datos
      */
-    public static void listarTablas(ResultSet rs, RSTableMetroCustom tabla, String columnas[])
+    public static void listarTablas(ResultSet rs, JTable tabla, String columnas[])
     {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         //Limpiamos la tabla para evitar cualquier error
@@ -282,6 +289,14 @@ public class MetodosAux
         {
             System.err.println("Error al copiar la imagen: " + e);
         }
-
+    }
+    
+    public static void renderHeadTable(JTable tabla, int height, Color bg, Color fg, Font font)
+    {
+        headTable.backgroundHead = bg;
+        headTable.foregroundHead = fg;
+        headTable.fontHead =font;
+        headTable.hightHead=height;
+        tabla.getTableHeader().setDefaultRenderer(headTable);
     }
 }
