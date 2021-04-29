@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package detalles;
+package formularios_Detalles;
 
-import formularios.*;
 import interfaces.MenuPrincipal;
 import java.awt.Color;
 import java.awt.Shape;
@@ -24,15 +23,16 @@ import rojeru_san.complementos.RSEffectFade;
  *
  * @author David Vergara
  */
-public class InfoPacientes extends javax.swing.JFrame
+public class InfoPacientes extends javax.swing.JDialog
 {
 
     /**
      * Creates new form FormPacientes
      */
-    public InfoPacientes()
+    public InfoPacientes(java.awt.Frame parent, boolean modal)
     {
-        RSUtilities.setFullScreenJFrame(this);
+        super(parent, modal);
+        //RSUtilities.setFullScreenJFrame(this);
         initComponents();
         RSEffectFade.setFadeWindowIn(this, 30, 0.3f);
         RSUtilities.setCenterWindow(this);
@@ -74,7 +74,7 @@ public class InfoPacientes extends javax.swing.JFrame
         lblCorreo = new javax.swing.JLabel();
         rSLabelTextIcon7 = new RSMaterialComponent.RSLabelTextIcon();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
 
         pnlFondo.setBackground(new java.awt.Color(0, 0, 0));
@@ -388,13 +388,18 @@ public class InfoPacientes extends javax.swing.JFrame
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
-                new InfoPacientes().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(new Runnable() {
+	public void run() {
+		InfoPacientes dialog = new InfoPacientes(new javax.swing.JFrame(), true);
+		dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent e) {
+				System.exit(0);
+			}
+		});
+		dialog.setVisible(true);
+	}
+});
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
