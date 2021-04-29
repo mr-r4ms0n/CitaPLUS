@@ -137,6 +137,7 @@ public class InfoPacientes extends javax.swing.JDialog
         });
 
         rSPanelMaterialImage1.setBgShade(new java.awt.Color(102, 102, 102));
+        rSPanelMaterialImage1.setImagen(null);
         rSPanelMaterialImage1.setShapePanel(rojeru_san.efectos.ValoresEnum.PANEL_FORMA.CIRCLE);
 
         javax.swing.GroupLayout rSPanelMaterialImage1Layout = new javax.swing.GroupLayout(rSPanelMaterialImage1);

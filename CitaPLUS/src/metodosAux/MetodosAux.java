@@ -67,7 +67,14 @@ public class MetodosAux
                 {
                     for (int i = 0; i < columnas.length; i++)
                     {
-                        datos[i] = rs.getObject(columnas[i]);
+                        if (columnas[i].equals("accion"))
+                        {
+                            datos[i] = "";
+                        } else
+                        {
+                            datos[i] = rs.getObject(columnas[i]);
+                        }
+
                     }
                     modelo.addRow(datos);
                 }

@@ -204,7 +204,7 @@ public class Pacientes extends javax.swing.JPanel
             tabActivos.setSelected(false);
         }
 
-        tablaContenidoPacientes2.listarPacientes(tablaContenidoPacientes2.tblCitas, tabSelecc, null);
+        tablaContenidoPacientes2.listarPacientes(tablaContenidoPacientes2.tblPacientes, tabSelecc, null);
         tablaContenidoPacientes2.actualizarTitulo(0);
     }//GEN-LAST:event_tabTodosActionPerformed
 
@@ -218,7 +218,7 @@ public class Pacientes extends javax.swing.JPanel
             tabActivos.setSelected(false);
         }
 
-        tablaContenidoPacientes2.listarPacientes(tablaContenidoPacientes2.tblCitas, tabSelecc, null);
+        tablaContenidoPacientes2.listarPacientes(tablaContenidoPacientes2.tblPacientes, tabSelecc, null);
         tablaContenidoPacientes2.actualizarTitulo(2);
     }//GEN-LAST:event_tabInactivosActionPerformed
 
@@ -232,7 +232,7 @@ public class Pacientes extends javax.swing.JPanel
             tabActivos.setSelected(true);
         }
 
-        tablaContenidoPacientes2.listarPacientes(tablaContenidoPacientes2.tblCitas, tabSelecc, null);
+        tablaContenidoPacientes2.listarPacientes(tablaContenidoPacientes2.tblPacientes, tabSelecc, null);
         tablaContenidoPacientes2.actualizarTitulo(1);
     }//GEN-LAST:event_tabActivosActionPerformed
 

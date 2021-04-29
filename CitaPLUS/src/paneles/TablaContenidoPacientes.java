@@ -7,8 +7,12 @@ package paneles;
 
 import RSMaterialComponent.RSTableMetroCustom;
 import java.awt.Color;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableColumn;
 import metodosAux.SysConfigs;
 import metodosAux.MetodosAux;
+import metodosAux.RSButtonsAction;
+import metodosAux.RSButtonsRenderer;
 import metodosBD.MetodosBD;
 
 /**
@@ -17,21 +21,25 @@ import metodosBD.MetodosBD;
  */
 public class TablaContenidoPacientes extends javax.swing.JPanel
 {
+
     /**
      * Creates new form tablaContenidoCitas
      */
     public TablaContenidoPacientes()
     {
         initComponents();
-        listarPacientes(tblCitas, 1, jTBuscarPaciente.getText().trim());
+        listarPacientes(tblPacientes, 1, jTBuscarPaciente.getText().trim());
         jScrollPane1.getViewport().setBackground(Color.WHITE);
     }
 
     /**
-     * Método encargado de mostrar graficamente los datos de los pacientes dentro de la tabla correspondiente
+     * Método encargado de mostrar graficamente los datos de los pacientes
+     * dentro de la tabla correspondiente
+     *
      * @param tabla tabla de pacientes
      * @param tab categoria seleccionada
-     * @param filtro Nombre de un paciente en especifico (Para busqueda filtrada y puede ser null)
+     * @param filtro Nombre de un paciente en especifico (Para busqueda filtrada
+     * y puede ser null)
      */
     public static void listarPacientes(RSTableMetroCustom tabla, int tab, String filtro)
     {
@@ -41,13 +49,28 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
         }
         String[] columnas =
         {
-            "nombre", "apellidoPaterno", "apellidoMaterno", "sexo", "telefono", "correo","estatusPac"
+            "id", "accion", "nombre", "apellidoPaterno", "apellidoMaterno", "sexo", "telefono", "correo", "estatusPac"
         };
         MetodosAux.listarTablas(MetodosBD.rsListarPacientes(tab, filtro), tabla, columnas);
+
+        //Definimos la posicion donde estara la columna que contendra los botones
+        TableColumn column = tabla.getColumnModel().getColumn(1);
+        column.setCellRenderer(new RSButtonsRenderer());
+        String classname = "paneles.TablaContenidoPacientes";
+        String metodoVer = "viewInfo";
+        String metodoEditar = "editInfo";
+        Object[] params =
+        {
+            classname, metodoVer, metodoEditar
+        };
+        //El 0 de aqui es de donde agarrara el parametro para activar los botones
+        column.setCellEditor(new RSButtonsAction(tabla, 0, params));
     }
-    
+
     /**
-     * M;etodo que actualiza el titulo que se depliega en la parte inferior dependiendo del tab que se seleccione
+     * M;etodo que actualiza el titulo que se depliega en la parte inferior
+     * dependiendo del tab que se seleccione
+     *
      * @param tab tab seleccionado
      */
     public static void actualizarTitulo(int tab)
@@ -55,19 +78,29 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
         switch (tab)
         {
             case 1:
-               JLTitulo.setText("Clientes Activos");
-               JLTitulo.setForeground(SysConfigs.cl_activos);
+                JLTitulo.setText("Clientes Activos");
+                JLTitulo.setForeground(SysConfigs.cl_activos);
                 break;
             case 2:
                 JLTitulo.setText("Clientes Inactivos");
-               JLTitulo.setForeground(SysConfigs.cl_inactivos);
+                JLTitulo.setForeground(SysConfigs.cl_inactivos);
                 break;
             case 0:
                 JLTitulo.setText("Todos los Clientes");
-               JLTitulo.setForeground(SysConfigs.cl_todos);
+                JLTitulo.setForeground(SysConfigs.cl_todos);
                 break;
-                
+
         }
+    }
+
+    public void viewInfo(Object value)
+    {
+        JOptionPane.showMessageDialog(null, "Ver info de ID: " + value);
+    }
+
+    public void editInfo(Object value)
+    {
+        JOptionPane.showMessageDialog(null, "Editar info de ID: " + value);
     }
 
     /**
@@ -81,29 +114,29 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
     {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblCitas = new RSMaterialComponent.RSTableMetroCustom();
+        tblPacientes = new RSMaterialComponent.RSTableMetroCustom();
         JLTitulo = new RSMaterialComponent.RSLabelTextIcon();
         jTBuscarPaciente = new RSMaterialComponent.RSTextFieldMaterialIcon();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        tblCitas.setModel(new javax.swing.table.DefaultTableModel(
+        tblPacientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String []
             {
-                "Nombre", "Apellido Paterno", "Apellido Materno", "Sexo", "Teléfono", "Correo", "Estatus"
+                "id", "Accion", "Nombre", "Apellido Paterno", "Apellido Materno", "Sexo", "Teléfono", "Correo", "Estatus"
             }
         )
         {
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false, false, true, true
+                false, true, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex)
@@ -111,17 +144,25 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
                 return canEdit [columnIndex];
             }
         });
-        tblCitas.setBackgoundHead(new java.awt.Color(26, 117, 159));
-        tblCitas.setBackgoundHover(new java.awt.Color(26, 117, 159));
-        tblCitas.setColorPrimaryText(new java.awt.Color(26, 117, 159));
-        tblCitas.setColorSecondary(new java.awt.Color(255, 255, 255));
-        tblCitas.setColorSecundaryText(new java.awt.Color(26, 117, 159));
-        tblCitas.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
-        tblCitas.setFontHead(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        tblCitas.setFontRowHover(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
-        tblCitas.setFontRowSelect(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
-        tblCitas.setSelectionBackground(new java.awt.Color(26, 117, 159));
-        jScrollPane1.setViewportView(tblCitas);
+        tblPacientes.setBackgoundHead(new java.awt.Color(26, 117, 159));
+        tblPacientes.setBackgoundHover(new java.awt.Color(26, 117, 159));
+        tblPacientes.setColorPrimaryText(new java.awt.Color(26, 117, 159));
+        tblPacientes.setColorSecondary(new java.awt.Color(255, 255, 255));
+        tblPacientes.setColorSecundaryText(new java.awt.Color(26, 117, 159));
+        tblPacientes.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        tblPacientes.setFontHead(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        tblPacientes.setFontRowHover(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        tblPacientes.setFontRowSelect(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        tblPacientes.setHighHead(40);
+        tblPacientes.setRowHeight(35);
+        tblPacientes.setSelectionBackground(new java.awt.Color(26, 117, 159));
+        jScrollPane1.setViewportView(tblPacientes);
+        if (tblPacientes.getColumnModel().getColumnCount() > 0)
+        {
+            tblPacientes.getColumnModel().getColumn(0).setMinWidth(0);
+            tblPacientes.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tblPacientes.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         JLTitulo.setForeground(new java.awt.Color(51, 153, 0));
         JLTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -162,7 +203,7 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(JLTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 415, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 458, Short.MAX_VALUE)
                         .addComponent(jTBuscarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -174,8 +215,8 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
                     .addComponent(JLTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTBuscarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -187,7 +228,7 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
     private void jTBuscarPacienteKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTBuscarPacienteKeyReleased
     {//GEN-HEADEREND:event_jTBuscarPacienteKeyReleased
         System.out.println(jTBuscarPaciente.getText().trim());
-        listarPacientes(tblCitas, Pacientes.tabSelecc, jTBuscarPaciente.getText().trim());
+        listarPacientes(tblPacientes, Pacientes.tabSelecc, jTBuscarPaciente.getText().trim());
 
     }//GEN-LAST:event_jTBuscarPacienteKeyReleased
 
@@ -196,6 +237,6 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
     private static RSMaterialComponent.RSLabelTextIcon JLTitulo;
     private javax.swing.JScrollPane jScrollPane1;
     private RSMaterialComponent.RSTextFieldMaterialIcon jTBuscarPaciente;
-    public RSMaterialComponent.RSTableMetroCustom tblCitas;
+    public RSMaterialComponent.RSTableMetroCustom tblPacientes;
     // End of variables declaration//GEN-END:variables
 }

@@ -521,7 +521,7 @@ public class FormPacientes extends javax.swing.JDialog
             {
                 dispose();
                 //Actualizamos los usuariosd de las tablas
-                TablaContenidoPacientes.listarPacientes(tablaContenidoPacientes2.tblCitas, tabSelecc, null);
+                TablaContenidoPacientes.listarPacientes(tablaContenidoPacientes2.tblPacientes, tabSelecc, null);
                 //Actualizamos el contador
                 Pacientes.actualizarNumPacientes();
             }
