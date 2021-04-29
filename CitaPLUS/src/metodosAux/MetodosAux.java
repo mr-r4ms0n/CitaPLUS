@@ -40,7 +40,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MetodosAux
 {
-
     /**
      * Método generico que enlista cualquier tabla
      *

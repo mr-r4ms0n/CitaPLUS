@@ -6,6 +6,7 @@
 package paneles;
 
 import RSMaterialComponent.RSTableMetroCustom;
+import formularios_Detalles.InfoPacientes;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
@@ -95,7 +96,7 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
 
     public void viewInfo(Object value)
     {
-        JOptionPane.showMessageDialog(null, "Ver info de ID: " + value);
+        new InfoPacientes(null, true, MetodosBD.getPaciente(value.toString())).setVisible(true);
     }
 
     public void editInfo(Object value)

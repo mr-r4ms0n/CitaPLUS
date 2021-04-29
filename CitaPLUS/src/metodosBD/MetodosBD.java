@@ -5,13 +5,20 @@
  */
 package metodosBD;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import metodosAux.MetodosAux;
+import metodosAux.RSObjectArray;
 
 /**
  *
@@ -91,7 +98,14 @@ public class MetodosBD
         return ret;
     }
 
-    public static String getPaciente(String pacienteId, String tab)
+    /**
+     * Método usado para obtener datos de pacientes de forma individual
+     * proporcionando el primary key (id)
+     *
+     * @param pacienteId id del paciente en la base de datos
+     * @return
+     */
+    public static RSObjectArray getPaciente(String pacienteId)
     {
         try
         {
@@ -101,7 +115,35 @@ public class MetodosBD
             resultado = sentencia.executeQuery();
             if (resultado.next())
             {
-                return resultado.getString("id");
+                RSObjectArray arreglo = new RSObjectArray();
+                //Primero extraemos la imagen del usuario y la convertimos a imagen visible
+                //Image img = null;
+                //Blob blob = resultado.getBlob("foto");
+                //byte[] data = blob.getBytes(1, (int) blob.length());
+                //BufferedImage imga = null;
+                //try
+                //{
+                //    img = ImageIO.read(new ByteArrayInputStream(data));
+                //} catch (IOException e)
+                //{
+               //     System.out.println("Error al convertir la imagen de la base de datos: " + e);
+                //}
+
+                //if (img != null)
+                //{
+                    arreglo.add("id", resultado.getInt("id"));
+                    //arreglo.add("foto", img);
+                    arreglo.add("nombre", resultado.getString("nombre"));
+                    arreglo.add("apellidoPaterno", resultado.getString("apellidoPaterno"));
+                    arreglo.add("apellidoMaterno", resultado.getString("apellidoMaterno"));
+                    arreglo.add("sexo", resultado.getString("sexo"));
+                    arreglo.add("telefono", resultado.getString("telefono"));
+                    arreglo.add("correo", resultado.getString("correo"));
+                    int estado = resultado.getInt("estatus");
+                    String estadoCad = (estado == 1) ? "Activo" : "Inactivo"; //Para que entiendas por si lees el codigo xd, si el estado es 1 entonces estadocad sera activo, sino sera inactivo.
+                    arreglo.add("estatus", estadoCad);
+                    return arreglo;
+               // }
             }
             dbCon.close();
         } catch (SQLException e)

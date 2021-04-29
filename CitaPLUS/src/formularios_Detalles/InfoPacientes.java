@@ -25,19 +25,41 @@ import rojeru_san.complementos.RSEffectFade;
  */
 public class InfoPacientes extends javax.swing.JDialog
 {
-
+    RSObjectArray arregloDatos = new RSObjectArray();
     /**
      * Creates new form FormPacientes
      */
-    public InfoPacientes(java.awt.Frame parent, boolean modal)
+    public InfoPacientes(java.awt.Frame parent, boolean modal,RSObjectArray datos)
     {
         super(parent, modal);
+        this.arregloDatos = datos;
         //RSUtilities.setFullScreenJFrame(this);
         initComponents();
         RSEffectFade.setFadeWindowIn(this, 30, 0.3f);
         RSUtilities.setCenterWindow(this);
         RSUtilities.setOpaqueWindow(this, false);
         RSUtilities.setOpacityComponent(this.pnlFondo, 150);
+         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
+        setShape(forma);
+        lblNombre.setText((String) arregloDatos.getValue("nombre"));
+        lblApellidoMaterno.setText((String) arregloDatos.getValue("apellidoMaterno"));
+        lblApellidoPaterno.setText((String) arregloDatos.getValue("apellidoPaterno"));
+        lblSexo.setText((String) arregloDatos.getValue("sexo"));
+        lblTelefono.setText((String) arregloDatos.getValue("telefono"));
+        lblCorreo.setText((String) arregloDatos.getValue("correo"));
+        lblEstatus.setText((String) arregloDatos.getValue("estatus"));
+    }
+    
+    public InfoPacientes(java.awt.Frame parent, boolean modal)
+    {
+        super(parent, modal);
+        initComponents();
+        RSEffectFade.setFadeWindowIn(this, 30, 0.3f);
+        RSUtilities.setCenterWindow(this);
+        RSUtilities.setOpaqueWindow(this, false);
+        RSUtilities.setOpacityComponent(this.pnlFondo, 150);
+        Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
+        setShape(forma);
     }
 
 
