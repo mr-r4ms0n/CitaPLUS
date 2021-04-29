@@ -5,6 +5,18 @@
  */
 package paneles;
 
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JTable;
+import javax.swing.table.TableColumn;
+import metodosAux.MetodosAux;
+import metodosAux.RSButtonsAction;
+import metodosAux.RSButtonsRenderer;
+import metodosAux.SysConfigs;
+import metodosBD.MetodosBD;
+import rojeru_san.efectos.ValoresEnum;
+
+
 /**
  *
  * @author Kevin
@@ -12,6 +24,8 @@ package paneles;
 public class Citas extends javax.swing.JPanel
 {
 
+    public static int tabSelecc = 1;
+    
     /**
      * Creates new form citas
      */
@@ -36,7 +50,7 @@ public class Citas extends javax.swing.JPanel
         tabProximas = new newscomponents.RSButtonIcon_new();
         tabCanceladas = new newscomponents.RSButtonIcon_new();
         tabTodas = new newscomponents.RSButtonIcon_new();
-        tabProximas1 = new newscomponents.RSButtonIcon_new();
+        tabAtendidas = new newscomponents.RSButtonIcon_new();
         tablaContenidoCitas1 = new paneles.TablaContenidoCitas();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -62,6 +76,13 @@ public class Citas extends javax.swing.JPanel
         tabProximas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ACCESS_TIME);
         tabProximas.setRound(20);
         tabProximas.setSelected(true);
+        tabProximas.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                tabProximasActionPerformed(evt);
+            }
+        });
 
         tabCanceladas.setBackground(new java.awt.Color(255, 255, 255));
         tabCanceladas.setText("Canceladas (0)");
@@ -71,6 +92,13 @@ public class Citas extends javax.swing.JPanel
         tabCanceladas.setForegroundText(new java.awt.Color(26, 117, 159));
         tabCanceladas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.REMOVE_CIRCLE);
         tabCanceladas.setRound(20);
+        tabCanceladas.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                tabCanceladasActionPerformed(evt);
+            }
+        });
 
         tabTodas.setBackground(new java.awt.Color(255, 255, 255));
         tabTodas.setText("Todas");
@@ -80,16 +108,30 @@ public class Citas extends javax.swing.JPanel
         tabTodas.setForegroundText(new java.awt.Color(26, 117, 159));
         tabTodas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.REORDER);
         tabTodas.setRound(20);
+        tabTodas.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                tabTodasActionPerformed(evt);
+            }
+        });
 
-        tabProximas1.setBackground(new java.awt.Color(255, 255, 255));
-        tabProximas1.setText("Atendidas (0)");
-        tabProximas1.setBackgroundHover(new java.awt.Color(138, 191, 112));
-        tabProximas1.setFocusable(false);
-        tabProximas1.setForegroundHover(new java.awt.Color(26, 117, 159));
-        tabProximas1.setForegroundIcon(new java.awt.Color(51, 153, 0));
-        tabProximas1.setForegroundText(new java.awt.Color(26, 117, 159));
-        tabProximas1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CHECK_BOX);
-        tabProximas1.setRound(20);
+        tabAtendidas.setBackground(new java.awt.Color(255, 255, 255));
+        tabAtendidas.setText("Atendidas (0)");
+        tabAtendidas.setBackgroundHover(new java.awt.Color(138, 191, 112));
+        tabAtendidas.setFocusable(false);
+        tabAtendidas.setForegroundHover(new java.awt.Color(26, 117, 159));
+        tabAtendidas.setForegroundIcon(new java.awt.Color(51, 153, 0));
+        tabAtendidas.setForegroundText(new java.awt.Color(26, 117, 159));
+        tabAtendidas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CHECK_BOX);
+        tabAtendidas.setRound(20);
+        tabAtendidas.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                tabAtendidasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -105,7 +147,7 @@ public class Citas extends javax.swing.JPanel
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(tabProximas, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tabProximas1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tabAtendidas, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tabCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -121,7 +163,7 @@ public class Citas extends javax.swing.JPanel
                     .addComponent(tabProximas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tabCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tabTodas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tabProximas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tabAtendidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
@@ -147,14 +189,78 @@ public class Citas extends javax.swing.JPanel
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tabProximasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabProximasActionPerformed
+    {//GEN-HEADEREND:event_tabProximasActionPerformed
+        // TODO add your handling code here:
+        tabSelecc = 1;
+        if (!tabProximas.isSelected())
+        {
+            tabTodas.setSelected(false);
+            tabCanceladas.setSelected(false);
+            tabAtendidas.setSelected(false);
+            tabProximas.setSelected(true);
+        }
+
+        //listarPacientes(tblPacientes, tabSelecc, null);
+        TablaContenidoCitas.actualizarTitulo(1);
+    }//GEN-LAST:event_tabProximasActionPerformed
+
+    private void tabAtendidasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabAtendidasActionPerformed
+    {//GEN-HEADEREND:event_tabAtendidasActionPerformed
+        // TODO add your handling code here:
+        tabSelecc = 2;
+        if (!tabAtendidas.isSelected())
+        {
+            tabTodas.setSelected(false);
+            tabCanceladas.setSelected(false);
+            tabProximas.setSelected(false);
+            tabAtendidas.setSelected(true);
+        }
+
+        //listarPacientes(tblPacientes, tabSelecc, null);
+        TablaContenidoCitas.actualizarTitulo(2);
+    }//GEN-LAST:event_tabAtendidasActionPerformed
+
+    private void tabCanceladasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabCanceladasActionPerformed
+    {//GEN-HEADEREND:event_tabCanceladasActionPerformed
+        // TODO add your handling code here:
+        tabSelecc = 3;
+        if (!tabCanceladas.isSelected())
+        {
+            tabTodas.setSelected(false);
+            tabProximas.setSelected(false);
+            tabAtendidas.setSelected(false);
+            tabCanceladas.setSelected(true);
+        }
+        //listarPacientes(tblPacientes, tabSelecc, null);
+        TablaContenidoCitas.actualizarTitulo(3);
+    }//GEN-LAST:event_tabCanceladasActionPerformed
+
+    private void tabTodasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabTodasActionPerformed
+    {//GEN-HEADEREND:event_tabTodasActionPerformed
+        // TODO add your handling code here:
+        tabSelecc = 0;
+        if (!tabTodas.isSelected())
+        {
+            tabProximas.setSelected(false);
+            tabAtendidas.setSelected(false);
+            tabCanceladas.setSelected(false);
+            tabTodas.setSelected(true);
+        }
+
+        //listarPacientes(tblPacientes, tabSelecc, null);
+        TablaContenidoCitas.actualizarTitulo(0);
+        
+    }//GEN-LAST:event_tabTodasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel2;
     private newscomponents.RSButtonIcon_new rSButtonIcon_new1;
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon1;
+    private newscomponents.RSButtonIcon_new tabAtendidas;
     private newscomponents.RSButtonIcon_new tabCanceladas;
     private newscomponents.RSButtonIcon_new tabProximas;
-    private newscomponents.RSButtonIcon_new tabProximas1;
     private newscomponents.RSButtonIcon_new tabTodas;
     private paneles.TablaContenidoCitas tablaContenidoCitas1;
     // End of variables declaration//GEN-END:variables

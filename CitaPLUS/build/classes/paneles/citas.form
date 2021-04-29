@@ -59,7 +59,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="tabProximas" min="-2" pref="132" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="tabProximas1" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="tabAtendidas" min="-2" pref="140" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="tabCanceladas" min="-2" pref="146" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -79,7 +79,7 @@
                       <Component id="tabProximas" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tabCanceladas" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tabTodas" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tabProximas1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabAtendidas" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -146,6 +146,9 @@
             <Property name="round" type="int" value="20"/>
             <Property name="selected" type="boolean" value="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabProximasActionPerformed"/>
+          </Events>
         </Component>
         <Component class="newscomponents.RSButtonIcon_new" name="tabCanceladas">
           <Properties>
@@ -170,6 +173,9 @@
             </Property>
             <Property name="round" type="int" value="20"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabCanceladasActionPerformed"/>
+          </Events>
         </Component>
         <Component class="newscomponents.RSButtonIcon_new" name="tabTodas">
           <Properties>
@@ -194,8 +200,11 @@
             </Property>
             <Property name="round" type="int" value="20"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabTodasActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="newscomponents.RSButtonIcon_new" name="tabProximas1">
+        <Component class="newscomponents.RSButtonIcon_new" name="tabAtendidas">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -219,6 +228,9 @@
             </Property>
             <Property name="round" type="int" value="20"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabAtendidasActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

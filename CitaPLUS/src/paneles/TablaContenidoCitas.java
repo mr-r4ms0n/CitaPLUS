@@ -6,6 +6,8 @@
 package paneles;
 
 import java.awt.Color;
+import metodosAux.SysConfigs;
+import rojeru_san.efectos.ValoresEnum;
 
 /**
  *
@@ -24,6 +26,33 @@ public class TablaContenidoCitas extends javax.swing.JPanel
         
     }
 
+    public static void actualizarTitulo(int tab)
+    {
+        switch (tab)
+        {
+            case 1:
+                TituloActual.setText("Citas Próximas");
+                TituloActual.setForeground(SysConfigs.cl_proximas);
+                TituloActual.setIcons(ValoresEnum.ICONS.ACCESS_TIME);
+                break;
+            case 2:
+                TituloActual.setText("Citas Atendidas");
+                TituloActual.setForeground(SysConfigs.cl_activos);
+                TituloActual.setIcons(ValoresEnum.ICONS.CHECK_BOX);
+                break;
+            case 3:
+                TituloActual.setText("Citas Canceladas");
+                TituloActual.setForeground(SysConfigs.cl_inactivos);
+                TituloActual.setIcons(ValoresEnum.ICONS.REMOVE_CIRCLE);
+                break;
+            case 0:
+                TituloActual.setText("Todas atendias");
+                TituloActual.setForeground(SysConfigs.cl_todos);
+                TituloActual.setIcons(ValoresEnum.ICONS.REORDER);
+                break;
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,7 +65,7 @@ public class TablaContenidoCitas extends javax.swing.JPanel
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCitas = new RSMaterialComponent.RSTableMetroCustom();
-        rSLabelTextIcon1 = new RSMaterialComponent.RSLabelTextIcon();
+        TituloActual = new RSMaterialComponent.RSLabelTextIcon();
         rSTextFieldMaterialIcon1 = new RSMaterialComponent.RSTextFieldMaterialIcon();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -77,11 +106,11 @@ public class TablaContenidoCitas extends javax.swing.JPanel
         tblCitas.setSelectionBackground(new java.awt.Color(26, 117, 159));
         jScrollPane1.setViewportView(tblCitas);
 
-        rSLabelTextIcon1.setForeground(new java.awt.Color(233, 196, 106));
-        rSLabelTextIcon1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        rSLabelTextIcon1.setText("Citas próximas");
-        rSLabelTextIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ACCESS_TIME);
-        rSLabelTextIcon1.setSizeIcon(30.0F);
+        TituloActual.setForeground(new java.awt.Color(233, 196, 106));
+        TituloActual.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        TituloActual.setText("Citas próximas");
+        TituloActual.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ACCESS_TIME);
+        TituloActual.setSizeIcon(30.0F);
 
         rSTextFieldMaterialIcon1.setForeground(new java.awt.Color(26, 117, 159));
         rSTextFieldMaterialIcon1.setColorIcon(new java.awt.Color(26, 117, 159));
@@ -101,7 +130,7 @@ public class TablaContenidoCitas extends javax.swing.JPanel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(rSLabelTextIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TituloActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 415, Short.MAX_VALUE)
                         .addComponent(rSTextFieldMaterialIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -111,7 +140,7 @@ public class TablaContenidoCitas extends javax.swing.JPanel
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rSLabelTextIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TituloActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rSTextFieldMaterialIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -121,8 +150,8 @@ public class TablaContenidoCitas extends javax.swing.JPanel
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static RSMaterialComponent.RSLabelTextIcon TituloActual;
     private javax.swing.JScrollPane jScrollPane1;
-    private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon1;
     private RSMaterialComponent.RSTextFieldMaterialIcon rSTextFieldMaterialIcon1;
     private RSMaterialComponent.RSTableMetroCustom tblCitas;
     // End of variables declaration//GEN-END:variables

@@ -26,7 +26,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="rSLabelTextIcon1" min="-2" max="-2" attributes="0"/>
+                      <Component id="TituloActual" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="415" max="32767" attributes="0"/>
                       <Component id="rSTextFieldMaterialIcon1" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -40,7 +40,7 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="rSLabelTextIcon1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TituloActual" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="rSTextFieldMaterialIcon1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -130,7 +130,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="RSMaterialComponent.RSLabelTextIcon" name="rSLabelTextIcon1">
+    <Component class="RSMaterialComponent.RSLabelTextIcon" name="TituloActual">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="6a" green="c4" red="e9" type="rgb"/>
@@ -142,6 +142,9 @@
         </Property>
         <Property name="sizeIcon" type="float" value="30.0"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+      </AuxValues>
     </Component>
     <Component class="RSMaterialComponent.RSTextFieldMaterialIcon" name="rSTextFieldMaterialIcon1">
       <Properties>

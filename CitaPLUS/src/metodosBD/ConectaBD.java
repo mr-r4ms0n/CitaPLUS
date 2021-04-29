@@ -20,7 +20,7 @@ public class ConectaBD
 
     static Connection con = null;
     static String usuario = "root";
-    static String pass = "r4ms0n";
+    static String pass = "";
 
     /**
      * Método que realiza la conexion a la base de datos
