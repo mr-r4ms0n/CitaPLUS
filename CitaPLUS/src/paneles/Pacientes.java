@@ -6,16 +6,6 @@
 package paneles;
 
 import formularios_Registros.FormPacientes;
-import java.awt.Color;
-import java.awt.Font;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.TableColumn;
-import metodosAux.MetodosAux;
-import metodosAux.RSButtonsAction;
-import metodosAux.RSButtonsRenderer;
-import metodosAux.StyleHeadTable;
-import metodosAux.SysConfigs;
 import metodosBD.MetodosBD;
 
 /**
@@ -26,7 +16,6 @@ public class Pacientes extends javax.swing.JPanel
 {
 
     public static int tabSelecc = 1;
-    //Se usa para poner bonita la cabecera de un JTable
 
     /**
      * Creates new form citas
@@ -35,85 +24,6 @@ public class Pacientes extends javax.swing.JPanel
     {
         initComponents();
         actualizarNumPacientes();
-
-        //Parte de la tabla 
-        listarPacientes(tblPacientes, 1, jTBuscarPaciente.getText().trim());
-        jScrollPane1.getViewport().setBackground(Color.WHITE);
-    }
-
-    /**
-     * Método encargado de mostrar graficamente los datos de los pacientes
-     * dentro de la tabla correspondiente
-     *
-     * @param tabla tabla de pacientes
-     * @param tab categoria seleccionada
-     * @param filtro Nombre de un paciente en especifico (Para busqueda filtrada
-     * y puede ser null)
-     */
-    public static void listarPacientes(JTable tabla, int tab, String filtro)
-    {
-        if (filtro == null)
-        {
-            filtro = "";
-        }
-        String[] columnas =
-        {
-            "id", "accion", "nombre", "apellidoPaterno", "apellidoMaterno", "sexo", "telefono", "correo", "estatusPac"
-        };
-        //Le damos estilo a la tabla
-        MetodosAux.renderHeadTable(tabla, 30, new Color(26, 117, 159), Color.WHITE, new Font("Segoe UI Semibold", Font.BOLD, 14));
-        
-        //Lisstamos a los pacientes existentes que esten activos ya que es la pestaña que se selecciona
-        MetodosAux.listarTablas(MetodosBD.rsListarPacientes(tab, filtro), tabla, columnas);
-
-        //Definimos la posicion donde estara la columna que contendra los botones
-        TableColumn column = tabla.getColumnModel().getColumn(1);
-        column.setCellRenderer(new RSButtonsRenderer());
-        String classname = "paneles.TablaContenidoPacientes";
-        String metodoVer = "viewInfo";
-        String metodoEditar = "editInfo";
-        Object[] params =
-        {
-            classname, metodoVer, metodoEditar
-        };
-        //El 0 de aqui es de donde agarrara el parametro para activar los botones
-        column.setCellEditor(new RSButtonsAction(tabla, 0, params));
-    }
-
-    /**
-     * M;etodo que actualiza el titulo que se depliega en la parte inferior
-     * dependiendo del tab que se seleccione
-     *
-     * @param tab tab seleccionado
-     */
-    public static void actualizarTitulo(int tab)
-    {
-        switch (tab)
-        {
-            case 1:
-                JLTitulo.setText("Clientes Activos");
-                JLTitulo.setForeground(SysConfigs.cl_activos);
-                break;
-            case 2:
-                JLTitulo.setText("Clientes Inactivos");
-                JLTitulo.setForeground(SysConfigs.cl_inactivos);
-                break;
-            case 0:
-                JLTitulo.setText("Todos los Clientes");
-                JLTitulo.setForeground(SysConfigs.cl_todos);
-                break;
-
-        }
-    }
-
-    public void viewInfo(Object value)
-    {
-        JOptionPane.showMessageDialog(null, "Ver info de ID: " + value);
-    }
-
-    public void editInfo(Object value)
-    {
-        JOptionPane.showMessageDialog(null, "Editar info de ID: " + value);
     }
 
     public static void actualizarNumPacientes()
@@ -137,7 +47,6 @@ public class Pacientes extends javax.swing.JPanel
             tabInactivos.setText("Inactivos (" + inactivos + ")");
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -154,12 +63,7 @@ public class Pacientes extends javax.swing.JPanel
         tabActivos = new newscomponents.RSButtonIcon_new();
         tabInactivos = new newscomponents.RSButtonIcon_new();
         tabTodos = new newscomponents.RSButtonIcon_new();
-        JLTitulo = new RSMaterialComponent.RSLabelTextIcon();
-        jTBuscarPaciente = new RSMaterialComponent.RSTextFieldMaterialIcon();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblPacientes = new javax.swing.JTable();
-
-        setBackground(new java.awt.Color(255, 255, 255));
+        tablaContenidoPacientes2 = new paneles.TablaContenidoPacientes();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 4, 0, new java.awt.Color(26, 117, 159)));
@@ -269,96 +173,19 @@ public class Pacientes extends javax.swing.JPanel
                 .addContainerGap(78, Short.MAX_VALUE))
         );
 
-        JLTitulo.setForeground(new java.awt.Color(51, 153, 0));
-        JLTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        JLTitulo.setText("Pacientes Activos");
-        JLTitulo.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
-        JLTitulo.setSizeIcon(30.0F);
-
-        jTBuscarPaciente.setForeground(new java.awt.Color(26, 117, 159));
-        jTBuscarPaciente.setColorIcon(new java.awt.Color(26, 117, 159));
-        jTBuscarPaciente.setColorMaterial(new java.awt.Color(26, 117, 159));
-        jTBuscarPaciente.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        jTBuscarPaciente.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
-        jTBuscarPaciente.setPhColor(new java.awt.Color(26, 117, 159));
-        jTBuscarPaciente.setPlaceholder("Buscar paciente");
-        jTBuscarPaciente.setSelectionColor(new java.awt.Color(26, 117, 159));
-        jTBuscarPaciente.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jTBuscarPacienteActionPerformed(evt);
-            }
-        });
-        jTBuscarPaciente.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyReleased(java.awt.event.KeyEvent evt)
-            {
-                jTBuscarPacienteKeyReleased(evt);
-            }
-        });
-
-        tblPacientes.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        tblPacientes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
-            },
-            new String []
-            {
-                "id", "Accion", "Nombre", "Apellido Paterno", "Apellido Materno", "Sexo", "Telefono", "Correo", "Estatus"
-            }
-        )
-        {
-            boolean[] canEdit = new boolean []
-            {
-                true, true, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
-                return canEdit [columnIndex];
-            }
-        });
-        tblPacientes.setRowHeight(30);
-        jScrollPane1.setViewportView(tblPacientes);
-        if (tblPacientes.getColumnModel().getColumnCount() > 0)
-        {
-            tblPacientes.getColumnModel().getColumn(0).setMinWidth(0);
-            tblPacientes.getColumnModel().getColumn(0).setPreferredWidth(0);
-            tblPacientes.getColumnModel().getColumn(0).setMaxWidth(0);
-            tblPacientes.getColumnModel().getColumn(1).setMaxWidth(100);
-        }
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JLTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTBuscarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+            .addComponent(tablaContenidoPacientes2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JLTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTBuscarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(tablaContenidoPacientes2, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -377,8 +204,8 @@ public class Pacientes extends javax.swing.JPanel
             tabActivos.setSelected(false);
         }
 
-        listarPacientes(tblPacientes, tabSelecc, null);
-        actualizarTitulo(0);
+        tablaContenidoPacientes2.listarPacientes(tablaContenidoPacientes2.tblPacientes, tabSelecc, null);
+        tablaContenidoPacientes2.actualizarTitulo(0);
     }//GEN-LAST:event_tabTodosActionPerformed
 
     private void tabInactivosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabInactivosActionPerformed
@@ -391,8 +218,8 @@ public class Pacientes extends javax.swing.JPanel
             tabActivos.setSelected(false);
         }
 
-        listarPacientes(tblPacientes, tabSelecc, null);
-        actualizarTitulo(2);
+        tablaContenidoPacientes2.listarPacientes(tablaContenidoPacientes2.tblPacientes, tabSelecc, null);
+        tablaContenidoPacientes2.actualizarTitulo(2);
     }//GEN-LAST:event_tabInactivosActionPerformed
 
     private void tabActivosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabActivosActionPerformed
@@ -405,33 +232,18 @@ public class Pacientes extends javax.swing.JPanel
             tabActivos.setSelected(true);
         }
 
-        listarPacientes(tblPacientes, tabSelecc, null);
-        actualizarTitulo(1);
+        tablaContenidoPacientes2.listarPacientes(tablaContenidoPacientes2.tblPacientes, tabSelecc, null);
+        tablaContenidoPacientes2.actualizarTitulo(1);
     }//GEN-LAST:event_tabActivosActionPerformed
-
-    private void jTBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTBuscarPacienteActionPerformed
-    {//GEN-HEADEREND:event_jTBuscarPacienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTBuscarPacienteActionPerformed
-
-    private void jTBuscarPacienteKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTBuscarPacienteKeyReleased
-    {//GEN-HEADEREND:event_jTBuscarPacienteKeyReleased
-
-        System.out.println(jTBuscarPaciente.getText().trim());
-        listarPacientes(tblPacientes, Pacientes.tabSelecc, jTBuscarPaciente.getText().trim());
-    }//GEN-LAST:event_jTBuscarPacienteKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static RSMaterialComponent.RSLabelTextIcon JLTitulo;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private RSMaterialComponent.RSTextFieldMaterialIcon jTBuscarPaciente;
     private newscomponents.RSButtonIcon_new rSButtonIcon_new1;
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon1;
     public static newscomponents.RSButtonIcon_new tabActivos;
     private static newscomponents.RSButtonIcon_new tabInactivos;
     private static newscomponents.RSButtonIcon_new tabTodos;
-    public static javax.swing.JTable tblPacientes;
+    public static paneles.TablaContenidoPacientes tablaContenidoPacientes2;
     // End of variables declaration//GEN-END:variables
 }

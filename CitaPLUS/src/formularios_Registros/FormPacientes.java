@@ -21,6 +21,8 @@ import metodosAux.*;
 import metodosBD.MetodosBD;
 import paneles.Pacientes;
 import static paneles.Pacientes.tabSelecc;
+import static paneles.Pacientes.tablaContenidoPacientes2;
+import paneles.TablaContenidoPacientes;
 
 /**
  *
@@ -519,7 +521,7 @@ public class FormPacientes extends javax.swing.JDialog
             {
                 dispose();
                 //Actualizamos los usuariosd de las tablas
-                Pacientes.listarPacientes(Pacientes.tblPacientes, tabSelecc, null);
+                TablaContenidoPacientes.listarPacientes(tablaContenidoPacientes2.tblPacientes, tabSelecc, null);
                 //Actualizamos el contador
                 Pacientes.actualizarNumPacientes();
             }
