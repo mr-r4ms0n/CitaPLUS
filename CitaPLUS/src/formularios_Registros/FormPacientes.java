@@ -7,12 +7,14 @@ package formularios_Registros;
 
 import RSMaterialComponent.RSTextFieldOne;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
-import javax.swing.JComponent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import rojeru_san.complementos.RSUtilities;
 import metodosAux.*;
@@ -32,6 +34,8 @@ public class FormPacientes extends javax.swing.JDialog
     /**
      * Creates new form FormPacientes
      */
+    File pic = null;
+
     public FormPacientes()
     {
         initComponents();
@@ -42,7 +46,10 @@ public class FormPacientes extends javax.swing.JDialog
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
         setShape(forma);
         iniCampos();
-        RSTextFieldOne rs[] = {nombre,apellidoMaterno,apellidoPaterno,telefono,correo};
+        RSTextFieldOne rs[] =
+        {
+            nombre, apellidoMaterno, apellidoPaterno, telefono, correo
+        };
         Validaciones.disableCP(rs);
     }
 
@@ -100,7 +107,7 @@ public class FormPacientes extends javax.swing.JDialog
         jLabel8 = new javax.swing.JLabel();
         error_sexo = new javax.swing.JLabel();
         btnRegistrar = new newscomponents.RSButtonIcon_new();
-        jLabel4 = new javax.swing.JLabel();
+        jlFoto = new javax.swing.JLabel();
         btnOpenFoto = new RSMaterialComponent.RSButtonIconOne();
         btnRemove = new RSMaterialComponent.RSButtonIconOne();
 
@@ -303,8 +310,8 @@ public class FormPacientes extends javax.swing.JDialog
             }
         });
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
+        jlFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
 
         btnOpenFoto.setBackground(new java.awt.Color(68, 165, 160));
         btnOpenFoto.setToolTipText("Buscar foto");
@@ -326,6 +333,13 @@ public class FormPacientes extends javax.swing.JDialog
         btnRemove.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RESTORE);
         btnRemove.setRound(5);
         btnRemove.setSizeIcon(25.0F);
+        btnRemove.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnRemoveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout rSPanelBorder1Layout = new javax.swing.GroupLayout(rSPanelBorder1);
         rSPanelBorder1.setLayout(rSPanelBorder1Layout);
@@ -338,7 +352,7 @@ public class FormPacientes extends javax.swing.JDialog
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                                 .addComponent(btnOpenFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -398,7 +412,7 @@ public class FormPacientes extends javax.swing.JDialog
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(error_apellidoPaterno))
                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnOpenFoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -476,11 +490,29 @@ public class FormPacientes extends javax.swing.JDialog
         boolean nombreCorrect = MetodosAux.validarFormu(nombre, error_nombre, "required");
         boolean apePCorrect = MetodosAux.validarFormu(apellidoPaterno, error_apellidoPaterno, "required");
         boolean sexoCorrect = MetodosAux.validarBox(sexo, error_sexo, "required");
+        FileInputStream imgPerf = null;
         if (nombreCorrect && apePCorrect && sexoCorrect)
         {
+            try
+            {
+                if (pic != null)
+                {
+                    //Si la foto es por defecto
+                    imgPerf = new FileInputStream(pic);
+                } else
+                {
+                    //Dependiendo si es hombre o mujer cargamos una foto por defecto
+                    imgPerf = new FileInputStream(new File("./default/"+sexo.getSelectedItem().toString()+".png"));
+                }
+            } catch (FileNotFoundException ex)
+            {
+                System.out.println("Error al transformar la imagen: " + ex);
+            }
+            //Si la foto la selecciona el usuario
+
             Object[] datosInsert =
             {
-                nombre.getText().trim(), apellidoPaterno.getText().trim(), apellidoMaterno.getText().trim(),
+                imgPerf, nombre.getText().trim(), apellidoPaterno.getText().trim(), apellidoMaterno.getText().trim(),
                 sexo.getSelectedItem().toString(), telefono.getText().trim(), correo.getText().trim()
             };
 
@@ -518,7 +550,7 @@ public class FormPacientes extends javax.swing.JDialog
             evt.consume();
         }
         setTransferHandler(null);
-         Validaciones.entradaLetrasNum(evt, 1);
+        Validaciones.entradaLetrasNum(evt, 1);
     }//GEN-LAST:event_apellidoPaternoKeyTyped
 
     private void apellidoMaternoKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoMaternoKeyTyped
@@ -532,7 +564,7 @@ public class FormPacientes extends javax.swing.JDialog
 
     private void telefonoKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_telefonoKeyTyped
     {//GEN-HEADEREND:event_telefonoKeyTyped
-        if (telefono.getText().length()>=11)
+        if (telefono.getText().length() >= 11)
         {
             evt.consume();
         }
@@ -541,7 +573,7 @@ public class FormPacientes extends javax.swing.JDialog
 
     private void correoKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_correoKeyTyped
     {//GEN-HEADEREND:event_correoKeyTyped
-        if (correo.getText().length()>=40)
+        if (correo.getText().length() >= 40)
         {
             evt.consume();
         }
@@ -550,41 +582,40 @@ public class FormPacientes extends javax.swing.JDialog
 
     private void nombreKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_nombreKeyReleased
     {//GEN-HEADEREND:event_nombreKeyReleased
-        
+
     }//GEN-LAST:event_nombreKeyReleased
 
     private void apellidoPaternoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoPaternoKeyReleased
     {//GEN-HEADEREND:event_apellidoPaternoKeyReleased
-       
+
     }//GEN-LAST:event_apellidoPaternoKeyReleased
 
     private void apellidoMaternoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoMaternoKeyReleased
     {//GEN-HEADEREND:event_apellidoMaternoKeyReleased
-       
+
     }//GEN-LAST:event_apellidoMaternoKeyReleased
 
     private void telefonoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_telefonoKeyReleased
     {//GEN-HEADEREND:event_telefonoKeyReleased
-        
+
     }//GEN-LAST:event_telefonoKeyReleased
 
     private void btnOpenFotoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnOpenFotoActionPerformed
     {//GEN-HEADEREND:event_btnOpenFotoActionPerformed
-        JFileChooser fc = new JFileChooser();
-        
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG", "jpg", "png", "JPEG", "jpeg");
-        
-        fc.setFileFilter(filtro);
-        
-        int res = fc.showOpenDialog(this);
-        
-        if(res== JFileChooser.APPROVE_OPTION)
+        pic = MetodosAux.getFoto(this);
+        if (pic != null)
         {
-            
+            rsscalelabel.RSScaleLabel.setScaleLabel(jlFoto, pic.getAbsolutePath());
+            System.out.println(pic.getAbsolutePath());
         }
-
         // TODO add your handling code here:
     }//GEN-LAST:event_btnOpenFotoActionPerformed
+
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRemoveActionPerformed
+    {//GEN-HEADEREND:event_btnRemoveActionPerformed
+        pic = null;
+        jlFoto.setIcon(null);
+    }//GEN-LAST:event_btnRemoveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -650,12 +681,12 @@ public class FormPacientes extends javax.swing.JDialog
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jlFoto;
     private RSMaterialComponent.RSTextFieldOne nombre;
     private javax.swing.JPanel pnlFondo;
     private RSMaterialComponent.RSPanelBorder rSPanelBorder1;

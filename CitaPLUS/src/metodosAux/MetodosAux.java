@@ -10,7 +10,9 @@ import RSMaterialComponent.RSTableMetroCustom;
 import RSMaterialComponent.RSTextFieldOne;
 import formularios_Registros.FormPacientes;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -38,7 +40,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MetodosAux
 {
-    
+
     /**
      * Método generico que enlista cualquier tabla
      *
@@ -136,6 +138,10 @@ public class MetodosAux
                 {
                     sentencia.setInt((i + 1), (int) datos[i]);
                 }
+                if (datos[i] instanceof FileInputStream)
+                {
+                    sentencia.setBinaryStream((i + 1), (InputStream) datos[i]);
+                }
             }
         } catch (SQLException ex)
         {
@@ -213,7 +219,7 @@ public class MetodosAux
         return resultado;
     }
 
-    public static String getFoto(JDialog jd)
+    public static File getFoto(JDialog jd)
     {
         //Esta parte es para que neustro jfilechooser se vea como una ventana de windows
         try
@@ -247,7 +253,7 @@ public class MetodosAux
         if (res == JFileChooser.APPROVE_OPTION)
         {
             File archivoIm = fc.getSelectedFile();
-            return archivoIm.getAbsolutePath();
+            return archivoIm;
         }
         return null;
     }
