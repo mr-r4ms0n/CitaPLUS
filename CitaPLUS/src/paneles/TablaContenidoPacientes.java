@@ -147,6 +147,7 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
         });
         tblPacientes.setBackgoundHead(new java.awt.Color(26, 117, 159));
         tblPacientes.setBackgoundHover(new java.awt.Color(26, 117, 159));
+        tblPacientes.setBorderRows(null);
         tblPacientes.setColorPrimaryText(new java.awt.Color(26, 117, 159));
         tblPacientes.setColorSecondary(new java.awt.Color(255, 255, 255));
         tblPacientes.setColorSecundaryText(new java.awt.Color(26, 117, 159));

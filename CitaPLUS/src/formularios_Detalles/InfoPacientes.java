@@ -176,79 +176,82 @@ public class InfoPacientes extends javax.swing.JDialog
         rSLabelTextIcon1.setForeground(new java.awt.Color(51, 51, 51));
         rSLabelTextIcon1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         rSLabelTextIcon1.setText("Nombre:");
-        rSLabelTextIcon1.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        rSLabelTextIcon1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        rSLabelTextIcon1.setSizeIcon(30.0F);
 
-        lblNombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblNombre.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(153, 153, 153));
         lblNombre.setText("Nombre");
 
-        lblApellidoPaterno.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblApellidoPaterno.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         lblApellidoPaterno.setForeground(new java.awt.Color(153, 153, 153));
         lblApellidoPaterno.setText("Apellido");
 
         rSLabelTextIcon2.setForeground(new java.awt.Color(51, 51, 51));
         rSLabelTextIcon2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         rSLabelTextIcon2.setText("Apellido Paterno:");
-        rSLabelTextIcon2.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        rSLabelTextIcon2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        rSLabelTextIcon2.setSizeIcon(30.0F);
 
-        lblApellidoMaterno.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblApellidoMaterno.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         lblApellidoMaterno.setForeground(new java.awt.Color(153, 153, 153));
         lblApellidoMaterno.setText("Apellido2");
 
         rSLabelTextIcon3.setForeground(new java.awt.Color(51, 51, 51));
         rSLabelTextIcon3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         rSLabelTextIcon3.setText("Apellido Materno:");
-        rSLabelTextIcon3.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        rSLabelTextIcon3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        rSLabelTextIcon3.setSizeIcon(30.0F);
 
-        lblSexo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblSexo.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         lblSexo.setForeground(new java.awt.Color(153, 153, 153));
         lblSexo.setText("Sexo");
 
         rSLabelTextIcon4.setForeground(new java.awt.Color(51, 51, 51));
         rSLabelTextIcon4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         rSLabelTextIcon4.setText("Sexo");
-        rSLabelTextIcon4.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        rSLabelTextIcon4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         rSLabelTextIcon4.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PEOPLE);
+        rSLabelTextIcon4.setSizeIcon(30.0F);
 
         rSLabelTextIcon5.setForeground(new java.awt.Color(51, 51, 51));
         rSLabelTextIcon5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         rSLabelTextIcon5.setText("Teléfono");
-        rSLabelTextIcon5.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        rSLabelTextIcon5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         rSLabelTextIcon5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PHONE);
+        rSLabelTextIcon5.setSizeIcon(30.0F);
 
-        lblTelefono.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTelefono.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         lblTelefono.setForeground(new java.awt.Color(153, 153, 153));
         lblTelefono.setText("Telefono");
 
         rSLabelTextIcon6.setForeground(new java.awt.Color(51, 51, 51));
         rSLabelTextIcon6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         rSLabelTextIcon6.setText("Estatus");
-        rSLabelTextIcon6.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        rSLabelTextIcon6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         rSLabelTextIcon6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RADIO_BUTTON_CHECKED);
+        rSLabelTextIcon6.setSizeIcon(30.0F);
 
-        lblEstatus.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblEstatus.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         lblEstatus.setForeground(new java.awt.Color(153, 153, 153));
         lblEstatus.setText("Estatus");
 
-        lblCorreo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblCorreo.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         lblCorreo.setForeground(new java.awt.Color(153, 153, 153));
         lblCorreo.setText("correo");
 
         rSLabelTextIcon7.setForeground(new java.awt.Color(51, 51, 51));
         rSLabelTextIcon7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         rSLabelTextIcon7.setText("Correo");
-        rSLabelTextIcon7.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+        rSLabelTextIcon7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         rSLabelTextIcon7.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EMAIL);
+        rSLabelTextIcon7.setSizeIcon(30.0F);
 
         javax.swing.GroupLayout rSPanelBorder1Layout = new javax.swing.GroupLayout(rSPanelBorder1);
         rSPanelBorder1.setLayout(rSPanelBorder1Layout);
         rSPanelBorder1Layout.setHorizontalGroup(
             rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,6 +288,10 @@ public class InfoPacientes extends javax.swing.JDialog
                             .addComponent(lblEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rSLabelTextIcon6, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(46, 46, 46))
+            .addGroup(rSPanelBorder1Layout.createSequentialGroup()
+                .addGap(251, 251, 251)
+                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         rSPanelBorder1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lblSexo, lblTelefono, rSLabelTextIcon4});
@@ -328,9 +335,9 @@ public class InfoPacientes extends javax.swing.JDialog
                         .addComponent(rSLabelTextIcon6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addGap(52, 52, 52)
                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlFondoLayout = new javax.swing.GroupLayout(pnlFondo);
@@ -358,7 +365,7 @@ public class InfoPacientes extends javax.swing.JDialog
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
