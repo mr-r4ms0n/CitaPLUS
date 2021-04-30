@@ -40,6 +40,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MetodosAux
 {
+
     /**
      * Método generico que enlista cualquier tabla
      *
@@ -66,11 +67,13 @@ public class MetodosAux
                 {
                     for (int i = 0; i < columnas.length; i++)
                     {
+                        //Cuando en el llenado se encuentra con la columna de los botones la deja vacia
                         if (columnas[i].equals("accion"))
                         {
                             datos[i] = "";
                         } else
                         {
+                            //Si no es la columna de los botones entonces llenamos la columna con la informacion que se encuentre
                             datos[i] = rs.getObject(columnas[i]);
                         }
 
@@ -225,9 +228,9 @@ public class MetodosAux
         return resultado;
     }
 
-    public static File getFoto(JDialog jd)
+    public static String getFoto(JDialog jd)
     {
-        //Esta parte es para que neustro jfilechooser se vea como una ventana de windows
+        //Esta parte es para que nuestro jfilechooser se vea como una ventana de windows
         try
         {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
@@ -258,8 +261,9 @@ public class MetodosAux
         int res = fc.showOpenDialog(jd);
         if (res == JFileChooser.APPROVE_OPTION)
         {
-            File archivoIm = fc.getSelectedFile();
-            return archivoIm;
+            String ruta = fc.getSelectedFile().getPath();
+
+            return ruta;
         }
         return null;
     }

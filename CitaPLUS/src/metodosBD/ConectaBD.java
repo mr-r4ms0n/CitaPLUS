@@ -9,6 +9,8 @@ import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,10 +22,11 @@ public class ConectaBD
 
     static Connection con = null;
     static String usuario = "root";
-    static String pass = "";
+    static String pass = "r4ms0n";
 
     /**
      * Método que realiza la conexion a la base de datos
+     *
      * @return Connection
      */
     public static Connection ConectaBD()
@@ -34,14 +37,24 @@ public class ConectaBD
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost/citaplus", usuario, pass);
             //JOptionPane.showMessageDialog(null, "Conectado");
+
+        } catch (HeadlessException | ClassNotFoundException | SQLException e)
+        {
+            System.out.println("La contraseña de mysql no es vacio, se reintentara");
+        } finally
+        {
+            //Por si la contraseña no es la mia es la de david
             if (con == null)
             {
                 pass = "";
-                con = DriverManager.getConnection("jdbc:mysql://localhost/citaplus", usuario, pass);
+                try
+                {
+                    con = DriverManager.getConnection("jdbc:mysql://localhost/citaplus", usuario, pass);
+                } catch (SQLException ex)
+                {
+                    Logger.getLogger(ConectaBD.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-        } catch (HeadlessException | ClassNotFoundException | SQLException e)
-        {
-            JOptionPane.showMessageDialog(null, "Error de conexion");
         }
         return con;
     }

@@ -1,295 +1,240 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package metodosBD;
+<?xml version="1.0" encoding="UTF-8" ?>
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import metodosAux.MetodosAux;
-import metodosAux.RSObjectArray;
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
 
-/**
- *
- * @author Kevin
- */
-public class MetodosBD
-{
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jPanel2" max="32767" attributes="0"/>
+          <Component id="tablaContenidoCitas1" alignment="1" pref="1121" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="tablaContenidoCitas1" pref="559" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel2">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+            <MatteColorBorder bottom="4" left="0" right="0" top="0">
+              <Color PropertyName="color" blue="9f" green="75" red="1a" type="rgb"/>
+            </MatteColorBorder>
+          </Border>
+        </Property>
+      </Properties>
 
-    private static Connection dbCon;
-    private String sql = null;
-
-    //Variable para usar consultas
-    private static PreparedStatement sentencia;
-    private static ResultSet resultado;
-
-    /**
-     * Método que nos permite evaluar si un ResultSet es nulo o no sin recorrer
-     * el RsultSet evitando perder registros de una consulta
-     *
-     * @param rs ResultSet a evaluar
-     * @return true = tiene datos | false = no tiene datos
-     */
-    public static boolean checkResultSet(ResultSet rs)
-    {
-        try
-        {
-            if (rs.isBeforeFirst())
-            {
-                return true;
-            }
-
-        } catch (SQLException e)
-        {
-            System.err.println("Error al verificar resultset: " + e);
-        }
-        return false;
-    }
-
-    /**
-     * Metodo que retorna un arreglo de objetos con los valores que requerimos
-     * para ingresar al sistema posteriormente se carga el usuario, nombre
-     * completo e imagen en el menu principal si es que se encontro
-     *
-     * @param usr el usuario a buscar
-     * @param pass la contraseña encriptada
-     * @return objeto con 4 valores [0] = true o false para saber si si existe
-     * el usuario y se le permite el acceso [1] = nombre de usuario de la
-     * persona [2] = nombre completo de la persona [3] = foto de perfil de la
-     * persona
-     */
-    public static Object[] ingresoSys(String usr, String pass)
-    {
-        Object ret[] = null;
-        try
-        {
-            dbCon = ConectaBD.ConectaBD();
-            sentencia = dbCon.prepareStatement("SELECT * FROM usuarios WHERE usuario = BINARY ? AND contraseña = BINARY ?");
-            sentencia.setString(1, usr);
-            sentencia.setString(2, pass);
-            resultado = sentencia.executeQuery();
-            if (resultado.next())
-            {
-                if (resultado.getString("usuario").equals(usr) && resultado.getString("contraseña").equals(pass))
-                {
-                    ret = new Object[4];
-                    ret[0] = true;
-                    ret[1] = resultado.getString("usuario");
-                    ret[2] = resultado.getString("nombre") + " " + resultado.getString("apellidoPaterno") + " " + resultado.getString("apellidoMaterno");
-                    ret[3] = resultado.getString("foto");
-                }
-            }
-            dbCon.close();
-        } catch (SQLException e)
-        {
-            System.out.println("Error de consulta en Inicio de sesion " + e);
-        }
-        return ret;
-    }
-
-    /**
-     * Método usado para obtener datos de pacientes de forma individual
-     * proporcionando el primary key (id)
-     *
-     * @param pacienteId id del paciente en la base de datos
-     * @return
-     */
-    public static RSObjectArray getPaciente(String pacienteId)
-    {
-        try
-        {
-            dbCon = ConectaBD.ConectaBD();
-            sentencia = dbCon.prepareStatement("SELECT * FROM pacientes WHERE id = ?");
-            sentencia.setString(1, pacienteId);
-            resultado = sentencia.executeQuery();
-            if (resultado.next())
-            {
-                RSObjectArray arreglo = new RSObjectArray();
-                //Primero extraemos la imagen del usuario y la convertimos a imagen visible
-                //Image img = null;
-                //Blob blob = resultado.getBlob("foto");
-                //byte[] data = blob.getBytes(1, (int) blob.length());
-                //BufferedImage imga = null;
-                //try
-                //{
-                //    img = ImageIO.read(new ByteArrayInputStream(data));
-                //} catch (IOException e)
-                //{
-               //     System.out.println("Error al convertir la imagen de la base de datos: " + e);
-                //}
-
-                //if (img != null)
-                //{
-                    arreglo.add("id", resultado.getInt("id"));
-                    //arreglo.add("foto", img);
-                    arreglo.add("nombre", resultado.getString("nombre"));
-                    arreglo.add("apellidoPaterno", resultado.getString("apellidoPaterno"));
-                    arreglo.add("apellidoMaterno", resultado.getString("apellidoMaterno"));
-                    arreglo.add("sexo", resultado.getString("sexo"));
-                    arreglo.add("telefono", resultado.getString("telefono"));
-                    arreglo.add("correo", resultado.getString("correo"));
-                    int estado = resultado.getInt("estatus");
-                    String estadoCad = (estado == 1) ? "Activo" : "Inactivo"; //Para que entiendas por si lees el codigo xd, si el estado es 1 entonces estadocad sera activo, sino sera inactivo.
-                    arreglo.add("estatus", estadoCad);
-                    return arreglo;
-               // }
-            }
-            dbCon.close();
-        } catch (SQLException e)
-        {
-            System.err.println("Error em obtener pacientes de sql: " + e);
-        }
-
-        return null;
-    }
-
-    /**
-     * Método que lista la tabla de pacientes tomando como parametro el tipo de
-     * tab que se seleccione
-     *
-     * @param tab 1 = Activos | 2 = Inactivos | 0 = Todos los pacientes
-     * @return resultset con los pacientes hechos
-     */
-    public static ResultSet rsListarPacientes(int tab, String filtro)
-    {
-        try
-        {
-            dbCon = ConectaBD.ConectaBD();
-            if (tab != 0 && filtro.equals(""))
-            {
-                //Para el caso de que se seleccione activos o inactivos y no se haga busqueda
-                sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes WHERE estatus = ?");
-                sentencia.setInt(1, tab);
-            } else
-            {
-                String auxFiltro = filtro + "%";
-                if (filtro != null && (tab == 1 || tab == 2))
-                {
-                    //Para el caso de que se seleccione activos o inactivos y se haga una busqueda
-                    sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes WHERE estatus = ? AND (nombre LIKE ? OR apellidoPaterno LIKE ?)");
-                    sentencia.setInt(1, tab);
-                    sentencia.setString(2, (auxFiltro + "%"));
-                    sentencia.setString(3, (auxFiltro + "%"));
-                } else
-                {
-                    //Para el caso de que se entre en la pestaña de todos pero se haga una busqueda
-                    if (tab == 0 && filtro != null)
-                    {
-                        sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes WHERE nombre LIKE ? OR apellidoPaterno LIKE ?");
-                        sentencia.setString(1, (auxFiltro + "%"));
-                        sentencia.setString(2, (auxFiltro + "%"));
-                    } else
-                    {
-                        //Para el caso de que se entre en la pestaña de todos y no se consulten busquedas
-                        sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes");
-                    }
-
-                }
-
-            }
-
-            resultado = sentencia.executeQuery();
-            if (checkResultSet(resultado))
-            {
-                return resultado;
-            }
-            dbCon.close();
-        } catch (SQLException e)
-        {
-            System.out.println("Error en obtener el ResultSet de Pacientes: " + e);
-        }
-        return null;
-    }
-
-    /**
-     * Método que regresa la cantidad de pacientes y es auxiliar de la funcion
-     * de los labels encargados de mostrar la cantidad de pacientes.
-     *
-     * @param tab el tipo de filtro del paciente 1 = Activos | 2 = Inactivos | 3
-     * = Todos los pacientes
-     * @return cantidad de pacientes seleccionados
-     */
-    public static int contarPacientes(int tab)
-    {
-        int total = -1;
-        try
-        {
-            dbCon = ConectaBD.ConectaBD();
-            //Si se selecciona alguna tab (Activos o Inactivos)
-            if (tab != 0)
-            {
-                sentencia = dbCon.prepareStatement("SELECT COUNT(*)AS total FROM pacientes WHERE estatus = ?");
-                sentencia.setInt(1, tab);
-            } else
-            {
-                //Si se entra dentro de consulta general es decir sin tab seleccionada
-                sentencia = dbCon.prepareStatement("SELECT COUNT(*)AS total FROM pacientes");
-            }
-            resultado = sentencia.executeQuery();
-            if (checkResultSet(resultado))
-            {
-                //Nos movemos a la primera posicion para que comenze a contar, ya que inicialmente está en 0
-                resultado.next();
-                total = resultado.getInt("total");
-            }
-            dbCon.close();
-        } catch (SQLException e)
-        {
-            System.err.println("Error al contar Pacientes: " + e);
-        } finally
-        {
-            try
-            {
-                dbCon.close();
-            } catch (SQLException ex)
-            {
-                Logger.getLogger(MetodosBD.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        return total;
-    }
-
-    /**
-     * Método que realiza la insercion de unicamente pacientes dentro de la base
-     * de datos
-     *
-     * @param datos Datos a insertar proporcionados en el siguiente orden
-     * (Nombre,ApellidoPaterno,ApellidoMaterno,Sexo,Telefono,Correo)
-     * @return true si la insercion se hizo correctamente
-     */
-    public static boolean insertarPaciente(Object[] datos)
-    {
-        String columnas[] =
-        {
-            "foto","nombre", "apellidoPaterno", "apellidoMaterno", "sexo", "telefono", "correo"
-        };
-        try
-        {
-            dbCon = ConectaBD.ConectaBD();
-            sentencia = MetodosAux.SQLInserta("pacientes", columnas, datos, dbCon, sentencia);
-
-            int r = sentencia.executeUpdate();
-
-            if (r > 0)
-            {
-                return true;
-            }
-        } catch (SQLException e)
-        {
-            System.out.println("Error al insertar paciente: " + e.toString());
-        }
-        return false;
-    }
-
-}
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="rSLabelTextIcon1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="rSButtonIcon_new1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="tabProximas" min="-2" pref="132" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="tabAtendidas" min="-2" pref="140" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="tabCanceladas" min="-2" pref="146" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="tabTodas" min="-2" pref="91" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tabProximas" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabCanceladas" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabTodas" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabAtendidas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="rSButtonIcon_new1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rSLabelTextIcon1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="78" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="RSMaterialComponent.RSLabelTextIcon" name="rSLabelTextIcon1">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ef" green="e0" red="90" type="rgb"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="2"/>
+            <Property name="text" type="java.lang.String" value="Citas"/>
+            <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
+              <Value id="RECEIPT"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="newscomponents.RSButtonIcon_new" name="rSButtonIcon_new1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="a0" green="a5" red="44" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Agendar nueva cita"/>
+            <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="d8" green="da" red="b2" type="rgb"/>
+            </Property>
+            <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
+              <Value id="LOCAL_PHARMACY"/>
+            </Property>
+            <Property name="round" type="int" value="20"/>
+          </Properties>
+        </Component>
+        <Component class="newscomponents.RSButtonIcon_new" name="tabProximas">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Proximas (0)"/>
+            <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="80" green="b6" red="cc" type="rgb"/>
+            </Property>
+            <Property name="foregroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="9f" green="75" red="1a" type="rgb"/>
+            </Property>
+            <Property name="foregroundIcon" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="6a" green="c4" red="e9" type="rgb"/>
+            </Property>
+            <Property name="foregroundText" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="9f" green="75" red="1a" type="rgb"/>
+            </Property>
+            <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
+              <Value id="ACCESS_TIME"/>
+            </Property>
+            <Property name="round" type="int" value="20"/>
+            <Property name="selected" type="boolean" value="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabProximasActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="newscomponents.RSButtonIcon_new" name="tabCanceladas">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Canceladas (0)"/>
+            <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="92" green="92" red="ef" type="rgb"/>
+            </Property>
+            <Property name="foregroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="9f" green="75" red="1a" type="rgb"/>
+            </Property>
+            <Property name="foregroundIcon" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="foregroundText" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="9f" green="75" red="1a" type="rgb"/>
+            </Property>
+            <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
+              <Value id="REMOVE_CIRCLE"/>
+            </Property>
+            <Property name="round" type="int" value="20"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabCanceladasActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="newscomponents.RSButtonIcon_new" name="tabTodas">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Todas"/>
+            <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="dd" green="d2" red="99" type="rgb"/>
+            </Property>
+            <Property name="foregroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="9f" green="75" red="1a" type="rgb"/>
+            </Property>
+            <Property name="foregroundIcon" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="9f" green="75" red="1a" type="rgb"/>
+            </Property>
+            <Property name="foregroundText" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="9f" green="75" red="1a" type="rgb"/>
+            </Property>
+            <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
+              <Value id="REORDER"/>
+            </Property>
+            <Property name="round" type="int" value="20"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabTodasActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="newscomponents.RSButtonIcon_new" name="tabAtendidas">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Atendidas (0)"/>
+            <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="70" green="bf" red="8a" type="rgb"/>
+            </Property>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="foregroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="9f" green="75" red="1a" type="rgb"/>
+            </Property>
+            <Property name="foregroundIcon" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="99" red="33" type="rgb"/>
+            </Property>
+            <Property name="foregroundText" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="9f" green="75" red="1a" type="rgb"/>
+            </Property>
+            <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
+              <Value id="CHECK_BOX"/>
+            </Property>
+            <Property name="round" type="int" value="20"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabAtendidasActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="paneles.TablaContenidoCitas" name="tablaContenidoCitas1">
+    </Component>
+  </SubComponents>
+</Form>

@@ -8,6 +8,9 @@ package metodosBD;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -93,7 +96,7 @@ public class MetodosBD
             dbCon.close();
         } catch (SQLException e)
         {
-            System.out.println("Error de consulta en Inicio de sesion " + e);
+            System.out.println("Error de consulta en Inicio de sesion de tipo sql" + e);
         }
         return ret;
     }
@@ -117,7 +120,9 @@ public class MetodosBD
             {
                 RSObjectArray arreglo = new RSObjectArray();
                 //Primero extraemos la imagen del usuario y la convertimos a imagen visible
-                //Image img = null;
+                byte[] imagen1 = null;
+                Blob i1 = resultado.getBlob("foto");
+                imagen1 = i1.getBytes(1, (int) i1.length());
                 //Blob blob = resultado.getBlob("foto");
                 //byte[] data = blob.getBytes(1, (int) blob.length());
                 //BufferedImage imga = null;
@@ -129,26 +134,26 @@ public class MetodosBD
                 //     System.out.println("Error al convertir la imagen de la base de datos: " + e);
                 //}
 
-                //if (img != null)
-                //{
-                arreglo.add("id", resultado.getInt("id"));
-                //arreglo.add("foto", img);
-                arreglo.add("nombre", resultado.getString("nombre"));
-                arreglo.add("apellidoPaterno", resultado.getString("apellidoPaterno"));
-                arreglo.add("apellidoMaterno", resultado.getString("apellidoMaterno"));
-                arreglo.add("sexo", resultado.getString("sexo"));
-                arreglo.add("telefono", resultado.getString("telefono"));
-                arreglo.add("correo", resultado.getString("correo"));
-                int estado = resultado.getInt("estatus");
-                String estadoCad = (estado == 1) ? "Activo" : "Inactivo"; //Para que entiendas por si lees el codigo xd, si el estado es 1 entonces estadocad sera activo, sino sera inactivo.
-                arreglo.add("estatus", estadoCad);
-                return arreglo;
-                // }
+                if (imagen1 != null)
+                {
+                    arreglo.add("id", resultado.getInt("id"));
+                    arreglo.add("foto", imagen1);
+                    arreglo.add("nombre", resultado.getString("nombre"));
+                    arreglo.add("apellidoPaterno", resultado.getString("apellidoPaterno"));
+                    arreglo.add("apellidoMaterno", resultado.getString("apellidoMaterno"));
+                    arreglo.add("sexo", resultado.getString("sexo"));
+                    arreglo.add("telefono", resultado.getString("telefono"));
+                    arreglo.add("correo", resultado.getString("correo"));
+                    int estado = resultado.getInt("estatus");
+                    String estadoCad = (estado == 1) ? "Activo" : "Inactivo"; //Para que entiendas por si lees el codigo xd, si el estado es 1 entonces estadocad sera activo, sino sera inactivo.
+                    arreglo.add("estatus", estadoCad);
+                    return arreglo;
+                }
             }
             dbCon.close();
         } catch (SQLException e)
         {
-            System.err.println("Error em obtener pacientes de sql: " + e);
+            System.err.println("Error en obtener pacientes de tipo sql: " + e);
         }
 
         return null;
@@ -159,6 +164,7 @@ public class MetodosBD
      * tab que se seleccione
      *
      * @param tab 1 = Activos | 2 = Inactivos | 0 = Todos los pacientes
+     * @param filtro cuando se hace una busqueda filtrada este es el parametro
      * @return resultset con los pacientes hechos
      */
     public static ResultSet rsListarPacientes(int tab, String filtro)
@@ -276,7 +282,17 @@ public class MetodosBD
         };
         try
         {
+            //Vemos que la ruta de la imagen este correcta
+            String rutaImagen = (String) datos[0];
+            System.out.println(rutaImagen);
+            //La transformamos a fichero
+            File fPerf = new File(rutaImagen);
+            //La transformamos a fichero de enteada (binario)
+            FileInputStream fIPerf = new FileInputStream(fPerf);
+            //Reasignamos la foto codificada al arreglo y hacemos la insercion a la BD
+            datos[0] = fIPerf;
             dbCon = ConectaBD.ConectaBD();
+
             sentencia = MetodosAux.SQLInserta("pacientes", columnas, datos, dbCon, sentencia);
 
             int r = sentencia.executeUpdate();
@@ -288,11 +304,20 @@ public class MetodosBD
         } catch (SQLException e)
         {
             System.out.println("Error al insertar paciente: " + e.toString());
+        } catch (FileNotFoundException ex)
+        {
+            System.out.println("Error al obtener la imagen : " + ex.toString());
         }
         return false;
     }
 
     //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-PARTE CITAS *-*-*-*-*-*-*-*-*-*-**-*-*-**-*-*-*-*-
+    /**
+     * Método que obtiene unicamente los datos de una cita
+     *
+     * @param citasId
+     * @return
+     */
     public static RSObjectArray getCitas(String citasId)
     {
         try
@@ -322,7 +347,7 @@ public class MetodosBD
             dbCon.close();
         } catch (SQLException e)
         {
-            System.err.println("Error em obtener pacientes de sql: " + e);
+            System.err.println("Error en obtener citas de tipo sql: " + e);
         }
 
         return null;
@@ -343,7 +368,7 @@ public class MetodosBD
                 arreglo.add("fecha", resultado.getString("fecha"));
                 arreglo.add("hora", resultado.getString("hora"));
                 arreglo.add("estatusCitasId", resultado.getString("estatusCitasId"));
-                
+
                 arreglo.add("pacienteId", resultado.getString("pacienteId"));
                 arreglo.add("nombrenombrePaciente", resultado.getString("nombrenombrePaciente"));
                 arreglo.add("usuarioAtiende", resultado.getString("usuarioAtiende"));
@@ -358,6 +383,12 @@ public class MetodosBD
         return null;
     }
 
+    /**
+     * Método que inserta unicamente citas dentro de la base de datos
+     *
+     * @param datos arreglo con los datos de la cita
+     * @return true si la inserción se realizo con exito
+     */
     public static boolean insertarCita(Object[] datos)
     {
         String columnas[] =
@@ -381,12 +412,15 @@ public class MetodosBD
         }
         return false;
     }
-    
+
     /**
-     * Método que lista la tabla de pacientes tomando como parametro el tipo de
-     * tab que se seleccione
+     * Método que lista la tabla de citas tomando como parametro el tipo de tab
+     * que se seleccione y el filtro cuando se hace alguna busqueda filtrada
      *
-     * @param tab 1 = Activos | 2 = Atendidas |3 = Canceladas | 0 = Todas las citas
+     * @param tab 1 = Activos | 2 = Atendidas |3 = Canceladas | 0 = Todas las
+     * citas
+     * @param filtro parametro que contiene el dato especifico a buscar
+     * (busqueda filtrada)
      * @return resultset con los pacientes hechos
      */
     public static ResultSet rsListarCitas(int tab, String filtro)
@@ -401,11 +435,12 @@ public class MetodosBD
                 sentencia.setInt(1, tab);
             } else
             {
+                //Estos querys falta corregirlos ya que no jalan citas, te jalan pacientes.
                 String auxFiltro = filtro + "%";
                 if (filtro != null && (tab == 1 || tab == 2))
                 {
                     //Para el caso de que se seleccione activos o inactivos y se haga una busqueda
-                    sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes WHERE estatus = ? AND (nombre LIKE ? OR apellidoPaterno LIKE ?)");
+                    sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM citas WHERE estatus = ? AND (nombre LIKE ? OR apellidoPaterno LIKE ?)");
                     sentencia.setInt(1, tab);
                     sentencia.setString(2, (auxFiltro + "%"));
                     sentencia.setString(3, (auxFiltro + "%"));
@@ -435,18 +470,18 @@ public class MetodosBD
             dbCon.close();
         } catch (SQLException e)
         {
-            System.out.println("Error en obtener el ResultSet de Pacientes: " + e);
+            System.out.println("Error en obtener el ResultSet de Citas: " + e);
         }
         return null;
     }
 
     /**
-     * Método que regresa la cantidad de pacientes y es auxiliar de la funcion
-     * de los labels encargados de mostrar la cantidad de pacientes.
+     * Método que regresa la cantidad de citas y es auxiliar de la funcion de
+     * los labels encargados de mostrar la cantidad de citas.
      *
-     * @param tab el tipo de filtro del paciente 1 = Activos | 2 = Atendido | 3
-     * = Canceladas | 0 = Todas
-     * @return cantidad de pacientes seleccionados
+     * @param tab el tipo de filtro de la cita 1 = Proxima | 2 = Atendida | 3 =
+     * Canceladas
+     * @return cantidad de citas seleccionados
      */
     public static int contarCitas(int tab)
     {
@@ -457,7 +492,7 @@ public class MetodosBD
             //Si se selecciona alguna tab (Activos o Inactivos)
             if (tab != 0)
             {
-                sentencia = dbCon.prepareStatement("SELECT COUNT(*)AS total FROM citas WHERE estatus = ?");
+                sentencia = dbCon.prepareStatement("SELECT COUNT(*)AS total FROM citas WHERE estatusCitasId = ?");
                 sentencia.setInt(1, tab);
             } else
             {

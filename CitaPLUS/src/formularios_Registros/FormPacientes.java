@@ -35,6 +35,7 @@ public class FormPacientes extends javax.swing.JDialog
      * Creates new form FormPacientes
      */
     File pic = null;
+    String rutaImgPerfil = "";
 
     public FormPacientes()
     {
@@ -263,6 +264,10 @@ public class FormPacientes extends javax.swing.JDialog
         correo.setSelectionColor(new java.awt.Color(51, 51, 51));
         correo.addKeyListener(new java.awt.event.KeyAdapter()
         {
+            public void keyReleased(java.awt.event.KeyEvent evt)
+            {
+                correoKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt)
             {
                 correoKeyTyped(evt);
@@ -359,12 +364,12 @@ public class FormPacientes extends javax.swing.JDialog
                                 .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(apellidoPaterno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(error_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(error_apellidoPaterno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(apellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(error_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(error_apellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(9, 9, 9))
                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -379,18 +384,18 @@ public class FormPacientes extends javax.swing.JDialog
                                     .addComponent(error_telefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(telefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(18, 18, 18)
+                                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(sexo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(correo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
+                                        .addComponent(error_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10))
                                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(sexo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(correo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(error_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                                        .addGap(4, 4, 4)
-                                        .addComponent(error_sexo, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGap(10, 10, 10)
+                                        .addComponent(error_sexo, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addContainerGap())))
         );
         rSPanelBorder1Layout.setVerticalGroup(
@@ -417,33 +422,34 @@ public class FormPacientes extends javax.swing.JDialog
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnOpenFoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnRemove, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(sexo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(49, 49, 49)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(error_correo))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(apellidoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(error_apellidoMaterno)
-                            .addComponent(error_sexo))
-                        .addGap(18, 18, 18)
+                        .addComponent(apellidoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sexo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(error_apellidoMaterno)
+                    .addComponent(error_sexo))
+                .addGap(18, 18, 18)
+                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(error_telefono)))
+                        .addComponent(error_telefono))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(error_correo)
+                        .addGap(5, 5, 5)))
                 .addGap(43, 43, 43)
                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
@@ -490,29 +496,17 @@ public class FormPacientes extends javax.swing.JDialog
         boolean nombreCorrect = MetodosAux.validarFormu(nombre, error_nombre, "required");
         boolean apePCorrect = MetodosAux.validarFormu(apellidoPaterno, error_apellidoPaterno, "required");
         boolean sexoCorrect = MetodosAux.validarBox(sexo, error_sexo, "required");
-        FileInputStream imgPerf = null;
         if (nombreCorrect && apePCorrect && sexoCorrect)
         {
-            try
-            {
-                if (pic != null)
-                {
-                    //Si la foto es por defecto
-                    imgPerf = new FileInputStream(pic);
-                } else
-                {
-                    //Dependiendo si es hombre o mujer cargamos una foto por defecto
-                    imgPerf = new FileInputStream(new File("./default/"+sexo.getSelectedItem().toString()+".png"));
-                }
-            } catch (FileNotFoundException ex)
-            {
-                System.out.println("Error al transformar la imagen: " + ex);
-            }
-            //Si la foto la selecciona el usuario
+            
+            String rutaImgPerfilRegistro = null;
 
+            rutaImgPerfilRegistro = (rutaImgPerfil != "") ? rutaImgPerfil : "./default/" + sexo.getSelectedItem().toString() + ".png";
+            //Si la foto la selecciona el usuario
+            System.out.println(rutaImgPerfilRegistro);
             Object[] datosInsert =
             {
-                imgPerf, nombre.getText().trim(), apellidoPaterno.getText().trim(), apellidoMaterno.getText().trim(),
+                rutaImgPerfilRegistro, nombre.getText().trim(), apellidoPaterno.getText().trim(), apellidoMaterno.getText().trim(),
                 sexo.getSelectedItem().toString(), telefono.getText().trim(), correo.getText().trim()
             };
 
@@ -520,6 +514,8 @@ public class FormPacientes extends javax.swing.JDialog
             if (insercionCorr)
             {
                 dispose();
+                //Borramos la ruta de la imagen para refrescar
+                rutaImgPerfilRegistro = null;
                 //Actualizamos los usuariosd de las tablas
                 TablaContenidoPacientes.listarPacientes(tablaContenidoPacientes2.tblPacientes, tabSelecc, null);
                 //Actualizamos el contador
@@ -602,20 +598,25 @@ public class FormPacientes extends javax.swing.JDialog
 
     private void btnOpenFotoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnOpenFotoActionPerformed
     {//GEN-HEADEREND:event_btnOpenFotoActionPerformed
-        pic = MetodosAux.getFoto(this);
-        if (pic != null)
+        rutaImgPerfil = MetodosAux.getFoto(this);
+        if (!rutaImgPerfil.isEmpty())
         {
-            rsscalelabel.RSScaleLabel.setScaleLabel(jlFoto, pic.getAbsolutePath());
-            System.out.println(pic.getAbsolutePath());
+            rsscalelabel.RSScaleLabel.setScaleLabel(jlFoto, rutaImgPerfil);
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnOpenFotoActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRemoveActionPerformed
     {//GEN-HEADEREND:event_btnRemoveActionPerformed
-        pic = null;
+
         jlFoto.setIcon(null);
+        rutaImgPerfil = "";
     }//GEN-LAST:event_btnRemoveActionPerformed
+
+    private void correoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_correoKeyReleased
+    {//GEN-HEADEREND:event_correoKeyReleased
+        Validaciones.validaEmail(correo, error_correo);
+    }//GEN-LAST:event_correoKeyReleased
 
     /**
      * @param args the command line arguments

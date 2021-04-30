@@ -12,6 +12,7 @@ import java.awt.TextField;
 import java.awt.event.KeyEvent;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.KeyStroke;
 
 /**
@@ -20,16 +21,31 @@ import javax.swing.KeyStroke;
  */
 public class Validaciones
 {
-
-    public static boolean validaEmail(String email)
+    /**
+     * Valida que una cadena cumpla con el formato de un correo electronico
+     * @param email
+     * @return 
+     */
+    public static boolean validaEmail(RSTextFieldOne email,JLabel error)
     {
-        if (email.matches("\"[-\\\\w\\\\.]+@\\\\w+\\\\.\\\\w+\""))
+        if (email.getText().matches("^([0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$") || email.getText().isEmpty())
         {
+            error.setText("Error en el campo");
+            error.setForeground(SysConfigs.bg_white);
             return true;
+        }else
+        {
+            error.setForeground(SysConfigs.bg_danger);
+            error.setText("El correo es invalido");
         }
         return false;
     }
 
+    /**
+     * Valida que una cadena solamente contenga numeros
+     * @param cadena
+     * @return 
+     */
     public static boolean validaNumericos(String cadena)
     {
         if (cadena.matches("[+-]?\\\\d*(\\\\.\\\\d+)?"))
@@ -70,6 +86,10 @@ public class Validaciones
         }
     }
 
+    /**
+     * Método encargado de desactivar la opcion de copiar y pegar de un conjunto de textfield 
+     * @param txt arreglo de textfields a desactivar
+     */
     public static void disableCP(RSTextFieldOne txt[])
     {
         for (RSTextFieldOne txt1 : txt)

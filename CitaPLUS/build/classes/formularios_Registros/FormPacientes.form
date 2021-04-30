@@ -91,12 +91,12 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="nombre" max="32767" attributes="0"/>
-                                  <Component id="apellidoPaterno" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="error_nombre" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="error_apellidoPaterno" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="nombre" min="-2" pref="410" max="-2" attributes="0"/>
+                                  <Component id="apellidoPaterno" alignment="0" min="-2" pref="410" max="-2" attributes="0"/>
+                                  <Component id="error_nombre" alignment="0" min="-2" pref="410" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" alignment="0" min="-2" pref="410" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" alignment="0" min="-2" pref="410" max="-2" attributes="0"/>
+                                  <Component id="error_apellidoPaterno" alignment="0" min="-2" pref="410" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                           </Group>
@@ -115,20 +115,19 @@
                                           <Component id="telefono" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jLabel5" min="-2" pref="310" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="sexo" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jLabel8" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
-                                                  <Component id="correo" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="error_correo" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
-                                              </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="sexo" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jLabel8" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
+                                          <Component id="correo" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="error_correo" min="-2" pref="278" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                                              <Component id="error_sexo" min="-2" pref="310" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                              <Component id="error_sexo" min="-2" pref="296" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -167,36 +166,39 @@
                               </Group>
                           </Group>
                       </Group>
+                      <EmptySpace pref="18" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                              <Component id="sexo" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="correo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="error_correo" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="apellidoMaterno" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="error_apellidoMaterno" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="error_sexo" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="sexo" alignment="1" min="-2" pref="47" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="error_apellidoMaterno" min="-2" max="-2" attributes="0"/>
+                          <Component id="error_sexo" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="telefono" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="error_telefono" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="correo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="error_correo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
@@ -451,6 +453,7 @@
                 </Property>
               </Properties>
               <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="correoKeyReleased"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="correoKeyTyped"/>
               </Events>
             </Component>

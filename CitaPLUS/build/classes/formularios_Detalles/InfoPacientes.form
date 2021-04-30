@@ -80,7 +80,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="rSPanelMaterialImage1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblFoto" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
@@ -139,7 +139,7 @@
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="rSPanelMaterialImage1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblFoto" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="rSLabelTextIcon1" min="-2" max="-2" attributes="0"/>
@@ -274,7 +274,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarActionPerformed"/>
               </Events>
             </Component>
-            <Container class="RSMaterialComponent.RSPanelMaterialImage" name="rSPanelMaterialImage1">
+            <Container class="RSMaterialComponent.RSPanelMaterialImage" name="lblFoto">
               <Properties>
                 <Property name="bgShade" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>

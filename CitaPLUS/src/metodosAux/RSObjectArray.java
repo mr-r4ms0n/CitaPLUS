@@ -12,24 +12,29 @@ package metodosAux;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RSObjectArray {
+public class RSObjectArray
+{
 
     private Map<Object, Object> map = null;
 
-    public RSObjectArray() {
+    public RSObjectArray()
+    {
         this.map = new HashMap<>();
     }
-    
-    public void add(Object key,Object value){
+
+    public void add(Object key, Object value)
+    {
         map.put(key, value);
     }
-    
-    public Object getValue(Object key){
-        return this.map.get(key).toString();
+
+    public Object getValue(Object key)
+    {
+        return this.map.get(key);
     }
-    
-    public Object getAll(){
+
+    public Object getAll()
+    {
         return this.map.toString();
     }
-   
+
 }

@@ -7,8 +7,16 @@ package formularios_Detalles;
 
 import interfaces.MenuPrincipal;
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import rojeru_san.complementos.RSUtilities;
 import metodosAux.*;
@@ -25,11 +33,14 @@ import rojeru_san.complementos.RSEffectFade;
  */
 public class InfoPacientes extends javax.swing.JDialog
 {
+
     RSObjectArray arregloDatos = new RSObjectArray();
+    BufferedImage img1;
+
     /**
      * Creates new form FormPacientes
      */
-    public InfoPacientes(java.awt.Frame parent, boolean modal,RSObjectArray datos)
+    public InfoPacientes(java.awt.Frame parent, boolean modal, RSObjectArray datos)
     {
         super(parent, modal);
         this.arregloDatos = datos;
@@ -39,17 +50,28 @@ public class InfoPacientes extends javax.swing.JDialog
         RSUtilities.setCenterWindow(this);
         RSUtilities.setOpaqueWindow(this, false);
         RSUtilities.setOpacityComponent(this.pnlFondo, 150);
-         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
+        Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
         setShape(forma);
-        lblNombre.setText((String) arregloDatos.getValue("nombre"));
-        lblApellidoMaterno.setText((String) arregloDatos.getValue("apellidoMaterno"));
-        lblApellidoPaterno.setText((String) arregloDatos.getValue("apellidoPaterno"));
-        lblSexo.setText((String) arregloDatos.getValue("sexo"));
-        lblTelefono.setText((String) arregloDatos.getValue("telefono"));
-        lblCorreo.setText((String) arregloDatos.getValue("correo"));
-        lblEstatus.setText((String) arregloDatos.getValue("estatus"));
+
+        try
+        {
+            byte[] imagP= (byte[]) arregloDatos.getValue("foto");
+            img1 = ImageIO.read(new ByteArrayInputStream(imagP));
+            ImageIcon icon1 = new ImageIcon(img1.getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
+            lblFoto.setImagen(icon1);
+            lblNombre.setText((String) arregloDatos.getValue("nombre"));
+            lblApellidoMaterno.setText((String) arregloDatos.getValue("apellidoMaterno"));
+            lblApellidoPaterno.setText((String) arregloDatos.getValue("apellidoPaterno"));
+            lblSexo.setText((String) arregloDatos.getValue("sexo"));
+            lblTelefono.setText((String) arregloDatos.getValue("telefono"));
+            lblCorreo.setText((String) arregloDatos.getValue("correo"));
+            lblEstatus.setText((String) arregloDatos.getValue("estatus"));
+        } catch (IOException ex)
+        {
+            System.out.println("Error, no se ha podido renderizar la imagen :" + ex);
+        }
     }
-    
+
     public InfoPacientes(java.awt.Frame parent, boolean modal)
     {
         super(parent, modal);
@@ -61,8 +83,6 @@ public class InfoPacientes extends javax.swing.JDialog
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
         setShape(forma);
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,7 +100,7 @@ public class InfoPacientes extends javax.swing.JDialog
         jLabel1 = new javax.swing.JLabel();
         btnCerrar = new RSMaterialComponent.RSButtonIconOne();
         btnRegistrar = new newscomponents.RSButtonIcon_new();
-        rSPanelMaterialImage1 = new RSMaterialComponent.RSPanelMaterialImage();
+        lblFoto = new RSMaterialComponent.RSPanelMaterialImage();
         rSLabelTextIcon1 = new RSMaterialComponent.RSLabelTextIcon();
         lblNombre = new javax.swing.JLabel();
         lblApellidoPaterno = new javax.swing.JLabel();
@@ -158,18 +178,18 @@ public class InfoPacientes extends javax.swing.JDialog
             }
         });
 
-        rSPanelMaterialImage1.setBgShade(new java.awt.Color(102, 102, 102));
-        rSPanelMaterialImage1.setImagen(null);
-        rSPanelMaterialImage1.setShapePanel(rojeru_san.efectos.ValoresEnum.PANEL_FORMA.CIRCLE);
+        lblFoto.setBgShade(new java.awt.Color(102, 102, 102));
+        lblFoto.setImagen(null);
+        lblFoto.setShapePanel(rojeru_san.efectos.ValoresEnum.PANEL_FORMA.CIRCLE);
 
-        javax.swing.GroupLayout rSPanelMaterialImage1Layout = new javax.swing.GroupLayout(rSPanelMaterialImage1);
-        rSPanelMaterialImage1.setLayout(rSPanelMaterialImage1Layout);
-        rSPanelMaterialImage1Layout.setHorizontalGroup(
-            rSPanelMaterialImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout lblFotoLayout = new javax.swing.GroupLayout(lblFoto);
+        lblFoto.setLayout(lblFotoLayout);
+        lblFotoLayout.setHorizontalGroup(
+            lblFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 175, Short.MAX_VALUE)
         );
-        rSPanelMaterialImage1Layout.setVerticalGroup(
-            rSPanelMaterialImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        lblFotoLayout.setVerticalGroup(
+            lblFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 175, Short.MAX_VALUE)
         );
 
@@ -256,7 +276,7 @@ public class InfoPacientes extends javax.swing.JDialog
                 .addContainerGap()
                 .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                        .addComponent(rSPanelMaterialImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
@@ -302,7 +322,7 @@ public class InfoPacientes extends javax.swing.JDialog
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rSPanelMaterialImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rSLabelTextIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -373,7 +393,7 @@ public class InfoPacientes extends javax.swing.JDialog
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRegistrarActionPerformed
     {//GEN-HEADEREND:event_btnRegistrarActionPerformed
-        
+
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCerrarActionPerformed
@@ -418,18 +438,22 @@ public class InfoPacientes extends javax.swing.JDialog
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-	public void run() {
-		InfoPacientes dialog = new InfoPacientes(new javax.swing.JFrame(), true);
-		dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-			@Override
-			public void windowClosing(java.awt.event.WindowEvent e) {
-				System.exit(0);
-			}
-		});
-		dialog.setVisible(true);
-	}
-});
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
+                InfoPacientes dialog = new InfoPacientes(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter()
+                {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e)
+                    {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -441,6 +465,7 @@ public class InfoPacientes extends javax.swing.JDialog
     private javax.swing.JLabel lblApellidoPaterno;
     private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblEstatus;
+    private RSMaterialComponent.RSPanelMaterialImage lblFoto;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblSexo;
     private javax.swing.JLabel lblTelefono;
@@ -453,6 +478,5 @@ public class InfoPacientes extends javax.swing.JDialog
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon6;
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon7;
     private RSMaterialComponent.RSPanelBorder rSPanelBorder1;
-    private RSMaterialComponent.RSPanelMaterialImage rSPanelMaterialImage1;
     // End of variables declaration//GEN-END:variables
 }
