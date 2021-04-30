@@ -142,7 +142,8 @@ public class MetodosBD
                     arreglo.add("apellidoPaterno", resultado.getString("apellidoPaterno"));
                     arreglo.add("apellidoMaterno", resultado.getString("apellidoMaterno"));
                     arreglo.add("sexo", resultado.getString("sexo"));
-                    arreglo.add("telefono", resultado.getString("telefono"));
+                    String telefonoCad = (!resultado.getString("telefono").equals("0") ? resultado.getString("telefono") : "No proporcionado");
+                    arreglo.add("telefono", telefonoCad);
                     arreglo.add("correo", resultado.getString("correo"));
                     int estado = resultado.getInt("estatus");
                     String estadoCad = (estado == 1) ? "Activo" : "Inactivo"; //Para que entiendas por si lees el codigo xd, si el estado es 1 entonces estadocad sera activo, sino sera inactivo.
@@ -175,7 +176,7 @@ public class MetodosBD
             if (tab != 0 && filtro.equals(""))
             {
                 //Para el caso de que se seleccione activos o inactivos y no se haga busqueda
-                sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes WHERE estatus = ?");
+                sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac, IF(telefono=0,'No proporcionado',telefono)AS telefonoP FROM pacientes WHERE estatus = ?");
                 sentencia.setInt(1, tab);
             } else
             {
@@ -183,7 +184,7 @@ public class MetodosBD
                 if (filtro != null && (tab == 1 || tab == 2))
                 {
                     //Para el caso de que se seleccione activos o inactivos y se haga una busqueda
-                    sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes WHERE estatus = ? AND (nombre LIKE ? OR apellidoPaterno LIKE ?)");
+                    sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac,IF(telefono=0,'No proporcionado',telefono) AS telefonoP FROM pacientes WHERE estatus = ? AND (nombre LIKE ? OR apellidoPaterno LIKE ?)");
                     sentencia.setInt(1, tab);
                     sentencia.setString(2, (auxFiltro + "%"));
                     sentencia.setString(3, (auxFiltro + "%"));
@@ -192,13 +193,13 @@ public class MetodosBD
                     //Para el caso de que se entre en la pestaña de todos pero se haga una busqueda
                     if (tab == 0 && filtro != null)
                     {
-                        sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes WHERE nombre LIKE ? OR apellidoPaterno LIKE ?");
+                        sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac, IF(telefono=0,'No proporcionado',telefono) AS telefonoP FROM pacientes WHERE nombre LIKE ? OR apellidoPaterno LIKE ?");
                         sentencia.setString(1, (auxFiltro + "%"));
                         sentencia.setString(2, (auxFiltro + "%"));
                     } else
                     {
                         //Para el caso de que se entre en la pestaña de todos y no se consulten busquedas
-                        sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes");
+                        sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac, IF(telefono=0,'No proporcionado',telefono) AS telefonoP FROM pacientes");
                     }
 
                 }

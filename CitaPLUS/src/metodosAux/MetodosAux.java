@@ -262,10 +262,9 @@ public class MetodosAux
         if (res == JFileChooser.APPROVE_OPTION)
         {
             String ruta = fc.getSelectedFile().getPath();
-
             return ruta;
         }
-        return null;
+        return "";
     }
 
     public static void copiarImagen(String origen, String destino)

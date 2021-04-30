@@ -50,7 +50,7 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
         }
         String[] columnas =
         {
-            "id", "accion", "nombre", "apellidoPaterno", "apellidoMaterno", "sexo", "telefono", "correo", "estatusPac"
+            "id", "accion", "nombre", "apellidoPaterno", "apellidoMaterno", "sexo", "telefonoP", "correo", "estatusPac"
         };
         MetodosAux.listarTablas(MetodosBD.rsListarPacientes(tab, filtro), tabla, columnas);
 
@@ -173,6 +173,7 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
         JLTitulo.setSizeIcon(30.0F);
 
         jTBuscarPaciente.setForeground(new java.awt.Color(26, 117, 159));
+        jTBuscarPaciente.setToolTipText("Buscar por nombre o apellido paterno");
         jTBuscarPaciente.setColorIcon(new java.awt.Color(26, 117, 159));
         jTBuscarPaciente.setColorMaterial(new java.awt.Color(26, 117, 159));
         jTBuscarPaciente.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N

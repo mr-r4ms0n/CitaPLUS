@@ -178,8 +178,9 @@ public class InfoPacientes extends javax.swing.JDialog
             }
         });
 
+        lblFoto.setBackground(new java.awt.Color(255, 255, 255));
         lblFoto.setBgShade(new java.awt.Color(102, 102, 102));
-        lblFoto.setImagen(null);
+        lblFoto.setImagen(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Hombre.png"))); // NOI18N
         lblFoto.setShapePanel(rojeru_san.efectos.ValoresEnum.PANEL_FORMA.CIRCLE);
 
         javax.swing.GroupLayout lblFotoLayout = new javax.swing.GroupLayout(lblFoto);

@@ -34,8 +34,14 @@ public class FormPacientes extends javax.swing.JDialog
     /**
      * Creates new form FormPacientes
      */
-    File pic = null;
     String rutaImgPerfil = "";
+
+    //False campos requeridos, true campos no requeridos
+    boolean correoC = true;
+    boolean nombreC = false;
+    boolean apeP = false;
+    boolean apeM = true;
+    boolean telefonoC = true;
 
     public FormPacientes()
     {
@@ -287,6 +293,13 @@ public class FormPacientes extends javax.swing.JDialog
         sexo.setColorSeleccion(new java.awt.Color(68, 165, 160));
         sexo.setDisabledIdex("0");
         sexo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        sexo.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                sexoItemStateChanged(evt);
+            }
+        });
         sexo.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -304,6 +317,7 @@ public class FormPacientes extends javax.swing.JDialog
         btnRegistrar.setBackground(new java.awt.Color(68, 165, 160));
         btnRegistrar.setText("Registar Paciente");
         btnRegistrar.setBackgroundHover(new java.awt.Color(57, 140, 136));
+        btnRegistrar.setEnabled(false);
         btnRegistrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnRegistrar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CHECK);
         btnRegistrar.setRound(20);
@@ -493,21 +507,24 @@ public class FormPacientes extends javax.swing.JDialog
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRegistrarActionPerformed
     {//GEN-HEADEREND:event_btnRegistrarActionPerformed
-        boolean nombreCorrect = MetodosAux.validarFormu(nombre, error_nombre, "required");
-        boolean apePCorrect = MetodosAux.validarFormu(apellidoPaterno, error_apellidoPaterno, "required");
+
         boolean sexoCorrect = MetodosAux.validarBox(sexo, error_sexo, "required");
-        if (nombreCorrect && apePCorrect && sexoCorrect)
+        if (nombreC && apeP && apeM && sexoCorrect && telefonoC && correoC)
         {
-            
+
             String rutaImgPerfilRegistro = null;
 
             rutaImgPerfilRegistro = (rutaImgPerfil != "") ? rutaImgPerfil : "./default/" + sexo.getSelectedItem().toString() + ".png";
-            //Si la foto la selecciona el usuario
-            System.out.println(rutaImgPerfilRegistro);
+
+            String apellidoMat = (!apellidoMaterno.getText().trim().equals("")) ? apellidoMaterno.getText().trim() : "No Proporcionado";
+            String numeroTel = (!telefono.getText().trim().equals("")) ? telefono.getText().trim() : "";
+            String correoEl = (!correo.getText().trim().equals("")) ? correo.getText().trim() : "No Proporcionado";
+
             Object[] datosInsert =
             {
-                rutaImgPerfilRegistro, nombre.getText().trim(), apellidoPaterno.getText().trim(), apellidoMaterno.getText().trim(),
-                sexo.getSelectedItem().toString(), telefono.getText().trim(), correo.getText().trim()
+                //Mandamos la informacion que puede contener vacio segun lo que se tenga almacenado en la caja de texto
+                rutaImgPerfilRegistro, nombre.getText().trim(), apellidoPaterno.getText().trim(), apellidoMat,
+                sexo.getSelectedItem().toString(), numeroTel, correoEl
             };
 
             boolean insercionCorr = MetodosBD.insertarPaciente(datosInsert);
@@ -578,28 +595,65 @@ public class FormPacientes extends javax.swing.JDialog
 
     private void nombreKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_nombreKeyReleased
     {//GEN-HEADEREND:event_nombreKeyReleased
-
+        nombreC = MetodosAux.validarFormu(nombre, error_nombre, "required");
+        if (nombre.getText().length() <= 2 && !nombre.getText().isEmpty())
+        {
+            error_nombre.setForeground(SysConfigs.bg_warning);
+            error_nombre.setText("Digite mas de 2 digitos");
+            nombreC = false;
+        }
+       btnRegistrar.setEnabled((apeP == true && nombreC == true && (sexo.getSelectedIndex()==1 || sexo.getSelectedIndex()==2)) ? true: false);
     }//GEN-LAST:event_nombreKeyReleased
 
     private void apellidoPaternoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoPaternoKeyReleased
     {//GEN-HEADEREND:event_apellidoPaternoKeyReleased
-
+        apeP = MetodosAux.validarFormu(apellidoPaterno, error_apellidoPaterno, "required");
+        if (apellidoPaterno.getText().length() <= 2 && !apellidoPaterno.getText().isEmpty())
+        {
+            error_apellidoPaterno.setForeground(SysConfigs.bg_warning);
+            error_apellidoPaterno.setText("Digite mas de 2 digitos");
+            apeP = false;
+        }
+        btnRegistrar.setEnabled((apeP == true && nombreC == true && (sexo.getSelectedIndex()==1 || sexo.getSelectedIndex()==2)) ? true: false);
     }//GEN-LAST:event_apellidoPaternoKeyReleased
 
     private void apellidoMaternoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoMaternoKeyReleased
     {//GEN-HEADEREND:event_apellidoMaternoKeyReleased
-
+        if (apellidoMaterno.getText().length() <= 2 && !apellidoMaterno.getText().isEmpty())
+        {
+            error_apellidoMaterno.setForeground(SysConfigs.bg_warning);
+            error_apellidoMaterno.setText("Digite mas de 2 digitos");
+            apeM = false;
+        } else
+        {
+            if (apellidoMaterno.getText().isEmpty() || apellidoMaterno.getText().length() >= 3)
+            {
+                error_apellidoMaterno.setForeground(SysConfigs.bg_white);
+                error_apellidoMaterno.setText("Error en el campo");
+                apeM = true;
+            }
+        }
     }//GEN-LAST:event_apellidoMaternoKeyReleased
 
     private void telefonoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_telefonoKeyReleased
     {//GEN-HEADEREND:event_telefonoKeyReleased
-
+        if (!telefono.getText().isEmpty() && telefono.getText().length() < 10)
+        {
+            error_telefono.setForeground(SysConfigs.bg_danger);
+            error_telefono.setText("Digite los 10 digitos");
+            telefonoC = false;
+        } else
+        {
+            error_telefono.setForeground(SysConfigs.bg_white);
+            error_telefono.setText("Error en el campo");
+            telefonoC = true;
+        }
     }//GEN-LAST:event_telefonoKeyReleased
 
     private void btnOpenFotoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnOpenFotoActionPerformed
     {//GEN-HEADEREND:event_btnOpenFotoActionPerformed
         rutaImgPerfil = MetodosAux.getFoto(this);
-        if (!rutaImgPerfil.isEmpty())
+        if (!rutaImgPerfil.equals(""))
         {
             rsscalelabel.RSScaleLabel.setScaleLabel(jlFoto, rutaImgPerfil);
         }
@@ -615,8 +669,13 @@ public class FormPacientes extends javax.swing.JDialog
 
     private void correoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_correoKeyReleased
     {//GEN-HEADEREND:event_correoKeyReleased
-        Validaciones.validaEmail(correo, error_correo);
+        correoC = Validaciones.validaEmail(correo, error_correo);
     }//GEN-LAST:event_correoKeyReleased
+
+    private void sexoItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_sexoItemStateChanged
+    {//GEN-HEADEREND:event_sexoItemStateChanged
+        btnRegistrar.setEnabled((apeP == true && nombreC == true && (sexo.getSelectedIndex()==1 || sexo.getSelectedIndex()==2)) ? true: false);
+    }//GEN-LAST:event_sexoItemStateChanged
 
     /**
      * @param args the command line arguments

@@ -72,7 +72,7 @@ public class Validaciones
         switch (type)
         {
             case 1:
-                if (!Character.isLetter(evt.getKeyChar()))
+                if (!Character.isLetter(evt.getKeyChar()) && !Character.isWhitespace(evt.getKeyChar()))
                 {
                     evt.consume();
                 }
