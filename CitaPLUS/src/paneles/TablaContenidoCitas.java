@@ -5,8 +5,14 @@
  */
 package paneles;
 
+import RSMaterialComponent.RSTableMetroCustom;
 import java.awt.Color;
+import javax.swing.table.TableColumn;
+import metodosAux.MetodosAux;
+import metodosAux.RSButtonsAction;
+import metodosAux.RSButtonsRenderer;
 import metodosAux.SysConfigs;
+import metodosBD.MetodosBD;
 import rojeru_san.efectos.ValoresEnum;
 
 /**
@@ -25,7 +31,48 @@ public class TablaContenidoCitas extends javax.swing.JPanel
         jScrollPane1.getViewport().setBackground(Color.WHITE);
         
     }
+    
+    /**
+     * Método encargado de mostrar graficamente los datos de los pacientes
+     * dentro de la tabla correspondiente
+     *
+     * @param tabla tabla de pacientes
+     * @param tab categoria seleccionada
+     * @param filtro Nombre de un paciente en especifico (Para busqueda filtrada
+     * y puede ser null)
+     */
+    public static void listarPacientes(RSTableMetroCustom tabla, int tab, String filtro)
+    {
+        if (filtro == null)
+        {
+            filtro = "";
+        }
+        String[] columnas =
+        {
+            "id", "accion", "nombrePaciente", "fecha", "hora", "usuarioAtiende", "estatusCitasId", "fechaRegistro", "usuarioEdito"
+        };
+        MetodosAux.listarTablas(MetodosBD.rsListarCitas(tab, filtro), tabla, columnas);
 
+        //Definimos la posicion donde estara la columna que contendra los botones
+        TableColumn column = tabla.getColumnModel().getColumn(1);
+        column.setCellRenderer(new RSButtonsRenderer());
+        String classname = "paneles.TablaContenidoPacientes";
+        String metodoVer = "viewInfo";
+        String metodoEditar = "editInfo";
+        Object[] params =
+        {
+            classname, metodoVer, metodoEditar
+        };
+        //El 0 de aqui es de donde agarrara el parametro para activar los botones
+        column.setCellEditor(new RSButtonsAction(tabla, 0, params));
+    }
+    
+    /**
+     * Metodo que actualiza el titulo que se depliega en la parte inferior
+     * dependiendo del tab que se seleccione
+     *
+     * @param tab tab seleccionado
+     */
     public static void actualizarTitulo(int tab)
     {
         switch (tab)

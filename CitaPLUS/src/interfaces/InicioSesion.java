@@ -7,6 +7,7 @@ package interfaces;
 
 import java.awt.Color;
 import java.awt.Shape;
+import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
 import metodosBD.MetodosBD;
 import rojeru_san.complementos.RSEffectFade;
@@ -95,6 +96,13 @@ public class InicioSesion extends javax.swing.JFrame
         JTFUsuario.setPhColor(new java.awt.Color(0, 0, 0));
         JTFUsuario.setPlaceholder("Ingrese Usuario");
         JTFUsuario.setSelectionColor(new java.awt.Color(0, 0, 0));
+        JTFUsuario.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
+                JTFUsuarioKeyPressed(evt);
+            }
+        });
 
         JTFContraseña.setForeground(new java.awt.Color(0, 0, 0));
         JTFContraseña.setColorIcon(new java.awt.Color(0, 0, 0));
@@ -103,6 +111,20 @@ public class InicioSesion extends javax.swing.JFrame
         JTFContraseña.setPhColor(new java.awt.Color(0, 0, 0));
         JTFContraseña.setPlaceholder("Ingrese contraseña");
         JTFContraseña.setSelectionColor(new java.awt.Color(0, 0, 0));
+        JTFContraseña.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                JTFContraseñaActionPerformed(evt);
+            }
+        });
+        JTFContraseña.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
+                JTFContraseñaKeyPressed(evt);
+            }
+        });
 
         jLErrorUsuario.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         jLErrorUsuario.setForeground(new java.awt.Color(255, 51, 51));
@@ -285,6 +307,33 @@ public class InicioSesion extends javax.swing.JFrame
 
         }
     }//GEN-LAST:event_rSButtonIcon_new1ActionPerformed
+
+    private void JTFContraseñaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_JTFContraseñaActionPerformed
+    {//GEN-HEADEREND:event_JTFContraseñaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_JTFContraseñaActionPerformed
+
+    private void JTFContraseñaKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFContraseñaKeyPressed
+    {//GEN-HEADEREND:event_JTFContraseñaKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            rSButtonIcon_new1.requestFocus();
+            rSButtonIcon_new1.doClick();
+        }
+        
+    }//GEN-LAST:event_JTFContraseñaKeyPressed
+
+    private void JTFUsuarioKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFUsuarioKeyPressed
+    {//GEN-HEADEREND:event_JTFUsuarioKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            JTFContraseña.requestFocus();
+        }
+        
+    }//GEN-LAST:event_JTFUsuarioKeyPressed
 
     /**
      * @param args the command line arguments

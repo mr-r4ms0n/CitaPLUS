@@ -126,24 +126,24 @@ public class MetodosBD
                 //    img = ImageIO.read(new ByteArrayInputStream(data));
                 //} catch (IOException e)
                 //{
-               //     System.out.println("Error al convertir la imagen de la base de datos: " + e);
+                //     System.out.println("Error al convertir la imagen de la base de datos: " + e);
                 //}
 
                 //if (img != null)
                 //{
-                    arreglo.add("id", resultado.getInt("id"));
-                    //arreglo.add("foto", img);
-                    arreglo.add("nombre", resultado.getString("nombre"));
-                    arreglo.add("apellidoPaterno", resultado.getString("apellidoPaterno"));
-                    arreglo.add("apellidoMaterno", resultado.getString("apellidoMaterno"));
-                    arreglo.add("sexo", resultado.getString("sexo"));
-                    arreglo.add("telefono", resultado.getString("telefono"));
-                    arreglo.add("correo", resultado.getString("correo"));
-                    int estado = resultado.getInt("estatus");
-                    String estadoCad = (estado == 1) ? "Activo" : "Inactivo"; //Para que entiendas por si lees el codigo xd, si el estado es 1 entonces estadocad sera activo, sino sera inactivo.
-                    arreglo.add("estatus", estadoCad);
-                    return arreglo;
-               // }
+                arreglo.add("id", resultado.getInt("id"));
+                //arreglo.add("foto", img);
+                arreglo.add("nombre", resultado.getString("nombre"));
+                arreglo.add("apellidoPaterno", resultado.getString("apellidoPaterno"));
+                arreglo.add("apellidoMaterno", resultado.getString("apellidoMaterno"));
+                arreglo.add("sexo", resultado.getString("sexo"));
+                arreglo.add("telefono", resultado.getString("telefono"));
+                arreglo.add("correo", resultado.getString("correo"));
+                int estado = resultado.getInt("estatus");
+                String estadoCad = (estado == 1) ? "Activo" : "Inactivo"; //Para que entiendas por si lees el codigo xd, si el estado es 1 entonces estadocad sera activo, sino sera inactivo.
+                arreglo.add("estatus", estadoCad);
+                return arreglo;
+                // }
             }
             dbCon.close();
         } catch (SQLException e)
@@ -272,7 +272,7 @@ public class MetodosBD
     {
         String columnas[] =
         {
-            "foto","nombre", "apellidoPaterno", "apellidoMaterno", "sexo", "telefono", "correo"
+            "foto", "nombre", "apellidoPaterno", "apellidoMaterno", "sexo", "telefono", "correo"
         };
         try
         {
@@ -292,4 +292,199 @@ public class MetodosBD
         return false;
     }
 
+    //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-PARTE CITAS *-*-*-*-*-*-*-*-*-*-**-*-*-**-*-*-*-*-
+    public static RSObjectArray getCitas(String citasId)
+    {
+        try
+        {
+            dbCon = ConectaBD.ConectaBD();
+            sentencia = dbCon.prepareStatement("SELECT * FROM citas WHERE id = ?");
+            sentencia.setString(1, citasId);
+            resultado = sentencia.executeQuery();
+            if (resultado.next())
+            {
+                RSObjectArray arreglo = new RSObjectArray();
+                arreglo.add("id", resultado.getInt("id"));
+                arreglo.add("fecha", resultado.getString("fecha"));
+                arreglo.add("hora", resultado.getString("hora"));
+                arreglo.add("fechaRegistro", resultado.getString("fechaRegistro"));
+                arreglo.add("usuarioId", resultado.getString("usuarioId"));
+
+                arreglo.add("fechaCancelo", resultado.getString("fechaCancelo"));
+                arreglo.add("usuarioEdito", resultado.getString("usuarioEdito"));
+
+                arreglo.add("pacienteId", resultado.getString("pacienteId"));
+                arreglo.add("nombrenombrePaciente", resultado.getString("nombrenombrePaciente"));
+                arreglo.add("usuarioAtiende", resultado.getString("usuarioAtiende"));
+                arreglo.add("estatusCitasId", resultado.getString("estatusCitasId"));
+                return arreglo;
+            }
+            dbCon.close();
+        } catch (SQLException e)
+        {
+            System.err.println("Error em obtener pacientes de sql: " + e);
+        }
+
+        return null;
+    }
+
+    public static RSObjectArray setCitas(String citasId)
+    {
+        try
+        {
+            dbCon = ConectaBD.ConectaBD();
+            sentencia = dbCon.prepareStatement("SELECT * FROM citas WHERE id = ?");
+            sentencia.setString(1, citasId);
+            resultado = sentencia.executeQuery();
+            if (resultado.next())
+            {
+                RSObjectArray arreglo = new RSObjectArray();
+                arreglo.add("id", resultado.getInt("id"));
+                arreglo.add("fecha", resultado.getString("fecha"));
+                arreglo.add("hora", resultado.getString("hora"));
+                arreglo.add("estatusCitasId", resultado.getString("estatusCitasId"));
+                
+                arreglo.add("pacienteId", resultado.getString("pacienteId"));
+                arreglo.add("nombrenombrePaciente", resultado.getString("nombrenombrePaciente"));
+                arreglo.add("usuarioAtiende", resultado.getString("usuarioAtiende"));
+                return arreglo;
+            }
+            dbCon.close();
+        } catch (SQLException e)
+        {
+            System.err.println("Error em obtener pacientes de sql: " + e);
+        }
+
+        return null;
+    }
+
+    public static boolean insertarCita(Object[] datos)
+    {
+        String columnas[] =
+        {
+            "pacienteId", "nombrenombrePaciente", "fecha", "hora", "estatusCitasId", "usuarioId", "servicioId", "fechaRegistro"
+        };
+        try
+        {
+            dbCon = ConectaBD.ConectaBD();
+            sentencia = MetodosAux.SQLInserta("citas", columnas, datos, dbCon, sentencia);
+
+            int r = sentencia.executeUpdate();
+
+            if (r > 0)
+            {
+                return true;
+            }
+        } catch (SQLException e)
+        {
+            System.out.println("Error al insertar cita: " + e.toString());
+        }
+        return false;
+    }
+    
+    /**
+     * Método que lista la tabla de pacientes tomando como parametro el tipo de
+     * tab que se seleccione
+     *
+     * @param tab 1 = Activos | 2 = Atendidas |3 = Canceladas | 0 = Todas las citas
+     * @return resultset con los pacientes hechos
+     */
+    public static ResultSet rsListarCitas(int tab, String filtro)
+    {
+        try
+        {
+            dbCon = ConectaBD.ConectaBD();
+            if (tab != 0 && filtro.equals(""))
+            {
+                //Para el caso de que se seleccione activos o inactivos y no se haga busqueda
+                sentencia = dbCon.prepareStatement("SELECT *,IF(estatusid=1,'Activo','Inactivo') AS estatusPac FROM citas WHERE estatus = ?");
+                sentencia.setInt(1, tab);
+            } else
+            {
+                String auxFiltro = filtro + "%";
+                if (filtro != null && (tab == 1 || tab == 2))
+                {
+                    //Para el caso de que se seleccione activos o inactivos y se haga una busqueda
+                    sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes WHERE estatus = ? AND (nombre LIKE ? OR apellidoPaterno LIKE ?)");
+                    sentencia.setInt(1, tab);
+                    sentencia.setString(2, (auxFiltro + "%"));
+                    sentencia.setString(3, (auxFiltro + "%"));
+                } else
+                {
+                    //Para el caso de que se entre en la pestaña de todos pero se haga una busqueda
+                    if (tab == 0 && filtro != null)
+                    {
+                        sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes WHERE nombre LIKE ? OR apellidoPaterno LIKE ?");
+                        sentencia.setString(1, (auxFiltro + "%"));
+                        sentencia.setString(2, (auxFiltro + "%"));
+                    } else
+                    {
+                        //Para el caso de que se entre en la pestaña de todos y no se consulten busquedas
+                        sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes");
+                    }
+
+                }
+
+            }
+
+            resultado = sentencia.executeQuery();
+            if (checkResultSet(resultado))
+            {
+                return resultado;
+            }
+            dbCon.close();
+        } catch (SQLException e)
+        {
+            System.out.println("Error en obtener el ResultSet de Pacientes: " + e);
+        }
+        return null;
+    }
+
+    /**
+     * Método que regresa la cantidad de pacientes y es auxiliar de la funcion
+     * de los labels encargados de mostrar la cantidad de pacientes.
+     *
+     * @param tab el tipo de filtro del paciente 1 = Activos | 2 = Atendido | 3
+     * = Canceladas | 0 = Todas
+     * @return cantidad de pacientes seleccionados
+     */
+    public static int contarCitas(int tab)
+    {
+        int total = -1;
+        try
+        {
+            dbCon = ConectaBD.ConectaBD();
+            //Si se selecciona alguna tab (Activos o Inactivos)
+            if (tab != 0)
+            {
+                sentencia = dbCon.prepareStatement("SELECT COUNT(*)AS total FROM citas WHERE estatus = ?");
+                sentencia.setInt(1, tab);
+            } else
+            {
+                //Si se entra dentro de consulta general es decir sin tab seleccionada
+                sentencia = dbCon.prepareStatement("SELECT COUNT(*)AS total FROM citas");
+            }
+            resultado = sentencia.executeQuery();
+            if (checkResultSet(resultado))
+            {
+                //Nos movemos a la primera posicion para que comenze a contar, ya que inicialmente está en 0
+                resultado.next();
+                total = resultado.getInt("total");
+            }
+            dbCon.close();
+        } catch (SQLException e)
+        {
+            System.err.println("Error al contar Citas: " + e);
+        } finally
+        {
+            try
+            {
+                dbCon.close();
+            } catch (SQLException ex)
+            {
+                Logger.getLogger(MetodosBD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return total;
+    }
 }
