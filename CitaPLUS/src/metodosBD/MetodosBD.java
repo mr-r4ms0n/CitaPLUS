@@ -123,17 +123,6 @@ public class MetodosBD
                 byte[] imagen1 = null;
                 Blob i1 = resultado.getBlob("foto");
                 imagen1 = i1.getBytes(1, (int) i1.length());
-                //Blob blob = resultado.getBlob("foto");
-                //byte[] data = blob.getBytes(1, (int) blob.length());
-                //BufferedImage imga = null;
-                //try
-                //{
-                //    img = ImageIO.read(new ByteArrayInputStream(data));
-                //} catch (IOException e)
-                //{
-                //     System.out.println("Error al convertir la imagen de la base de datos: " + e);
-                //}
-
                 if (imagen1 != null)
                 {
                     arreglo.add("id", resultado.getInt("id"));
