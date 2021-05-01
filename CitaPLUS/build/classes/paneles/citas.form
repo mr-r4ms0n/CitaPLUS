@@ -121,6 +121,9 @@
             </Property>
             <Property name="round" type="int" value="20"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonIcon_new1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="newscomponents.RSButtonIcon_new" name="tabProximas">
           <Properties>

@@ -5,16 +5,7 @@
  */
 package paneles;
 
-import java.awt.Color;
-import java.awt.Font;
-import javax.swing.JTable;
-import javax.swing.table.TableColumn;
-import metodosAux.MetodosAux;
-import metodosAux.RSButtonsAction;
-import metodosAux.RSButtonsRenderer;
-import metodosAux.SysConfigs;
-import metodosBD.MetodosBD;
-import rojeru_san.efectos.ValoresEnum;
+import formularios_Registros.FormCitas;
 
 
 /**
@@ -66,6 +57,13 @@ public class Citas extends javax.swing.JPanel
         rSButtonIcon_new1.setBackgroundHover(new java.awt.Color(178, 218, 216));
         rSButtonIcon_new1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.LOCAL_PHARMACY);
         rSButtonIcon_new1.setRound(20);
+        rSButtonIcon_new1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                rSButtonIcon_new1ActionPerformed(evt);
+            }
+        });
 
         tabProximas.setBackground(new java.awt.Color(255, 255, 255));
         tabProximas.setText("Proximas (0)");
@@ -252,6 +250,12 @@ public class Citas extends javax.swing.JPanel
         TablaContenidoCitas.actualizarTitulo(0);
         
     }//GEN-LAST:event_tabTodasActionPerformed
+
+    private void rSButtonIcon_new1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSButtonIcon_new1ActionPerformed
+    {//GEN-HEADEREND:event_rSButtonIcon_new1ActionPerformed
+        // TODO add your handling code here:
+        new FormCitas().setVisible(true);
+    }//GEN-LAST:event_rSButtonIcon_new1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
