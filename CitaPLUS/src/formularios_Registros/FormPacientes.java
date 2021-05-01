@@ -14,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import rojeru_san.complementos.RSUtilities;
@@ -92,31 +93,31 @@ public class FormPacientes extends javax.swing.JDialog
 
         pnlFondo = new javax.swing.JPanel();
         rSPanelBorder1 = new RSMaterialComponent.RSPanelBorder();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        btnOpenFoto = new RSMaterialComponent.RSButtonIconOne();
+        lblFoto = new RSMaterialComponent.RSPanelBorderImage();
+        rSPanelBorderGradient1 = new RSMaterialComponent.RSPanelBorderGradient();
         btnCerrar = new RSMaterialComponent.RSButtonIconOne();
+        jLabel1 = new javax.swing.JLabel();
+        btnRemove = new RSMaterialComponent.RSButtonIconOne();
         nombre = new RSMaterialComponent.RSTextFieldOne();
         jLabel2 = new javax.swing.JLabel();
-        error_nombre = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        error_apellidoPaterno = new javax.swing.JLabel();
         apellidoPaterno = new RSMaterialComponent.RSTextFieldOne();
-        apellidoMaterno = new RSMaterialComponent.RSTextFieldOne();
         jLabel5 = new javax.swing.JLabel();
-        error_apellidoMaterno = new javax.swing.JLabel();
-        telefono = new RSMaterialComponent.RSTextFieldOne();
-        jLabel6 = new javax.swing.JLabel();
-        error_telefono = new javax.swing.JLabel();
-        correo = new RSMaterialComponent.RSTextFieldOne();
-        jLabel7 = new javax.swing.JLabel();
-        error_correo = new javax.swing.JLabel();
-        sexo = new RSMaterialComponent.RSComboBox();
+        apellidoMaterno = new RSMaterialComponent.RSTextFieldOne();
         jLabel8 = new javax.swing.JLabel();
-        error_sexo = new javax.swing.JLabel();
+        sexo = new RSMaterialComponent.RSComboBox();
+        jLabel7 = new javax.swing.JLabel();
+        correo = new RSMaterialComponent.RSTextFieldOne();
+        jLabel6 = new javax.swing.JLabel();
+        telefono = new RSMaterialComponent.RSTextFieldOne();
         btnRegistrar = new newscomponents.RSButtonIcon_new();
-        jlFoto = new javax.swing.JLabel();
-        btnOpenFoto = new RSMaterialComponent.RSButtonIconOne();
-        btnRemove = new RSMaterialComponent.RSButtonIconOne();
+        error_nombre = new javax.swing.JLabel();
+        error_apellidoPaterno = new javax.swing.JLabel();
+        error_sexo = new javax.swing.JLabel();
+        error_correo = new javax.swing.JLabel();
+        error_apellidoMaterno = new javax.swing.JLabel();
+        error_telefono = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -125,12 +126,43 @@ public class FormPacientes extends javax.swing.JDialog
 
         rSPanelBorder1.setBackground(new java.awt.Color(255, 255, 255));
         rSPanelBorder1.setBgBorder(new java.awt.Color(68, 165, 160));
+        rSPanelBorder1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(68, 165, 160));
+        btnOpenFoto.setBackground(new java.awt.Color(68, 165, 160));
+        btnOpenFoto.setToolTipText("Buscar foto");
+        btnOpenFoto.setBackgroundHover(new java.awt.Color(57, 140, 136));
+        btnOpenFoto.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.FOLDER_OPEN);
+        btnOpenFoto.setRound(5);
+        btnOpenFoto.setSizeIcon(25.0F);
+        btnOpenFoto.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnOpenFotoActionPerformed(evt);
+            }
+        });
+        rSPanelBorder1.add(btnOpenFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 75, 30));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Registrar Nuevo Paciente");
+        lblFoto.setBgBorder(new java.awt.Color(68, 165, 160));
+        lblFoto.setImagen(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Hombre.png"))); // NOI18N
+        lblFoto.setShapePanel(rojeru_san.efectos.ValoresEnum.PANEL_FORMA.CIRCLE);
+
+        javax.swing.GroupLayout lblFotoLayout = new javax.swing.GroupLayout(lblFoto);
+        lblFoto.setLayout(lblFotoLayout);
+        lblFotoLayout.setHorizontalGroup(
+            lblFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 177, Short.MAX_VALUE)
+        );
+        lblFotoLayout.setVerticalGroup(
+            lblFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 171, Short.MAX_VALUE)
+        );
+
+        rSPanelBorder1.add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, -1));
+
+        rSPanelBorderGradient1.setBgShade(new java.awt.Color(68, 165, 160));
+        rSPanelBorderGradient1.setColorPrimario(new java.awt.Color(68, 165, 160));
+        rSPanelBorderGradient1.setColorSecundario(new java.awt.Color(26, 117, 159));
 
         btnCerrar.setBackground(new java.awt.Color(216, 43, 43));
         btnCerrar.setToolTipText("Cerrar");
@@ -145,26 +177,47 @@ public class FormPacientes extends javax.swing.JDialog
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Registrar Nuevo Paciente");
+
+        javax.swing.GroupLayout rSPanelBorderGradient1Layout = new javax.swing.GroupLayout(rSPanelBorderGradient1);
+        rSPanelBorderGradient1.setLayout(rSPanelBorderGradient1Layout);
+        rSPanelBorderGradient1Layout.setHorizontalGroup(
+            rSPanelBorderGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorderGradient1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(150, 150, 150)
                 .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        rSPanelBorderGradient1Layout.setVerticalGroup(
+            rSPanelBorderGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rSPanelBorderGradient1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(rSPanelBorderGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
+
+        rSPanelBorder1.add(rSPanelBorderGradient1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 671, -1));
+
+        btnRemove.setBackground(new java.awt.Color(102, 102, 102));
+        btnRemove.setToolTipText("Remover foto");
+        btnRemove.setBackgroundHover(new java.awt.Color(117, 116, 116));
+        btnRemove.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RESTORE);
+        btnRemove.setRound(5);
+        btnRemove.setSizeIcon(25.0F);
+        btnRemove.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnRemoveActionPerformed(evt);
+            }
+        });
+        rSPanelBorder1.add(btnRemove, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 75, 30));
 
         nombre.setForeground(new java.awt.Color(51, 51, 51));
         nombre.setBorderColor(new java.awt.Color(51, 51, 51));
@@ -183,18 +236,15 @@ public class FormPacientes extends javax.swing.JDialog
                 nombreKeyTyped(evt);
             }
         });
+        rSPanelBorder1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 300, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel2.setText("Nombre*");
-
-        error_nombre.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        error_nombre.setText("Etiqueta de Error");
+        rSPanelBorder1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 300, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel3.setText("Apellido Paterno*");
-
-        error_apellidoPaterno.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        error_apellidoPaterno.setText("Etiqueta de Error");
+        rSPanelBorder1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 280, 330, -1));
 
         apellidoPaterno.setForeground(new java.awt.Color(51, 51, 51));
         apellidoPaterno.setBorderColor(new java.awt.Color(51, 51, 51));
@@ -213,6 +263,11 @@ public class FormPacientes extends javax.swing.JDialog
                 apellidoPaternoKeyTyped(evt);
             }
         });
+        rSPanelBorder1.add(apellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, 330, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel5.setText("Apellido Materno");
+        rSPanelBorder1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 300, -1));
 
         apellidoMaterno.setForeground(new java.awt.Color(51, 51, 51));
         apellidoMaterno.setBorderColor(new java.awt.Color(51, 51, 51));
@@ -231,60 +286,11 @@ public class FormPacientes extends javax.swing.JDialog
                 apellidoMaternoKeyTyped(evt);
             }
         });
+        rSPanelBorder1.add(apellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 300, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        jLabel5.setText("Apellido Materno");
-
-        error_apellidoMaterno.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        error_apellidoMaterno.setText("Etiqueta de Error");
-
-        telefono.setForeground(new java.awt.Color(51, 51, 51));
-        telefono.setBorderColor(new java.awt.Color(51, 51, 51));
-        telefono.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        telefono.setPhColor(new java.awt.Color(51, 51, 51));
-        telefono.setPlaceholder("Teléfono");
-        telefono.setSelectionColor(new java.awt.Color(51, 51, 51));
-        telefono.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyReleased(java.awt.event.KeyEvent evt)
-            {
-                telefonoKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
-                telefonoKeyTyped(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        jLabel6.setText("Teléfono");
-
-        error_telefono.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        error_telefono.setText("Etiqueta de Error");
-
-        correo.setForeground(new java.awt.Color(51, 51, 51));
-        correo.setBorderColor(new java.awt.Color(51, 51, 51));
-        correo.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        correo.setPhColor(new java.awt.Color(51, 51, 51));
-        correo.setPlaceholder("Correo");
-        correo.setSelectionColor(new java.awt.Color(51, 51, 51));
-        correo.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyReleased(java.awt.event.KeyEvent evt)
-            {
-                correoKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
-                correoKeyTyped(evt);
-            }
-        });
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        jLabel7.setText("Correo");
-
-        error_correo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        error_correo.setText("Etiqueta de Error");
+        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel8.setText("Sexo*");
+        rSPanelBorder1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 400, 330, -1));
 
         sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione Sexo", "Hombre", "Mujer" }));
         sexo.setColorArrow(new java.awt.Color(68, 165, 160));
@@ -307,12 +313,53 @@ public class FormPacientes extends javax.swing.JDialog
                 sexoActionPerformed(evt);
             }
         });
+        rSPanelBorder1.add(sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 430, 330, 40));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        jLabel8.setText("Sexo*");
+        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel7.setText("Correo");
+        rSPanelBorder1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 300, -1));
 
-        error_sexo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        error_sexo.setText("Etiqueta de Error");
+        correo.setForeground(new java.awt.Color(51, 51, 51));
+        correo.setBorderColor(new java.awt.Color(51, 51, 51));
+        correo.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        correo.setPhColor(new java.awt.Color(51, 51, 51));
+        correo.setPlaceholder("Correo");
+        correo.setSelectionColor(new java.awt.Color(51, 51, 51));
+        correo.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyReleased(java.awt.event.KeyEvent evt)
+            {
+                correoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                correoKeyTyped(evt);
+            }
+        });
+        rSPanelBorder1.add(correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 300, -1));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel6.setText("Teléfono");
+        rSPanelBorder1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 530, 330, -1));
+
+        telefono.setForeground(new java.awt.Color(51, 51, 51));
+        telefono.setBorderColor(new java.awt.Color(51, 51, 51));
+        telefono.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        telefono.setPhColor(new java.awt.Color(51, 51, 51));
+        telefono.setPlaceholder("Teléfono");
+        telefono.setSelectionColor(new java.awt.Color(51, 51, 51));
+        telefono.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyReleased(java.awt.event.KeyEvent evt)
+            {
+                telefonoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                telefonoKeyTyped(evt);
+            }
+        });
+        rSPanelBorder1.add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 560, 330, -1));
 
         btnRegistrar.setBackground(new java.awt.Color(68, 165, 160));
         btnRegistrar.setText("Registar Paciente");
@@ -328,173 +375,60 @@ public class FormPacientes extends javax.swing.JDialog
                 btnRegistrarActionPerformed(evt);
             }
         });
+        rSPanelBorder1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 640, -1, -1));
 
-        jlFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
+        error_nombre.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        error_nombre.setText("Etiqueta de Error");
+        rSPanelBorder1.add(error_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 300, -1));
 
-        btnOpenFoto.setBackground(new java.awt.Color(68, 165, 160));
-        btnOpenFoto.setToolTipText("Buscar foto");
-        btnOpenFoto.setBackgroundHover(new java.awt.Color(57, 140, 136));
-        btnOpenFoto.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.FOLDER_OPEN);
-        btnOpenFoto.setRound(5);
-        btnOpenFoto.setSizeIcon(25.0F);
-        btnOpenFoto.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                btnOpenFotoActionPerformed(evt);
-            }
-        });
+        error_apellidoPaterno.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        error_apellidoPaterno.setText("Etiqueta de Error");
+        rSPanelBorder1.add(error_apellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 330, -1));
 
-        btnRemove.setBackground(new java.awt.Color(102, 102, 102));
-        btnRemove.setToolTipText("Remover foto");
-        btnRemove.setBackgroundHover(new java.awt.Color(117, 116, 116));
-        btnRemove.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RESTORE);
-        btnRemove.setRound(5);
-        btnRemove.setSizeIcon(25.0F);
-        btnRemove.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                btnRemoveActionPerformed(evt);
-            }
-        });
+        error_sexo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        error_sexo.setText("Etiqueta de Error");
+        rSPanelBorder1.add(error_sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 480, 330, -1));
 
-        javax.swing.GroupLayout rSPanelBorder1Layout = new javax.swing.GroupLayout(rSPanelBorder1);
-        rSPanelBorder1.setLayout(rSPanelBorder1Layout);
-        rSPanelBorder1Layout.setHorizontalGroup(
-            rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                                .addComponent(btnOpenFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(apellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(error_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(error_apellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9))
-                    .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                                .addGap(203, 203, 203)
-                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(apellidoMaterno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(error_apellidoMaterno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(error_telefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(telefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(sexo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(correo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
-                                        .addComponent(error_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(10, 10, 10))
-                                    .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(error_sexo, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap())))
-        );
-        rSPanelBorder1Layout.setVerticalGroup(
-            rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(error_nombre)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(apellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(error_apellidoPaterno))
-                    .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                        .addComponent(jlFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnOpenFoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRemove, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
-                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(apellidoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(sexo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(error_apellidoMaterno)
-                    .addComponent(error_sexo))
-                .addGap(18, 18, 18)
-                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(error_telefono))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(error_correo)
-                        .addGap(5, 5, 5)))
-                .addGap(43, 43, 43)
-                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
-        );
+        error_correo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        error_correo.setText("Etiqueta de Error");
+        rSPanelBorder1.add(error_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 610, 300, -1));
+
+        error_apellidoMaterno.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        error_apellidoMaterno.setText("Etiqueta de Error");
+        rSPanelBorder1.add(error_apellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 480, 300, -1));
+
+        error_telefono.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        error_telefono.setText("Etiqueta de Error");
+        rSPanelBorder1.add(error_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 610, 330, -1));
 
         javax.swing.GroupLayout pnlFondoLayout = new javax.swing.GroupLayout(pnlFondo);
         pnlFondo.setLayout(pnlFondoLayout);
         pnlFondoLayout.setHorizontalGroup(
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFondoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(rSPanelBorder1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlFondoLayout.setVerticalGroup(
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFondoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(rSPanelBorder1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(rSPanelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -655,7 +589,7 @@ public class FormPacientes extends javax.swing.JDialog
         rutaImgPerfil = MetodosAux.getFoto(this);
         if (!rutaImgPerfil.equals(""))
         {
-            rsscalelabel.RSScaleLabel.setScaleLabel(jlFoto, rutaImgPerfil);
+            lblFoto.setImagen(new ImageIcon(rutaImgPerfil));
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnOpenFotoActionPerformed
@@ -663,7 +597,7 @@ public class FormPacientes extends javax.swing.JDialog
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRemoveActionPerformed
     {//GEN-HEADEREND:event_btnRemoveActionPerformed
 
-        jlFoto.setIcon(null);
+        lblFoto.setImagen(null);
         rutaImgPerfil = "";
     }//GEN-LAST:event_btnRemoveActionPerformed
 
@@ -745,11 +679,11 @@ public class FormPacientes extends javax.swing.JDialog
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel jlFoto;
+    private RSMaterialComponent.RSPanelBorderImage lblFoto;
     private RSMaterialComponent.RSTextFieldOne nombre;
     private javax.swing.JPanel pnlFondo;
     private RSMaterialComponent.RSPanelBorder rSPanelBorder1;
+    private RSMaterialComponent.RSPanelBorderGradient rSPanelBorderGradient1;
     private RSMaterialComponent.RSComboBox sexo;
     private RSMaterialComponent.RSTextFieldOne telefono;
     // End of variables declaration//GEN-END:variables
