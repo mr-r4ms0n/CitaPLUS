@@ -35,7 +35,6 @@ public class Pacientes extends javax.swing.JPanel
         if (todos != -1)
         {
             tabTodos.setText("Todos (" + todos + ")");
-            System.out.println("yo que soy????");
         }
 
         if (activos != -1)
