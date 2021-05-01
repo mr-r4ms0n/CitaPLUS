@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -100,6 +101,34 @@ public class MetodosBD
             System.out.println("Error de consulta en Inicio de sesion de tipo sql" + e);
         }
         return ret;
+    }
+
+    /**
+     * Método que verifica que el campo que digite el usuario en alguna caja de
+     * texto no exista en la base de datos, esto porque hay campos que son
+     * unicos y no se deben repetir
+     *
+     * @param campo valor que el usuario esta digitando
+     * @param tipoC tipo de campo unico nombre = 1, telefono = 2, correo = 3
+     * @return
+     */
+    public static boolean existeCampoRepetPaciente(String campo, String tipoC)
+    {
+        try
+        {
+            dbCon = ConectaBD.ConectaBD();
+            sentencia = dbCon.prepareStatement("SELECT " + tipoC + " FROM pacientes WHERE " + tipoC + " = ?");
+            sentencia.setString(1, campo);
+            resultado = sentencia.executeQuery();
+            if (resultado.next())
+            {
+                return true;
+            }
+        } catch (SQLException e)
+        {
+            System.err.println("Error al verificar si exsite duplicidad de campos: " + e);
+        }
+        return false;
     }
 
     /**
@@ -301,19 +330,20 @@ public class MetodosBD
         }
         return false;
     }
-    
+
     /**
      * Método para actualizar el estatus de un cliente
+     *
      * @param id
      * @param estatus
-     * @return 
+     * @return
      */
-    public static boolean actualizarEstatus(int id, int estatus)
+    public static boolean actualizarEstatusPaciente(int id, int estatus)
     {
         try
         {
             dbCon = ConectaBD.ConectaBD();
-            
+
             sentencia = dbCon.prepareStatement("UPDATE pacientes SET estatus = ? WHERE id = ?");
             sentencia.setInt(1, estatus);
             sentencia.setInt(2, id);
@@ -323,10 +353,48 @@ public class MetodosBD
                 return true;
             }
             dbCon.close();
-            
+
         } catch (SQLException e)
         {
-            System.out.println("Error al actualizar el status del paciente de tipo sql: "+e);
+            System.err.println("Error al actualizar el status del paciente de tipo sql: " + e);
+        }
+        return false;
+    }
+
+    public static boolean actualizarPaciente(int id, Object[] datos)
+    {
+        try
+        {
+            String rutaImagen = datos[0].toString();
+            System.out.println(rutaImagen);
+            //La transformamos a fichero
+            File fPerf = new File(rutaImagen);
+            //La transformamos a fichero de enteada (binario)
+            FileInputStream fIPerf = new FileInputStream(fPerf);
+            //Reasignamos la foto codificada al arreglo y hacemos la insercion a la BD
+            datos[0] = fIPerf;
+
+            dbCon = ConectaBD.ConectaBD();
+            sentencia = dbCon.prepareStatement("UPDATE pacientes SET foto =?,nombre=?,apellidoPaterno=?,apellidoMaterno=?,sexo=?,telefono=?,correo=? WHERE id = ?");
+            sentencia.setBinaryStream(1, (InputStream) datos[0]);
+            sentencia.setString(2, datos[1].toString());
+            sentencia.setString(3, datos[2].toString());
+            sentencia.setString(4, datos[3].toString());
+            sentencia.setString(5, datos[4].toString());
+            sentencia.setString(6, datos[5].toString());
+            sentencia.setString(7, datos[6].toString());
+            sentencia.setInt(8, id);
+            int rs = sentencia.executeUpdate();
+
+            if (rs > 0)
+            {
+                return true;
+            }
+
+            dbCon.close();
+        } catch (FileNotFoundException | SQLException e)
+        {
+            System.err.println("Error al actualizar o al cargar la imagen del paciente de tipo sql: " + e);
         }
         return false;
     }

@@ -9,6 +9,7 @@ import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 import metodosAux.RSObjectArray;
 import metodosAux.SysConfigs;
+import rojeru_san.complementos.RSEffectFade;
 import rojeru_san.complementos.RSUtilities;
 import rojeru_san.efectos.ValoresEnum;
 
@@ -18,7 +19,7 @@ import rojeru_san.efectos.ValoresEnum;
  */
 public class Alerta extends java.awt.Dialog
 {
-
+    
     RSObjectArray arr = new RSObjectArray();
 
     /**
@@ -29,41 +30,48 @@ public class Alerta extends java.awt.Dialog
         super(parent, modal);
         initComponents();
         RSUtilities.setCenterWindow(this);
+        RSEffectFade.setFadeWindowIn(this, 30, 0.3f);
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
         setShape(forma);
         RSUtilities.setOpaqueWindow(this, false);
         this.arr = datos;
         titulo.setText(datos.getValue("titulo").toString());
         mensaje.setText(getHTML(datos.getValue("mensaje").toString()));
-
+        
         switch (Integer.parseInt(datos.getValue("tipo").toString()))
         {
             case 1:
-                circle.setBackground(SysConfigs.bg_success);
-                check.setBackground(SysConfigs.bg_success);
+                circle.setForeground(SysConfigs.bg_success);
+                check.setForeground(SysConfigs.bg_success);
                 check.setIcons(ValoresEnum.ICONS.CHECK);
+                pnlBorder.setBgBorder(SysConfigs.bg_success);
+                btnAceptar.setBackground(SysConfigs.bg_success);
                 break;
-
+            
             case 2:
-                circle.setBackground(SysConfigs.bg_danger);
-                check.setBackground(SysConfigs.bg_danger);
+                circle.setForeground(SysConfigs.bg_danger);
+                check.setForeground(SysConfigs.bg_danger);
                 check.setIcons(ValoresEnum.ICONS.CLOSE);
+                pnlBorder.setBgBorder(SysConfigs.bg_danger);
+                btnAceptar.setBackground(SysConfigs.bg_danger);
                 break;
             case 3:
-                circle.setBackground(SysConfigs.bg_warning);
-                check.setBackground(SysConfigs.bg_warning);
+                circle.setForeground(SysConfigs.bg_warning);
+                check.setForeground(SysConfigs.bg_warning);
                 check.setIcons(ValoresEnum.ICONS.WARNING);
+                pnlBorder.setBgBorder(SysConfigs.bg_warning);
+                btnAceptar.setBackground(SysConfigs.bg_warning);
                 break;
             case 4:
-                circle.setBackground(SysConfigs.bg_info);
-                check.setBackground(SysConfigs.bg_info);
+                circle.setForeground(SysConfigs.bg_info);
+                check.setForeground(SysConfigs.bg_info);
                 check.setIcons(ValoresEnum.ICONS.INFO);
+                pnlBorder.setBgBorder(SysConfigs.bg_info);
+                btnAceptar.setBackground(SysConfigs.bg_info);
                 break;
-            default:
-                throw new AssertionError();
         }
     }
-
+    
     public Alerta(java.awt.Frame parent, boolean modal)
     {
         super(parent, modal);
@@ -72,9 +80,9 @@ public class Alerta extends java.awt.Dialog
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
         setShape(forma);
         RSUtilities.setOpaqueWindow(this, false);
-
+        
     }
-
+    
     public String getHTML(String mensaje)
     {
         String html = "<html>\n"
@@ -99,13 +107,13 @@ public class Alerta extends java.awt.Dialog
     {
 
         rSPanelMaterial1 = new RSMaterialComponent.RSPanelMaterial();
-        pblBorder = new RSMaterialComponent.RSPanelBorder();
+        pnlBorder = new RSMaterialComponent.RSPanelBorder();
         jPanel1 = new javax.swing.JPanel();
         check = new RSMaterialComponent.RSLabelIcon();
         circle = new RSMaterialComponent.RSLabelIcon();
         titulo = new javax.swing.JLabel();
         mensaje = new javax.swing.JEditorPane();
-        rSButtonIcon_new1 = new newscomponents.RSButtonIcon_new();
+        btnAceptar = new newscomponents.RSButtonIcon_new();
 
         setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter()
@@ -120,8 +128,8 @@ public class Alerta extends java.awt.Dialog
         rSPanelMaterial1.setIntensity(10);
         rSPanelMaterial1.setRound(20);
 
-        pblBorder.setBackground(new java.awt.Color(255, 255, 255));
-        pblBorder.setRound(10);
+        pnlBorder.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBorder.setRound(10);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -166,40 +174,41 @@ public class Alerta extends java.awt.Dialog
 
         mensaje.setEditable(false);
         mensaje.setContentType("text/html"); // NOI18N
+        mensaje.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
 
-        rSButtonIcon_new1.setBackground(new java.awt.Color(51, 153, 0));
-        rSButtonIcon_new1.setText("Aceptar");
-        rSButtonIcon_new1.setBackgroundHover(new java.awt.Color(151, 194, 129));
-        rSButtonIcon_new1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        rSButtonIcon_new1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CHECK_CIRCLE);
-        rSButtonIcon_new1.setRound(20);
-        rSButtonIcon_new1.addActionListener(new java.awt.event.ActionListener()
+        btnAceptar.setBackground(new java.awt.Color(51, 153, 0));
+        btnAceptar.setText("Aceptar");
+        btnAceptar.setBackgroundHover(new java.awt.Color(151, 194, 129));
+        btnAceptar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnAceptar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CHECK_CIRCLE);
+        btnAceptar.setRound(20);
+        btnAceptar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                rSButtonIcon_new1ActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout pblBorderLayout = new javax.swing.GroupLayout(pblBorder);
-        pblBorder.setLayout(pblBorderLayout);
-        pblBorderLayout.setHorizontalGroup(
-            pblBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pblBorderLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlBorderLayout = new javax.swing.GroupLayout(pnlBorder);
+        pnlBorder.setLayout(pnlBorderLayout);
+        pnlBorderLayout.setHorizontalGroup(
+            pnlBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBorderLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pblBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pnlBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(mensaje)
                     .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(pblBorderLayout.createSequentialGroup()
+            .addGroup(pnlBorderLayout.createSequentialGroup()
                 .addGap(118, 118, 118)
-                .addComponent(rSButtonIcon_new1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(119, Short.MAX_VALUE))
         );
-        pblBorderLayout.setVerticalGroup(
-            pblBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pblBorderLayout.createSequentialGroup()
+        pnlBorderLayout.setVerticalGroup(
+            pnlBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBorderLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -207,7 +216,7 @@ public class Alerta extends java.awt.Dialog
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rSButtonIcon_new1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -217,14 +226,14 @@ public class Alerta extends java.awt.Dialog
             rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelMaterial1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pblBorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlBorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         rSPanelMaterial1Layout.setVerticalGroup(
             rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pblBorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlBorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -250,10 +259,10 @@ public class Alerta extends java.awt.Dialog
         dispose();
     }//GEN-LAST:event_closeDialog
 
-    private void rSButtonIcon_new1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSButtonIcon_new1ActionPerformed
-    {//GEN-HEADEREND:event_rSButtonIcon_new1ActionPerformed
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAceptarActionPerformed
+    {//GEN-HEADEREND:event_btnAceptarActionPerformed
         dispose();
-    }//GEN-LAST:event_rSButtonIcon_new1ActionPerformed
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,12 +288,12 @@ public class Alerta extends java.awt.Dialog
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private newscomponents.RSButtonIcon_new btnAceptar;
     private RSMaterialComponent.RSLabelIcon check;
     private RSMaterialComponent.RSLabelIcon circle;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JEditorPane mensaje;
-    private RSMaterialComponent.RSPanelBorder pblBorder;
-    private newscomponents.RSButtonIcon_new rSButtonIcon_new1;
+    private RSMaterialComponent.RSPanelBorder pnlBorder;
     private RSMaterialComponent.RSPanelMaterial rSPanelMaterial1;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables

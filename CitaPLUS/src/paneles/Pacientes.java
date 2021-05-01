@@ -5,7 +5,7 @@
  */
 package paneles;
 
-import formularios_Registros.FormPacientes;
+import formularios_Registros.RegPacientes;
 import metodosBD.MetodosBD;
 
 /**
@@ -191,7 +191,7 @@ public class Pacientes extends javax.swing.JPanel
 
     private void rSButtonIcon_new1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSButtonIcon_new1ActionPerformed
     {//GEN-HEADEREND:event_rSButtonIcon_new1ActionPerformed
-        new FormPacientes().setVisible(true);
+        new RegPacientes().setVisible(true);
     }//GEN-LAST:event_rSButtonIcon_new1ActionPerformed
 
     private void tabTodosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabTodosActionPerformed

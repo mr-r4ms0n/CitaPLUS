@@ -9,7 +9,7 @@ import RSMaterialComponent.RSComboBox;
 import RSMaterialComponent.RSTableMetroCustom;
 import RSMaterialComponent.RSTextFieldOne;
 import alertas.Alerta;
-import formularios_Registros.FormPacientes;
+import formularios_Registros.RegPacientes;
 import interfaces.MenuPrincipal;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -239,16 +239,16 @@ public class MetodosAux
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(FormPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(FormPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(FormPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(FormPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         JFileChooser fc = new JFileChooser();

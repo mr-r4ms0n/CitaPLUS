@@ -5,7 +5,7 @@
  */
 package paneles;
 
-import formularios_Registros.FormCitas;
+import formularios_Registros.RegCitas;
 
 
 /**
@@ -254,7 +254,7 @@ public class Citas extends javax.swing.JPanel
     private void rSButtonIcon_new1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSButtonIcon_new1ActionPerformed
     {//GEN-HEADEREND:event_rSButtonIcon_new1ActionPerformed
         // TODO add your handling code here:
-        new FormCitas().setVisible(true);
+        new RegCitas().setVisible(true);
     }//GEN-LAST:event_rSButtonIcon_new1ActionPerformed
 
 

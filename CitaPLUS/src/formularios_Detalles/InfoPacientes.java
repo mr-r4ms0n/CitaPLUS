@@ -369,7 +369,7 @@ public class InfoPacientes extends javax.swing.JDialog
     {//GEN-HEADEREND:event_btnEstatusActionPerformed
 
         int newEstatus = (arregloDatos.getValue("estatus").equals("Activo") ? 2 : 1);
-        boolean resultado = MetodosBD.actualizarEstatus((int) arregloDatos.getValue("id"), newEstatus);
+        boolean resultado = MetodosBD.actualizarEstatusPaciente((int) arregloDatos.getValue("id"), newEstatus);
         if (resultado)
         {
             dispose();
@@ -377,12 +377,12 @@ public class InfoPacientes extends javax.swing.JDialog
             actualizarNumPacientes();
             if (newEstatus == 1)
             {
-                MetodosAux.mostrarAlerta("Muy bien hecho", "Cliente Activado con Exito", 1);
+                MetodosAux.mostrarAlerta("Muy bien hecho", "Paciente Activado con Exito", 1);
             } else
             {
                 if (newEstatus == 2)
                 {
-                    MetodosAux.mostrarAlerta("Muy bien hecho", "Cliente Desactivado con Exito", 1);
+                    MetodosAux.mostrarAlerta("Muy bien hecho", "Paciente Desactivado con Exito", 1);
                 } else
                 {
                     MetodosAux.mostrarAlerta("Error", "No se pudo completar la acción", 2);
