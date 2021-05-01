@@ -22,10 +22,13 @@ import rojeru_san.complementos.RSUtilities;
 import metodosAux.*;
 import metodosBD.MetodosBD;
 import paneles.Pacientes;
+import static paneles.Pacientes.actualizarNumPacientes;
 import static paneles.Pacientes.tabSelecc;
 import static paneles.Pacientes.tablaContenidoPacientes2;
 import paneles.TablaContenidoPacientes;
+import static paneles.TablaContenidoPacientes.listarPacientes;
 import rojeru_san.complementos.RSEffectFade;
+import rojeru_san.efectos.ValoresEnum;
 
 /**
  *
@@ -68,6 +71,17 @@ public class InfoPacientes extends javax.swing.JDialog
             lblTelefono.setText((String) arregloDatos.getValue("telefono"));
             lblCorreo.setText((String) arregloDatos.getValue("correo"));
             lblEstatus.setText((String) arregloDatos.getValue("estatus"));
+
+            lblEstatus.setForeground((arregloDatos.getValue("estatus").equals("Activo")) ? new Color(151, 194, 129) : new Color(216, 43, 43));
+            rSLabelTextIcon6.setForeground((arregloDatos.getValue("estatus").equals("Activo")) ? new Color(151, 194, 129) : new Color(216, 43, 43));
+
+            //Le ponemos el color al boton segun sea el caso del estatus
+            btnEstatus.setBackground((arregloDatos.getValue("estatus").equals("Activo")) ? new Color(216, 43, 43) : new Color(151, 194, 129));
+            btnEstatus.setBackgroundHover((arregloDatos.getValue("estatus").equals("Activo")) ? new Color(216, 43, 43) : new Color(151, 194, 129));
+            //Le ponemos el texto al boton segun sea el caso del estatus
+            btnEstatus.setText((arregloDatos.getValue("estatus").equals("Activo")) ? "Inhabilitar" : "Habilitar");
+
+            btnEstatus.setIcons((arregloDatos.getValue("estatus").equals("Activo")) ? ValoresEnum.ICONS.RADIO_BUTTON_UNCHECKED : ValoresEnum.ICONS.RADIO_BUTTON_CHECKED);
         } catch (IOException ex)
         {
             System.out.println("Error, no se ha podido renderizar la imagen :" + ex);
@@ -98,7 +112,7 @@ public class InfoPacientes extends javax.swing.JDialog
 
         pnlFondo = new javax.swing.JPanel();
         rSPanelBorder1 = new RSMaterialComponent.RSPanelBorder();
-        btnRegistrar = new newscomponents.RSButtonIcon_new();
+        btnEstatus = new newscomponents.RSButtonIcon_new();
         lblFoto = new RSMaterialComponent.RSPanelMaterialImage();
         rSPanelBorderGradient1 = new RSMaterialComponent.RSPanelBorderGradient();
         jLabel1 = new javax.swing.JLabel();
@@ -124,20 +138,20 @@ public class InfoPacientes extends javax.swing.JDialog
         rSPanelBorder1.setBgBorder(new java.awt.Color(204, 182, 128));
         rSPanelBorder1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnRegistrar.setBackground(new java.awt.Color(216, 43, 43));
-        btnRegistrar.setText("Inhabilitar");
-        btnRegistrar.setBackgroundHover(new java.awt.Color(255, 51, 51));
-        btnRegistrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnRegistrar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE);
-        btnRegistrar.setRound(20);
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener()
+        btnEstatus.setBackground(new java.awt.Color(216, 43, 43));
+        btnEstatus.setText("Inhabilitar");
+        btnEstatus.setBackgroundHover(new java.awt.Color(255, 51, 51));
+        btnEstatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnEstatus.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE);
+        btnEstatus.setRound(20);
+        btnEstatus.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                btnRegistrarActionPerformed(evt);
+                btnEstatusActionPerformed(evt);
             }
         });
-        rSPanelBorder1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 580, 119, 41));
+        rSPanelBorder1.add(btnEstatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 580, 119, 41));
 
         lblFoto.setBackground(new java.awt.Color(255, 255, 255));
         lblFoto.setBgShade(new java.awt.Color(102, 102, 102));
@@ -351,10 +365,33 @@ public class InfoPacientes extends javax.swing.JDialog
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRegistrarActionPerformed
-    {//GEN-HEADEREND:event_btnRegistrarActionPerformed
+    private void btnEstatusActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnEstatusActionPerformed
+    {//GEN-HEADEREND:event_btnEstatusActionPerformed
 
-    }//GEN-LAST:event_btnRegistrarActionPerformed
+        int newEstatus = (arregloDatos.getValue("estatus").equals("Activo") ? 2 : 1);
+        boolean resultado = MetodosBD.actualizarEstatus((int) arregloDatos.getValue("id"), newEstatus);
+        if (resultado)
+        {
+            dispose();
+            TablaContenidoPacientes.listarPacientes(tablaContenidoPacientes2.tblPacientes, tabSelecc, null);
+            actualizarNumPacientes();
+            if (newEstatus == 1)
+            {
+                MetodosAux.mostrarAlerta("Muy bien hecho", "Cliente Activado con Exito", 1);
+            } else
+            {
+                if (newEstatus == 2)
+                {
+                    MetodosAux.mostrarAlerta("Muy bien hecho", "Cliente Desactivado con Exito", 1);
+                } else
+                {
+                    MetodosAux.mostrarAlerta("Error", "No se pudo completar la acción", 2);
+                }
+
+            }
+        }
+
+    }//GEN-LAST:event_btnEstatusActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCerrarActionPerformed
     {//GEN-HEADEREND:event_btnCerrarActionPerformed
@@ -418,7 +455,7 @@ public class InfoPacientes extends javax.swing.JDialog
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private RSMaterialComponent.RSButtonIconOne btnCerrar;
-    private newscomponents.RSButtonIcon_new btnRegistrar;
+    private newscomponents.RSButtonIcon_new btnEstatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblEstatus;

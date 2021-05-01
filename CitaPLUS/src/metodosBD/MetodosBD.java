@@ -37,6 +37,7 @@ public class MetodosBD
     private static PreparedStatement sentencia;
     private static ResultSet resultado;
 
+    /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*METODOS PARA PACIENTES-*-*-*-*-*-*-*-*--*-*-*-*-*-*-*-*-*-*/
     /**
      * Método que nos permite evaluar si un ResultSet es nulo o no sin recorrer
      * el RsultSet evitando perder registros de una consulta
@@ -300,7 +301,37 @@ public class MetodosBD
         }
         return false;
     }
+    
+    /**
+     * Método para actualizar el estatus de un cliente
+     * @param id
+     * @param estatus
+     * @return 
+     */
+    public static boolean actualizarEstatus(int id, int estatus)
+    {
+        try
+        {
+            dbCon = ConectaBD.ConectaBD();
+            
+            sentencia = dbCon.prepareStatement("UPDATE pacientes SET estatus = ? WHERE id = ?");
+            sentencia.setInt(1, estatus);
+            sentencia.setInt(2, id);
+            int rs = sentencia.executeUpdate();
+            if (rs > 0)
+            {
+                return true;
+            }
+            dbCon.close();
+            
+        } catch (SQLException e)
+        {
+            System.out.println("Error al actualizar el status del paciente de tipo sql: "+e);
+        }
+        return false;
+    }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-PARTE CITAS *-*-*-*-*-*-*-*-*-*-**-*-*-**-*-*-*-*-
     /**
      * Método que obtiene unicamente los datos de una cita

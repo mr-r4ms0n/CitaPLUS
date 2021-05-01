@@ -232,7 +232,6 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
     {//GEN-HEADEREND:event_jTBuscarPacienteKeyReleased
         System.out.println(jTBuscarPaciente.getText().trim());
         listarPacientes(tblPacientes, Pacientes.tabSelecc, jTBuscarPaciente.getText().trim());
-
     }//GEN-LAST:event_jTBuscarPacienteKeyReleased
 
 

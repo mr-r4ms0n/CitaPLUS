@@ -8,16 +8,11 @@ package metodosAux;
 import RSMaterialComponent.RSComboBox;
 import RSMaterialComponent.RSTableMetroCustom;
 import RSMaterialComponent.RSTextFieldOne;
+import alertas.Alerta;
 import formularios_Registros.FormPacientes;
-import java.io.File;
+import interfaces.MenuPrincipal;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.CopyOption;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -267,23 +263,20 @@ public class MetodosAux
         return "";
     }
 
-    public static void copiarImagen(String origen, String destino)
+    /**
+     * Método auxiliar encargado de mostrar una alerta personalizada
+     *
+     * @param jf jframe raiz donde se va a mostrar la alerta
+     * @param titulo titulo que recibira
+     * @param msg mensaje que recibira
+     * @param type tipo de ventana
+     */
+    public static void mostrarAlerta(String titulo, String msg, int type)
     {
-        Path orig = Paths.get(origen);
-        Path desti = Paths.get(destino);
-
-        CopyOption[] opciones =
-        {
-            StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES
-        };
-
-        try
-        {
-            Files.copy(orig, desti, opciones);
-        } catch (IOException e)
-        {
-            System.err.println("Error al copiar la imagen: " + e);
-        }
-
+        RSObjectArray arr = new RSObjectArray();
+        arr.add("titulo", titulo);
+        arr.add("mensaje", msg);
+        arr.add("tipo", type);
+        new Alerta(MenuPrincipal.vtn,true, arr).setVisible(true);
     }
 }
