@@ -151,10 +151,10 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
         tblPacientes.setColorPrimaryText(new java.awt.Color(26, 117, 159));
         tblPacientes.setColorSecondary(new java.awt.Color(255, 255, 255));
         tblPacientes.setColorSecundaryText(new java.awt.Color(26, 117, 159));
-        tblPacientes.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        tblPacientes.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         tblPacientes.setFontHead(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        tblPacientes.setFontRowHover(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
-        tblPacientes.setFontRowSelect(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        tblPacientes.setFontRowHover(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        tblPacientes.setFontRowSelect(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         tblPacientes.setHighHead(40);
         tblPacientes.setRowHeight(35);
         tblPacientes.setSelectionBackground(new java.awt.Color(26, 117, 159));

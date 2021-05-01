@@ -56,9 +56,6 @@ public class FormCitas extends javax.swing.JDialog
 
         pnlFondo = new javax.swing.JPanel();
         rSPanelBorder1 = new RSMaterialComponent.RSPanelBorder();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        btnCerrar = new RSMaterialComponent.RSButtonIconOne();
         Paciente = new RSMaterialComponent.RSComboBox();
         jLabel8 = new javax.swing.JLabel();
         error_cliente = new javax.swing.JLabel();
@@ -75,6 +72,9 @@ public class FormCitas extends javax.swing.JDialog
         error_atendera = new javax.swing.JLabel();
         CAtendera = new RSMaterialComponent.RSComboBox();
         jLabel12 = new javax.swing.JLabel();
+        rSPanelMaterialGradient1 = new RSMaterialComponent.RSPanelMaterialGradient();
+        btnCerrar = new RSMaterialComponent.RSButtonIconOne();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -83,46 +83,6 @@ public class FormCitas extends javax.swing.JDialog
 
         rSPanelBorder1.setBackground(new java.awt.Color(255, 255, 255));
         rSPanelBorder1.setBgBorder(new java.awt.Color(68, 165, 160));
-
-        jPanel1.setBackground(new java.awt.Color(68, 165, 160));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Registrar Nueva Cita");
-
-        btnCerrar.setBackground(new java.awt.Color(216, 43, 43));
-        btnCerrar.setToolTipText("Cerrar");
-        btnCerrar.setBackgroundHover(new java.awt.Color(255, 51, 51));
-        btnCerrar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CLOSE);
-        btnCerrar.setRound(50);
-        btnCerrar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                btnCerrarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         Paciente.setColorArrow(new java.awt.Color(68, 165, 160));
         Paciente.setColorBorde(new java.awt.Color(68, 165, 160));
@@ -256,11 +216,53 @@ public class FormCitas extends javax.swing.JDialog
         jLabel12.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel12.setText("Atenderá*");
 
+        rSPanelMaterialGradient1.setBgShade(new java.awt.Color(68, 165, 160));
+        rSPanelMaterialGradient1.setColorPrimario(new java.awt.Color(68, 165, 160));
+        rSPanelMaterialGradient1.setColorSecundario(new java.awt.Color(145, 204, 201));
+        rSPanelMaterialGradient1.setGradiente(RSMaterialComponent.RSPanelMaterialGradient.Gradiente.CIRCULAR);
+
+        btnCerrar.setBackground(new java.awt.Color(216, 43, 43));
+        btnCerrar.setToolTipText("Cerrar");
+        btnCerrar.setBackgroundHover(new java.awt.Color(255, 51, 51));
+        btnCerrar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CLOSE);
+        btnCerrar.setRound(50);
+        btnCerrar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Registrar Nueva Cita");
+
+        javax.swing.GroupLayout rSPanelMaterialGradient1Layout = new javax.swing.GroupLayout(rSPanelMaterialGradient1);
+        rSPanelMaterialGradient1.setLayout(rSPanelMaterialGradient1Layout);
+        rSPanelMaterialGradient1Layout.setHorizontalGroup(
+            rSPanelMaterialGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelMaterialGradient1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        rSPanelMaterialGradient1Layout.setVerticalGroup(
+            rSPanelMaterialGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rSPanelMaterialGradient1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(rSPanelMaterialGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout rSPanelBorder1Layout = new javax.swing.GroupLayout(rSPanelBorder1);
         rSPanelBorder1.setLayout(rSPanelBorder1Layout);
         rSPanelBorder1Layout.setHorizontalGroup(
             rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,12 +312,13 @@ public class FormCitas extends javax.swing.JDialog
                 .addGap(199, 199, 199)
                 .addComponent(btnRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(rSPanelMaterialGradient1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         rSPanelBorder1Layout.setVerticalGroup(
             rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rSPanelMaterialGradient1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -380,8 +383,8 @@ public class FormCitas extends javax.swing.JDialog
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -511,8 +514,8 @@ public class FormCitas extends javax.swing.JDialog
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel pnlFondo;
     private RSMaterialComponent.RSPanelBorder rSPanelBorder1;
+    private RSMaterialComponent.RSPanelMaterialGradient rSPanelMaterialGradient1;
     // End of variables declaration//GEN-END:variables
 }

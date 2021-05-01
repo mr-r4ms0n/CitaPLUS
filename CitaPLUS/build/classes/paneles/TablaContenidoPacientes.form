@@ -141,16 +141,16 @@
               </TableColumnModel>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI Semibold" size="18" style="1"/>
+              <Font name="Segoe UI Semibold" size="16" style="1"/>
             </Property>
             <Property name="fontHead" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI Semibold" size="14" style="1"/>
             </Property>
             <Property name="fontRowHover" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI Semibold" size="18" style="1"/>
+              <Font name="Segoe UI Semibold" size="16" style="1"/>
             </Property>
             <Property name="fontRowSelect" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI Semibold" size="18" style="1"/>
+              <Font name="Segoe UI Semibold" size="16" style="1"/>
             </Property>
             <Property name="highHead" type="int" value="40"/>
             <Property name="rowHeight" type="int" value="35"/>
