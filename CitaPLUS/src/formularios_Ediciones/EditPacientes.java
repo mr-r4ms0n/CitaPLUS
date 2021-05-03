@@ -40,8 +40,8 @@ public class EditPacientes extends javax.swing.JDialog
 
     //False campos requeridos, true campos no requeridos
     boolean correoC = true;
-    boolean nombreC = false;
-    boolean apeP = false;
+    boolean nombreC = true;
+    boolean apeP = true;
     boolean apeM = true;
     boolean telefonoC = true;
 
@@ -545,7 +545,7 @@ public class EditPacientes extends javax.swing.JDialog
 
     private void telefonoKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_telefonoKeyTyped
     {//GEN-HEADEREND:event_telefonoKeyTyped
-        if (telefono.getText().length() >= 11)
+        if (telefono.getText().length() >= 10)
         {
             evt.consume();
         }
@@ -581,6 +581,7 @@ public class EditPacientes extends javax.swing.JDialog
             error_apellidoPaterno.setForeground(SysConfigs.bg_warning);
             error_apellidoPaterno.setText("Digite mas de 2 digitos");
             apeP = false;
+            
         }
         btnRegistrar.setEnabled((apeP == true && nombreC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
     }//GEN-LAST:event_apellidoPaternoKeyReleased
@@ -592,6 +593,7 @@ public class EditPacientes extends javax.swing.JDialog
             error_apellidoMaterno.setForeground(SysConfigs.bg_warning);
             error_apellidoMaterno.setText("Digite mas de 2 digitos");
             apeM = false;
+            btnRegistrar.setEnabled(false);
         } else
         {
             if (apellidoMaterno.getText().isEmpty() || apellidoMaterno.getText().length() >= 3)
@@ -599,6 +601,8 @@ public class EditPacientes extends javax.swing.JDialog
                 error_apellidoMaterno.setForeground(SysConfigs.bg_white);
                 error_apellidoMaterno.setText("Error en el campo");
                 apeM = true;
+                System.out.println("Nombre boolean: "+nombreC+"ApellidoPaterno: "+apeP+"Sexo: "+sexo.getSelectedIndex());
+                btnRegistrar.setEnabled((apeP == true && nombreC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
             }
         }
     }//GEN-LAST:event_apellidoMaternoKeyReleased
@@ -610,6 +614,7 @@ public class EditPacientes extends javax.swing.JDialog
             error_telefono.setForeground(SysConfigs.bg_danger);
             error_telefono.setText("Digite los 10 digitos");
             telefonoC = false;
+            btnRegistrar.setEnabled(false);
         } else
         {
             if (MetodosBD.existeCampoRepetPaciente(telefono.getText().trim(), "telefono") == true)
@@ -617,11 +622,13 @@ public class EditPacientes extends javax.swing.JDialog
                 error_telefono.setForeground(SysConfigs.bg_danger);
                 error_telefono.setText("Ops, este telefono ya existe");
                 telefonoC = false;
+                btnRegistrar.setEnabled(false);
             } else
             {
                 error_telefono.setForeground(SysConfigs.bg_white);
                 error_telefono.setText("Error en el campo");
                 telefonoC = true;
+                btnRegistrar.setEnabled((apeP == true && nombreC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
             }
         }
     }//GEN-LAST:event_telefonoKeyReleased
@@ -648,12 +655,15 @@ public class EditPacientes extends javax.swing.JDialog
         if (Validaciones.validaEmail(correo, error_correo) && MetodosBD.existeCampoRepetPaciente(correo.getText().trim(), "correo") == false)
         {
             correoC = true;
+            btnRegistrar.setEnabled((apeP == true && nombreC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
         } else
         {
+            btnRegistrar.setEnabled(false);
             if (MetodosBD.existeCampoRepetPaciente(correo.getText().trim(), "correo") == true)
             {
                 error_correo.setForeground(SysConfigs.bg_danger);
                 error_correo.setText("Ops, este correo ya exsite");
+                btnRegistrar.setEnabled(false);
             }
         }
     }//GEN-LAST:event_correoKeyReleased
