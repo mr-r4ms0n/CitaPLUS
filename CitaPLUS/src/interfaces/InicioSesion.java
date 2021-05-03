@@ -7,6 +7,7 @@ package interfaces;
 
 import java.awt.Color;
 import java.awt.Shape;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
 import metodosBD.MetodosBD;
@@ -27,7 +28,8 @@ public class InicioSesion extends javax.swing.JFrame
     public InicioSesion()
     {
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("../imagenes/citasplus.png")).getImage());
+        //setIconImage(new ImageIcon(getClass().getResource("../imagenes/citasplus.png")).getImage());
+        setIconImage(Toolkit.getDefaultToolkit().getImage("citasplus.png"));
         setLocationRelativeTo(null);
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
         setShape(forma);
