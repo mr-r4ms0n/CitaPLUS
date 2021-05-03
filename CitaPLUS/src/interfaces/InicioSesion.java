@@ -12,6 +12,7 @@ import java.awt.geom.RoundRectangle2D;
 import metodosBD.MetodosBD;
 import rojeru_san.complementos.RSEffectFade;
 import seguridad.Encoder;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -26,6 +27,7 @@ public class InicioSesion extends javax.swing.JFrame
     public InicioSesion()
     {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("../imagenes/citasplus.png")).getImage());
         setLocationRelativeTo(null);
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
         setShape(forma);

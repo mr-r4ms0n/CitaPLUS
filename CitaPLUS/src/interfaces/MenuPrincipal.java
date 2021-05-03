@@ -30,6 +30,7 @@ public class MenuPrincipal extends javax.swing.JFrame
     public MenuPrincipal(String usuario, String nombre, String foto)
     {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("../imagenes/citasplus.png")).getImage());
         vtn = this;
         RSEffectFade.setFadeWindowIn(this, 30, 0.1f);
         setLocationRelativeTo(null);
