@@ -5,16 +5,22 @@
         <group>
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/paneles/Usuarios.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/paneles/TablaContenidoUsuarios.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/seguridad/NewMain.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/formularios_Detalles/InfoPacientes.java</file>
-            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/interfaces/MenuPrincipal2.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/paneles/TablaContenidoServicios.java</file>
-            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/seguridad/EncoderA.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/seguridad/Encoder.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/interfaces/InicioSesion.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/metodosBD/MetodosBD.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/paneles/Pacientes.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/paneles/TablaContenidoPacientes.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/interfaces/MenuPrincipal2.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/metodosAux/MetodosAux.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/seguridad/Save.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/seguridad/EncoderA.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/formularios_Registros/RegAdm.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/formularios_Registros/RegPacientes.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/interfaces/MenuPrincipal.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/metodosAux/RSObjectArray.java</file>
         </group>
     </open-files>
 </project-private>

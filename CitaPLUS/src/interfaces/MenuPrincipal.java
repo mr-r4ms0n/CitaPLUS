@@ -72,7 +72,6 @@ public class MenuPrincipal extends javax.swing.JFrame
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLUsuario = new javax.swing.JLabel();
-        btnUsuarios = new RSMaterialComponent.RSButtonMaterialIconOne();
         pnlTopBar = new RSMaterialComponent.RSPanelMaterial();
         jLabel1 = new javax.swing.JLabel();
         rSLabelIcon1 = new RSMaterialComponent.RSLabelIcon();
@@ -227,19 +226,6 @@ public class MenuPrincipal extends javax.swing.JFrame
         jLUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLUsuario.setText("UsuarioN");
 
-        btnUsuarios.setBackground(new java.awt.Color(68, 165, 160));
-        btnUsuarios.setText("Usuarios");
-        btnUsuarios.setBackgroundHover(new java.awt.Color(178, 218, 216));
-        btnUsuarios.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PEOPLE);
-        btnUsuarios.setRound(20);
-        btnUsuarios.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                btnUsuariosActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
         pnlMenuLayout.setHorizontalGroup(
@@ -259,15 +245,16 @@ public class MenuPrincipal extends javax.swing.JFrame
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlMenuLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAcercaDe, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btnServicios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                                .addComponent(btnPacientes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCitas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnInicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnServicios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                            .addComponent(btnPacientes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCitas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnInicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(pnlMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnAcercaDe, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,10 +278,8 @@ public class MenuPrincipal extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(btnAcercaDe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(243, Short.MAX_VALUE))
         );
 
         jPanel1.add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 126, 230, 870));
@@ -406,7 +391,6 @@ public class MenuPrincipal extends javax.swing.JFrame
             btnInicio.setSelected(false);
             btnPacientes.setSelected(false);
             btnServicios.setSelected(false);
-            btnUsuarios.setSelected(false);
             btnAcercaDe.setSelected(false);
             
             pnlSlider.setPanelNormal(pnlCitas);
@@ -421,7 +405,6 @@ public class MenuPrincipal extends javax.swing.JFrame
             btnCitas.setSelected(false);
             btnPacientes.setSelected(false);
             btnServicios.setSelected(false);
-            btnUsuarios.setSelected(false);
             btnAcercaDe.setSelected(false);
         }
     }//GEN-LAST:event_btnInicioActionPerformed
@@ -434,7 +417,6 @@ public class MenuPrincipal extends javax.swing.JFrame
             btnCitas.setSelected(false);
             btnInicio.setSelected(false);
             btnServicios.setSelected(false);
-            btnUsuarios.setSelected(false);
             btnAcercaDe.setSelected(false);
             
             pnlSlider.setPanelNormal(pnlPacientes);
@@ -450,27 +432,12 @@ public class MenuPrincipal extends javax.swing.JFrame
             btnCitas.setSelected(false);
             btnPacientes.setSelected(false);
             btnInicio.setSelected(false);
-            btnUsuarios.setSelected(false);
             btnAcercaDe.setSelected(false);
             
             pnlSlider.setPanelNormal(pnlServicios);
         }
 
     }//GEN-LAST:event_btnServiciosActionPerformed
-
-    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnUsuariosActionPerformed
-    {//GEN-HEADEREND:event_btnUsuariosActionPerformed
-        if (!btnUsuarios.isSelected())
-        {
-            btnUsuarios.setSelected(true);
-            btnCitas.setSelected(false);
-            btnPacientes.setSelected(false);
-            btnServicios.setSelected(false);
-            btnInicio.setSelected(false);
-            btnAcercaDe.setSelected(false);
-        }
-
-    }//GEN-LAST:event_btnUsuariosActionPerformed
 
     private void btnAcercaDeActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAcercaDeActionPerformed
     {//GEN-HEADEREND:event_btnAcercaDeActionPerformed
@@ -480,7 +447,6 @@ public class MenuPrincipal extends javax.swing.JFrame
             btnCitas.setSelected(false);
             btnPacientes.setSelected(false);
             btnServicios.setSelected(false);
-            btnUsuarios.setSelected(false);
             btnInicio.setSelected(false);
         }
     }//GEN-LAST:event_btnAcercaDeActionPerformed
@@ -537,7 +503,6 @@ public class MenuPrincipal extends javax.swing.JFrame
     private RSMaterialComponent.RSButtonMaterialIconOne btnInicio;
     private RSMaterialComponent.RSButtonMaterialIconOne btnPacientes;
     private RSMaterialComponent.RSButtonMaterialIconOne btnServicios;
-    private RSMaterialComponent.RSButtonMaterialIconOne btnUsuarios;
     private RSMaterialComponent.RSPanelBorderImage imagenDePerfil;
     private javax.swing.JLabel jLNombre;
     private javax.swing.JLabel jLUsuario;

@@ -87,22 +87,16 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="211" max="-2" attributes="0"/>
-                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Component id="rSButtonIcon_new1" min="-2" pref="160" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                                  <Component id="rSSwitch1" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="btnreg" min="-2" pref="160" max="-2" attributes="0"/>
                                                   <EmptySpace max="32767" attributes="0"/>
                                                   <Component id="rSButtonIcon_new3" min="-2" pref="160" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="jLabel6" min="-2" pref="474" max="-2" attributes="0"/>
+                                              <Component id="jLabel6" alignment="0" min="-2" pref="474" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -119,13 +113,21 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLErrorContra" min="-2" pref="230" max="-2" attributes="0"/>
-                          <Component id="jLErrorUsuario" min="-2" pref="230" max="-2" attributes="0"/>
-                          <Component id="JTFUsuario" alignment="0" max="32767" attributes="0"/>
-                          <Component id="JTFContraseña" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLErrorContra" min="-2" pref="230" max="-2" attributes="0"/>
+                                  <Component id="jLErrorUsuario" min="-2" pref="230" max="-2" attributes="0"/>
+                                  <Component id="JTFUsuario" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="JTFContraseña" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -147,12 +149,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLErrorContra" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="rSButtonIcon_new1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="rSButtonIcon_new3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="rSSwitch1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnreg" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rSButtonIcon_new3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLCorrrecto" min="-2" max="-2" attributes="0"/>
@@ -171,23 +170,26 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI Semibold" size="24" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Cita PLUS"/>
+                <Property name="text" type="java.lang.String" value="Bienvenido a Cita PLUS"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI Light" size="24" style="0"/>
+                  <Font name="Segoe UI Light" size="14" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Inicio de sesi&#xf3;n"/>
+                <Property name="text" type="java.lang.String" value="Como es la primera vez que usas el sistema, necesitas definir un administrador"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/imagenes/doctor.png"/>
+                  <Image iconType="3" name="/imagenes/autorized.png"/>
                 </Property>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
@@ -219,6 +221,7 @@
               </Properties>
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTFUsuarioKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTFUsuarioKeyReleased"/>
               </Events>
             </Component>
             <Component class="RSMaterialComponent.RSPasswordMaterialIcon" name="JTFContrase&#xf1;a">
@@ -246,6 +249,7 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTFContrase&#xf1;aActionPerformed"/>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTFContrase&#xf1;aKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTFContrase&#xf1;aKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLErrorUsuario">
@@ -270,15 +274,16 @@
                 <Property name="text" type="java.lang.String" value="Este campo se requiere."/>
               </Properties>
             </Component>
-            <Component class="newscomponents.RSButtonIcon_new" name="rSButtonIcon_new1">
+            <Component class="newscomponents.RSButtonIcon_new" name="btnreg">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="e4" green="ca" red="48" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Ingresar"/>
+                <Property name="text" type="java.lang.String" value="Activar"/>
                 <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="f0" green="e5" red="ab" type="rgb"/>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
                   <Value id="ARROW_FORWARD"/>
@@ -286,26 +291,7 @@
                 <Property name="round" type="int" value="10"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonIcon_new1ActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="newscomponents.RSButtonIcon_new" name="rSButtonIcon_new3">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="33" green="33" red="ff" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Salir"/>
-                <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="99" red="ff" type="rgb"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
-                  <Value id="EXIT_TO_APP"/>
-                </Property>
-                <Property name="round" type="int" value="10"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonIcon_new3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnregActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
@@ -333,24 +319,25 @@
                 <Property name="text" type="java.lang.String" value="Ing"/>
               </Properties>
             </Component>
-            <Container class="RSMaterialComponent.RSSwitch" name="rSSwitch1">
+            <Component class="newscomponents.RSButtonIcon_new" name="rSButtonIcon_new3">
               <Properties>
-                <Property name="activado" type="boolean" value="false"/>
-                <Property name="bgOff" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="e4" green="ca" red="48" type="rgb"/>
-                </Property>
-                <Property name="bgOn" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="Salir"/>
+                <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="99" green="99" red="ff" type="rgb"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
+                  <Value id="EXIT_TO_APP"/>
+                </Property>
+                <Property name="round" type="int" value="10"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rSSwitch1MouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonIcon_new3ActionPerformed"/>
               </Events>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-                <Property name="useNullLayout" type="boolean" value="true"/>
-              </Layout>
-            </Container>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

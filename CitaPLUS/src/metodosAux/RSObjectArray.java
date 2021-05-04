@@ -9,12 +9,12 @@ package metodosAux;
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RSObjectArray
+public class RSObjectArray implements Serializable
 {
-
     private Map<Object, Object> map = null;
 
     public RSObjectArray()

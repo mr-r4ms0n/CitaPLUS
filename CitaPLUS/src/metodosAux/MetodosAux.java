@@ -6,6 +6,7 @@
 package metodosAux;
 
 import RSMaterialComponent.RSComboBox;
+import RSMaterialComponent.RSPasswordOne;
 import RSMaterialComponent.RSTableMetroCustom;
 import RSMaterialComponent.RSTextFieldOne;
 import alertas.Alerta;
@@ -176,6 +177,26 @@ public class MetodosAux
      * @return true si no esta vacio | false si esta vacio
      */
     public static boolean validarFormu(RSTextFieldOne field, JLabel error, String tipo)
+    {
+        boolean resultado = false;
+        switch (tipo)
+        {
+            case "required":
+                if (field.getText().trim().isEmpty())
+                {
+                    error.setText("Este campo es requerido");
+                    error.setForeground(SysConfigs.bg_danger);
+                } else
+                {
+                    error.setForeground(SysConfigs.bg_white);
+                    resultado = true;
+                }
+                break;
+        }
+        return resultado;
+    }
+    
+    public static boolean validarpFormuPass(RSPasswordOne field, JLabel error, String tipo)
     {
         boolean resultado = false;
         switch (tipo)

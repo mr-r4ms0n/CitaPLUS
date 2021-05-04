@@ -80,19 +80,20 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnAcercaDe" min="-2" pref="209" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="btnServicios" alignment="0" pref="210" max="32767" attributes="0"/>
-                                      <Component id="btnPacientes" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="btnCitas" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="btnInicio" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="btnUsuarios" alignment="0" min="-2" pref="209" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="btnServicios" alignment="0" pref="210" max="32767" attributes="0"/>
+                                  <Component id="btnPacientes" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnCitas" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnInicio" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnAcercaDe" min="-2" pref="209" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -118,10 +119,8 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnUsuarios" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnAcercaDe" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="185" max="32767" attributes="0"/>
+                      <EmptySpace pref="243" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -333,24 +332,6 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="UsuarioN"/>
               </Properties>
-            </Component>
-            <Component class="RSMaterialComponent.RSButtonMaterialIconOne" name="btnUsuarios">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="a0" green="a5" red="44" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Usuarios"/>
-                <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="d8" green="da" red="b2" type="rgb"/>
-                </Property>
-                <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
-                  <Value id="PEOPLE"/>
-                </Property>
-                <Property name="round" type="int" value="20"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsuariosActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>
