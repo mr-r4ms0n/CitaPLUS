@@ -400,6 +400,8 @@ public class MetodosBD
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
     //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-PARTE CITAS *-*-*-*-*-*-*-*-*-*-**-*-*-**-*-*-*-*-
     /**
      * Método que obtiene unicamente los datos de una cita
@@ -599,6 +601,101 @@ public class MetodosBD
         } catch (SQLException e)
         {
             System.err.println("Error al contar Citas: " + e);
+        } finally
+        {
+            try
+            {
+                dbCon.close();
+            } catch (SQLException ex)
+            {
+                Logger.getLogger(MetodosBD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return total;
+    }
+    
+    //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-PARTE USUARIOS *-*-*-*-*-*-*-*-*-*-**-*-*-**-*-*-*-*-
+    
+    public static ResultSet rsListarUsuarios(int tab, String filtro)
+    {
+        try
+        {
+            dbCon = ConectaBD.ConectaBD();
+            if (tab != 0 && filtro.equals(""))
+            {
+                //Para el caso de que se seleccione activos o inactivos y no se haga busqueda
+                sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusUsr FROM usuarios WHERE estatus = ?");
+                sentencia.setInt(1, tab);
+            } else
+            {
+                String auxFiltro = filtro + "%";
+                if (filtro != null && (tab == 1 || tab == 2))
+                {
+                    //Para el caso de que se seleccione activos o inactivos y se haga una busqueda
+                    sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusUsr FROM usuarios WHERE estatus = ? AND (nombre LIKE ? OR apellidoPaterno LIKE ? OR usuario LIKE ?)");
+                    sentencia.setInt(1, tab);
+                    sentencia.setString(2, (auxFiltro + "%"));
+                    sentencia.setString(3, (auxFiltro + "%"));
+                    sentencia.setString(4, (auxFiltro + "%"));
+                } else
+                {
+                    //Para el caso de que se entre en la pestaña de todos pero se haga una busqueda
+                    if (tab == 0 && filtro != null)
+                    {
+                        sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusUsr FROM usuarios WHERE nombre LIKE ? OR apellidoPaterno LIKE ? OR usuario LIKE ?");
+                        sentencia.setString(1, (auxFiltro + "%"));
+                        sentencia.setString(2, (auxFiltro + "%"));
+                        sentencia.setString(3, (auxFiltro + "%"));
+                    } else
+                    {
+                        //Para el caso de que se entre en la pestaña de todos y no se consulten busquedas
+                        sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusUsr FROM usuarios");
+                    }
+
+                }
+
+            }
+
+            resultado = sentencia.executeQuery();
+            if (checkResultSet(resultado))
+            {
+                return resultado;
+            }
+            dbCon.close();
+        } catch (SQLException e)
+        {
+            System.out.println("Error en obtener el ResultSet de Usuarios: " + e);
+        }
+        return null;
+    }
+    
+    public static int contarUsuarios(int tab)
+    {
+        int total = -1;
+        try
+        {
+            dbCon = ConectaBD.ConectaBD();
+            //Si se selecciona alguna tab (Activos o Inactivos)
+            if (tab != 0)
+            {
+                sentencia = dbCon.prepareStatement("SELECT COUNT(*)AS total FROM usuarios WHERE estatus = ?");
+                sentencia.setInt(1, tab);
+            } else
+            {
+                //Si se entra dentro de consulta general es decir sin tab seleccionada
+                sentencia = dbCon.prepareStatement("SELECT COUNT(*)AS total FROM usuarios");
+            }
+            resultado = sentencia.executeQuery();
+            if (checkResultSet(resultado))
+            {
+                //Nos movemos a la primera posicion para que comenze a contar, ya que inicialmente está en 0
+                resultado.next();
+                total = resultado.getInt("total");
+            }
+            dbCon.close();
+        } catch (SQLException e)
+        {
+            System.err.println("Error al contar Usuarios: " + e);
         } finally
         {
             try

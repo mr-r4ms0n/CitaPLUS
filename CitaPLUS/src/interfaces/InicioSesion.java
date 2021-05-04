@@ -22,6 +22,8 @@ import javax.swing.ImageIcon;
 public class InicioSesion extends javax.swing.JFrame
 {
 
+    int tipoSesion = 1;
+
     /**
      * Creates new form InicioSesion
      */
@@ -68,6 +70,7 @@ public class InicioSesion extends javax.swing.JFrame
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLCorrrecto = new javax.swing.JLabel();
+        rSSwitch1 = new RSMaterialComponent.RSSwitch();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -86,7 +89,8 @@ public class InicioSesion extends javax.swing.JFrame
         jLabel1.setText("Cita PLUS");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        jLabel2.setText("Inicio de sesion");
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Inicio de sesión");
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/doctor.png"))); // NOI18N
@@ -174,6 +178,17 @@ public class InicioSesion extends javax.swing.JFrame
         jLCorrrecto.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
         jLCorrrecto.setText("Ing");
 
+        rSSwitch1.setActivado(false);
+        rSSwitch1.setBgOff(new java.awt.Color(72, 202, 228));
+        rSSwitch1.setBgOn(new java.awt.Color(255, 51, 51));
+        rSSwitch1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                rSSwitch1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout rSPanelMaterial1Layout = new javax.swing.GroupLayout(rSPanelMaterial1);
         rSPanelMaterial1.setLayout(rSPanelMaterial1Layout);
         rSPanelMaterial1Layout.setHorizontalGroup(
@@ -186,33 +201,34 @@ public class InicioSesion extends javax.swing.JFrame
                     .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
                         .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
-                                .addGap(190, 190, 190)
-                                .addComponent(jLabel2))
-                            .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
                                 .addGap(211, 211, 211)
                                 .addComponent(jLabel1))
-                            .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLErrorContra, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLErrorUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
-                                        .addComponent(rSButtonIcon_new1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(114, 114, 114)
-                                        .addComponent(rSButtonIcon_new3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(JTFUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(JTFContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
                                 .addGap(30, 30, 30)
                                 .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 18, Short.MAX_VALUE)))
+                                    .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
+                                            .addComponent(rSButtonIcon_new1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(26, 26, 26)
+                                            .addComponent(rSSwitch1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(rSButtonIcon_new3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
+                                .addGap(138, 138, 138)
+                                .addComponent(jLCorrrecto, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 18, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
-                .addGap(138, 138, 138)
-                .addComponent(jLCorrrecto, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelMaterial1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLErrorContra, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLErrorUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTFUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JTFContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(134, 134, 134))
         );
         rSPanelMaterial1Layout.setVerticalGroup(
             rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,7 +239,7 @@ public class InicioSesion extends javax.swing.JFrame
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addComponent(JTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLErrorUsuario)
@@ -231,10 +247,12 @@ public class InicioSesion extends javax.swing.JFrame
                 .addComponent(JTFContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLErrorContra)
-                .addGap(27, 27, 27)
-                .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rSButtonIcon_new1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSButtonIcon_new3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rSButtonIcon_new1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rSButtonIcon_new3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rSSwitch1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLCorrrecto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
@@ -282,6 +300,7 @@ public class InicioSesion extends javax.swing.JFrame
 
     private void rSButtonIcon_new1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSButtonIcon_new1ActionPerformed
     {//GEN-HEADEREND:event_rSButtonIcon_new1ActionPerformed
+
         if (JTFUsuario.getText().isEmpty())
         {
             jLErrorUsuario.setText("Este campo es requerido");
@@ -293,20 +312,26 @@ public class InicioSesion extends javax.swing.JFrame
 
         if (!JTFUsuario.getText().isEmpty() && !JTFContraseña.getText().isEmpty())
         {
-            Object resultados[] = MetodosBD.ingresoSys(JTFUsuario.getText().trim(), Encoder.encode(JTFContraseña.getText().trim()));
-            if (resultados != null)
+            if (!rSSwitch1.isActivado())
             {
-                if ((boolean) resultados[0])
+                Object resultados[] = MetodosBD.ingresoSys(JTFUsuario.getText().trim(), Encoder.encode(JTFContraseña.getText().trim()));
+                if (resultados != null)
                 {
-                    new MenuPrincipal((String) resultados[1], (String) resultados[2], (String) resultados[3]).setVisible(true);
-                    dispose();
+                    if ((boolean) resultados[0])
+                    {
+                        new MenuPrincipal((String) resultados[1], (String) resultados[2], (String) resultados[3]).setVisible(true);
+                        dispose();
+                    }
+                } else
+                {
+                    jLCorrrecto.setForeground(Color.RED);
+                    jLCorrrecto.setText("Las credenciales son incorrectas");
+                    JTFUsuario.setText(null);
+                    JTFContraseña.setText(null);
                 }
-            } else
+            }else
             {
-                jLCorrrecto.setForeground(Color.RED);
-                jLCorrrecto.setText("Las credenciales son incorrectas");
-                JTFUsuario.setText(null);
-                JTFContraseña.setText(null);
+                new MenuPrincipal2().setVisible(true);
             }
 
         }
@@ -315,29 +340,40 @@ public class InicioSesion extends javax.swing.JFrame
     private void JTFContraseñaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_JTFContraseñaActionPerformed
     {//GEN-HEADEREND:event_JTFContraseñaActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_JTFContraseñaActionPerformed
 
     private void JTFContraseñaKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFContraseñaKeyPressed
     {//GEN-HEADEREND:event_JTFContraseñaKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
         {
             rSButtonIcon_new1.requestFocus();
             rSButtonIcon_new1.doClick();
         }
-        
+
     }//GEN-LAST:event_JTFContraseñaKeyPressed
 
     private void JTFUsuarioKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFUsuarioKeyPressed
     {//GEN-HEADEREND:event_JTFUsuarioKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
         {
             JTFContraseña.requestFocus();
         }
-        
+
     }//GEN-LAST:event_JTFUsuarioKeyPressed
+
+    private void rSSwitch1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_rSSwitch1MouseClicked
+    {//GEN-HEADEREND:event_rSSwitch1MouseClicked
+        if (rSSwitch1.isActivado())
+        {
+            jLabel2.setText("Inicio de sesión (" + "Administrador" + ")");
+        } else
+        {
+            jLabel2.setText("Inicio de sesión (" + "Usuario" + ")");
+        }
+    }//GEN-LAST:event_rSSwitch1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -373,5 +409,6 @@ public class InicioSesion extends javax.swing.JFrame
     private newscomponents.RSButtonIcon_new rSButtonIcon_new3;
     private RSMaterialComponent.RSPanelMaterial rSPanelMaterial1;
     private RSMaterialComponent.RSPanelMaterialImage rSPanelMaterialImage1;
+    private RSMaterialComponent.RSSwitch rSSwitch1;
     // End of variables declaration//GEN-END:variables
 }

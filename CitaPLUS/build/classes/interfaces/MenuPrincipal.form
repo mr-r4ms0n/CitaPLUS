@@ -375,8 +375,8 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="rSLabelIcon1" min="-2" pref="70" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="263" max="-2" attributes="0"/>
-                      <EmptySpace pref="1046" max="32767" attributes="0"/>
+                      <Component id="jLabel1" min="-2" pref="285" max="-2" attributes="0"/>
+                      <EmptySpace pref="1024" max="32767" attributes="0"/>
                       <Component id="btnCerrar" min="-2" pref="56" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -409,7 +409,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Cita Plus"/>
+                <Property name="text" type="java.lang.String" value="Cita Plus Usuario"/>
               </Properties>
             </Component>
             <Component class="RSMaterialComponent.RSLabelIcon" name="rSLabelIcon1">
