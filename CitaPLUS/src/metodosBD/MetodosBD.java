@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import metodosAux.MetodosAux;
 import metodosAux.RSObjectArray;
+import seguridad.Encoder;
 
 /**
  *
@@ -90,9 +91,12 @@ public class MetodosBD
                 {
                     ret = new Object[4];
                     ret[0] = true;
+                    byte[] imagen1 = null;
+                    Blob i1 = resultado.getBlob("foto");
+                    imagen1 = i1.getBytes(1, (int) i1.length());
                     ret[1] = resultado.getString("usuario");
                     ret[2] = resultado.getString("nombre") + " " + resultado.getString("apellidoPaterno") + " " + resultado.getString("apellidoMaterno");
-                    ret[3] = resultado.getString("foto");
+                    ret[3] = imagen1;
                 }
             }
             dbCon.close();
@@ -110,14 +114,15 @@ public class MetodosBD
      *
      * @param campo valor que el usuario esta digitando
      * @param tipoC tipo de campo unico nombre = 1, telefono = 2, correo = 3
+     * @param tabla tabla donde se desea buscar
      * @return
      */
-    public static boolean existeCampoRepetPaciente(String campo, String tipoC)
+    public static boolean existeCampoRepet(String campo, String tipoC, String tabla)
     {
         try
         {
             dbCon = ConectaBD.ConectaBD();
-            sentencia = dbCon.prepareStatement("SELECT " + tipoC + " FROM pacientes WHERE " + tipoC + " = ?");
+            sentencia = dbCon.prepareStatement("SELECT * FROM " + tabla + " WHERE " + tipoC + " = ?");
             sentencia.setString(1, campo);
             resultado = sentencia.executeQuery();
             if (resultado.next())
@@ -400,8 +405,6 @@ public class MetodosBD
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    
     //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-PARTE CITAS *-*-*-*-*-*-*-*-*-*-**-*-*-**-*-*-*-*-
     /**
      * Método que obtiene unicamente los datos de una cita
@@ -613,9 +616,8 @@ public class MetodosBD
         }
         return total;
     }
-    
+
     //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-PARTE USUARIOS *-*-*-*-*-*-*-*-*-*-**-*-*-**-*-*-*-*-
-    
     public static ResultSet rsListarUsuarios(int tab, String filtro)
     {
         try
@@ -668,7 +670,7 @@ public class MetodosBD
         }
         return null;
     }
-    
+
     public static int contarUsuarios(int tab)
     {
         int total = -1;
@@ -708,4 +710,144 @@ public class MetodosBD
         }
         return total;
     }
+
+    public static boolean actualizarEstatusUsuario(int id, int estatus)
+    {
+        try
+        {
+            dbCon = ConectaBD.ConectaBD();
+
+            sentencia = dbCon.prepareStatement("UPDATE usuarios SET estatus = ? WHERE id = ?");
+            sentencia.setInt(1, estatus);
+            sentencia.setInt(2, id);
+            int rs = sentencia.executeUpdate();
+            if (rs > 0)
+            {
+                return true;
+            }
+            dbCon.close();
+
+        } catch (SQLException e)
+        {
+            System.err.println("Error al actualizar el status del usuario de tipo sql: " + e);
+        }
+        return false;
+    }
+
+    public static boolean actualizarUsuario(int id, Object[] datos)
+    {
+        try
+        {
+            String rutaImagen = datos[0].toString();
+            System.out.println(rutaImagen);
+            //La transformamos a fichero
+            File fPerf = new File(rutaImagen);
+            //La transformamos a fichero de enteada (binario)
+            FileInputStream fIPerf = new FileInputStream(fPerf);
+            //Reasignamos la foto codificada al arreglo y hacemos la insercion a la BD
+            datos[0] = fIPerf;
+
+            dbCon = ConectaBD.ConectaBD();
+            sentencia = dbCon.prepareStatement("UPDATE usuario SET nombre =?,apellidoPaterno=?,apellidoMaterno=?,contraseña=?,estatus=?,sexo=?,foto=? WHERE id = ?");
+            sentencia.setBinaryStream(1, (InputStream) datos[0]);
+            sentencia.setString(2, datos[1].toString());
+            sentencia.setString(3, datos[2].toString());
+            sentencia.setString(4, datos[3].toString());
+            sentencia.setString(5, datos[4].toString());
+            sentencia.setString(6, datos[5].toString());
+            sentencia.setString(7, datos[6].toString());
+            sentencia.setString(8, datos[7].toString());
+            sentencia.setInt(9, id);
+            int rs = sentencia.executeUpdate();
+
+            if (rs > 0)
+            {
+                return true;
+            }
+
+            dbCon.close();
+        } catch (FileNotFoundException | SQLException e)
+        {
+            System.err.println("Error al actualizar o al cargar la imagen del usuario de tipo sql: " + e);
+        }
+        return false;
+    }
+
+    public static boolean insertarUsuario(Object[] datos)
+    {
+        String columnas[] =
+        {
+            "usuario", "nombre", "apellidoPaterno", "apellidoMaterno", "contraseña", "sexo", "foto"
+        };
+        try
+        {
+            //Vemos que la ruta de la imagen este correcta
+            String rutaImagen = (String) datos[6];
+            System.out.println(rutaImagen);
+            //La transformamos a fichero
+            File fPerf = new File(rutaImagen);
+            //La transformamos a fichero de enteada (binario)
+            FileInputStream fIPerf = new FileInputStream(fPerf);
+            //Reasignamos la foto codificada al arreglo y hacemos la insercion a la BD
+            datos[6] = fIPerf;
+            dbCon = ConectaBD.ConectaBD();
+
+            sentencia = MetodosAux.SQLInserta("usuarios", columnas, datos, dbCon, sentencia);
+
+            int r = sentencia.executeUpdate();
+
+            if (r > 0)
+            {
+                return true;
+            }
+        } catch (SQLException e)
+        {
+            System.out.println("Error al insertar usuario: " + e.toString());
+        } catch (FileNotFoundException ex)
+        {
+            System.out.println("Error al obtener la imagen : " + ex.toString());
+        }
+        return false;
+    }
+
+    public static RSObjectArray getUsuario(String usuarioId)
+    {
+        try
+        {
+            dbCon = ConectaBD.ConectaBD();
+            sentencia = dbCon.prepareStatement("SELECT * FROM usuarios WHERE id = ?");
+            sentencia.setString(1, usuarioId);
+            resultado = sentencia.executeQuery();
+            if (resultado.next())
+            {
+                RSObjectArray arreglo = new RSObjectArray();
+                //Primero extraemos la imagen del usuario y la convertimos a imagen visible
+                byte[] imagen1 = null;
+                Blob i1 = resultado.getBlob("foto");
+                imagen1 = i1.getBytes(1, (int) i1.length());
+                if (imagen1 != null)
+                {
+                    arreglo.add("id", resultado.getInt("id"));
+                    arreglo.add("usuario", resultado.getString("usuario"));
+                    arreglo.add("nombre", resultado.getString("nombre"));
+                    arreglo.add("apellidoPaterno", resultado.getString("apellidoPaterno"));
+                    arreglo.add("apellidoMaterno", resultado.getString("apellidoMaterno"));
+                    arreglo.add("contraseña", Encoder.deencode(resultado.getString("contraseña")));
+                    int estado = resultado.getInt("estatus");
+                    String estadoCad = (estado == 1) ? "Activo" : "Inactivo"; //Para que entiendas por si lees el codigo xd, si el estado es 1 entonces estadocad sera activo, sino sera inactivo.
+                    arreglo.add("estatus", estadoCad);
+                    arreglo.add("sexo", resultado.getString("sexo"));
+                    arreglo.add("foto", imagen1);
+                    return arreglo;
+                }
+            }
+            dbCon.close();
+        } catch (SQLException e)
+        {
+            System.err.println("Error en obtener pacientes de tipo sql: " + e);
+        }
+
+        return null;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

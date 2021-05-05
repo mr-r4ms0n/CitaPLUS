@@ -5,10 +5,15 @@
  */
 package interfaces;
 
+import java.awt.Image;
 import java.awt.Shape;
 import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.geom.RoundRectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -28,7 +33,7 @@ public class MenuPrincipal extends javax.swing.JFrame
      * @param nombre
      * @param foto
      */
-    public MenuPrincipal(String usuario, String nombre, String foto)
+    public MenuPrincipal(String usuario, String nombre, byte[] foto)
     {
         initComponents();
         setIconImage(Toolkit.getDefaultToolkit().getImage("citasplus.png"));
@@ -40,7 +45,16 @@ public class MenuPrincipal extends javax.swing.JFrame
         //Establecemos los campos segun esto corresponda de lo que se encontro registrado en la BD
         jLNombre.setText(nombre);
         jLUsuario.setText(usuario);
-        imagenDePerfil.setImagen(new ImageIcon(getClass().getResource("/imagenes/" + foto)));
+        try
+        {
+            BufferedImage img1;
+            img1 = ImageIO.read(new ByteArrayInputStream(foto));
+            ImageIcon icon1 = new ImageIcon(img1.getScaledInstance(imagenDePerfil.getWidth(), imagenDePerfil.getHeight(), Image.SCALE_DEFAULT));
+            imagenDePerfil.setImagen(icon1);
+        } catch (IOException ex)
+        {
+            System.err.println("Error al insertar la foto desde la base de datos en el panel de edicion de informacion");
+        }
     }
 
     private MenuPrincipal()

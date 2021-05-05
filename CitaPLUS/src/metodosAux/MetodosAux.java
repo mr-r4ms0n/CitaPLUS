@@ -195,7 +195,7 @@ public class MetodosAux
         }
         return resultado;
     }
-    
+
     public static boolean validarpFormuPass(RSPasswordOne field, JLabel error, String tipo)
     {
         boolean resultado = false;
@@ -298,6 +298,8 @@ public class MetodosAux
         arr.add("titulo", titulo);
         arr.add("mensaje", msg);
         arr.add("tipo", type);
-        new Alerta(MenuPrincipal.vtn,true, arr).setVisible(true);
+        new Alerta(MenuPrincipal.vtn, true, arr).setVisible(true);
     }
+
+    
 }

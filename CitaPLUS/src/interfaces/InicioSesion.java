@@ -333,7 +333,7 @@ public class InicioSesion extends javax.swing.JFrame
                 {
                     if ((boolean) resultados[0])
                     {
-                        new MenuPrincipal((String) resultados[1], (String) resultados[2], (String) resultados[3]).setVisible(true);
+                        new MenuPrincipal((String) resultados[1], (String) resultados[2], (byte[]) resultados[3]).setVisible(true);
                         dispose();
                     }
                 } else

@@ -240,6 +240,6 @@ public class TablaContenidoUsuarios extends javax.swing.JPanel
     private static RSMaterialComponent.RSLabelTextIcon JLTitulo;
     private javax.swing.JScrollPane jScrollPane1;
     private RSMaterialComponent.RSTextFieldMaterialIcon jTBuscarUsuario;
-    public RSMaterialComponent.RSTableMetroCustom tblUsuario;
+    public static RSMaterialComponent.RSTableMetroCustom tblUsuario;
     // End of variables declaration//GEN-END:variables
 }

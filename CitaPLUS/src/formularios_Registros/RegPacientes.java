@@ -583,7 +583,7 @@ public class RegPacientes extends javax.swing.JDialog
             telefonoC = false;
         } else
         {
-            if (MetodosBD.existeCampoRepetPaciente(telefono.getText().trim(), "telefono") == true)
+            if (MetodosBD.existeCampoRepet(telefono.getText().trim(), "telefono","pacientes") == true)
             {
                  error_telefono.setForeground(SysConfigs.bg_danger);
             error_telefono.setText("Ops, este telefono ya existe");
@@ -616,12 +616,12 @@ public class RegPacientes extends javax.swing.JDialog
 
     private void correoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_correoKeyReleased
     {//GEN-HEADEREND:event_correoKeyReleased
-        if (Validaciones.validaEmail(correo, error_correo) && MetodosBD.existeCampoRepetPaciente(correo.getText().trim(), "correo") == false)
+        if (Validaciones.validaEmail(correo, error_correo) && MetodosBD.existeCampoRepet(correo.getText().trim(), "correo","pacientes") == false)
         {
             correoC = true;
         } else
         {
-            if (MetodosBD.existeCampoRepetPaciente(correo.getText().trim(), "correo") == true)
+            if (MetodosBD.existeCampoRepet(correo.getText().trim(), "correo","pacientes") == true)
             {
                 error_correo.setForeground(SysConfigs.bg_danger);
                 error_correo.setText("Ops, este correo ya exsite");

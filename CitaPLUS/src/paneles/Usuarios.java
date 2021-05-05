@@ -6,6 +6,7 @@
 package paneles;
 
 import formularios_Registros.RegPacientes;
+import formularios_Registros.RegUsuarios;
 import metodosBD.MetodosBD;
 
 /**
@@ -191,7 +192,7 @@ public class Usuarios extends javax.swing.JPanel
 
     private void rSButtonIcon_new1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSButtonIcon_new1ActionPerformed
     {//GEN-HEADEREND:event_rSButtonIcon_new1ActionPerformed
-        new RegPacientes().setVisible(true);
+        new RegUsuarios().setVisible(true);
     }//GEN-LAST:event_rSButtonIcon_new1ActionPerformed
 
     private void tabTodosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabTodosActionPerformed
@@ -244,6 +245,6 @@ public class Usuarios extends javax.swing.JPanel
     public static newscomponents.RSButtonIcon_new tabActivos;
     private static newscomponents.RSButtonIcon_new tabInactivos;
     private static newscomponents.RSButtonIcon_new tabTodos;
-    private paneles.TablaContenidoUsuarios tablaContenidoUsuarios1;
+    public static paneles.TablaContenidoUsuarios tablaContenidoUsuarios1;
     // End of variables declaration//GEN-END:variables
 }

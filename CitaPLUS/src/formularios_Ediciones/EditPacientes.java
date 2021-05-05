@@ -581,7 +581,7 @@ public class EditPacientes extends javax.swing.JDialog
             error_apellidoPaterno.setForeground(SysConfigs.bg_warning);
             error_apellidoPaterno.setText("Digite mas de 2 digitos");
             apeP = false;
-            
+
         }
         btnRegistrar.setEnabled((apeP == true && nombreC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
     }//GEN-LAST:event_apellidoPaternoKeyReleased
@@ -601,7 +601,7 @@ public class EditPacientes extends javax.swing.JDialog
                 error_apellidoMaterno.setForeground(SysConfigs.bg_white);
                 error_apellidoMaterno.setText("Error en el campo");
                 apeM = true;
-                System.out.println("Nombre boolean: "+nombreC+"ApellidoPaterno: "+apeP+"Sexo: "+sexo.getSelectedIndex());
+                System.out.println("Nombre boolean: " + nombreC + "ApellidoPaterno: " + apeP + "Sexo: " + sexo.getSelectedIndex());
                 btnRegistrar.setEnabled((apeP == true && nombreC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
             }
         }
@@ -617,7 +617,7 @@ public class EditPacientes extends javax.swing.JDialog
             btnRegistrar.setEnabled(false);
         } else
         {
-            if (MetodosBD.existeCampoRepetPaciente(telefono.getText().trim(), "telefono") == true)
+            if (MetodosBD.existeCampoRepet(telefono.getText().trim(), "telefono", "pacientes") == true)
             {
                 error_telefono.setForeground(SysConfigs.bg_danger);
                 error_telefono.setText("Ops, este telefono ya existe");
@@ -652,14 +652,14 @@ public class EditPacientes extends javax.swing.JDialog
 
     private void correoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_correoKeyReleased
     {//GEN-HEADEREND:event_correoKeyReleased
-        if (Validaciones.validaEmail(correo, error_correo) && MetodosBD.existeCampoRepetPaciente(correo.getText().trim(), "correo") == false)
+        if (Validaciones.validaEmail(correo, error_correo) && MetodosBD.existeCampoRepet(correo.getText().trim(), "correo", "pacientes") == false)
         {
             correoC = true;
             btnRegistrar.setEnabled((apeP == true && nombreC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
         } else
         {
             btnRegistrar.setEnabled(false);
-            if (MetodosBD.existeCampoRepetPaciente(correo.getText().trim(), "correo") == true)
+            if (MetodosBD.existeCampoRepet(correo.getText().trim(), "correo", "pacientes") == true)
             {
                 error_correo.setForeground(SysConfigs.bg_danger);
                 error_correo.setText("Ops, este correo ya exsite");

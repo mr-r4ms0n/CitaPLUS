@@ -21,19 +21,21 @@ import javax.swing.KeyStroke;
  */
 public class Validaciones
 {
+
     /**
      * Valida que una cadena cumpla con el formato de un correo electronico
+     *
      * @param email
-     * @return 
+     * @return
      */
-    public static boolean validaEmail(RSTextFieldOne email,JLabel error)
+    public static boolean validaEmail(RSTextFieldOne email, JLabel error)
     {
         if (email.getText().matches("^([0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$") || email.getText().isEmpty())
         {
             error.setText("Error en el campo");
             error.setForeground(SysConfigs.bg_white);
             return true;
-        }else
+        } else
         {
             error.setForeground(SysConfigs.bg_danger);
             error.setText("El correo es invalido");
@@ -43,8 +45,9 @@ public class Validaciones
 
     /**
      * Valida que una cadena solamente contenga numeros
+     *
      * @param cadena
-     * @return 
+     * @return
      */
     public static boolean validaNumericos(String cadena)
     {
@@ -87,7 +90,9 @@ public class Validaciones
     }
 
     /**
-     * Método encargado de desactivar la opcion de copiar y pegar de un conjunto de textfield 
+     * Método encargado de desactivar la opcion de copiar y pegar de un conjunto
+     * de textfield
+     *
      * @param txt arreglo de textfields a desactivar
      */
     public static void disableCP(RSTextFieldOne txt[])
@@ -97,7 +102,84 @@ public class Validaciones
             txt1.getInputMap().put(KeyStroke.getKeyStroke("control C"), "none");
             txt1.getInputMap().put(KeyStroke.getKeyStroke("control V"), "none");
         }
-        
+    }
+
+    public static boolean validarPass(RSTextFieldOne campo, JLabel error)
+    {
+        boolean ret = true;
+        String resultado = "Muy Buena";    // Resultado de password valido
+
+        int length = 0;                     // Almacenamos numero de caracteres en el pass
+        int numCount = 0;                   // Variable usada para almacenar numeros en el password
+        int capCount = 0;                   // Variable usada para almacenar mayusculas en el password
+        int capSignos = 0;                  // Variable usada para almacenar los signos
+        int Arroba = 0;                     // solo la arroba -.-!
+
+        for (int x = 0; x < campo.getText().length(); x++)
+        {
+            if ((campo.getText().charAt(x) >= 47 && campo.getText().charAt(x) <= 58) //numeros
+                    || (campo.getText().charAt(x) >= 64 && campo.getText().charAt(x) <= 91) //mayusculas
+                    || (campo.getText().charAt(x) >= 63 && campo.getText().charAt(x) <= 65) //Arroba
+                    || (campo.getText().charAt(x) >= 32 && campo.getText().charAt(x) <= 44) //signos
+                    || (campo.getText().charAt(x) >= 97 && campo.getText().charAt(x) <= 122))
+            {  //minusculas
+
+            }
+            if ((campo.getText().charAt(x) > 63 && campo.getText().charAt(x) < 65))
+            { // Cuenta las arrobas
+                Arroba++;
+
+            }
+            if ((campo.getText().charAt(x) > 32 && campo.getText().charAt(x) < 44))
+            { // Cuenta la cantidad signos
+                capSignos++;
+
+            }
+            if ((campo.getText().charAt(x) > 47 && campo.getText().charAt(x) < 58))
+            { // Cuenta la cantidad de numero
+                numCount++;
+
+            }
+
+            if ((campo.getText().charAt(x) > 64 && campo.getText().charAt(x) < 91))
+            { // Cuenta la cantidad de mayuscula
+                capCount++;
+            }
+
+            length = (x + 1); // Cuenta la longitud del password
+
+        } // Final del bucle
+
+        if (capSignos < 1)
+        {                // Revisa la longitud minima de 8 caracteres del password
+            resultado = ("no tiene caracteres especiales como ( ! # $ % & ' ( ) + - )");
+            ret = false;
+        }
+        if (Arroba < 1)
+        {                // Revisa la longitud minima de 8 caracteres del password
+            resultado = ("Coloque un @ para mayor seguridad");
+            ret = false;
+        }
+        if (numCount < 1)
+        {              // Revisa que el password contenga minimo 1 numero
+            resultado = ("Medio");
+            ret = false;
+        }
+
+        if (capCount < 1)
+        {                            // Revisa que el password contenga minimo 1 mayuscula
+            resultado = ("Facil");
+            ret = false;
+        }
+
+        if (length < 5)
+        {                // Revisa la longitud minima de 8 caracteres del password
+            resultado = ("Inutilizable: no cumple con el mínimo de caracteres!");
+            ret = false;
+        }
+
+        error.setText(resultado);
+        return ret;
     }
 
 }
