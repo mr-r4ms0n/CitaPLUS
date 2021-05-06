@@ -5,7 +5,7 @@
  */
 package formularios_Detalles;
 
-import interfaces.MenuPrincipal;
+import interfaces.MenuUsuario;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Shape;

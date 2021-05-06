@@ -15,8 +15,6 @@ import java.io.File;
 import metodosBD.MetodosBD;
 import rojeru_san.complementos.RSEffectFade;
 import seguridad.Encoder;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import seguridad.EncoderA;
 
 /**
@@ -50,7 +48,7 @@ public class InicioSesion extends javax.swing.JFrame
         jLErrorContra.setText(null);
         jLCorrrecto.setText(null);
     }
-    
+
     public void verificaFile()
     {
         File f = new File("props.dat");
@@ -59,7 +57,7 @@ public class InicioSesion extends javax.swing.JFrame
             new RegAdm().setVisible(true);
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -123,6 +121,10 @@ public class InicioSesion extends javax.swing.JFrame
             public void keyPressed(java.awt.event.KeyEvent evt)
             {
                 JTFUsuarioKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt)
+            {
+                JTFUsuarioKeyReleased(evt);
             }
         });
 
@@ -331,10 +333,19 @@ public class InicioSesion extends javax.swing.JFrame
                 Object resultados[] = MetodosBD.ingresoSys(JTFUsuario.getText().trim(), Encoder.encode(JTFContraseña.getText().trim()));
                 if (resultados != null)
                 {
-                    if ((boolean) resultados[0])
+                    if ((boolean) resultados[0] && (int) resultados[4] != 2)
                     {
-                        new MenuPrincipal((String) resultados[1], (String) resultados[2], (byte[]) resultados[3]).setVisible(true);
+                        new MenuUsuario((String) resultados[1], (String) resultados[2], (byte[]) resultados[3]).setVisible(true);
                         dispose();
+                    } else
+                    {
+                        if ((boolean) resultados[0] && (int) resultados[4] != 1)
+                        {
+                            jLCorrrecto.setForeground(Color.RED);
+                            jLCorrrecto.setText("Usuario deshabilitado, contacte al administrador");
+                            JTFUsuario.setText(null);
+                            JTFContraseña.setText(null);
+                        }
                     }
                 } else
                 {
@@ -347,13 +358,15 @@ public class InicioSesion extends javax.swing.JFrame
             {
                 if (EncoderA.verificaAdm(JTFUsuario.getText(), JTFContraseña.getText()))
                 {
-                    new MenuPrincipal2().setVisible(true);
+                    new MenuAdministrador().setVisible(true);
+                    dispose();
                 } else
                 {
                     jLCorrrecto.setForeground(Color.RED);
                     jLCorrrecto.setText("Las credenciales son incorrectas");
                     JTFUsuario.setText(null);
                     JTFContraseña.setText(null);
+                    
                 }
             }
 
@@ -397,6 +410,11 @@ public class InicioSesion extends javax.swing.JFrame
             jLabel2.setText("Inicio de sesión (" + "Usuario" + ")");
         }
     }//GEN-LAST:event_rSSwitch1MouseClicked
+
+    private void JTFUsuarioKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFUsuarioKeyReleased
+    {//GEN-HEADEREND:event_JTFUsuarioKeyReleased
+        iniciarLabels();
+    }//GEN-LAST:event_JTFUsuarioKeyReleased
 
     /**
      * @param args the command line arguments

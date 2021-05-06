@@ -89,7 +89,7 @@ public class MetodosBD
             {
                 if (resultado.getString("usuario").equals(usr) && resultado.getString("contraseña").equals(pass))
                 {
-                    ret = new Object[4];
+                    ret = new Object[5];
                     ret[0] = true;
                     byte[] imagen1 = null;
                     Blob i1 = resultado.getBlob("foto");
@@ -97,6 +97,7 @@ public class MetodosBD
                     ret[1] = resultado.getString("usuario");
                     ret[2] = resultado.getString("nombre") + " " + resultado.getString("apellidoPaterno") + " " + resultado.getString("apellidoMaterno");
                     ret[3] = imagen1;
+                    ret[4] = resultado.getInt("estatus");
                 }
             }
             dbCon.close();
@@ -738,26 +739,25 @@ public class MetodosBD
     {
         try
         {
-            String rutaImagen = datos[0].toString();
+            String rutaImagen = datos[6].toString();
             System.out.println(rutaImagen);
             //La transformamos a fichero
             File fPerf = new File(rutaImagen);
             //La transformamos a fichero de enteada (binario)
             FileInputStream fIPerf = new FileInputStream(fPerf);
             //Reasignamos la foto codificada al arreglo y hacemos la insercion a la BD
-            datos[0] = fIPerf;
+            datos[6] = fIPerf;
 
             dbCon = ConectaBD.ConectaBD();
-            sentencia = dbCon.prepareStatement("UPDATE usuario SET nombre =?,apellidoPaterno=?,apellidoMaterno=?,contraseña=?,estatus=?,sexo=?,foto=? WHERE id = ?");
-            sentencia.setBinaryStream(1, (InputStream) datos[0]);
+            sentencia = dbCon.prepareStatement("UPDATE usuarios SET usuario = ?, nombre =?, apellidoPaterno=?,apellidoMaterno=?,contraseña=?,sexo=?,foto=? WHERE id = ?");
+            sentencia.setString(1, datos[0].toString());
             sentencia.setString(2, datos[1].toString());
             sentencia.setString(3, datos[2].toString());
             sentencia.setString(4, datos[3].toString());
             sentencia.setString(5, datos[4].toString());
             sentencia.setString(6, datos[5].toString());
-            sentencia.setString(7, datos[6].toString());
-            sentencia.setString(8, datos[7].toString());
-            sentencia.setInt(9, id);
+            sentencia.setBinaryStream(7, (InputStream) datos[6]);
+            sentencia.setInt(8, id);
             int rs = sentencia.executeUpdate();
 
             if (rs > 0)

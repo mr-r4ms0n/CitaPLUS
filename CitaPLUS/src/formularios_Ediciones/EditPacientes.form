@@ -500,7 +500,7 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="9f" green="75" red="1a" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Registar Paciente"/>
+                <Property name="text" type="java.lang.String" value="Guardar cambios"/>
                 <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="b0" green="a1" red="81" type="rgb"/>
                 </Property>

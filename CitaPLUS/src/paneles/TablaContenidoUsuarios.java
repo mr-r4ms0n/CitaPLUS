@@ -7,7 +7,9 @@ package paneles;
 
 import RSMaterialComponent.RSTableMetroCustom;
 import formularios_Detalles.InfoPacientes;
+import formularios_Detalles.InfoUsuarios;
 import formularios_Ediciones.EditPacientes;
+import formularios_Ediciones.EditUsuarios;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
@@ -45,6 +47,7 @@ public class TablaContenidoUsuarios extends javax.swing.JPanel
      */
     public static void listarUsuarios(RSTableMetroCustom tabla, int tab, String filtro)
     {
+        System.out.println("SI ENTRO");
         if (filtro == null)
         {
             filtro = "";
@@ -97,12 +100,12 @@ public class TablaContenidoUsuarios extends javax.swing.JPanel
 
     public void viewInfo(Object value)
     {
-        new InfoPacientes(null, true, MetodosBD.getPaciente(value.toString())).setVisible(true);
+        new InfoUsuarios(null, true, MetodosBD.getUsuario(value.toString())).setVisible(true);
     }
 
     public void editInfo(Object value)
     {
-        new EditPacientes(MetodosBD.getPaciente(value.toString())).setVisible(true);
+        new EditUsuarios(MetodosBD.getUsuario(value.toString())).setVisible(true);
     }
 
     /**
@@ -232,7 +235,7 @@ public class TablaContenidoUsuarios extends javax.swing.JPanel
     private void jTBuscarUsuarioKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTBuscarUsuarioKeyReleased
     {//GEN-HEADEREND:event_jTBuscarUsuarioKeyReleased
         System.out.println(jTBuscarUsuario.getText().trim());
-        listarUsuarios(tblUsuario, Pacientes.tabSelecc, jTBuscarUsuario.getText().trim());
+        listarUsuarios(tblUsuario, Usuarios.tabSelecc, jTBuscarUsuario.getText().trim());
     }//GEN-LAST:event_jTBuscarUsuarioKeyReleased
 
 
@@ -240,6 +243,6 @@ public class TablaContenidoUsuarios extends javax.swing.JPanel
     private static RSMaterialComponent.RSLabelTextIcon JLTitulo;
     private javax.swing.JScrollPane jScrollPane1;
     private RSMaterialComponent.RSTextFieldMaterialIcon jTBuscarUsuario;
-    public static RSMaterialComponent.RSTableMetroCustom tblUsuario;
+    public RSMaterialComponent.RSTableMetroCustom tblUsuario;
     // End of variables declaration//GEN-END:variables
 }

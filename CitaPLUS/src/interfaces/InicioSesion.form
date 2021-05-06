@@ -219,6 +219,7 @@
               </Properties>
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTFUsuarioKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTFUsuarioKeyReleased"/>
               </Events>
             </Component>
             <Component class="RSMaterialComponent.RSPasswordMaterialIcon" name="JTFContrase&#xf1;a">

@@ -11,7 +11,7 @@ import RSMaterialComponent.RSTableMetroCustom;
 import RSMaterialComponent.RSTextFieldOne;
 import alertas.Alerta;
 import formularios_Registros.RegPacientes;
-import interfaces.MenuPrincipal;
+import interfaces.MenuUsuario;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -24,7 +24,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -298,7 +297,7 @@ public class MetodosAux
         arr.add("titulo", titulo);
         arr.add("mensaje", msg);
         arr.add("tipo", type);
-        new Alerta(MenuPrincipal.vtn, true, arr).setVisible(true);
+        new Alerta(MenuUsuario.vtn, true, arr).setVisible(true);
     }
 
     

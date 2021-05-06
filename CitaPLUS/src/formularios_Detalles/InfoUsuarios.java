@@ -5,7 +5,6 @@
  */
 package formularios_Detalles;
 
-import interfaces.MenuPrincipal;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Shape;
@@ -13,20 +12,19 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import rojeru_san.complementos.RSUtilities;
 import metodosAux.*;
 import metodosBD.MetodosBD;
-import paneles.Pacientes;
 import static paneles.Pacientes.actualizarNumPacientes;
-import static paneles.Pacientes.tabSelecc;
 import static paneles.Pacientes.tablaContenidoPacientes2;
 import paneles.TablaContenidoPacientes;
-import static paneles.TablaContenidoPacientes.listarPacientes;
+import paneles.TablaContenidoUsuarios;
+import paneles.Usuarios;
+import static paneles.Usuarios.actualizarNumUsuarios;
+import static paneles.Usuarios.tabSelecc;
+import static paneles.Usuarios.tablaContenidoUsuarios2;
 import rojeru_san.complementos.RSEffectFade;
 import rojeru_san.efectos.ValoresEnum;
 
@@ -68,10 +66,11 @@ public class InfoUsuarios extends javax.swing.JDialog
                     : (String) arregloDatos.getValue("nombre") + " " + (String) arregloDatos.getValue("apellidoPaterno"));
 
             lblSexo.setText((String) arregloDatos.getValue("sexo"));
-            lblTelefono.setText((String) arregloDatos.getValue("telefono"));
-            lblCorreo.setText((String) arregloDatos.getValue("correo"));
+            lblContraseña.setText((String) arregloDatos.getValue("contraseña"));
+            lblUsuario.setText((String) arregloDatos.getValue("usuario"));
             lblEstatus.setText((String) arregloDatos.getValue("estatus"));
 
+            //Parte para establecer los colores e interactividad con el boton de deshabilitar
             lblEstatus.setForeground((arregloDatos.getValue("estatus").equals("Activo")) ? new Color(151, 194, 129) : new Color(216, 43, 43));
             rSLabelTextIcon6.setForeground((arregloDatos.getValue("estatus").equals("Activo")) ? new Color(151, 194, 129) : new Color(216, 43, 43));
 
@@ -124,10 +123,10 @@ public class InfoUsuarios extends javax.swing.JDialog
         lblEstatus = new javax.swing.JLabel();
         rSPanelBorder3 = new RSMaterialComponent.RSPanelBorder();
         rSLabelTextIcon8 = new RSMaterialComponent.RSLabelTextIcon();
-        lblTelefono = new javax.swing.JLabel();
+        lblContraseña = new javax.swing.JLabel();
         rSPanelBorder4 = new RSMaterialComponent.RSPanelBorder();
         rSLabelTextIcon9 = new RSMaterialComponent.RSLabelTextIcon();
-        lblCorreo = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -178,7 +177,7 @@ public class InfoUsuarios extends javax.swing.JDialog
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        jLabel1.setText("Información del Paciente");
+        jLabel1.setText("Información del Usuario");
 
         btnCerrar.setBackground(new java.awt.Color(216, 43, 43));
         btnCerrar.setToolTipText("Cerrar");
@@ -198,7 +197,7 @@ public class InfoUsuarios extends javax.swing.JDialog
         rSPanelBorderGradient1Layout.setHorizontalGroup(
             rSPanelBorderGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelBorderGradient1Layout.createSequentialGroup()
-                .addContainerGap(185, Short.MAX_VALUE)
+                .addContainerGap(195, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(158, 158, 158)
                 .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -267,12 +266,12 @@ public class InfoUsuarios extends javax.swing.JDialog
         rSLabelTextIcon8.setForeground(new java.awt.Color(51, 51, 51));
         rSLabelTextIcon8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         rSLabelTextIcon8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        rSLabelTextIcon8.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PHONE);
+        rSLabelTextIcon8.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.LOCK);
         rSLabelTextIcon8.setSizeIcon(30.0F);
 
-        lblTelefono.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        lblTelefono.setForeground(new java.awt.Color(153, 153, 153));
-        lblTelefono.setText("Telefono");
+        lblContraseña.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        lblContraseña.setForeground(new java.awt.Color(153, 153, 153));
+        lblContraseña.setText("Contraseña");
 
         javax.swing.GroupLayout rSPanelBorder3Layout = new javax.swing.GroupLayout(rSPanelBorder3);
         rSPanelBorder3.setLayout(rSPanelBorder3Layout);
@@ -282,7 +281,7 @@ public class InfoUsuarios extends javax.swing.JDialog
                 .addContainerGap()
                 .addComponent(rSLabelTextIcon8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(315, Short.MAX_VALUE))
         );
         rSPanelBorder3Layout.setVerticalGroup(
@@ -290,7 +289,7 @@ public class InfoUsuarios extends javax.swing.JDialog
             .addGroup(rSPanelBorder3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(rSPanelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rSLabelTextIcon8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -304,12 +303,12 @@ public class InfoUsuarios extends javax.swing.JDialog
         rSLabelTextIcon9.setForeground(new java.awt.Color(51, 51, 51));
         rSLabelTextIcon9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         rSLabelTextIcon9.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        rSLabelTextIcon9.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EMAIL);
+        rSLabelTextIcon9.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
         rSLabelTextIcon9.setSizeIcon(30.0F);
 
-        lblCorreo.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        lblCorreo.setForeground(new java.awt.Color(153, 153, 153));
-        lblCorreo.setText("Correo");
+        lblUsuario.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(153, 153, 153));
+        lblUsuario.setText("Usuario");
 
         javax.swing.GroupLayout rSPanelBorder4Layout = new javax.swing.GroupLayout(rSPanelBorder4);
         rSPanelBorder4.setLayout(rSPanelBorder4Layout);
@@ -319,7 +318,7 @@ public class InfoUsuarios extends javax.swing.JDialog
                 .addContainerGap()
                 .addComponent(rSLabelTextIcon9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(316, Short.MAX_VALUE))
         );
         rSPanelBorder4Layout.setVerticalGroup(
@@ -327,7 +326,7 @@ public class InfoUsuarios extends javax.swing.JDialog
             .addGroup(rSPanelBorder4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(rSPanelBorder4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rSLabelTextIcon9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -369,12 +368,12 @@ public class InfoUsuarios extends javax.swing.JDialog
     {//GEN-HEADEREND:event_btnEstatusActionPerformed
 
         int newEstatus = (arregloDatos.getValue("estatus").equals("Activo") ? 2 : 1);
-        boolean resultado = MetodosBD.actualizarEstatusPaciente((int) arregloDatos.getValue("id"), newEstatus);
+        boolean resultado = MetodosBD.actualizarEstatusUsuario((int) arregloDatos.getValue("id"), newEstatus);
         if (resultado)
         {
             dispose();
-            TablaContenidoPacientes.listarPacientes(tablaContenidoPacientes2.tblPacientes, tabSelecc, null);
-            actualizarNumPacientes();
+            TablaContenidoUsuarios.listarUsuarios(tablaContenidoUsuarios2.tblUsuario, tabSelecc, null);
+            actualizarNumUsuarios();
             if (newEstatus == 1)
             {
                 MetodosAux.mostrarAlerta("Muy bien hecho", "Paciente Activado con Exito", 1);
@@ -459,12 +458,12 @@ public class InfoUsuarios extends javax.swing.JDialog
     private RSMaterialComponent.RSButtonIconOne btnCerrar;
     private newscomponents.RSButtonIcon_new btnEstatus;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel lblCorreo;
+    private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblEstatus;
     private RSMaterialComponent.RSPanelMaterialImage lblFoto;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblSexo;
-    private javax.swing.JLabel lblTelefono;
+    private javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel pnlFondo;
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon6;
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon8;

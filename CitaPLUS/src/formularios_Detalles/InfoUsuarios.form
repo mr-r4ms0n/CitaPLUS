@@ -159,7 +159,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace pref="185" max="32767" attributes="0"/>
+                          <EmptySpace pref="195" max="32767" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
                           <Component id="btnCerrar" min="-2" max="-2" attributes="0"/>
@@ -188,7 +188,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="24" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Informaci&#xf3;n del Paciente"/>
+                    <Property name="text" type="java.lang.String" value="Informaci&#xf3;n del Usuario"/>
                   </Properties>
                 </Component>
                 <Component class="RSMaterialComponent.RSButtonIconOne" name="btnCerrar">
@@ -330,7 +330,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="rSLabelTextIcon8" min="-2" pref="33" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="lblTelefono" min="-2" pref="295" max="-2" attributes="0"/>
+                          <Component id="lblContraseña" min="-2" pref="295" max="-2" attributes="0"/>
                           <EmptySpace pref="315" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -340,7 +340,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblTelefono" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="lblContraseña" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
                               <Component id="rSLabelTextIcon8" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
@@ -359,12 +359,12 @@
                       <Font name="Segoe UI Semibold" size="16" style="1"/>
                     </Property>
                     <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
-                      <Value id="PHONE"/>
+                      <Value id="LOCK"/>
                     </Property>
                     <Property name="sizeIcon" type="float" value="30.0"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblTelefono">
+                <Component class="javax.swing.JLabel" name="lblContrase&#xf1;a">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Light" size="18" style="0"/>
@@ -372,7 +372,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="99" green="99" red="99" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Telefono"/>
+                    <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -400,7 +400,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="rSLabelTextIcon9" min="-2" pref="32" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="lblCorreo" min="-2" pref="295" max="-2" attributes="0"/>
+                          <Component id="lblUsuario" min="-2" pref="295" max="-2" attributes="0"/>
                           <EmptySpace pref="316" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -410,7 +410,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="lblCorreo" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="lblUsuario" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
                               <Component id="rSLabelTextIcon9" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
@@ -429,12 +429,12 @@
                       <Font name="Segoe UI Semibold" size="16" style="1"/>
                     </Property>
                     <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
-                      <Value id="EMAIL"/>
+                      <Value id="PERSON"/>
                     </Property>
                     <Property name="sizeIcon" type="float" value="30.0"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblCorreo">
+                <Component class="javax.swing.JLabel" name="lblUsuario">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Light" size="18" style="0"/>
@@ -442,7 +442,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="99" green="99" red="99" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Correo"/>
+                    <Property name="text" type="java.lang.String" value="Usuario"/>
                   </Properties>
                 </Component>
               </SubComponents>

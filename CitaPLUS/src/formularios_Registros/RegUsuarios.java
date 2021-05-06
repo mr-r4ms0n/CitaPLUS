@@ -27,8 +27,8 @@ import static paneles.Pacientes.tablaContenidoPacientes2;
 import paneles.TablaContenidoPacientes;
 import paneles.TablaContenidoUsuarios;
 import paneles.Usuarios;
-import static paneles.Usuarios.tablaContenidoUsuarios1;
 import seguridad.Encoder;
+import static paneles.Usuarios.tablaContenidoUsuarios2;
 
 /**
  *
@@ -77,7 +77,7 @@ public class RegUsuarios extends javax.swing.JDialog
         this.error_apellidoMaterno.setForeground(Color.white);
         this.error_sexo.setForeground(Color.white);
         this.error_contraseña.setForeground(Color.white);
-        this.error_correo.setForeground(Color.white);
+        this.error_usuario.setForeground(Color.white);
         this.nombre.setText(null);
         this.apellidoPaterno.setText(null);
         this.apellidoMaterno.setText(null);
@@ -120,7 +120,7 @@ public class RegUsuarios extends javax.swing.JDialog
         error_nombre = new javax.swing.JLabel();
         error_apellidoPaterno = new javax.swing.JLabel();
         error_sexo = new javax.swing.JLabel();
-        error_correo = new javax.swing.JLabel();
+        error_usuario = new javax.swing.JLabel();
         error_apellidoMaterno = new javax.swing.JLabel();
         error_contraseña = new javax.swing.JLabel();
 
@@ -387,9 +387,9 @@ public class RegUsuarios extends javax.swing.JDialog
         error_sexo.setText("Etiqueta de Error");
         rSPanelBorder1.add(error_sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 480, 330, -1));
 
-        error_correo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        error_correo.setText("Etiqueta de Error");
-        rSPanelBorder1.add(error_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 610, 300, -1));
+        error_usuario.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        error_usuario.setText("Etiqueta de Error");
+        rSPanelBorder1.add(error_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 610, 300, -1));
 
         error_apellidoMaterno.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         error_apellidoMaterno.setText("Etiqueta de Error");
@@ -472,7 +472,7 @@ public class RegUsuarios extends javax.swing.JDialog
                 //Borramos la ruta de la imagen para refrescar
                 rutaImgPerfilRegistro = null;
                 //Actualizamos los usuariosd de las tablas
-                TablaContenidoUsuarios.listarUsuarios(tablaContenidoUsuarios1.tblUsuario, tabSelecc, null);
+                TablaContenidoUsuarios.listarUsuarios(tablaContenidoUsuarios2.tblUsuario, tabSelecc, null);
                 //Actualizamos el contador
                 Usuarios.actualizarNumUsuarios();
             } else
@@ -590,7 +590,6 @@ public class RegUsuarios extends javax.swing.JDialog
                 contraseñaC = true;
                 btnRegistrar.setEnabled((apeP == true && nombreC == true && contraseñaC == true && usuarioC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
             }
-
         }
     }//GEN-LAST:event_contraseñaKeyReleased
 
@@ -616,15 +615,15 @@ public class RegUsuarios extends javax.swing.JDialog
         if (!usuario.getText().isEmpty() && MetodosBD.existeCampoRepet(usuario.getText().trim(), "usuario", "usuarios") == false)
         {
             usuarioC = true;
-            error_correo.setForeground(SysConfigs.bg_white);
-            error_correo.setText("Error de campo");
+            error_usuario.setForeground(SysConfigs.bg_white);
+            error_usuario.setText("Error de campo");
             btnRegistrar.setEnabled((apeP == true && nombreC == true && contraseñaC == true && usuarioC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
         } else
         {
             if (MetodosBD.existeCampoRepet(usuario.getText().trim(), "usuario", "usuarios") == true)
             {
-                error_correo.setForeground(SysConfigs.bg_danger);
-                error_correo.setText("Ops, este usuario ya exsite");
+                error_usuario.setForeground(SysConfigs.bg_danger);
+                error_usuario.setText("Ops, este usuario ya exsite");
             }
         }
     }//GEN-LAST:event_usuarioKeyReleased
@@ -690,9 +689,9 @@ public class RegUsuarios extends javax.swing.JDialog
     private javax.swing.JLabel error_apellidoMaterno;
     private javax.swing.JLabel error_apellidoPaterno;
     private javax.swing.JLabel error_contraseña;
-    private javax.swing.JLabel error_correo;
     private javax.swing.JLabel error_nombre;
     private javax.swing.JLabel error_sexo;
+    private javax.swing.JLabel error_usuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

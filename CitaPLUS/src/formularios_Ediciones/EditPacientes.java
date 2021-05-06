@@ -392,7 +392,7 @@ public class EditPacientes extends javax.swing.JDialog
         rSPanelBorder1.add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 560, 330, -1));
 
         btnRegistrar.setBackground(new java.awt.Color(26, 117, 159));
-        btnRegistrar.setText("Registar Paciente");
+        btnRegistrar.setText("Guardar cambios");
         btnRegistrar.setBackgroundHover(new java.awt.Color(129, 161, 176));
         btnRegistrar.setEnabled(false);
         btnRegistrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

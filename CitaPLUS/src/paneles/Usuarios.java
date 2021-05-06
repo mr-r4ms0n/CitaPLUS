@@ -5,7 +5,6 @@
  */
 package paneles;
 
-import formularios_Registros.RegPacientes;
 import formularios_Registros.RegUsuarios;
 import metodosBD.MetodosBD;
 
@@ -64,7 +63,7 @@ public class Usuarios extends javax.swing.JPanel
         tabActivos = new newscomponents.RSButtonIcon_new();
         tabInactivos = new newscomponents.RSButtonIcon_new();
         tabTodos = new newscomponents.RSButtonIcon_new();
-        tablaContenidoUsuarios1 = new paneles.TablaContenidoUsuarios();
+        tablaContenidoUsuarios2 = new paneles.TablaContenidoUsuarios();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 4, 0, new java.awt.Color(26, 117, 159)));
@@ -179,14 +178,14 @@ public class Usuarios extends javax.swing.JPanel
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tablaContenidoUsuarios1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tablaContenidoUsuarios2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tablaContenidoUsuarios1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE))
+                .addComponent(tablaContenidoUsuarios2, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -205,8 +204,8 @@ public class Usuarios extends javax.swing.JPanel
             tabActivos.setSelected(false);
         }
 
-        tablaContenidoUsuarios1.listarUsuarios(tablaContenidoUsuarios1.tblUsuario, tabSelecc, null);
-        tablaContenidoUsuarios1.actualizarTitulo(0);
+        tablaContenidoUsuarios2.listarUsuarios(tablaContenidoUsuarios2.tblUsuario, tabSelecc, null);
+        tablaContenidoUsuarios2.actualizarTitulo(0);
     }//GEN-LAST:event_tabTodosActionPerformed
 
     private void tabInactivosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabInactivosActionPerformed
@@ -219,8 +218,8 @@ public class Usuarios extends javax.swing.JPanel
             tabActivos.setSelected(false);
         }
 
-        tablaContenidoUsuarios1.listarUsuarios(tablaContenidoUsuarios1.tblUsuario, tabSelecc, null);
-        tablaContenidoUsuarios1.actualizarTitulo(2);
+        tablaContenidoUsuarios2.listarUsuarios(tablaContenidoUsuarios2.tblUsuario, tabSelecc, null);
+        tablaContenidoUsuarios2.actualizarTitulo(2);
     }//GEN-LAST:event_tabInactivosActionPerformed
 
     private void tabActivosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabActivosActionPerformed
@@ -233,8 +232,8 @@ public class Usuarios extends javax.swing.JPanel
             tabActivos.setSelected(true);
         }
 
-        tablaContenidoUsuarios1.listarUsuarios(tablaContenidoUsuarios1.tblUsuario, tabSelecc, null);
-        tablaContenidoUsuarios1.actualizarTitulo(1);
+        tablaContenidoUsuarios2.listarUsuarios(tablaContenidoUsuarios2.tblUsuario, tabSelecc, null);
+        tablaContenidoUsuarios2.actualizarTitulo(1);
     }//GEN-LAST:event_tabActivosActionPerformed
 
 
@@ -245,6 +244,6 @@ public class Usuarios extends javax.swing.JPanel
     public static newscomponents.RSButtonIcon_new tabActivos;
     private static newscomponents.RSButtonIcon_new tabInactivos;
     private static newscomponents.RSButtonIcon_new tabTodos;
-    public static paneles.TablaContenidoUsuarios tablaContenidoUsuarios1;
+    public static paneles.TablaContenidoUsuarios tablaContenidoUsuarios2;
     // End of variables declaration//GEN-END:variables
 }
