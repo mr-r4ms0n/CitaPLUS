@@ -6,6 +6,7 @@
 package formularios_Ediciones;
 
 import RSMaterialComponent.RSTextFieldOne;
+import alertas.MyJOP;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Shape;
@@ -498,25 +499,28 @@ public class EditUsuarios extends javax.swing.JDialog
                 sexo.getSelectedItem().toString(),
                 fotoUpdate
             };
-
-            boolean insercionCorr = MetodosBD.actualizarUsuario(id, datosUpdate);
-            System.out.println(insercionCorr);
-            if (insercionCorr)
+            if (MyJOP.myJOPShowConfirmDialog(null, "¿Estas seguro que deseas realizar esta acción") == 1)
             {
-                dispose();
-                MetodosAux.mostrarAlerta("Muy bien hecho", "Se han actualizado con exito los datos del usuario", 1);
-                //Borramos la ruta de la imagen para refrescar
-                rutaImgPerfilRegistro = null;
-                //Actualizamos los usuarios de las tablas
+                boolean insercionCorr = MetodosBD.actualizarUsuario(id, datosUpdate);
+                System.out.println(insercionCorr);
+                if (insercionCorr)
+                {
+                    dispose();
+                    MetodosAux.mostrarAlerta("Muy bien hecho", "Se han actualizado con exito los datos del usuario", 1);
+                    //Borramos la ruta de la imagen para refrescar
+                    rutaImgPerfilRegistro = null;
+                    //Actualizamos los usuarios de las tablas
 
-                //Importantisimo que llamemos a la tabla que se instancio dentro de la clase TablaContenido, sino no funcionan las actualizaciones en tiempo real
-                TablaContenidoUsuarios.listarUsuarios(tablaContenidoUsuarios2.tblUsuario, tabSelecc, null);
-                //Actualizamos el contador
-                Usuarios.actualizarNumUsuarios();
-            } else
-            {
-                MetodosAux.mostrarAlerta("Error", " Ha ocurrido un error al actualizar los datos del paciente", 2);
+                    //Importantisimo que llamemos a la tabla que se instancio dentro de la clase TablaContenido, sino no funcionan las actualizaciones en tiempo real
+                    TablaContenidoUsuarios.listarUsuarios(tablaContenidoUsuarios2.tblUsuario, tabSelecc, null);
+                    //Actualizamos el contador
+                    Usuarios.actualizarNumUsuarios();
+                } else
+                {
+                    MetodosAux.mostrarAlerta("Error", " Ha ocurrido un error al actualizar los datos del paciente", 2);
+                }
             }
+            dispose();
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 

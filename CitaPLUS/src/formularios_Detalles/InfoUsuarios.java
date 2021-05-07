@@ -5,6 +5,7 @@
  */
 package formularios_Detalles;
 
+import alertas.MyJOP;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Shape;
@@ -368,28 +369,31 @@ public class InfoUsuarios extends javax.swing.JDialog
     {//GEN-HEADEREND:event_btnEstatusActionPerformed
 
         int newEstatus = (arregloDatos.getValue("estatus").equals("Activo") ? 2 : 1);
-        boolean resultado = MetodosBD.actualizarEstatusUsuario((int) arregloDatos.getValue("id"), newEstatus);
-        if (resultado)
+        if (MyJOP.myJOPShowConfirmDialog(null, "¿Estas seguro de realizar la acción?") == 1)
         {
-            dispose();
-            TablaContenidoUsuarios.listarUsuarios(tablaContenidoUsuarios2.tblUsuario, tabSelecc, null);
-            actualizarNumUsuarios();
-            if (newEstatus == 1)
+            boolean resultado = MetodosBD.actualizarEstatusUsuario((int) arregloDatos.getValue("id"), newEstatus);
+            if (resultado)
             {
-                MetodosAux.mostrarAlerta("Muy bien hecho", "Usuario Activado con Exito", 1);
-            } else
-            {
-                if (newEstatus == 2)
+                dispose();
+                TablaContenidoUsuarios.listarUsuarios(tablaContenidoUsuarios2.tblUsuario, tabSelecc, null);
+                actualizarNumUsuarios();
+                if (newEstatus == 1)
                 {
-                    MetodosAux.mostrarAlerta("Muy bien hecho", "Usuario Desactivado con Exito", 1);
+                    MetodosAux.mostrarAlerta("Muy bien hecho", "Usuario Activado con Exito", 1);
                 } else
                 {
-                    MetodosAux.mostrarAlerta("Error", "No se pudo completar la acción", 2);
-                }
+                    if (newEstatus == 2)
+                    {
+                        MetodosAux.mostrarAlerta("Muy bien hecho", "Usuario Desactivado con Exito", 1);
+                    } else
+                    {
+                        MetodosAux.mostrarAlerta("Error", "No se pudo completar la acción", 2);
+                    }
 
+                }
             }
         }
-
+        dispose();
     }//GEN-LAST:event_btnEstatusActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCerrarActionPerformed

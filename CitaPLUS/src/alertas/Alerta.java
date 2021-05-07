@@ -90,7 +90,7 @@ public class Alerta extends java.awt.Dialog
                 + "\n"
                 + "  </head>\n"
                 + "  <body>\n"
-                + "    <p style=\"margin-top: 0;font-size:16px;color:gray;text-align:center;\">" + mensaje + "</p>\n"
+                + "    <p style=\"margin-top:0;font-size:16px;color:black;text-align:center;font-family:georgia,garamond,serif;font-size:16px;font-style:italic;\">" + mensaje + "</p>\n"
                 + "  </body>\n"
                 + "</html>\n"
                 + "";
@@ -175,6 +175,7 @@ public class Alerta extends java.awt.Dialog
         mensaje.setEditable(false);
         mensaje.setContentType("text/html"); // NOI18N
         mensaje.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
+        mensaje.setText("<html>\r\n  <head>\r\n\r\n  </head>\r\n  <body>\r\n    <p style=\"margin-top:0;font-size:16px;color:black;text-align:center;font-family:georgia,garamond,serif;font-size:16px;font-style:italic;\">\r\n      \r\n    </p>\r\n  </body>\r\n</html>\r\n");
 
         btnAceptar.setBackground(new java.awt.Color(51, 153, 0));
         btnAceptar.setText("Aceptar");

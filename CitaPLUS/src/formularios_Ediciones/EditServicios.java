@@ -6,6 +6,7 @@
 package formularios_Ediciones;
 
 import RSMaterialComponent.RSTextFieldOne;
+import alertas.MyJOP;
 import interfaces.MenuUsuario;
 import java.awt.Color;
 import java.awt.Image;
@@ -277,20 +278,24 @@ public class EditServicios extends javax.swing.JDialog
                 nombre.getText().trim(), descripcion.getText().trim(), MenuUsuario.idUsuario,
                 MetodosAux.getFecha()
             };
-            boolean insercionCorr = MetodosBD.actualizarServicio(id, datosUpdate);
-            if (insercionCorr)
+            if (MyJOP.myJOPShowConfirmDialog(null, "¿Estas seguro que deseas realizar esta acción?") == 1)
             {
-                MetodosAux.mostrarAlerta("Muy bien hecho", "Se han actualizado con exito los datos del servicio", 1);
-                dispose();
-                //Borramos la ruta de la imagen para refrescar
-                //Actualizamos los usuariosd de las tablas
-                TablaContenidoServicios.listarServicios(tablaContenidoServicios1.tblServicios, tabSelecc, null);
-                //Actualizamos el contador
-                Servicios.actualizarNumServicios();
-            } else
-            {
-                MetodosAux.mostrarAlerta("Error", " Ha ocurrido un error al actualizar los datos del servicio", 2);
+                boolean insercionCorr = MetodosBD.actualizarServicio(id, datosUpdate);
+                if (insercionCorr)
+                {
+                    MetodosAux.mostrarAlerta("Muy bien hecho", "Se han actualizado con exito los datos del servicio", 1);
+                    dispose();
+                    //Borramos la ruta de la imagen para refrescar
+                    //Actualizamos los usuariosd de las tablas
+                    TablaContenidoServicios.listarServicios(tablaContenidoServicios1.tblServicios, tabSelecc, null);
+                    //Actualizamos el contador
+                    Servicios.actualizarNumServicios();
+                } else
+                {
+                    MetodosAux.mostrarAlerta("Error", " Ha ocurrido un error al actualizar los datos del servicio", 2);
+                }
             }
+            dispose();
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 

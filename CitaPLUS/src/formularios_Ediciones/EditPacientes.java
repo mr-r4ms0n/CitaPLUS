@@ -6,6 +6,7 @@
 package formularios_Ediciones;
 
 import RSMaterialComponent.RSTextFieldOne;
+import alertas.MyJOP;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Shape;
@@ -495,22 +496,25 @@ public class EditPacientes extends javax.swing.JDialog
                 fotoUpdate, nombre.getText().trim(), apellidoPaterno.getText().trim(), apellidoMat,
                 sexo.getSelectedItem().toString(), numeroTel, correoEl
             };
-
-            boolean insercionCorr = MetodosBD.actualizarPaciente(id, datosUpdate);
-            if (insercionCorr)
+            if (MyJOP.myJOPShowConfirmDialog(null, "¿Estas seguro que deseas realizar esta acción?") == 1)
             {
-                MetodosAux.mostrarAlerta("Muy bien hecho", "Se han actualizado con exito los datos del paciente", 1);
-                dispose();
-                //Borramos la ruta de la imagen para refrescar
-                rutaImgPerfilRegistro = null;
-                //Actualizamos los usuariosd de las tablas
-                TablaContenidoPacientes.listarPacientes(tablaContenidoPacientes2.tblPacientes, tabSelecc, null);
-                //Actualizamos el contador
-                Pacientes.actualizarNumPacientes();
-            } else
-            {
-                MetodosAux.mostrarAlerta("Error", " Ha ocurrido un error al actualizar los datos del paciente", 2);
-            }
+                boolean insercionCorr = MetodosBD.actualizarPaciente(id, datosUpdate);
+                if (insercionCorr)
+                {
+                    MetodosAux.mostrarAlerta("Muy bien hecho", "Se han actualizado con exito los datos del paciente", 1);
+                    dispose();
+                    //Borramos la ruta de la imagen para refrescar
+                    rutaImgPerfilRegistro = null;
+                    //Actualizamos los usuariosd de las tablas
+                    TablaContenidoPacientes.listarPacientes(tablaContenidoPacientes2.tblPacientes, tabSelecc, null);
+                    //Actualizamos el contador
+                    Pacientes.actualizarNumPacientes();
+                } else
+                {
+                    MetodosAux.mostrarAlerta("Error", " Ha ocurrido un error al actualizar los datos del paciente", 2);
+                }
+            } 
+            dispose();
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
