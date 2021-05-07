@@ -36,6 +36,7 @@ public class EditPacientes extends javax.swing.JDialog
      * Creates new form FormPacientes
      */
     String rutaImgPerfil = "";
+    byte[] imagP;
     int id;
 
     //False campos requeridos, true campos no requeridos
@@ -69,12 +70,11 @@ public class EditPacientes extends javax.swing.JDialog
         telefono.setText((String) datos.getValue("telefono"));
         correo.setText((String) datos.getValue("correo"));
         sexo.setSelectedItem(datos.getValue("sexo").toString());
-
+        imagP = (byte[]) datos.getValue("foto");
         //Transformamos la foto de byte a Image y la seteamos al campo de la foto
         try
         {
             BufferedImage img1;
-            byte[] imagP = (byte[]) datos.getValue("foto");
             img1 = ImageIO.read(new ByteArrayInputStream(imagP));
             ImageIcon icon1 = new ImageIcon(img1.getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
             lblFoto.setImagen(icon1);
@@ -471,14 +471,19 @@ public class EditPacientes extends javax.swing.JDialog
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRegistrarActionPerformed
     {//GEN-HEADEREND:event_btnRegistrarActionPerformed
-
+        String rutaImgPerfilRegistro = null;
+        Object fotoUpdate = null;
         boolean sexoCorrect = MetodosAux.validarBox(sexo, error_sexo, "required");
         if (nombreC && apeP && apeM && sexoCorrect && telefonoC && correoC)
         {
-
-            String rutaImgPerfilRegistro = null;
-
-            rutaImgPerfilRegistro = (rutaImgPerfil != "") ? rutaImgPerfil : "./default/" + sexo.getSelectedItem().toString() + ".png";
+            if (rutaImgPerfil.equals("") && imagP != null)
+            {
+                fotoUpdate = imagP;
+            } else
+            {
+                rutaImgPerfilRegistro = rutaImgPerfil;
+                fotoUpdate = rutaImgPerfilRegistro;
+            }
 
             String apellidoMat = (!apellidoMaterno.getText().trim().equals("")) ? apellidoMaterno.getText().trim() : "No Proporcionado";
             String numeroTel = (!telefono.getText().trim().equals("")) ? telefono.getText().trim() : "0";
@@ -487,7 +492,7 @@ public class EditPacientes extends javax.swing.JDialog
             Object[] datosUpdate =
             {
                 //Mandamos la informacion que puede contener vacio segun lo que se tenga almacenado en la caja de texto
-                rutaImgPerfilRegistro, nombre.getText().trim(), apellidoPaterno.getText().trim(), apellidoMat,
+                fotoUpdate, nombre.getText().trim(), apellidoPaterno.getText().trim(), apellidoMat,
                 sexo.getSelectedItem().toString(), numeroTel, correoEl
             };
 
@@ -641,13 +646,15 @@ public class EditPacientes extends javax.swing.JDialog
             lblFoto.setImagen(new ImageIcon(rutaImgPerfil));
         }
         // TODO add your handling code here:
+        btnRegistrar.setEnabled((apeP == true && nombreC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
     }//GEN-LAST:event_btnOpenFotoActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRemoveActionPerformed
     {//GEN-HEADEREND:event_btnRemoveActionPerformed
-
         lblFoto.setImagen(null);
-        rutaImgPerfil = "";
+        rutaImgPerfil = "./default/" + sexo.getSelectedItem().toString() + ".png";
+        imagP = null;
+        btnRegistrar.setEnabled((apeP == true && nombreC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void correoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_correoKeyReleased

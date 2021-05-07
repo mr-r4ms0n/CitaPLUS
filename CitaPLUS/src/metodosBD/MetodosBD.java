@@ -5,6 +5,7 @@
  */
 package metodosBD;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -367,15 +368,21 @@ public class MetodosBD
     {
         try
         {
-            String rutaImagen = datos[0].toString();
-            System.out.println(rutaImagen);
-            //La transformamos a fichero
-            File fPerf = new File(rutaImagen);
-            //La transformamos a fichero de enteada (binario)
-            FileInputStream fIPerf = new FileInputStream(fPerf);
-            //Reasignamos la foto codificada al arreglo y hacemos la insercion a la BD
-            datos[0] = fIPerf;
-
+            if (datos[0] instanceof String)
+            {
+                String rutaImagen = datos[0].toString();
+                System.out.println(rutaImagen);
+                //La transformamos a fichero
+                File fPerf = new File(rutaImagen);
+                //La transformamos a fichero de enteada (binario)
+                FileInputStream fIPerf = new FileInputStream(fPerf);
+                //Reasignamos la foto codificada al arreglo y hacemos la insercion a la BD
+                datos[0] = fIPerf;
+            } else
+            {
+                InputStream myInputStream = new ByteArrayInputStream((byte[]) datos[0]);
+                datos[0] = myInputStream;
+            }
             dbCon = ConectaBD.ConectaBD();
             sentencia = dbCon.prepareStatement("UPDATE pacientes SET foto =?,nombre=?,apellidoPaterno=?,apellidoMaterno=?,sexo=?,telefono=?,correo=? WHERE id = ?");
             sentencia.setBinaryStream(1, (InputStream) datos[0]);
@@ -735,15 +742,23 @@ public class MetodosBD
     {
         try
         {
-            String rutaImagen = datos[6].toString();
-            System.out.println(rutaImagen);
-            //La transformamos a fichero
-            File fPerf = new File(rutaImagen);
-            //La transformamos a fichero de enteada (binario)
-            FileInputStream fIPerf = new FileInputStream(fPerf);
-            //Reasignamos la foto codificada al arreglo y hacemos la insercion a la BD
-            datos[6] = fIPerf;
+            if (datos[6] instanceof String)
+            {
+                String rutaImagen = datos[6].toString();
+                System.out.println(rutaImagen);
+                //La transformamos a fichero
+                File fPerf = new File(rutaImagen);
+                //La transformamos a fichero de enteada (binario)
+                FileInputStream fIPerf = new FileInputStream(fPerf);
+                //Reasignamos la foto codificada al arreglo y hacemos la insercion a la BD
+                datos[6] = fIPerf;
+            } else
+            {
 
+                InputStream myInputStream = new ByteArrayInputStream((byte[]) datos[6]);
+                datos[6] = myInputStream;
+
+            }
             dbCon = ConectaBD.ConectaBD();
             sentencia = dbCon.prepareStatement("UPDATE usuarios SET usuario = ?, nombre =?, apellidoPaterno=?,apellidoMaterno=?,contraseña=?,sexo=?,foto=? WHERE id = ?");
             sentencia.setString(1, datos[0].toString());

@@ -36,6 +36,7 @@ public class EditUsuarios extends javax.swing.JDialog
      */
     String rutaImgPerfil = "";
     int id;
+    byte[] imagP;
 
     //False campos requeridos, true campos no requeridos
     boolean contraseñaC = true;
@@ -73,7 +74,7 @@ public class EditUsuarios extends javax.swing.JDialog
         try
         {
             BufferedImage img1;
-            byte[] imagP = (byte[]) datos.getValue("foto");
+            imagP = (byte[]) datos.getValue("foto");
             img1 = ImageIO.read(new ByteArrayInputStream(imagP));
             ImageIcon icon1 = new ImageIcon(img1.getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
             lblFoto.setImagen(icon1);
@@ -470,14 +471,19 @@ public class EditUsuarios extends javax.swing.JDialog
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRegistrarActionPerformed
     {//GEN-HEADEREND:event_btnRegistrarActionPerformed
-
+        String rutaImgPerfilRegistro = null;
+        Object fotoUpdate = null;
         boolean sexoCorrect = MetodosAux.validarBox(sexo, error_sexo, "required");
         if (nombreC && apeP && apeM && sexoCorrect && usuarioC && contraseñaC)
         {
-
-            String rutaImgPerfilRegistro = null;
-
-            rutaImgPerfilRegistro = (rutaImgPerfil != "") ? rutaImgPerfil : "./default/" + sexo.getSelectedItem().toString() + ".png";
+            if (rutaImgPerfil.equals("") && imagP != null)
+            {
+                fotoUpdate = imagP;
+            } else
+            {
+                rutaImgPerfilRegistro = rutaImgPerfil;
+                fotoUpdate = rutaImgPerfilRegistro;
+            }
 
             String apellidoMat = (!apellidoMaterno.getText().trim().equals("")) ? apellidoMaterno.getText().trim() : "No Proporcionado";
 
@@ -490,7 +496,7 @@ public class EditUsuarios extends javax.swing.JDialog
                 apellidoMat,
                 Encoder.encode(contraseña.getText().trim()),
                 sexo.getSelectedItem().toString(),
-                rutaImgPerfilRegistro
+                fotoUpdate
             };
 
             boolean insercionCorr = MetodosBD.actualizarUsuario(id, datosUpdate);
@@ -502,7 +508,7 @@ public class EditUsuarios extends javax.swing.JDialog
                 //Borramos la ruta de la imagen para refrescar
                 rutaImgPerfilRegistro = null;
                 //Actualizamos los usuarios de las tablas
-                
+
                 //Importantisimo que llamemos a la tabla que se instancio dentro de la clase TablaContenido, sino no funcionan las actualizaciones en tiempo real
                 TablaContenidoUsuarios.listarUsuarios(tablaContenidoUsuarios2.tblUsuario, tabSelecc, null);
                 //Actualizamos el contador
@@ -638,13 +644,16 @@ public class EditUsuarios extends javax.swing.JDialog
             lblFoto.setImagen(new ImageIcon(rutaImgPerfil));
         }
         // TODO add your handling code here:
+        btnRegistrar.setEnabled((apeP == true && nombreC == true && contraseñaC == true && usuarioC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
     }//GEN-LAST:event_btnOpenFotoActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRemoveActionPerformed
     {//GEN-HEADEREND:event_btnRemoveActionPerformed
 
         lblFoto.setImagen(null);
-        rutaImgPerfil = "";
+        rutaImgPerfil = rutaImgPerfil = "./default/" + sexo.getSelectedItem().toString() + ".png";
+        imagP = null;
+        btnRegistrar.setEnabled((apeP == true && nombreC == true && contraseñaC == true && usuarioC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void usuarioKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_usuarioKeyReleased

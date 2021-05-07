@@ -221,7 +221,7 @@ public class MenuAdministrador extends javax.swing.JFrame
 
         btnCerrar.setBackground(new java.awt.Color(255, 102, 102));
         btnCerrar.setToolTipText("Cerrar");
-        btnCerrar.setBackgroundHover(new java.awt.Color(159, 221, 234));
+        btnCerrar.setBackgroundHover(new java.awt.Color(255, 160, 160));
         btnCerrar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.KEYBOARD_ARROW_RIGHT);
         btnCerrar.addActionListener(new java.awt.event.ActionListener()
         {

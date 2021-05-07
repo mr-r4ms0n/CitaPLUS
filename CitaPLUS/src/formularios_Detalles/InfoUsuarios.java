@@ -376,12 +376,12 @@ public class InfoUsuarios extends javax.swing.JDialog
             actualizarNumUsuarios();
             if (newEstatus == 1)
             {
-                MetodosAux.mostrarAlerta("Muy bien hecho", "Paciente Activado con Exito", 1);
+                MetodosAux.mostrarAlerta("Muy bien hecho", "Usuario Activado con Exito", 1);
             } else
             {
                 if (newEstatus == 2)
                 {
-                    MetodosAux.mostrarAlerta("Muy bien hecho", "Paciente Desactivado con Exito", 1);
+                    MetodosAux.mostrarAlerta("Muy bien hecho", "Usuario Desactivado con Exito", 1);
                 } else
                 {
                     MetodosAux.mostrarAlerta("Error", "No se pudo completar la acción", 2);
