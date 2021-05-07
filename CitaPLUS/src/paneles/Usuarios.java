@@ -241,7 +241,7 @@ public class Usuarios extends javax.swing.JPanel
     private javax.swing.JPanel jPanel2;
     private newscomponents.RSButtonIcon_new rSButtonIcon_new1;
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon1;
-    public static newscomponents.RSButtonIcon_new tabActivos;
+    private static newscomponents.RSButtonIcon_new tabActivos;
     private static newscomponents.RSButtonIcon_new tabInactivos;
     private static newscomponents.RSButtonIcon_new tabTodos;
     public static paneles.TablaContenidoUsuarios tablaContenidoUsuarios2;

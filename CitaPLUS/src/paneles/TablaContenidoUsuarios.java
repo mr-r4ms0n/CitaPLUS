@@ -78,7 +78,7 @@ public class TablaContenidoUsuarios extends javax.swing.JPanel
      *
      * @param tab tab seleccionado
      */
-    public static void actualizarTitulo(int tab)
+    public void actualizarTitulo(int tab)
     {
         switch (tab)
         {
@@ -240,7 +240,7 @@ public class TablaContenidoUsuarios extends javax.swing.JPanel
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static RSMaterialComponent.RSLabelTextIcon JLTitulo;
+    private RSMaterialComponent.RSLabelTextIcon JLTitulo;
     private javax.swing.JScrollPane jScrollPane1;
     private RSMaterialComponent.RSTextFieldMaterialIcon jTBuscarUsuario;
     public RSMaterialComponent.RSTableMetroCustom tblUsuario;

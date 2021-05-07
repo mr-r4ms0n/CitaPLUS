@@ -53,15 +53,15 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="rSLabelTextIcon1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="701" max="32767" attributes="0"/>
-                          <Component id="rSButtonIcon_new1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="rSButtonIcon_new1" min="-2" pref="153" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="tabProximas" min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="tabActivos" min="-2" pref="132" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="tabCanceladas" min="-2" pref="146" max="-2" attributes="0"/>
+                          <Component id="tabInactivos" min="-2" pref="146" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="tabProximas1" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="tabTodos" min="-2" pref="140" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -74,9 +74,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tabProximas" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tabCanceladas" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tabProximas1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabActivos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabInactivos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabTodos" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -100,7 +100,7 @@
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="text" type="java.lang.String" value="Servicos"/>
             <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
-              <Value id="SHOP_TWO"/>
+              <Value id="NEW_RELEASES"/>
             </Property>
           </Properties>
         </Component>
@@ -109,20 +109,23 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="a0" green="a5" red="44" type="rgb"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Nuevo servicio"/>
             <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="d8" green="da" red="b2" type="rgb"/>
             </Property>
             <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
               <Value id="ADD_CIRCLE"/>
             </Property>
-            <Property name="label" type="java.lang.String" value="Agendar nuevo servicio"/>
             <Property name="round" type="int" value="20"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonIcon_new1ActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="newscomponents.RSButtonIcon_new" name="tabProximas">
+        <Component class="newscomponents.RSButtonIcon_new" name="tabActivos">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="4b" green="bf" red="72" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Activos (0)"/>
             <Property name="backgroundHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -138,16 +141,19 @@
               <Color blue="9f" green="75" red="1a" type="rgb"/>
             </Property>
             <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
-              <Value id="SHOP_TWO"/>
+              <Value id="NEW_RELEASES"/>
             </Property>
             <Property name="round" type="int" value="20"/>
             <Property name="selected" type="boolean" value="true"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabProximasActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabActivosActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
         </Component>
-        <Component class="newscomponents.RSButtonIcon_new" name="tabCanceladas">
+        <Component class="newscomponents.RSButtonIcon_new" name="tabInactivos">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -166,15 +172,18 @@
               <Color blue="9f" green="75" red="1a" type="rgb"/>
             </Property>
             <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
-              <Value id="SHOP_TWO"/>
+              <Value id="NEW_RELEASES"/>
             </Property>
             <Property name="round" type="int" value="20"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabCanceladasActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabInactivosActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
         </Component>
-        <Component class="newscomponents.RSButtonIcon_new" name="tabProximas1">
+        <Component class="newscomponents.RSButtonIcon_new" name="tabTodos">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -194,14 +203,23 @@
               <Color blue="9f" green="75" red="1a" type="rgb"/>
             </Property>
             <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
-              <Value id="SHOP_TWO"/>
+              <Value id="NEW_RELEASES"/>
             </Property>
             <Property name="round" type="int" value="20"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabTodosActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
     <Component class="paneles.TablaContenidoServicios" name="tablaContenidoServicios1">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

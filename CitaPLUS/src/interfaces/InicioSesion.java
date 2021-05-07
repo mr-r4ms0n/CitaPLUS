@@ -335,7 +335,7 @@ public class InicioSesion extends javax.swing.JFrame
                 {
                     if ((boolean) resultados[0] && (int) resultados[4] != 2)
                     {
-                        new MenuUsuario((String) resultados[1], (String) resultados[2], (byte[]) resultados[3]).setVisible(true);
+                        new MenuUsuario((String) resultados[1], (String) resultados[2], (byte[]) resultados[3], (int) resultados[5]).setVisible(true);
                         dispose();
                     } else
                     {

@@ -173,9 +173,6 @@
         </Property>
         <Property name="sizeIcon" type="float" value="30.0"/>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
-      </AuxValues>
     </Component>
     <Component class="RSMaterialComponent.RSTextFieldMaterialIcon" name="jTBuscarUsuario">
       <Properties>

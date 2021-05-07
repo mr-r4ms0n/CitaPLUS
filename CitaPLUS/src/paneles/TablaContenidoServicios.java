@@ -5,7 +5,16 @@
  */
 package paneles;
 
+import RSMaterialComponent.RSTableMetroCustom;
+import formularios_Detalles.InfoServicios;
+import formularios_Ediciones.EditServicios;
 import java.awt.Color;
+import javax.swing.table.TableColumn;
+import metodosAux.MetodosAux;
+import metodosAux.RSButtonsAction;
+import metodosAux.RSButtonsRenderer;
+import metodosAux.SysConfigs;
+import metodosBD.MetodosBD;
 
 /**
  *
@@ -20,7 +29,69 @@ public class TablaContenidoServicios extends javax.swing.JPanel
     public TablaContenidoServicios()
     {
         initComponents();
+        listarServicios(tblServicios, 0, JTBuscarServicio.getText().trim());
         jScrollPane1.getViewport().setBackground(Color.WHITE);
+    }
+
+    public static void listarServicios(RSTableMetroCustom tabla, int tab, String filtro)
+    {
+        if (filtro == null)
+        {
+            filtro = "";
+        }
+        String[] columnas =
+        {
+            "id", "accion", "nombre", "descripcion", "estatusSer", "nombreU", "fechaRegistro"
+        };
+        MetodosAux.listarTablas(MetodosBD.rsListarServicios(tab, filtro), tabla, columnas);
+
+        //Definimos la posicion donde estara la columna que contendra los botones
+        TableColumn column = tabla.getColumnModel().getColumn(1);
+        column.setCellRenderer(new RSButtonsRenderer());
+        String classname = "paneles.TablaContenidoServicios";
+        String metodoVer = "viewInfo";
+        String metodoEditar = "editInfo";
+        Object[] params =
+        {
+            classname, metodoVer, metodoEditar
+        };
+        //El 0 de aqui es de donde agarrara el parametro para activar los botones
+        column.setCellEditor(new RSButtonsAction(tabla, 0, params));
+    }
+
+    public void actualizarTitulo(int tab)
+    {
+        switch (tab)
+        {
+            case 1:
+                jlTitulo.setText("Servicios Activos");
+                jlTitulo.setForeground(SysConfigs.cl_activos);
+                System.out.println("ACTIVOS");
+                System.out.println(jlTitulo.getText());
+                break;
+            case 2:
+                jlTitulo.setText("Servicios Inactivos");
+                jlTitulo.setForeground(SysConfigs.cl_inactivos);
+                System.out.println("INACTIVOS");
+               System.out.println(jlTitulo.getText());
+                break;
+            case 0:
+                jlTitulo.setText("Todos los Servicios");
+                jlTitulo.setForeground(SysConfigs.cl_todos);
+                System.out.println("TODOS");
+                System.out.println(jlTitulo.getText());
+                break;
+        }
+    }
+
+    public void viewInfo(Object value)
+    {
+        new InfoServicios(null, true, MetodosBD.getServicio(value.toString())).setVisible(true);
+    }
+
+    public void editInfo(Object value)
+    {
+        new EditServicios(MetodosBD.getServicio(value.toString())).setVisible(true);
     }
 
     /**
@@ -34,29 +105,29 @@ public class TablaContenidoServicios extends javax.swing.JPanel
     {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblCitas = new RSMaterialComponent.RSTableMetroCustom();
-        rSLabelTextIcon1 = new RSMaterialComponent.RSLabelTextIcon();
-        rSTextFieldMaterialIcon1 = new RSMaterialComponent.RSTextFieldMaterialIcon();
+        tblServicios = new RSMaterialComponent.RSTableMetroCustom();
+        jlTitulo = new RSMaterialComponent.RSLabelTextIcon();
+        JTBuscarServicio = new RSMaterialComponent.RSTextFieldMaterialIcon();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        tblCitas.setModel(new javax.swing.table.DefaultTableModel(
+        tblServicios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String []
             {
-                "Acción", "Nombre", "Descripción", "Estatus", "Fecha registró", "Usuario registró"
+                "Id", "Acción", "Nombre", "Descripción", "Estatus", "Usuario registró", "Fecha registró"
             }
         )
         {
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false, false, true
+                false, true, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex)
@@ -64,38 +135,53 @@ public class TablaContenidoServicios extends javax.swing.JPanel
                 return canEdit [columnIndex];
             }
         });
-        tblCitas.setBackgoundHead(new java.awt.Color(26, 117, 159));
-        tblCitas.setBackgoundHover(new java.awt.Color(26, 117, 159));
-        tblCitas.setColorPrimaryText(new java.awt.Color(26, 117, 159));
-        tblCitas.setColorSecondary(new java.awt.Color(255, 255, 255));
-        tblCitas.setColorSecundaryText(new java.awt.Color(26, 117, 159));
-        tblCitas.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
-        tblCitas.setFontHead(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        tblCitas.setFontRowHover(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
-        tblCitas.setFontRowSelect(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
-        tblCitas.setSelectionBackground(new java.awt.Color(26, 117, 159));
-        jScrollPane1.setViewportView(tblCitas);
+        tblServicios.setBackgoundHead(new java.awt.Color(26, 117, 159));
+        tblServicios.setBackgoundHover(new java.awt.Color(26, 117, 159));
+        tblServicios.setBorderRows(null);
+        tblServicios.setColorPrimaryText(new java.awt.Color(26, 117, 159));
+        tblServicios.setColorSecondary(new java.awt.Color(255, 255, 255));
+        tblServicios.setColorSecundaryText(new java.awt.Color(26, 117, 159));
+        tblServicios.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        tblServicios.setFontHead(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        tblServicios.setFontRowHover(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        tblServicios.setFontRowSelect(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        tblServicios.setHighHead(40);
+        tblServicios.setRowHeight(35);
+        tblServicios.setSelectionBackground(new java.awt.Color(26, 117, 159));
+        jScrollPane1.setViewportView(tblServicios);
+        if (tblServicios.getColumnModel().getColumnCount() > 0)
+        {
+            tblServicios.getColumnModel().getColumn(0).setMinWidth(0);
+            tblServicios.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tblServicios.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
-        rSLabelTextIcon1.setForeground(new java.awt.Color(51, 153, 0));
-        rSLabelTextIcon1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        rSLabelTextIcon1.setText("Servicios Activos");
-        rSLabelTextIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP_TWO);
-        rSLabelTextIcon1.setSizeIcon(30.0F);
+        jlTitulo.setForeground(new java.awt.Color(51, 153, 0));
+        jlTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jlTitulo.setText("Servicios Activos");
+        jlTitulo.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP_TWO);
+        jlTitulo.setSizeIcon(30.0F);
 
-        rSTextFieldMaterialIcon1.setForeground(new java.awt.Color(26, 117, 159));
-        rSTextFieldMaterialIcon1.setText("Buscar Servicio");
-        rSTextFieldMaterialIcon1.setColorIcon(new java.awt.Color(26, 117, 159));
-        rSTextFieldMaterialIcon1.setColorMaterial(new java.awt.Color(26, 117, 159));
-        rSTextFieldMaterialIcon1.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        rSTextFieldMaterialIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
-        rSTextFieldMaterialIcon1.setPhColor(new java.awt.Color(26, 117, 159));
-        rSTextFieldMaterialIcon1.setPlaceholder("Buscar cita");
-        rSTextFieldMaterialIcon1.setSelectionColor(new java.awt.Color(26, 117, 159));
-        rSTextFieldMaterialIcon1.addActionListener(new java.awt.event.ActionListener()
+        JTBuscarServicio.setForeground(new java.awt.Color(26, 117, 159));
+        JTBuscarServicio.setColorIcon(new java.awt.Color(26, 117, 159));
+        JTBuscarServicio.setColorMaterial(new java.awt.Color(26, 117, 159));
+        JTBuscarServicio.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        JTBuscarServicio.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
+        JTBuscarServicio.setPhColor(new java.awt.Color(26, 117, 159));
+        JTBuscarServicio.setPlaceholder("Buscar servicio");
+        JTBuscarServicio.setSelectionColor(new java.awt.Color(26, 117, 159));
+        JTBuscarServicio.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                rSTextFieldMaterialIcon1ActionPerformed(evt);
+                JTBuscarServicioActionPerformed(evt);
+            }
+        });
+        JTBuscarServicio.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyReleased(java.awt.event.KeyEvent evt)
+            {
+                JTBuscarServicioKeyReleased(evt);
             }
         });
 
@@ -108,9 +194,9 @@ public class TablaContenidoServicios extends javax.swing.JPanel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(rSLabelTextIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 415, Short.MAX_VALUE)
-                        .addComponent(rSTextFieldMaterialIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jlTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 458, Short.MAX_VALUE)
+                        .addComponent(JTBuscarServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -118,24 +204,30 @@ public class TablaContenidoServicios extends javax.swing.JPanel
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rSLabelTextIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSTextFieldMaterialIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTBuscarServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rSTextFieldMaterialIcon1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSTextFieldMaterialIcon1ActionPerformed
-    {//GEN-HEADEREND:event_rSTextFieldMaterialIcon1ActionPerformed
+    private void JTBuscarServicioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_JTBuscarServicioActionPerformed
+    {//GEN-HEADEREND:event_JTBuscarServicioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rSTextFieldMaterialIcon1ActionPerformed
+    }//GEN-LAST:event_JTBuscarServicioActionPerformed
+
+    private void JTBuscarServicioKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTBuscarServicioKeyReleased
+    {//GEN-HEADEREND:event_JTBuscarServicioKeyReleased
+        //System.out.println(jTBuscarPaciente.getText().trim());
+        listarServicios(tblServicios, Servicios.tabSelecc, JTBuscarServicio.getText().trim());
+    }//GEN-LAST:event_JTBuscarServicioKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private RSMaterialComponent.RSTextFieldMaterialIcon JTBuscarServicio;
     private javax.swing.JScrollPane jScrollPane1;
-    private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon1;
-    private RSMaterialComponent.RSTextFieldMaterialIcon rSTextFieldMaterialIcon1;
-    private RSMaterialComponent.RSTableMetroCustom tblCitas;
+    private RSMaterialComponent.RSLabelTextIcon jlTitulo;
+    public RSMaterialComponent.RSTableMetroCustom tblServicios;
     // End of variables declaration//GEN-END:variables
 }

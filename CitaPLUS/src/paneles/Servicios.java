@@ -5,19 +5,45 @@
  */
 package paneles;
 
+import formularios_Registros.RegServicios;
+import metodosBD.MetodosBD;
+
 /**
  *
  * @author Kevin
  */
 public class Servicios extends javax.swing.JPanel
-{
-
+{   
+    public static int tabSelecc = 1;
     /**
      * Creates new form citas
      */
     public Servicios()
     {
         initComponents();
+        actualizarNumServicios();
+    }
+    
+    public static void actualizarNumServicios()
+    {
+        int todos = MetodosBD.contarServicios(0);
+        int activos = MetodosBD.contarServicios(1);
+        int inactivos = MetodosBD.contarServicios(2);
+
+        if (todos != -1)
+        {
+            tabTodos.setText("Todos (" + todos + ")");
+        }
+
+        if (activos != -1)
+        {
+            tabActivos.setText("Activos (" + activos + ")");
+        }
+
+        if (inactivos != -1)
+        {
+            tabInactivos.setText("Inactivos (" + inactivos + ")");
+        }
     }
 
     /**
@@ -33,9 +59,9 @@ public class Servicios extends javax.swing.JPanel
         jPanel2 = new javax.swing.JPanel();
         rSLabelTextIcon1 = new RSMaterialComponent.RSLabelTextIcon();
         rSButtonIcon_new1 = new newscomponents.RSButtonIcon_new();
-        tabProximas = new newscomponents.RSButtonIcon_new();
-        tabCanceladas = new newscomponents.RSButtonIcon_new();
-        tabProximas1 = new newscomponents.RSButtonIcon_new();
+        tabActivos = new newscomponents.RSButtonIcon_new();
+        tabInactivos = new newscomponents.RSButtonIcon_new();
+        tabTodos = new newscomponents.RSButtonIcon_new();
         tablaContenidoServicios1 = new paneles.TablaContenidoServicios();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -44,56 +70,70 @@ public class Servicios extends javax.swing.JPanel
         rSLabelTextIcon1.setForeground(new java.awt.Color(144, 224, 239));
         rSLabelTextIcon1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         rSLabelTextIcon1.setText("Servicos");
-        rSLabelTextIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP_TWO);
+        rSLabelTextIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.NEW_RELEASES);
 
         rSButtonIcon_new1.setBackground(new java.awt.Color(68, 165, 160));
+        rSButtonIcon_new1.setText("Nuevo servicio");
         rSButtonIcon_new1.setBackgroundHover(new java.awt.Color(178, 218, 216));
         rSButtonIcon_new1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ADD_CIRCLE);
-        rSButtonIcon_new1.setLabel("Agendar nuevo servicio");
         rSButtonIcon_new1.setRound(20);
-
-        tabProximas.setBackground(new java.awt.Color(114, 191, 75));
-        tabProximas.setText("Activos (0)");
-        tabProximas.setBackgroundHover(new java.awt.Color(151, 194, 129));
-        tabProximas.setForegroundHover(new java.awt.Color(26, 117, 159));
-        tabProximas.setForegroundIcon(new java.awt.Color(233, 196, 106));
-        tabProximas.setForegroundText(new java.awt.Color(26, 117, 159));
-        tabProximas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP_TWO);
-        tabProximas.setRound(20);
-        tabProximas.setSelected(true);
-        tabProximas.addActionListener(new java.awt.event.ActionListener()
+        rSButtonIcon_new1.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                tabProximasActionPerformed(evt);
+                rSButtonIcon_new1ActionPerformed(evt);
             }
         });
 
-        tabCanceladas.setBackground(new java.awt.Color(255, 255, 255));
-        tabCanceladas.setText("Inactivos (0)");
-        tabCanceladas.setBackgroundHover(new java.awt.Color(239, 146, 146));
-        tabCanceladas.setForegroundHover(new java.awt.Color(26, 117, 159));
-        tabCanceladas.setForegroundIcon(new java.awt.Color(255, 51, 51));
-        tabCanceladas.setForegroundText(new java.awt.Color(26, 117, 159));
-        tabCanceladas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP_TWO);
-        tabCanceladas.setRound(20);
-        tabCanceladas.addActionListener(new java.awt.event.ActionListener()
+        tabActivos.setBackground(new java.awt.Color(255, 255, 255));
+        tabActivos.setText("Activos (0)");
+        tabActivos.setBackgroundHover(new java.awt.Color(151, 194, 129));
+        tabActivos.setForegroundHover(new java.awt.Color(26, 117, 159));
+        tabActivos.setForegroundIcon(new java.awt.Color(233, 196, 106));
+        tabActivos.setForegroundText(new java.awt.Color(26, 117, 159));
+        tabActivos.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.NEW_RELEASES);
+        tabActivos.setRound(20);
+        tabActivos.setSelected(true);
+        tabActivos.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                tabCanceladasActionPerformed(evt);
+                tabActivosActionPerformed(evt);
             }
         });
 
-        tabProximas1.setBackground(new java.awt.Color(255, 255, 255));
-        tabProximas1.setText("Todos (0)");
-        tabProximas1.setBackgroundHover(new java.awt.Color(108, 148, 167));
-        tabProximas1.setFocusable(false);
-        tabProximas1.setForegroundHover(new java.awt.Color(26, 117, 159));
-        tabProximas1.setForegroundIcon(new java.awt.Color(26, 117, 159));
-        tabProximas1.setForegroundText(new java.awt.Color(26, 117, 159));
-        tabProximas1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP_TWO);
-        tabProximas1.setRound(20);
+        tabInactivos.setBackground(new java.awt.Color(255, 255, 255));
+        tabInactivos.setText("Inactivos (0)");
+        tabInactivos.setBackgroundHover(new java.awt.Color(239, 146, 146));
+        tabInactivos.setForegroundHover(new java.awt.Color(26, 117, 159));
+        tabInactivos.setForegroundIcon(new java.awt.Color(255, 51, 51));
+        tabInactivos.setForegroundText(new java.awt.Color(26, 117, 159));
+        tabInactivos.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.NEW_RELEASES);
+        tabInactivos.setRound(20);
+        tabInactivos.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                tabInactivosActionPerformed(evt);
+            }
+        });
+
+        tabTodos.setBackground(new java.awt.Color(255, 255, 255));
+        tabTodos.setText("Todos (0)");
+        tabTodos.setBackgroundHover(new java.awt.Color(108, 148, 167));
+        tabTodos.setFocusable(false);
+        tabTodos.setForegroundHover(new java.awt.Color(26, 117, 159));
+        tabTodos.setForegroundIcon(new java.awt.Color(26, 117, 159));
+        tabTodos.setForegroundText(new java.awt.Color(26, 117, 159));
+        tabTodos.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.NEW_RELEASES);
+        tabTodos.setRound(20);
+        tabTodos.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                tabTodosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -104,14 +144,14 @@ public class Servicios extends javax.swing.JPanel
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(rSLabelTextIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 701, Short.MAX_VALUE)
-                        .addComponent(rSButtonIcon_new1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rSButtonIcon_new1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(tabProximas, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tabActivos, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tabCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tabInactivos, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tabProximas1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tabTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -120,9 +160,9 @@ public class Servicios extends javax.swing.JPanel
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tabProximas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tabCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tabProximas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tabActivos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tabInactivos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tabTodos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
@@ -148,24 +188,59 @@ public class Servicios extends javax.swing.JPanel
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tabProximasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabProximasActionPerformed
-    {//GEN-HEADEREND:event_tabProximasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tabProximasActionPerformed
+    private void tabActivosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabActivosActionPerformed
+    {//GEN-HEADEREND:event_tabActivosActionPerformed
+        tabSelecc = 1;
+        if (!tabActivos.isSelected())
+        {
+            tabTodos.setSelected(false);
+            tabInactivos.setSelected(false);
+            tabActivos.setSelected(true);
+        }
+        
+        tablaContenidoServicios1.listarServicios(tablaContenidoServicios1.tblServicios, tabSelecc, null);
+        tablaContenidoServicios1.actualizarTitulo(1);
+    }//GEN-LAST:event_tabActivosActionPerformed
 
-    private void tabCanceladasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabCanceladasActionPerformed
-    {//GEN-HEADEREND:event_tabCanceladasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tabCanceladasActionPerformed
+    private void tabInactivosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabInactivosActionPerformed
+    {//GEN-HEADEREND:event_tabInactivosActionPerformed
+        tabSelecc = 2;
+        if (!tabInactivos.isSelected())
+        {
+            tabTodos.setSelected(false);
+            tabInactivos.setSelected(true);
+            tabActivos.setSelected(false);
+        }
+        tablaContenidoServicios1.listarServicios(tablaContenidoServicios1.tblServicios, tabSelecc, null);
+        tablaContenidoServicios1.actualizarTitulo(2);
+    }//GEN-LAST:event_tabInactivosActionPerformed
+
+    private void tabTodosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabTodosActionPerformed
+    {//GEN-HEADEREND:event_tabTodosActionPerformed
+       tabSelecc = 0;
+        if (!tabTodos.isSelected())
+        {
+            tabTodos.setSelected(true);
+            tabInactivos.setSelected(false);
+            tabActivos.setSelected(false);
+        }
+        tablaContenidoServicios1.listarServicios(tablaContenidoServicios1.tblServicios, tabSelecc, null);
+        tablaContenidoServicios1.actualizarTitulo(0);
+    }//GEN-LAST:event_tabTodosActionPerformed
+
+    private void rSButtonIcon_new1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSButtonIcon_new1ActionPerformed
+    {//GEN-HEADEREND:event_rSButtonIcon_new1ActionPerformed
+        new RegServicios().setVisible(true);
+    }//GEN-LAST:event_rSButtonIcon_new1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel2;
     private newscomponents.RSButtonIcon_new rSButtonIcon_new1;
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon1;
-    private newscomponents.RSButtonIcon_new tabCanceladas;
-    private newscomponents.RSButtonIcon_new tabProximas;
-    private newscomponents.RSButtonIcon_new tabProximas1;
-    private paneles.TablaContenidoServicios tablaContenidoServicios1;
+    private static newscomponents.RSButtonIcon_new tabActivos;
+    private static newscomponents.RSButtonIcon_new tabInactivos;
+    private static newscomponents.RSButtonIcon_new tabTodos;
+    public static paneles.TablaContenidoServicios tablaContenidoServicios1;
     // End of variables declaration//GEN-END:variables
 }

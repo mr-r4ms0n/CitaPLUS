@@ -75,20 +75,20 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
      *
      * @param tab tab seleccionado
      */
-    public static void actualizarTitulo(int tab)
+    public void actualizarTitulo(int tab)
     {
         switch (tab)
         {
             case 1:
-                JLTitulo.setText("Clientes Activos");
+                JLTitulo.setText("Pacientes Activos");
                 JLTitulo.setForeground(SysConfigs.cl_activos);
                 break;
             case 2:
-                JLTitulo.setText("Clientes Inactivos");
+                JLTitulo.setText("Pacientes Inactivos");
                 JLTitulo.setForeground(SysConfigs.cl_inactivos);
                 break;
             case 0:
-                JLTitulo.setText("Todos los Clientes");
+                JLTitulo.setText("Todos los Pacientes");
                 JLTitulo.setForeground(SysConfigs.cl_todos);
                 break;
 
@@ -237,7 +237,7 @@ public class TablaContenidoPacientes extends javax.swing.JPanel
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static RSMaterialComponent.RSLabelTextIcon JLTitulo;
+    private RSMaterialComponent.RSLabelTextIcon JLTitulo;
     private javax.swing.JScrollPane jScrollPane1;
     private RSMaterialComponent.RSTextFieldMaterialIcon jTBuscarPaciente;
     public RSMaterialComponent.RSTableMetroCustom tblPacientes;

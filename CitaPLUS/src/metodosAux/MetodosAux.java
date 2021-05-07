@@ -12,6 +12,7 @@ import RSMaterialComponent.RSTextFieldOne;
 import alertas.Alerta;
 import formularios_Registros.RegPacientes;
 import interfaces.MenuUsuario;
+import java.awt.TextArea;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -26,6 +27,7 @@ import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
@@ -83,7 +85,7 @@ public class MetodosAux
 
         } catch (SQLException e)
         {
-            System.out.println("Error al listar tabla: " + e);
+            System.out.println("Error al listar la tabla: " + e);
         }
     }
 
@@ -196,6 +198,26 @@ public class MetodosAux
     }
 
     public static boolean validarpFormuPass(RSPasswordOne field, JLabel error, String tipo)
+    {
+        boolean resultado = false;
+        switch (tipo)
+        {
+            case "required":
+                if (field.getText().trim().isEmpty())
+                {
+                    error.setText("Este campo es requerido");
+                    error.setForeground(SysConfigs.bg_danger);
+                } else
+                {
+                    error.setForeground(SysConfigs.bg_white);
+                    resultado = true;
+                }
+                break;
+        }
+        return resultado;
+    }
+    
+    public static boolean validarFormuText(JTextArea field, JLabel error, String tipo)
     {
         boolean resultado = false;
         switch (tipo)

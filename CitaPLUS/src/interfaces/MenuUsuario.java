@@ -25,7 +25,10 @@ import rojeru_san.complementos.RSEffectFade;
  */
 public class MenuUsuario extends javax.swing.JFrame
 {
+
     public static JFrame vtn;
+    public static int idUsuario;
+
     /**
      * Creates new form MenuPrincipal
      *
@@ -33,9 +36,10 @@ public class MenuUsuario extends javax.swing.JFrame
      * @param nombre
      * @param foto
      */
-    public MenuUsuario(String usuario, String nombre, byte[] foto)
+    public MenuUsuario(String usuario, String nombre, byte[] foto, int idUsuario)
     {
         initComponents();
+        this.idUsuario = idUsuario;
         setIconImage(Toolkit.getDefaultToolkit().getImage("citasplus.png"));
         vtn = this;
         RSEffectFade.setFadeWindowIn(this, 30, 0.1f);
@@ -92,9 +96,11 @@ public class MenuUsuario extends javax.swing.JFrame
         btnCerrar = new RSMaterialComponent.RSButtonIconOne();
         rSPanelMaterial1 = new RSMaterialComponent.RSPanelMaterial();
         pnlSlider = new newscomponents.RSPanelEffect();
+        pnlInicio = new paneles.Inicio();
         pnlCitas = new paneles.Citas();
         pnlPacientes = new paneles.Pacientes();
         pnlServicios = new paneles.Servicios();
+        pnlAcercaDe = new paneles.AcercaDe();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -169,7 +175,7 @@ public class MenuUsuario extends javax.swing.JFrame
         btnServicios.setBackground(new java.awt.Color(68, 165, 160));
         btnServicios.setText("Servicios");
         btnServicios.setBackgroundHover(new java.awt.Color(178, 218, 216));
-        btnServicios.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP_TWO);
+        btnServicios.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.NEW_RELEASES);
         btnServicios.setRound(20);
         btnServicios.addActionListener(new java.awt.event.ActionListener()
         {
@@ -358,6 +364,21 @@ public class MenuUsuario extends javax.swing.JFrame
 
         pnlSlider.setBackground(new java.awt.Color(255, 255, 255));
 
+        pnlInicio.setName("pnlInicio"); // NOI18N
+
+        javax.swing.GroupLayout pnlInicioLayout = new javax.swing.GroupLayout(pnlInicio);
+        pnlInicio.setLayout(pnlInicioLayout);
+        pnlInicioLayout.setHorizontalGroup(
+            pnlInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1180, Short.MAX_VALUE)
+        );
+        pnlInicioLayout.setVerticalGroup(
+            pnlInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 838, Short.MAX_VALUE)
+        );
+
+        pnlSlider.add(pnlInicio, "card5");
+
         pnlCitas.setName("pnlCitas"); // NOI18N
         pnlSlider.add(pnlCitas, "card2");
 
@@ -367,20 +388,35 @@ public class MenuUsuario extends javax.swing.JFrame
         pnlServicios.setName("pnlServicios"); // NOI18N
         pnlSlider.add(pnlServicios, "card4");
 
+        pnlAcercaDe.setName("pnlAcercaDe"); // NOI18N
+
+        javax.swing.GroupLayout pnlAcercaDeLayout = new javax.swing.GroupLayout(pnlAcercaDe);
+        pnlAcercaDe.setLayout(pnlAcercaDeLayout);
+        pnlAcercaDeLayout.setHorizontalGroup(
+            pnlAcercaDeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1180, Short.MAX_VALUE)
+        );
+        pnlAcercaDeLayout.setVerticalGroup(
+            pnlAcercaDeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 838, Short.MAX_VALUE)
+        );
+
+        pnlSlider.add(pnlAcercaDe, "card6");
+
         javax.swing.GroupLayout rSPanelMaterial1Layout = new javax.swing.GroupLayout(rSPanelMaterial1);
         rSPanelMaterial1.setLayout(rSPanelMaterial1Layout);
         rSPanelMaterial1Layout.setHorizontalGroup(
             rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 1180, Short.MAX_VALUE)
+                .addComponent(pnlSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         rSPanelMaterial1Layout.setVerticalGroup(
             rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
+                .addComponent(pnlSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -406,7 +442,7 @@ public class MenuUsuario extends javax.swing.JFrame
             btnPacientes.setSelected(false);
             btnServicios.setSelected(false);
             btnAcercaDe.setSelected(false);
-            
+
             pnlSlider.setPanelNormal(pnlCitas);
         }
     }//GEN-LAST:event_btnCitasActionPerformed
@@ -420,6 +456,8 @@ public class MenuUsuario extends javax.swing.JFrame
             btnPacientes.setSelected(false);
             btnServicios.setSelected(false);
             btnAcercaDe.setSelected(false);
+
+            pnlSlider.setPanelNormal(pnlInicio);
         }
     }//GEN-LAST:event_btnInicioActionPerformed
 
@@ -432,7 +470,7 @@ public class MenuUsuario extends javax.swing.JFrame
             btnInicio.setSelected(false);
             btnServicios.setSelected(false);
             btnAcercaDe.setSelected(false);
-            
+
             pnlSlider.setPanelNormal(pnlPacientes);
         }
 
@@ -447,7 +485,7 @@ public class MenuUsuario extends javax.swing.JFrame
             btnPacientes.setSelected(false);
             btnInicio.setSelected(false);
             btnAcercaDe.setSelected(false);
-            
+
             pnlSlider.setPanelNormal(pnlServicios);
         }
 
@@ -462,6 +500,8 @@ public class MenuUsuario extends javax.swing.JFrame
             btnPacientes.setSelected(false);
             btnServicios.setSelected(false);
             btnInicio.setSelected(false);
+
+            pnlSlider.setPanelNormal(pnlAcercaDe);
         }
     }//GEN-LAST:event_btnAcercaDeActionPerformed
 
@@ -527,7 +567,9 @@ public class MenuUsuario extends javax.swing.JFrame
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
+    private paneles.AcercaDe pnlAcercaDe;
     private paneles.Citas pnlCitas;
+    private paneles.Inicio pnlInicio;
     private RSMaterialComponent.RSPanelMaterial pnlMenu;
     public static paneles.Pacientes pnlPacientes;
     private paneles.Servicios pnlServicios;
