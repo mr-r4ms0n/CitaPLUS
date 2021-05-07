@@ -19,4 +19,9 @@ public class MyJOP
         new Confirm(parent, true, mensaje).setVisible(true);
         return opc;
     }
+    
+    public static void myJOPShowMessageDialog(JFrame parent, String mensaje)
+    {
+        new Mensajes(parent, true, mensaje).setVisible(true);
+    }
 }

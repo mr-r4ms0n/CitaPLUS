@@ -9,8 +9,6 @@ import java.awt.Shape;
 import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.geom.RoundRectangle2D;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.UIManager;
 import rojeru_san.complementos.RSEffectFade;
 
@@ -20,7 +18,7 @@ import rojeru_san.complementos.RSEffectFade;
  */
 public class MenuAdministrador extends javax.swing.JFrame
 {
-    public static JFrame vtn;
+    public static Window vtn;
     /**
      * Creates new form MenuPrincipal
      *
@@ -38,6 +36,12 @@ public class MenuAdministrador extends javax.swing.JFrame
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
         setShape(forma);
         //Establecemos los campos segun esto corresponda de lo que se encontro registrado en la BD
+    }
+    
+    public static void cerrar()
+    {
+        vtn.dispose();
+        new InicioSesion().setVisible(true);
     }
 
     /**
@@ -65,7 +69,8 @@ public class MenuAdministrador extends javax.swing.JFrame
         btnCerrar = new RSMaterialComponent.RSButtonIconOne();
         rSPanelMaterial1 = new RSMaterialComponent.RSPanelMaterial();
         pnlSlider = new newscomponents.RSPanelEffect();
-        usuarios1 = new paneles.Usuarios();
+        pnlUsuarios = new paneles.Usuarios();
+        pnlCredenciales = new paneles.Administrador();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1457, 592));
@@ -266,8 +271,11 @@ public class MenuAdministrador extends javax.swing.JFrame
 
         pnlSlider.setBackground(new java.awt.Color(255, 255, 255));
 
-        usuarios1.setName("pnlUsuarios"); // NOI18N
-        pnlSlider.add(usuarios1, "card2");
+        pnlUsuarios.setName("pnlUsuarios"); // NOI18N
+        pnlSlider.add(pnlUsuarios, "card2");
+
+        pnlCredenciales.setName("pnlCredenciales"); // NOI18N
+        pnlSlider.add(pnlCredenciales, "card3");
 
         javax.swing.GroupLayout rSPanelMaterial1Layout = new javax.swing.GroupLayout(rSPanelMaterial1);
         rSPanelMaterial1.setLayout(rSPanelMaterial1Layout);
@@ -282,8 +290,8 @@ public class MenuAdministrador extends javax.swing.JFrame
             rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(pnlSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jPanel1.add(rSPanelMaterial1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 1200, 440));
@@ -305,8 +313,9 @@ public class MenuAdministrador extends javax.swing.JFrame
         {
             btnUsuarios.setSelected(true);
             btnAcercaDe.setSelected(false);
+            pnlSlider.setPanelNormal(pnlUsuarios);
         }
-
+        
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
     private void btnAcercaDeActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAcercaDeActionPerformed
@@ -315,6 +324,7 @@ public class MenuAdministrador extends javax.swing.JFrame
         {
             btnAcercaDe.setSelected(true);
             btnUsuarios.setSelected(false);
+            pnlSlider.setPanelNormal(pnlCredenciales);
         }
     }//GEN-LAST:event_btnAcercaDeActionPerformed
 
@@ -368,7 +378,7 @@ public class MenuAdministrador extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private RSMaterialComponent.RSButtonMaterialIconOne btnAcercaDe;
-    private RSMaterialComponent.RSButtonIconOne btnCerrar;
+    public static RSMaterialComponent.RSButtonIconOne btnCerrar;
     private RSMaterialComponent.RSButtonMaterialIconOne btnUsuarios;
     private RSMaterialComponent.RSPanelBorderImage imagenDePerfil;
     private javax.swing.JLabel jLNombre;
@@ -377,11 +387,12 @@ public class MenuAdministrador extends javax.swing.JFrame
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
+    private paneles.Administrador pnlCredenciales;
     private RSMaterialComponent.RSPanelMaterial pnlMenu;
     private newscomponents.RSPanelEffect pnlSlider;
     private RSMaterialComponent.RSPanelMaterial pnlTopBar;
+    private paneles.Usuarios pnlUsuarios;
     private RSMaterialComponent.RSLabelIcon rSLabelIcon1;
     private RSMaterialComponent.RSPanelMaterial rSPanelMaterial1;
-    private paneles.Usuarios usuarios1;
     // End of variables declaration//GEN-END:variables
 }

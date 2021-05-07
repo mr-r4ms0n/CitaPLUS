@@ -5,6 +5,10 @@
  */
 package seguridad;
 
+import RSMaterialComponent.RSPasswordIconOne;
+import RSMaterialComponent.RSPasswordMaterialIcon;
+import RSMaterialComponent.RSTextFieldMaterialIcon;
+import RSMaterialComponent.RSTextFieldOne;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -139,7 +143,6 @@ public class EncoderA
      */
     public void desp()
     {
-
         System.out.println(s.getRs().getValue("1").toString());
         System.out.println(s.getRs().getValue("2").toString());
     }
@@ -180,4 +183,27 @@ public class EncoderA
         return getAES(s1, s2);
     }
 
+    public static void recuperaCred(RSTextFieldMaterialIcon usuario, RSPasswordMaterialIcon contra)
+    {
+        usuario.setText(getAESDec(s.getRs().getValue("1").toString()));
+        contra.setText(getAESDec(s.getRs().getValue("2").toString()));
+    }
+    
+    public static String recuperaCred(String n)
+    {
+        return getAESDec(s.getRs().getValue(n).toString());
+    }
+    
+    public static void reasignaCred(String usuario, String pass)
+    {
+        File f = new File(KEY_STORE_FILE);
+        if (f.delete())
+        {
+            getAES(usuario, pass);
+        }else
+        {
+            System.out.println("Error al reasignar credenciales");
+        }
+        
+    }
 }
