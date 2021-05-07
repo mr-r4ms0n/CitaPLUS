@@ -5,6 +5,19 @@
  */
 package formularios_Detalles;
 
+import java.awt.Color;
+import java.awt.Shape;
+import java.awt.geom.RoundRectangle2D;
+import rojeru_san.complementos.RSUtilities;
+import metodosAux.*;
+import metodosBD.MetodosBD;
+import static paneles.Servicios.actualizarNumServicios;
+import static paneles.Servicios.tabSelecc;
+import static paneles.Servicios.tablaContenidoServicios1;
+import paneles.TablaContenidoServicios;
+import rojeru_san.complementos.RSEffectFade;
+import rojeru_san.efectos.ValoresEnum;
+
 /**
  *
  * @author David Vergara
@@ -12,13 +25,36 @@ package formularios_Detalles;
 public class InfoCitas extends javax.swing.JDialog
 {
 
+    RSObjectArray arregloDatos = new RSObjectArray();
+
     /**
-     * Creates new form InfoCitas
+     * Creates new form FormPacientes
      */
+    public InfoCitas(java.awt.Frame parent, boolean modal, RSObjectArray datos)
+    {
+        super(parent, modal);
+        this.arregloDatos = datos;
+        //RSUtilities.setFullScreenJFrame(this);
+        initComponents();
+        RSEffectFade.setFadeWindowIn(this, 30, 0.3f);
+        RSUtilities.setCenterWindow(this);
+        RSUtilities.setOpaqueWindow(this, false);
+        RSUtilities.setOpacityComponent(this.pnlFondo, 150);
+        Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
+        setShape(forma);
+
+    }
+
     public InfoCitas(java.awt.Frame parent, boolean modal)
     {
         super(parent, modal);
         initComponents();
+        RSEffectFade.setFadeWindowIn(this, 30, 0.3f);
+        RSUtilities.setCenterWindow(this);
+        RSUtilities.setOpaqueWindow(this, false);
+        RSUtilities.setOpacityComponent(this.pnlFondo, 150);
+        Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
+        setShape(forma);
     }
 
     /**
@@ -31,21 +67,294 @@ public class InfoCitas extends javax.swing.JDialog
     private void initComponents()
     {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        pnlFondo = new javax.swing.JPanel();
+        rSPanelBorder1 = new RSMaterialComponent.RSPanelBorder();
+        rSPanelBorderGradient1 = new RSMaterialComponent.RSPanelBorderGradient();
+        jLabel1 = new javax.swing.JLabel();
+        btnCerrar = new RSMaterialComponent.RSButtonIconOne();
+        lblNombre = new javax.swing.JLabel();
+        lblNombrePaciente = new javax.swing.JLabel();
+        lblNombre2 = new javax.swing.JLabel();
+        btnEstatus1 = new newscomponents.RSButtonIcon_new();
+        btnRegistrar = new newscomponents.RSButtonIcon_new();
+        lblNombre3 = new javax.swing.JLabel();
+        lblFecha = new javax.swing.JLabel();
+        lblHoraCita = new javax.swing.JLabel();
+        lblNombre6 = new javax.swing.JLabel();
+        lblNombre7 = new javax.swing.JLabel();
+        lblNombre8 = new javax.swing.JLabel();
+        lblNombreServicio = new javax.swing.JLabel();
+        lblNombreAtiende = new javax.swing.JLabel();
+        lblEstatus = new javax.swing.JLabel();
+        lblNombre12 = new javax.swing.JLabel();
+        lblUsuarioRegistro = new javax.swing.JLabel();
+        lblNombre14 = new javax.swing.JLabel();
+        lblUsuarioActualizo = new javax.swing.JLabel();
+        lblNombre16 = new javax.swing.JLabel();
+        lblUsuarioCancelo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        lblNombre18 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setUndecorated(true);
+
+        pnlFondo.setBackground(new java.awt.Color(0, 0, 0));
+
+        rSPanelBorder1.setBackground(new java.awt.Color(255, 255, 255));
+        rSPanelBorder1.setBgBorder(new java.awt.Color(204, 182, 128));
+        rSPanelBorder1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        rSPanelBorderGradient1.setBgShade(new java.awt.Color(204, 182, 128));
+        rSPanelBorderGradient1.setColorPrimario(new java.awt.Color(144, 224, 239));
+        rSPanelBorderGradient1.setColorSecundario(new java.awt.Color(204, 182, 128));
+        rSPanelBorderGradient1.setGradiente(RSMaterialComponent.RSPanelBorderGradient.Gradiente.CIRCULAR);
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel1.setText("Información de la Cita");
+
+        btnCerrar.setBackground(new java.awt.Color(216, 43, 43));
+        btnCerrar.setToolTipText("Cerrar");
+        btnCerrar.setBackgroundHover(new java.awt.Color(255, 51, 51));
+        btnCerrar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CLOSE);
+        btnCerrar.setRound(50);
+        btnCerrar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout rSPanelBorderGradient1Layout = new javax.swing.GroupLayout(rSPanelBorderGradient1);
+        rSPanelBorderGradient1.setLayout(rSPanelBorderGradient1Layout);
+        rSPanelBorderGradient1Layout.setHorizontalGroup(
+            rSPanelBorderGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rSPanelBorderGradient1Layout.createSequentialGroup()
+                .addContainerGap(242, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(247, 247, 247)
+                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        rSPanelBorderGradient1Layout.setVerticalGroup(
+            rSPanelBorderGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rSPanelBorderGradient1Layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(rSPanelBorderGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        rSPanelBorder1.add(rSPanelBorderGradient1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 110));
+
+        lblNombre.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(204, 182, 128));
+        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombre.setText("Paciente");
+        rSPanelBorder1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 200, 40));
+
+        lblNombrePaciente.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblNombrePaciente.setForeground(new java.awt.Color(102, 102, 102));
+        lblNombrePaciente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombrePaciente.setText("Paciente");
+        rSPanelBorder1.add(lblNombrePaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 160, 200, 40));
+
+        lblNombre2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblNombre2.setForeground(new java.awt.Color(204, 182, 128));
+        lblNombre2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombre2.setText("Hora de la cita");
+        rSPanelBorder1.add(lblNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 200, 40));
+
+        btnEstatus1.setBackground(new java.awt.Color(216, 43, 43));
+        btnEstatus1.setText("Cancelar cita");
+        btnEstatus1.setBackgroundHover(new java.awt.Color(255, 51, 51));
+        btnEstatus1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnEstatus1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE);
+        btnEstatus1.setRound(20);
+        btnEstatus1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnEstatus1ActionPerformed(evt);
+            }
+        });
+        rSPanelBorder1.add(btnEstatus1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 580, 140, 41));
+
+        btnRegistrar.setBackground(new java.awt.Color(68, 165, 160));
+        btnRegistrar.setText("Marcar atendida");
+        btnRegistrar.setBackgroundHover(new java.awt.Color(57, 140, 136));
+        btnRegistrar.setEnabled(false);
+        btnRegistrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnRegistrar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CHECK);
+        btnRegistrar.setRound(20);
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+        rSPanelBorder1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 580, 160, -1));
+
+        lblNombre3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblNombre3.setForeground(new java.awt.Color(204, 182, 128));
+        lblNombre3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombre3.setText("Estatus cita");
+        rSPanelBorder1.add(lblNombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, 200, 40));
+
+        lblFecha.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblFecha.setForeground(new java.awt.Color(102, 102, 102));
+        lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFecha.setText("Fecha de la cita");
+        rSPanelBorder1.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 200, 40));
+
+        lblHoraCita.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblHoraCita.setForeground(new java.awt.Color(102, 102, 102));
+        lblHoraCita.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHoraCita.setText("Fecha de la cita");
+        rSPanelBorder1.add(lblHoraCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 200, 40));
+
+        lblNombre6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblNombre6.setForeground(new java.awt.Color(204, 182, 128));
+        lblNombre6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombre6.setText("Fecha de la cita");
+        rSPanelBorder1.add(lblNombre6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 200, 40));
+
+        lblNombre7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblNombre7.setForeground(new java.awt.Color(204, 182, 128));
+        lblNombre7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombre7.setText("Servicio");
+        rSPanelBorder1.add(lblNombre7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 200, 40));
+
+        lblNombre8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblNombre8.setForeground(new java.awt.Color(204, 182, 128));
+        lblNombre8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombre8.setText("Atiende");
+        rSPanelBorder1.add(lblNombre8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 200, 40));
+
+        lblNombreServicio.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblNombreServicio.setForeground(new java.awt.Color(102, 102, 102));
+        lblNombreServicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombreServicio.setText("Servicio");
+        rSPanelBorder1.add(lblNombreServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 200, 40));
+
+        lblNombreAtiende.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblNombreAtiende.setForeground(new java.awt.Color(102, 102, 102));
+        lblNombreAtiende.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombreAtiende.setText("Atiende");
+        rSPanelBorder1.add(lblNombreAtiende, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 200, 40));
+
+        lblEstatus.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblEstatus.setForeground(new java.awt.Color(102, 102, 102));
+        lblEstatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEstatus.setText("Estatus");
+        rSPanelBorder1.add(lblEstatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 200, 40));
+
+        lblNombre12.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblNombre12.setForeground(new java.awt.Color(204, 182, 128));
+        lblNombre12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombre12.setText("Motivo de cancelación");
+        rSPanelBorder1.add(lblNombre12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 200, 20));
+
+        lblUsuarioRegistro.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblUsuarioRegistro.setForeground(new java.awt.Color(102, 102, 102));
+        lblUsuarioRegistro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUsuarioRegistro.setText("Registro");
+        rSPanelBorder1.add(lblUsuarioRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 200, 40));
+
+        lblNombre14.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblNombre14.setForeground(new java.awt.Color(204, 182, 128));
+        lblNombre14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombre14.setText("Usuario actualizo:");
+        rSPanelBorder1.add(lblNombre14, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 200, 40));
+
+        lblUsuarioActualizo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblUsuarioActualizo.setForeground(new java.awt.Color(102, 102, 102));
+        lblUsuarioActualizo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUsuarioActualizo.setText("Actualizo");
+        rSPanelBorder1.add(lblUsuarioActualizo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 200, 40));
+
+        lblNombre16.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblNombre16.setForeground(new java.awt.Color(204, 182, 128));
+        lblNombre16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombre16.setText("Usuario cancelo:");
+        rSPanelBorder1.add(lblNombre16, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 320, 200, 40));
+
+        lblUsuarioCancelo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblUsuarioCancelo.setForeground(new java.awt.Color(102, 102, 102));
+        lblUsuarioCancelo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUsuarioCancelo.setText("Cancelo");
+        rSPanelBorder1.add(lblUsuarioCancelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 370, 200, 40));
+
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(204, 182, 128)));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setRows(5);
+        jTextArea1.setBorder(null);
+        jTextArea1.setFocusable(false);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        rSPanelBorder1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 710, 110));
+
+        lblNombre18.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        lblNombre18.setForeground(new java.awt.Color(204, 182, 128));
+        lblNombre18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombre18.setText("Usuario registro:");
+        rSPanelBorder1.add(lblNombre18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 200, 40));
+
+        javax.swing.GroupLayout pnlFondoLayout = new javax.swing.GroupLayout(pnlFondo);
+        pnlFondo.setLayout(pnlFondoLayout);
+        pnlFondoLayout.setHorizontalGroup(
+            pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFondoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rSPanelBorder1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlFondoLayout.setVerticalGroup(
+            pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFondoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rSPanelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCerrarActionPerformed
+    {//GEN-HEADEREND:event_btnCerrarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnEstatus1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnEstatus1ActionPerformed
+    {//GEN-HEADEREND:event_btnEstatus1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEstatus1ActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRegistrarActionPerformed
+    {//GEN-HEADEREND:event_btnRegistrarActionPerformed
+
+       
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -81,8 +390,15 @@ public class InfoCitas extends javax.swing.JDialog
             java.util.logging.Logger.getLogger(InfoCitas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the dialog */
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
         {
             public void run()
@@ -102,5 +418,33 @@ public class InfoCitas extends javax.swing.JDialog
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private RSMaterialComponent.RSButtonIconOne btnCerrar;
+    private newscomponents.RSButtonIcon_new btnEstatus1;
+    private newscomponents.RSButtonIcon_new btnRegistrar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lblEstatus;
+    private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblHoraCita;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNombre12;
+    private javax.swing.JLabel lblNombre14;
+    private javax.swing.JLabel lblNombre16;
+    private javax.swing.JLabel lblNombre18;
+    private javax.swing.JLabel lblNombre2;
+    private javax.swing.JLabel lblNombre3;
+    private javax.swing.JLabel lblNombre6;
+    private javax.swing.JLabel lblNombre7;
+    private javax.swing.JLabel lblNombre8;
+    private javax.swing.JLabel lblNombreAtiende;
+    private javax.swing.JLabel lblNombrePaciente;
+    private javax.swing.JLabel lblNombreServicio;
+    private javax.swing.JLabel lblUsuarioActualizo;
+    private javax.swing.JLabel lblUsuarioCancelo;
+    private javax.swing.JLabel lblUsuarioRegistro;
+    private javax.swing.JPanel pnlFondo;
+    private RSMaterialComponent.RSPanelBorder rSPanelBorder1;
+    private RSMaterialComponent.RSPanelBorderGradient rSPanelBorderGradient1;
     // End of variables declaration//GEN-END:variables
 }
