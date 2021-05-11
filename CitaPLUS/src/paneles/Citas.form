@@ -243,6 +243,9 @@
       </SubComponents>
     </Container>
     <Component class="paneles.TablaContenidoCitas" name="tablaContenidoCitas21">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

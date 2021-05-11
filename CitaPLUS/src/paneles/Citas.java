@@ -202,7 +202,7 @@ public class Citas extends javax.swing.JPanel
             tabAtendidas.setSelected(false);
             tabProximas.setSelected(true);
         }
-        TablaContenidoCitas.
+       tablaContenidoCitas21.actualizarTitulo(1);
     }//GEN-LAST:event_tabProximasActionPerformed
 
     private void tabAtendidasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabAtendidasActionPerformed
@@ -216,9 +216,7 @@ public class Citas extends javax.swing.JPanel
             tabProximas.setSelected(false);
             tabAtendidas.setSelected(true);
         }
-
-        //listarPacientes(tblPacientes, tabSelecc, null);
-        TablaContenidoCitas.actualizarTitulo(2);
+        tablaContenidoCitas21.actualizarTitulo(2);
     }//GEN-LAST:event_tabAtendidasActionPerformed
 
     private void tabCanceladasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabCanceladasActionPerformed
@@ -232,8 +230,7 @@ public class Citas extends javax.swing.JPanel
             tabAtendidas.setSelected(false);
             tabCanceladas.setSelected(true);
         }
-        //listarPacientes(tblPacientes, tabSelecc, null);
-        TablaContenidoCitas.actualizarTitulo(3);
+        tablaContenidoCitas21.actualizarTitulo(3);
     }//GEN-LAST:event_tabCanceladasActionPerformed
 
     private void tabTodasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabTodasActionPerformed
@@ -247,9 +244,7 @@ public class Citas extends javax.swing.JPanel
             tabCanceladas.setSelected(false);
             tabTodas.setSelected(true);
         }
-
-        //listarPacientes(tblPacientes, tabSelecc, null);
-        TablaContenidoCitas.actualizarTitulo(0);
+        tablaContenidoCitas21.actualizarTitulo(0);
     }//GEN-LAST:event_tabTodasActionPerformed
 
     private void rSButtonIcon_new1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSButtonIcon_new1ActionPerformed
@@ -257,7 +252,6 @@ public class Citas extends javax.swing.JPanel
         // TODO add your handling code here:
         new RegCitas().setVisible(true);
     }//GEN-LAST:event_rSButtonIcon_new1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel2;
@@ -267,6 +261,6 @@ public class Citas extends javax.swing.JPanel
     private newscomponents.RSButtonIcon_new tabCanceladas;
     private newscomponents.RSButtonIcon_new tabProximas;
     private newscomponents.RSButtonIcon_new tabTodas;
-    private paneles.TablaContenidoCitas tablaContenidoCitas21;
+    public static paneles.TablaContenidoCitas tablaContenidoCitas21;
     // End of variables declaration//GEN-END:variables
 }
