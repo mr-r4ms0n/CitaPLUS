@@ -6,18 +6,20 @@
 package paneles;
 
 import RSMaterialComponent.RSTableMetroCustom;
+import formularios_Detalles.InfoCitas;
+import formularios_Ediciones.EditCita;
 import java.awt.Color;
 import javax.swing.table.TableColumn;
+import metodosAux.SysConfigs;
 import metodosAux.MetodosAux;
 import metodosAux.RSButtonsAction;
 import metodosAux.RSButtonsRenderer;
-import metodosAux.SysConfigs;
 import metodosBD.MetodosBD;
 import rojeru_san.efectos.ValoresEnum;
 
 /**
  *
- * @author Kevin
+ * @author David Vergara
  */
 public class TablaContenidoCitas extends javax.swing.JPanel
 {
@@ -28,10 +30,10 @@ public class TablaContenidoCitas extends javax.swing.JPanel
     public TablaContenidoCitas()
     {
         initComponents();
+        listarCita(tblCitas, 1, jTBuscarCita.getText().trim());
         jScrollPane1.getViewport().setBackground(Color.WHITE);
-        
     }
-    
+
     /**
      * Método encargado de mostrar graficamente los datos de los pacientes
      * dentro de la tabla correspondiente
@@ -41,7 +43,7 @@ public class TablaContenidoCitas extends javax.swing.JPanel
      * @param filtro Nombre de un paciente en especifico (Para busqueda filtrada
      * y puede ser null)
      */
-    public static void listarPacientes(RSTableMetroCustom tabla, int tab, String filtro)
+    public static void listarCita(RSTableMetroCustom tabla, int tab, String filtro)
     {
         if (filtro == null)
         {
@@ -49,9 +51,9 @@ public class TablaContenidoCitas extends javax.swing.JPanel
         }
         String[] columnas =
         {
-            "id", "accion", "nombrePaciente", "fecha", "hora", "usuarioAtiende", "estatusCitasId", "fechaRegistro", "usuarioEdito"
+            "id", "accion", "nombre", "apellidoPaterno", "apellidoMaterno", "sexo", "telefonoP", "correo", "estatusPac"
         };
-        MetodosAux.listarTablas(MetodosBD.rsListarCitas(tab, filtro), tabla, columnas);
+        MetodosAux.listarTablas(MetodosBD.rsListarPacientes(tab, filtro), tabla, columnas);
 
         //Definimos la posicion donde estara la columna que contendra los botones
         TableColumn column = tabla.getColumnModel().getColumn(1);
@@ -66,16 +68,16 @@ public class TablaContenidoCitas extends javax.swing.JPanel
         //El 0 de aqui es de donde agarrara el parametro para activar los botones
         column.setCellEditor(new RSButtonsAction(tabla, 0, params));
     }
-    
+
     /**
-     * Metodo que actualiza el titulo que se depliega en la parte inferior
+     * M;etodo que actualiza el titulo que se depliega en la parte inferior
      * dependiendo del tab que se seleccione
      *
      * @param tab tab seleccionado
      */
-    public static void actualizarTitulo(int tab)
+    public void actualizarTitulo(int tab)
     {
-        switch (tab)
+       switch (tab)
         {
             case 1:
                 TituloActual.setText("Citas Próximas");
@@ -100,6 +102,16 @@ public class TablaContenidoCitas extends javax.swing.JPanel
         }
     }
 
+    public void viewInfo(Object value)
+    {
+        new InfoCitas(null, true, MetodosBD.getPaciente(value.toString())).setVisible(true);
+    }
+
+    public void editInfo(Object value)
+    {
+        new EditCita(MetodosBD.getPaciente(value.toString())).setVisible(true);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,27 +125,27 @@ public class TablaContenidoCitas extends javax.swing.JPanel
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCitas = new RSMaterialComponent.RSTableMetroCustom();
         TituloActual = new RSMaterialComponent.RSLabelTextIcon();
-        rSTextFieldMaterialIcon1 = new RSMaterialComponent.RSTextFieldMaterialIcon();
+        jTBuscarCita = new RSMaterialComponent.RSTextFieldMaterialIcon();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         tblCitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String []
             {
-                "Id", "Cliente", "Fecha Cita", "Fecha Hora", "Atiende"
+                "id", "Accion", "Paciente", "Fecha cita", "Hora cita", "Atiende", "Estatus", "Fecha registró", "Usuario registró"
             }
         )
         {
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false, false
+                false, true, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex)
@@ -143,30 +155,55 @@ public class TablaContenidoCitas extends javax.swing.JPanel
         });
         tblCitas.setBackgoundHead(new java.awt.Color(26, 117, 159));
         tblCitas.setBackgoundHover(new java.awt.Color(26, 117, 159));
+        tblCitas.setBorderRows(null);
         tblCitas.setColorPrimaryText(new java.awt.Color(26, 117, 159));
         tblCitas.setColorSecondary(new java.awt.Color(255, 255, 255));
         tblCitas.setColorSecundaryText(new java.awt.Color(26, 117, 159));
-        tblCitas.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        tblCitas.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         tblCitas.setFontHead(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        tblCitas.setFontRowHover(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
-        tblCitas.setFontRowSelect(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        tblCitas.setFontRowHover(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        tblCitas.setFontRowSelect(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        tblCitas.setHighHead(40);
+        tblCitas.setRowHeight(35);
         tblCitas.setSelectionBackground(new java.awt.Color(26, 117, 159));
         jScrollPane1.setViewportView(tblCitas);
+        if (tblCitas.getColumnModel().getColumnCount() > 0)
+        {
+            tblCitas.getColumnModel().getColumn(0).setMinWidth(0);
+            tblCitas.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tblCitas.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         TituloActual.setForeground(new java.awt.Color(233, 196, 106));
         TituloActual.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         TituloActual.setText("Citas próximas");
+        TituloActual.setToolTipText("");
         TituloActual.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ACCESS_TIME);
         TituloActual.setSizeIcon(30.0F);
 
-        rSTextFieldMaterialIcon1.setForeground(new java.awt.Color(26, 117, 159));
-        rSTextFieldMaterialIcon1.setColorIcon(new java.awt.Color(26, 117, 159));
-        rSTextFieldMaterialIcon1.setColorMaterial(new java.awt.Color(26, 117, 159));
-        rSTextFieldMaterialIcon1.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        rSTextFieldMaterialIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
-        rSTextFieldMaterialIcon1.setPhColor(new java.awt.Color(26, 117, 159));
-        rSTextFieldMaterialIcon1.setPlaceholder("Buscar cita");
-        rSTextFieldMaterialIcon1.setSelectionColor(new java.awt.Color(26, 117, 159));
+        jTBuscarCita.setForeground(new java.awt.Color(26, 117, 159));
+        jTBuscarCita.setToolTipText("Buscar por nombre o apellido paterno");
+        jTBuscarCita.setColorIcon(new java.awt.Color(26, 117, 159));
+        jTBuscarCita.setColorMaterial(new java.awt.Color(26, 117, 159));
+        jTBuscarCita.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        jTBuscarCita.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
+        jTBuscarCita.setPhColor(new java.awt.Color(26, 117, 159));
+        jTBuscarCita.setPlaceholder("Buscar paciente");
+        jTBuscarCita.setSelectionColor(new java.awt.Color(26, 117, 159));
+        jTBuscarCita.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jTBuscarCitaActionPerformed(evt);
+            }
+        });
+        jTBuscarCita.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyReleased(java.awt.event.KeyEvent evt)
+            {
+                jTBuscarCitaKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -178,8 +215,8 @@ public class TablaContenidoCitas extends javax.swing.JPanel
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(TituloActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 415, Short.MAX_VALUE)
-                        .addComponent(rSTextFieldMaterialIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 458, Short.MAX_VALUE)
+                        .addComponent(jTBuscarCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -188,18 +225,29 @@ public class TablaContenidoCitas extends javax.swing.JPanel
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TituloActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSTextFieldMaterialIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTBuscarCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTBuscarCitaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTBuscarCitaActionPerformed
+    {//GEN-HEADEREND:event_jTBuscarCitaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTBuscarCitaActionPerformed
+
+    private void jTBuscarCitaKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTBuscarCitaKeyReleased
+    {//GEN-HEADEREND:event_jTBuscarCitaKeyReleased
+        System.out.println(jTBuscarCita.getText().trim());
+        listarCita(tblCitas, Pacientes.tabSelecc, jTBuscarCita.getText().trim());
+    }//GEN-LAST:event_jTBuscarCitaKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static RSMaterialComponent.RSLabelTextIcon TituloActual;
+    private RSMaterialComponent.RSLabelTextIcon TituloActual;
     private javax.swing.JScrollPane jScrollPane1;
-    private RSMaterialComponent.RSTextFieldMaterialIcon rSTextFieldMaterialIcon1;
-    private RSMaterialComponent.RSTableMetroCustom tblCitas;
+    private RSMaterialComponent.RSTextFieldMaterialIcon jTBuscarCita;
+    public RSMaterialComponent.RSTableMetroCustom tblCitas;
     // End of variables declaration//GEN-END:variables
 }

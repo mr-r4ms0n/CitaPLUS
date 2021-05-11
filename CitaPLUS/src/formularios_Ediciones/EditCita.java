@@ -9,6 +9,7 @@ import formularios_Registros.*;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import metodosAux.RSObjectArray;
 import rojeru_san.complementos.RSUtilities;
 
 
@@ -19,7 +20,7 @@ import rojeru_san.complementos.RSUtilities;
 public class EditCita extends javax.swing.JDialog
 {
 
-    public EditCita()
+    public EditCita(RSObjectArray datos)
     {
         initComponents();
         setModal(true);
@@ -29,6 +30,11 @@ public class EditCita extends javax.swing.JDialog
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
         setShape(forma);
         iniCampos();
+    }
+
+    private EditCita()
+    {
+        
     }
 
     /**

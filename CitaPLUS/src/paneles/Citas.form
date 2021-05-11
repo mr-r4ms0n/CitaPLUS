@@ -17,15 +17,20 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel2" max="32767" attributes="0"/>
-          <Component id="tablaContenidoCitas1" alignment="1" pref="1121" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="tablaContenidoCitas21" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="tablaContenidoCitas21" pref="543" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="tablaContenidoCitas1" pref="559" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -64,7 +69,7 @@
                           <Component id="tabCanceladas" min="-2" pref="146" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="tabTodas" min="-2" pref="91" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="562" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -237,7 +242,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="paneles.TablaContenidoCitas" name="tablaContenidoCitas1">
+    <Component class="paneles.TablaContenidoCitas" name="tablaContenidoCitas21">
     </Component>
   </SubComponents>
 </Form>

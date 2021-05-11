@@ -6,11 +6,11 @@
 package paneles;
 
 import formularios_Registros.RegCitas;
-
+import metodosBD.MetodosBD;
 
 /**
  *
- * @author Kevin
+ * @author David Vergara
  */
 public class Citas extends javax.swing.JPanel
 {
@@ -42,7 +42,7 @@ public class Citas extends javax.swing.JPanel
         tabCanceladas = new newscomponents.RSButtonIcon_new();
         tabTodas = new newscomponents.RSButtonIcon_new();
         tabAtendidas = new newscomponents.RSButtonIcon_new();
-        tablaContenidoCitas1 = new paneles.TablaContenidoCitas();
+        tablaContenidoCitas21 = new paneles.TablaContenidoCitas();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 4, 0, new java.awt.Color(26, 117, 159)));
@@ -150,7 +150,7 @@ public class Citas extends javax.swing.JPanel
                         .addComponent(tabCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tabTodas, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 562, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -176,14 +176,18 @@ public class Citas extends javax.swing.JPanel
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tablaContenidoCitas1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1121, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tablaContenidoCitas21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tablaContenidoCitas1, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tablaContenidoCitas21, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -198,9 +202,7 @@ public class Citas extends javax.swing.JPanel
             tabAtendidas.setSelected(false);
             tabProximas.setSelected(true);
         }
-
-        //listarPacientes(tblPacientes, tabSelecc, null);
-        TablaContenidoCitas.actualizarTitulo(1);
+        TablaContenidoCitas.
     }//GEN-LAST:event_tabProximasActionPerformed
 
     private void tabAtendidasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabAtendidasActionPerformed
@@ -248,7 +250,6 @@ public class Citas extends javax.swing.JPanel
 
         //listarPacientes(tblPacientes, tabSelecc, null);
         TablaContenidoCitas.actualizarTitulo(0);
-        
     }//GEN-LAST:event_tabTodasActionPerformed
 
     private void rSButtonIcon_new1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSButtonIcon_new1ActionPerformed
@@ -266,6 +267,6 @@ public class Citas extends javax.swing.JPanel
     private newscomponents.RSButtonIcon_new tabCanceladas;
     private newscomponents.RSButtonIcon_new tabProximas;
     private newscomponents.RSButtonIcon_new tabTodas;
-    private paneles.TablaContenidoCitas tablaContenidoCitas1;
+    private paneles.TablaContenidoCitas tablaContenidoCitas21;
     // End of variables declaration//GEN-END:variables
 }
