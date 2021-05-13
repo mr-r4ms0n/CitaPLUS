@@ -124,7 +124,7 @@
                                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="fecha" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="CFecha" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -134,7 +134,7 @@
                                       <Component id="error_hora" min="-2" pref="296" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="hora" max="32767" attributes="0"/>
+                                      <Component id="CHora" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -165,7 +165,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="fecha" min="-2" max="-2" attributes="0"/>
+                                  <Component id="CFecha" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="76" pref="76" max="-2" attributes="0"/>
@@ -178,7 +178,7 @@
                                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="hora" alignment="1" min="-2" pref="47" max="-2" attributes="0"/>
+                                  <Component id="CHora" alignment="1" min="-2" pref="47" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="error_hora" min="-2" pref="20" max="-2" attributes="0"/>
@@ -294,7 +294,7 @@
                 <Property name="text" type="java.lang.String" value="Etiqueta de Error"/>
               </Properties>
             </Component>
-            <Component class="RSMaterialComponent.RSComboBox" name="hora">
+            <Component class="RSMaterialComponent.RSComboBox" name="CHora">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="35">
@@ -353,18 +353,18 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="horaItemStateChanged"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="horaActionPerformed"/>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CHoraItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CHoraActionPerformed"/>
               </Events>
             </Component>
-            <Component class="newscomponents.RSDateChooserModern" name="fecha">
+            <Component class="newscomponents.RSDateChooserModern" name="CFecha">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="a0" green="a5" red="44" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="fechaMousePressed"/>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CFechaMousePressed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">

@@ -5,12 +5,9 @@
  */
 package formularios_Registros;
 
-import RSMaterialComponent.RSComboBox;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import metodosAux.MetodosAux;
 import metodosBD.MetodosBD;
 import rojeru_san.complementos.RSUtilities;
@@ -58,12 +55,11 @@ public class RegCitas extends javax.swing.JDialog
         this.error_hora.setForeground(Color.white);
         this.error_servicio.setForeground(Color.white);
         this.error_atendera.setForeground(Color.white);
-        this.hora.setSelectedIndex(0);
+        this.CHora.setSelectedIndex(0);
         this.CPaciente.setSelectedIndex(0);
         this.CAtendera.setSelectedIndex(0);
         this.Cservicio.setSelectedIndex(0);
-    }
-    
+    }     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,8 +78,8 @@ public class RegCitas extends javax.swing.JDialog
         btnRegistar = new newscomponents.RSButtonIcon_new();
         jLabel9 = new javax.swing.JLabel();
         error_hora = new javax.swing.JLabel();
-        hora = new RSMaterialComponent.RSComboBox();
-        fecha = new newscomponents.RSDateChooserModern();
+        CHora = new RSMaterialComponent.RSComboBox();
+        CFecha = new newscomponents.RSDateChooserModern();
         jLabel10 = new javax.swing.JLabel();
         error_fecha = new javax.swing.JLabel();
         error_servicio = new javax.swing.JLabel();
@@ -160,34 +156,34 @@ public class RegCitas extends javax.swing.JDialog
         error_hora.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         error_hora.setText("Etiqueta de Error");
 
-        hora.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "07:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30" }));
-        hora.setColorArrow(new java.awt.Color(68, 165, 160));
-        hora.setColorBorde(new java.awt.Color(68, 165, 160));
-        hora.setColorFondo(new java.awt.Color(68, 165, 160));
-        hora.setColorSeleccion(new java.awt.Color(68, 165, 160));
-        hora.setDisabledIdex("0");
-        hora.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        hora.addItemListener(new java.awt.event.ItemListener()
+        CHora.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "07:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30" }));
+        CHora.setColorArrow(new java.awt.Color(68, 165, 160));
+        CHora.setColorBorde(new java.awt.Color(68, 165, 160));
+        CHora.setColorFondo(new java.awt.Color(68, 165, 160));
+        CHora.setColorSeleccion(new java.awt.Color(68, 165, 160));
+        CHora.setDisabledIdex("0");
+        CHora.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        CHora.addItemListener(new java.awt.event.ItemListener()
         {
             public void itemStateChanged(java.awt.event.ItemEvent evt)
             {
-                horaItemStateChanged(evt);
+                CHoraItemStateChanged(evt);
             }
         });
-        hora.addActionListener(new java.awt.event.ActionListener()
+        CHora.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                horaActionPerformed(evt);
+                CHoraActionPerformed(evt);
             }
         });
 
-        fecha.setBackground(new java.awt.Color(68, 165, 160));
-        fecha.addMouseListener(new java.awt.event.MouseAdapter()
+        CFecha.setBackground(new java.awt.Color(68, 165, 160));
+        CFecha.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mousePressed(java.awt.event.MouseEvent evt)
             {
-                fechaMousePressed(evt);
+                CFechaMousePressed(evt);
             }
         });
 
@@ -335,7 +331,7 @@ public class RegCitas extends javax.swing.JDialog
                                 .addComponent(error_fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(2, 2, 2))
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(fecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -343,7 +339,7 @@ public class RegCitas extends javax.swing.JDialog
                                 .addGap(10, 10, 10)
                                 .addComponent(error_hora, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                                .addComponent(hora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())))))
             .addComponent(rSPanelMaterialGradient1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
@@ -367,7 +363,7 @@ public class RegCitas extends javax.swing.JDialog
                         .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                             .addComponent(jLabel8)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                             .addGap(76, 76, 76)
                             .addComponent(error_fecha)))
@@ -376,7 +372,7 @@ public class RegCitas extends javax.swing.JDialog
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(48, 48, 48))
-                            .addComponent(hora, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CHora, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(error_hora, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
@@ -438,16 +434,18 @@ public class RegCitas extends javax.swing.JDialog
 
     private void btnRegistarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRegistarActionPerformed
     {//GEN-HEADEREND:event_btnRegistarActionPerformed
-        boolean pacientCorrect = MetodosAux.validarBox(CPaciente, error_paciente, "required");
-        boolean serviceCorrect = MetodosAux.validarBox(Cservicio, error_servicio, "required");
-        boolean horaCorrect = MetodosAux.validarBox(hora, error_hora, "required");
-        boolean atenderaCorrect = MetodosAux.validarBox(CAtendera, error_atendera, "required");
-        SimpleDateFormat dformat = new SimpleDateFormat("yyyy-MM-dd");
-        String date = dformat.format(fecha.getDate());
-        System.out.println(date);
-        if (atenderaCorrect)
+        pacientCorrect = MetodosAux.validarBox(CPaciente, error_paciente, "required");
+        serviceCorrect = MetodosAux.validarBox(Cservicio, error_servicio, "required");
+        horaCorrect = MetodosAux.validarBox(CHora, error_hora, "required");
+        atenderaCorrect = MetodosAux.validarBox(CAtendera, error_atendera, "required");
+        String fecha = MetodosAux.ObtenerFechaMySQL(CFecha.getDate());
+        
+        if (atenderaCorrect && pacientCorrect && serviceCorrect && horaCorrect)
         {
-            
+            Object[] datosUpdate =
+            {
+                
+            }
         }
         
     }//GEN-LAST:event_btnRegistarActionPerformed
@@ -464,18 +462,18 @@ public class RegCitas extends javax.swing.JDialog
         
     }//GEN-LAST:event_CPacienteItemStateChanged
 
-    private void horaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_horaItemStateChanged
-    {//GEN-HEADEREND:event_horaItemStateChanged
+    private void CHoraItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CHoraItemStateChanged
+    {//GEN-HEADEREND:event_CHoraItemStateChanged
         // TODO add your handling code here:
         
         //codigo para validar
         
-    }//GEN-LAST:event_horaItemStateChanged
+    }//GEN-LAST:event_CHoraItemStateChanged
 
-    private void horaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_horaActionPerformed
-    {//GEN-HEADEREND:event_horaActionPerformed
+    private void CHoraActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CHoraActionPerformed
+    {//GEN-HEADEREND:event_CHoraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_horaActionPerformed
+    }//GEN-LAST:event_CHoraActionPerformed
 
     private void CservicioItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CservicioItemStateChanged
     {//GEN-HEADEREND:event_CservicioItemStateChanged
@@ -504,10 +502,10 @@ public class RegCitas extends javax.swing.JDialog
 
     }//GEN-LAST:event_CPacienteMouseClicked
 
-    private void fechaMousePressed(java.awt.event.MouseEvent evt)//GEN-FIRST:event_fechaMousePressed
-    {//GEN-HEADEREND:event_fechaMousePressed
+    private void CFechaMousePressed(java.awt.event.MouseEvent evt)//GEN-FIRST:event_CFechaMousePressed
+    {//GEN-HEADEREND:event_CFechaMousePressed
 
-    }//GEN-LAST:event_fechaMousePressed
+    }//GEN-LAST:event_CFechaMousePressed
 
     /**
      * @param args the command line arguments
@@ -561,6 +559,8 @@ public class RegCitas extends javax.swing.JDialog
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private RSMaterialComponent.RSComboBox CAtendera;
+    private newscomponents.RSDateChooserModern CFecha;
+    private RSMaterialComponent.RSComboBox CHora;
     private RSMaterialComponent.RSComboBox CPaciente;
     private RSMaterialComponent.RSComboBox Cservicio;
     private RSMaterialComponent.RSButtonIconOne btnCerrar;
@@ -570,8 +570,6 @@ public class RegCitas extends javax.swing.JDialog
     private javax.swing.JLabel error_hora;
     private javax.swing.JLabel error_paciente;
     private javax.swing.JLabel error_servicio;
-    private newscomponents.RSDateChooserModern fecha;
-    private RSMaterialComponent.RSComboBox hora;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

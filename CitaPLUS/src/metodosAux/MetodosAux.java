@@ -12,15 +12,16 @@ import RSMaterialComponent.RSTextFieldOne;
 import alertas.Alerta;
 import formularios_Registros.RegPacientes;
 import interfaces.MenuUsuario;
-import java.awt.TextArea;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -321,6 +322,11 @@ public class MetodosAux
         arr.add("tipo", type);
         new Alerta(MenuUsuario.vtn, true, arr).setVisible(true);
     }
-
     
+    public static String ObtenerFechaMySQL (Date fecha)
+    {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String date = formato.format(fecha);
+        return date;
+    }
 }
