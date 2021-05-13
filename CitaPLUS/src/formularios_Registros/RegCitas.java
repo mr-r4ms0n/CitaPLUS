@@ -9,6 +9,9 @@ import RSMaterialComponent.RSComboBox;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import metodosAux.MetodosAux;
 import metodosBD.MetodosBD;
 import rojeru_san.complementos.RSUtilities;
 
@@ -19,7 +22,13 @@ import rojeru_san.complementos.RSUtilities;
  */
 public class RegCitas extends javax.swing.JDialog
 {
-
+    
+    //campos necesarios para validar
+    boolean pacientCorrect = false;
+    boolean serviceCorrect = false;
+    boolean horaCorrect = false;
+    boolean atenderaCorrect = false;
+    
     public RegCitas()
     {
         initComponents();
@@ -44,7 +53,7 @@ public class RegCitas extends javax.swing.JDialog
      */
     public void iniCampos()
     {
-        this.error_cliente.setForeground(Color.white);
+        this.error_paciente.setForeground(Color.white);
         this.error_fecha.setForeground(Color.white);
         this.error_hora.setForeground(Color.white);
         this.error_servicio.setForeground(Color.white);
@@ -69,7 +78,7 @@ public class RegCitas extends javax.swing.JDialog
         rSPanelBorder1 = new RSMaterialComponent.RSPanelBorder();
         CPaciente = new RSMaterialComponent.RSComboBox();
         jLabel8 = new javax.swing.JLabel();
-        error_cliente = new javax.swing.JLabel();
+        error_paciente = new javax.swing.JLabel();
         btnRegistar = new newscomponents.RSButtonIcon_new();
         jLabel9 = new javax.swing.JLabel();
         error_hora = new javax.swing.JLabel();
@@ -109,6 +118,13 @@ public class RegCitas extends javax.swing.JDialog
                 CPacienteItemStateChanged(evt);
             }
         });
+        CPaciente.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                CPacienteMouseClicked(evt);
+            }
+        });
         CPaciente.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -120,8 +136,8 @@ public class RegCitas extends javax.swing.JDialog
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel8.setText("Fecha cita*");
 
-        error_cliente.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        error_cliente.setText("Etiqueta de Error");
+        error_paciente.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        error_paciente.setText("Etiqueta de Error");
 
         btnRegistar.setBackground(new java.awt.Color(68, 165, 160));
         btnRegistar.setText("Agendar Cita");
@@ -167,6 +183,13 @@ public class RegCitas extends javax.swing.JDialog
         });
 
         fecha.setBackground(new java.awt.Color(68, 165, 160));
+        fecha.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mousePressed(java.awt.event.MouseEvent evt)
+            {
+                fechaMousePressed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel10.setText("Paciente*");
@@ -285,7 +308,7 @@ public class RegCitas extends javax.swing.JDialog
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(error_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(error_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -322,11 +345,11 @@ public class RegCitas extends javax.swing.JDialog
                             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                                 .addComponent(hora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())))))
+            .addComponent(rSPanelMaterialGradient1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                .addGap(199, 199, 199)
+                .addGap(216, 216, 216)
                 .addComponent(btnRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(rSPanelMaterialGradient1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         rSPanelBorder1Layout.setVerticalGroup(
             rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,7 +360,7 @@ public class RegCitas extends javax.swing.JDialog
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(error_cliente)
+                .addComponent(error_paciente)
                 .addGap(18, 18, 18)
                 .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,7 +438,17 @@ public class RegCitas extends javax.swing.JDialog
 
     private void btnRegistarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRegistarActionPerformed
     {//GEN-HEADEREND:event_btnRegistarActionPerformed
-
+        boolean pacientCorrect = MetodosAux.validarBox(CPaciente, error_paciente, "required");
+        boolean serviceCorrect = MetodosAux.validarBox(Cservicio, error_servicio, "required");
+        boolean horaCorrect = MetodosAux.validarBox(hora, error_hora, "required");
+        boolean atenderaCorrect = MetodosAux.validarBox(CAtendera, error_atendera, "required");
+        SimpleDateFormat dformat = new SimpleDateFormat("yyyy-MM-dd");
+        String date = dformat.format(fecha.getDate());
+        System.out.println(date);
+        if (atenderaCorrect)
+        {
+            
+        }
         
     }//GEN-LAST:event_btnRegistarActionPerformed
 
@@ -427,11 +460,16 @@ public class RegCitas extends javax.swing.JDialog
     private void CPacienteItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CPacienteItemStateChanged
     {//GEN-HEADEREND:event_CPacienteItemStateChanged
 
+        //aqui va el codigo para validar
+        
     }//GEN-LAST:event_CPacienteItemStateChanged
 
     private void horaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_horaItemStateChanged
     {//GEN-HEADEREND:event_horaItemStateChanged
         // TODO add your handling code here:
+        
+        //codigo para validar
+        
     }//GEN-LAST:event_horaItemStateChanged
 
     private void horaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_horaActionPerformed
@@ -442,6 +480,8 @@ public class RegCitas extends javax.swing.JDialog
     private void CservicioItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CservicioItemStateChanged
     {//GEN-HEADEREND:event_CservicioItemStateChanged
         // TODO add your handling code here:
+        //Codigo para validar
+        
     }//GEN-LAST:event_CservicioItemStateChanged
 
     private void CservicioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CservicioActionPerformed
@@ -451,13 +491,23 @@ public class RegCitas extends javax.swing.JDialog
 
     private void CAtenderaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CAtenderaItemStateChanged
     {//GEN-HEADEREND:event_CAtenderaItemStateChanged
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_CAtenderaItemStateChanged
 
     private void CAtenderaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CAtenderaActionPerformed
     {//GEN-HEADEREND:event_CAtenderaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CAtenderaActionPerformed
+
+    private void CPacienteMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_CPacienteMouseClicked
+    {//GEN-HEADEREND:event_CPacienteMouseClicked
+
+    }//GEN-LAST:event_CPacienteMouseClicked
+
+    private void fechaMousePressed(java.awt.event.MouseEvent evt)//GEN-FIRST:event_fechaMousePressed
+    {//GEN-HEADEREND:event_fechaMousePressed
+
+    }//GEN-LAST:event_fechaMousePressed
 
     /**
      * @param args the command line arguments
@@ -514,11 +564,11 @@ public class RegCitas extends javax.swing.JDialog
     private RSMaterialComponent.RSComboBox CPaciente;
     private RSMaterialComponent.RSComboBox Cservicio;
     private RSMaterialComponent.RSButtonIconOne btnCerrar;
-    private newscomponents.RSButtonIcon_new btnRegistar;
+    public static newscomponents.RSButtonIcon_new btnRegistar;
     private javax.swing.JLabel error_atendera;
-    private javax.swing.JLabel error_cliente;
     private javax.swing.JLabel error_fecha;
     private javax.swing.JLabel error_hora;
+    private javax.swing.JLabel error_paciente;
     private javax.swing.JLabel error_servicio;
     private newscomponents.RSDateChooserModern fecha;
     private RSMaterialComponent.RSComboBox hora;
