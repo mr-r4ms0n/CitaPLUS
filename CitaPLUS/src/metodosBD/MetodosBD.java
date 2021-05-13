@@ -686,6 +686,7 @@ public class MetodosBD
     }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     //metodo para obtener los servicios disponibles
     public static void mostrarServiciosDisponibles(RSComboBox combo)
     {
@@ -732,6 +733,8 @@ public class MetodosBD
             System.out.println("Error en obtener el ResultSet de Usuarios: " + e);
         }
 =======
+=======
+>>>>>>> Stashed changes
     public static ResultSet listarComboBoxReg(String tipo)
     {
         try
@@ -759,6 +762,9 @@ public class MetodosBD
             System.out.println("Error al obtener el resultset para llenar combobox" + e);
         }
         return null;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
 

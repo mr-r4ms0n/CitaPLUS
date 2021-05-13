@@ -10,7 +10,11 @@ import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import metodosBD.MetodosBD;
+=======
+import metodosAux.MetodosAux;
+>>>>>>> Stashed changes
 =======
 import metodosAux.MetodosAux;
 >>>>>>> Stashed changes
@@ -55,10 +59,14 @@ public class RegCitas extends javax.swing.JDialog
         this.error_servicio.setForeground(Color.white);
         this.error_atendera.setForeground(Color.white);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         this.hora.setSelectedIndex(0);
         this.CPaciente.setSelectedIndex(0);
         this.CAtendera.setSelectedIndex(0);
         this.Cservicio.setSelectedIndex(0);
+=======
+        this.CBhora.setSelectedIndex(0);
+>>>>>>> Stashed changes
 =======
         this.CBhora.setSelectedIndex(0);
 >>>>>>> Stashed changes
@@ -77,7 +85,11 @@ public class RegCitas extends javax.swing.JDialog
         pnlFondo = new javax.swing.JPanel();
         rSPanelBorder1 = new RSMaterialComponent.RSPanelBorder();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         CPaciente = new RSMaterialComponent.RSComboBox();
+=======
+        CBPaciente = new RSMaterialComponent.RSComboBox();
+>>>>>>> Stashed changes
 =======
         CBPaciente = new RSMaterialComponent.RSComboBox();
 >>>>>>> Stashed changes
@@ -109,6 +121,7 @@ public class RegCitas extends javax.swing.JDialog
         rSPanelBorder1.setBgBorder(new java.awt.Color(68, 165, 160));
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         CPaciente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         CPaciente.setColorArrow(new java.awt.Color(68, 165, 160));
         CPaciente.setColorBorde(new java.awt.Color(68, 165, 160));
@@ -128,6 +141,27 @@ public class RegCitas extends javax.swing.JDialog
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 CPacienteActionPerformed(evt);
+=======
+        CBPaciente.setToolTipText("");
+        CBPaciente.setColorArrow(new java.awt.Color(68, 165, 160));
+        CBPaciente.setColorBorde(new java.awt.Color(68, 165, 160));
+        CBPaciente.setColorFondo(new java.awt.Color(68, 165, 160));
+        CBPaciente.setColorSeleccion(new java.awt.Color(68, 165, 160));
+        CBPaciente.setDisabledIdex("0");
+        CBPaciente.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        CBPaciente.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                CBPacienteItemStateChanged(evt);
+            }
+        });
+        CBPaciente.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                CBPacienteActionPerformed(evt);
+>>>>>>> Stashed changes
 =======
         CBPaciente.setToolTipText("");
         CBPaciente.setColorArrow(new java.awt.Color(68, 165, 160));
@@ -213,6 +247,7 @@ public class RegCitas extends javax.swing.JDialog
         error_servicio.setText("Etiqueta de Error");
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         Cservicio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         Cservicio.setColorArrow(new java.awt.Color(68, 165, 160));
         Cservicio.setColorBorde(new java.awt.Color(68, 165, 160));
@@ -222,6 +257,8 @@ public class RegCitas extends javax.swing.JDialog
         Cservicio.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         Cservicio.addItemListener(new java.awt.event.ItemListener()
 =======
+=======
+>>>>>>> Stashed changes
         CBservicio.setColorArrow(new java.awt.Color(68, 165, 160));
         CBservicio.setColorBorde(new java.awt.Color(68, 165, 160));
         CBservicio.setColorFondo(new java.awt.Color(68, 165, 160));
@@ -229,6 +266,9 @@ public class RegCitas extends javax.swing.JDialog
         CBservicio.setDisabledIdex("0");
         CBservicio.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         CBservicio.addItemListener(new java.awt.event.ItemListener()
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         {
             public void itemStateChanged(java.awt.event.ItemEvent evt)
@@ -251,6 +291,7 @@ public class RegCitas extends javax.swing.JDialog
         error_atendera.setText("Etiqueta de Error");
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         CAtendera.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         CAtendera.setColorArrow(new java.awt.Color(68, 165, 160));
         CAtendera.setColorBorde(new java.awt.Color(68, 165, 160));
@@ -260,6 +301,8 @@ public class RegCitas extends javax.swing.JDialog
         CAtendera.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         CAtendera.addItemListener(new java.awt.event.ItemListener()
 =======
+=======
+>>>>>>> Stashed changes
         CBAtendera.setColorArrow(new java.awt.Color(68, 165, 160));
         CBAtendera.setColorBorde(new java.awt.Color(68, 165, 160));
         CBAtendera.setColorFondo(new java.awt.Color(68, 165, 160));
@@ -267,6 +310,9 @@ public class RegCitas extends javax.swing.JDialog
         CBAtendera.setDisabledIdex("0");
         CBAtendera.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         CBAtendera.addItemListener(new java.awt.event.ItemListener()
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         {
             public void itemStateChanged(java.awt.event.ItemEvent evt)
@@ -345,7 +391,11 @@ public class RegCitas extends javax.swing.JDialog
                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                             .addComponent(CPaciente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+=======
+                            .addComponent(CBPaciente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+>>>>>>> Stashed changes
 =======
                             .addComponent(CBPaciente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 >>>>>>> Stashed changes
@@ -395,7 +445,11 @@ public class RegCitas extends javax.swing.JDialog
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 .addComponent(CPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+                .addComponent(CBPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> Stashed changes
 =======
                 .addComponent(CBPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
 >>>>>>> Stashed changes
@@ -472,15 +526,21 @@ public class RegCitas extends javax.swing.JDialog
     }// </editor-fold>//GEN-END:initComponents
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     private void CPacienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CPacienteActionPerformed
     {//GEN-HEADEREND:event_CPacienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CPacienteActionPerformed
 =======
+=======
+>>>>>>> Stashed changes
     private void CBPacienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CBPacienteActionPerformed
     {//GEN-HEADEREND:event_CBPacienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CBPacienteActionPerformed
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
     private void btnRegistarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRegistarActionPerformed
@@ -495,17 +555,23 @@ public class RegCitas extends javax.swing.JDialog
     }//GEN-LAST:event_btnCerrarActionPerformed
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     private void CPacienteItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CPacienteItemStateChanged
     {//GEN-HEADEREND:event_CPacienteItemStateChanged
 
     }//GEN-LAST:event_CPacienteItemStateChanged
 =======
+=======
+>>>>>>> Stashed changes
     private void CBPacienteItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CBPacienteItemStateChanged
     {//GEN-HEADEREND:event_CBPacienteItemStateChanged
         
         
         
     }//GEN-LAST:event_CBPacienteItemStateChanged
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
     private void CBhoraItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CBhoraItemStateChanged
@@ -590,14 +656,20 @@ public class RegCitas extends javax.swing.JDialog
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     private RSMaterialComponent.RSComboBox CAtendera;
     private RSMaterialComponent.RSComboBox CPaciente;
     private RSMaterialComponent.RSComboBox Cservicio;
 =======
+=======
+>>>>>>> Stashed changes
     private RSMaterialComponent.RSComboBox CBAtendera;
     private RSMaterialComponent.RSComboBox CBPaciente;
     private RSMaterialComponent.RSComboBox CBhora;
     private RSMaterialComponent.RSComboBox CBservicio;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     private RSMaterialComponent.RSButtonIconOne btnCerrar;
     private newscomponents.RSButtonIcon_new btnRegistar;

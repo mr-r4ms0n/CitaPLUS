@@ -94,7 +94,11 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                                   <Component id="CPaciente" alignment="0" max="32767" attributes="0"/>
+=======
+                                  <Component id="CBPaciente" alignment="0" max="32767" attributes="0"/>
+>>>>>>> Stashed changes
 =======
                                   <Component id="CBPaciente" alignment="0" max="32767" attributes="0"/>
 >>>>>>> Stashed changes
@@ -161,7 +165,11 @@
                       <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                       <Component id="CPaciente" min="-2" pref="47" max="-2" attributes="0"/>
+=======
+                      <Component id="CBPaciente" min="-2" pref="47" max="-2" attributes="0"/>
+>>>>>>> Stashed changes
 =======
                       <Component id="CBPaciente" min="-2" pref="47" max="-2" attributes="0"/>
 >>>>>>> Stashed changes
@@ -218,7 +226,11 @@
           </Layout>
           <SubComponents>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             <Component class="RSMaterialComponent.RSComboBox" name="CPaciente">
+=======
+            <Component class="RSMaterialComponent.RSComboBox" name="CBPaciente">
+>>>>>>> Stashed changes
 =======
             <Component class="RSMaterialComponent.RSComboBox" name="CBPaciente">
 >>>>>>> Stashed changes
@@ -248,8 +260,13 @@
               </Properties>
               <Events>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CPacienteItemStateChanged"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CPacienteActionPerformed"/>
+=======
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CBPacienteItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CBPacienteActionPerformed"/>
+>>>>>>> Stashed changes
 =======
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CBPacienteItemStateChanged"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CBPacienteActionPerformed"/>
