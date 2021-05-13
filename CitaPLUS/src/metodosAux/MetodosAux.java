@@ -31,7 +31,6 @@ import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import metodosBD.MetodosBD;
 
 /**
  *
@@ -217,7 +216,7 @@ public class MetodosAux
         }
         return resultado;
     }
-
+    
     public static boolean validarFormuText(JTextArea field, JLabel error, String tipo)
     {
         boolean resultado = false;
@@ -309,6 +308,7 @@ public class MetodosAux
     /**
      * Método auxiliar encargado de mostrar una alerta personalizada
      *
+     * @param jf jframe raiz donde se va a mostrar la alerta
      * @param titulo titulo que recibira
      * @param msg mensaje que recibira
      * @param type tipo de ventana
@@ -322,33 +322,5 @@ public class MetodosAux
         new Alerta(MenuUsuario.vtn, true, arr).setVisible(true);
     }
 
-    public static void rellenaComboBoxCitas(RSComboBox paciente, RSComboBox servicios, RSComboBox atendera)
-    {
-        paciente.addItem("Seleccione un Paciente");
-        try
-        {
-            ResultSet pac = MetodosBD.listarComboBoxReg("Pacientes");
-            ResultSet serv = MetodosBD.listarComboBoxReg("Servicios");
-            ResultSet atend = MetodosBD.listarComboBoxReg("Atendera");
-            //LLenamos nuestro ComboBox
-            while (pac.next())
-            {
-                paciente.addItem(pac.getString("NombrePa"));
-            }
-            
-            while (serv.next())
-            {
-                servicios.addItem(serv.getString("NombreServ"));
-            }
-            
-            while (atend.next())
-            {
-                atendera.addItem(atend.getString("NombreAtend"));
-            }
-            
-        } catch (SQLException ex)
-        {
-            System.out.println("Error en metodos auxiliares al rellenar combobobx" + ex);
-        }
-    }
+    
 }

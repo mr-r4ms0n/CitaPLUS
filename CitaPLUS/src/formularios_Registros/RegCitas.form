@@ -93,19 +93,11 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
                                   <Component id="CPaciente" alignment="0" max="32767" attributes="0"/>
-=======
-                                  <Component id="CBPaciente" alignment="0" max="32767" attributes="0"/>
->>>>>>> Stashed changes
-=======
-                                  <Component id="CBPaciente" alignment="0" max="32767" attributes="0"/>
->>>>>>> Stashed changes
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel11" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
-                                          <Component id="CBservicio" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
+                                          <Component id="Cservicio" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                               <Component id="error_servicio" min="-2" pref="296" max="-2" attributes="0"/>
@@ -113,7 +105,7 @@
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="CBAtendera" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
+                                          <Component id="CAtendera" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
                                           <Component id="jLabel12" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
@@ -142,7 +134,7 @@
                                       <Component id="error_hora" min="-2" pref="296" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="CBhora" max="32767" attributes="0"/>
+                                      <Component id="hora" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -164,15 +156,7 @@
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
                       <Component id="CPaciente" min="-2" pref="47" max="-2" attributes="0"/>
-=======
-                      <Component id="CBPaciente" min="-2" pref="47" max="-2" attributes="0"/>
->>>>>>> Stashed changes
-=======
-                      <Component id="CBPaciente" min="-2" pref="47" max="-2" attributes="0"/>
->>>>>>> Stashed changes
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="error_cliente" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -194,7 +178,7 @@
                                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="CBhora" alignment="1" min="-2" pref="47" max="-2" attributes="0"/>
+                                  <Component id="hora" alignment="1" min="-2" pref="47" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="error_hora" min="-2" pref="20" max="-2" attributes="0"/>
@@ -205,14 +189,14 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="CBservicio" min="-2" pref="47" max="-2" attributes="0"/>
+                              <Component id="Cservicio" min="-2" pref="47" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="error_servicio" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="CBAtendera" min="-2" pref="47" max="-2" attributes="0"/>
+                              <Component id="CAtendera" min="-2" pref="47" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="error_atendera" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -225,22 +209,13 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
             <Component class="RSMaterialComponent.RSComboBox" name="CPaciente">
-=======
-            <Component class="RSMaterialComponent.RSComboBox" name="CBPaciente">
->>>>>>> Stashed changes
-=======
-            <Component class="RSMaterialComponent.RSComboBox" name="CBPaciente">
->>>>>>> Stashed changes
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="1">
                     <StringItem index="0" value="&lt;Seleccionar&gt;"/>
                   </StringArray>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="colorArrow" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="a0" green="a5" red="44" type="rgb"/>
                 </Property>
@@ -259,18 +234,8 @@
                 </Property>
               </Properties>
               <Events>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CPacienteItemStateChanged"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CPacienteActionPerformed"/>
-=======
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CBPacienteItemStateChanged"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CBPacienteActionPerformed"/>
->>>>>>> Stashed changes
-=======
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CBPacienteItemStateChanged"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CBPacienteActionPerformed"/>
->>>>>>> Stashed changes
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
@@ -325,7 +290,7 @@
                 <Property name="text" type="java.lang.String" value="Etiqueta de Error"/>
               </Properties>
             </Component>
-            <Component class="RSMaterialComponent.RSComboBox" name="CBhora">
+            <Component class="RSMaterialComponent.RSComboBox" name="hora">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="35">
@@ -384,8 +349,8 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CBhoraItemStateChanged"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CBhoraActionPerformed"/>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="horaItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="horaActionPerformed"/>
               </Events>
             </Component>
             <Component class="newscomponents.RSDateChooserModern" name="fecha">
@@ -419,7 +384,7 @@
                 <Property name="text" type="java.lang.String" value="Etiqueta de Error"/>
               </Properties>
             </Component>
-            <Component class="RSMaterialComponent.RSComboBox" name="CBservicio">
+            <Component class="RSMaterialComponent.RSComboBox" name="Cservicio">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="1">
@@ -444,8 +409,8 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CBservicioItemStateChanged"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CBservicioActionPerformed"/>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CservicioItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CservicioActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel11">
@@ -464,7 +429,7 @@
                 <Property name="text" type="java.lang.String" value="Etiqueta de Error"/>
               </Properties>
             </Component>
-            <Component class="RSMaterialComponent.RSComboBox" name="CBAtendera">
+            <Component class="RSMaterialComponent.RSComboBox" name="CAtendera">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="1">
@@ -489,8 +454,8 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CBAtenderaItemStateChanged"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CBAtenderaActionPerformed"/>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CAtenderaItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CAtenderaActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">

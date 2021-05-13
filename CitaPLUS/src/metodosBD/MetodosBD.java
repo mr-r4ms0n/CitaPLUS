@@ -30,6 +30,7 @@ public class MetodosBD
 {
 
     private static Connection dbCon;
+    private String sql = null;
 
     //Variable para usar consultas
     private static PreparedStatement sentencia;
@@ -554,86 +555,48 @@ public class MetodosBD
             dbCon = ConectaBD.ConectaBD();
             if (tab != 0 && filtro.equals(""))
             {
-                //Para el caso de que se seleccione proximas, atendidas o canceladas y no se haga busqueda
-                sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',pacientes.apellidoMaterno) AS NombreP,"
-                        + "fechaCita AS fechaC,"
-                        + "horaCita AS horaC,"
-                        + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',usuarios.apellidoMaterno) AS NombreAtiende,"
-                        + "(CASE WHEN  estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita,"
-                        + "servicios.nombre AS servicioN "
-                        + "FROM citas "
-                        + "INNER JOIN pacientes ON pacientes.id = pacienteId "
-                        + "INNER JOIN usuarios ON usuarios.id = usuarioId "
-                        + "INNER JOIN servicios ON servicios.id = servicioId "
-                        + "WHERE estatusCitasId = ?");
+                //Para el caso de que se seleccione activos o inactivos y no se haga busqueda
+                sentencia = dbCon.prepareStatement("SELECT *,IF(estatusid=1,'Activo','Inactivo') AS estatusPac FROM citas WHERE estatus = ?");
                 sentencia.setInt(1, tab);
             } else
             {
-                String auxfiltro = "%"+filtro+"%";
-                //Fase de pruebas
-                if (filtro != null && (tab == 1 || tab == 2 || tab == 3))
+                //Estos querys falta corregirlos ya que no jalan citas, te jalan pacientes.
+                String auxFiltro = filtro + "%";
+                if (filtro != null && (tab == 1 || tab == 2))
                 {
                     //Para el caso de que se seleccione activos o inactivos y se haga una busqueda
-                    sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',pacientes.apellidoMaterno) AS NombreP,"
-                            + "fechaCita AS fechaC,"
-                            + "horaCita AS horaC,"
-                            + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',usuarios.apellidoMaterno) AS NombreAtiende,"
-                            + "(CASE WHEN  estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita,"
-                            + "servicios.nombre AS servicioN "
-                            + "FROM citas "
-                            + "INNER JOIN pacientes ON pacientes.nombre LIKE ? AND pacientes.id = pacienteId "
-                            + "INNER JOIN usuarios ON usuarios.id = usuarioId "
-                            + "INNER JOIN servicios ON servicios.id = servicioId "
-                            + "WHERE estatusCitasId = ?");
-                    sentencia.setString(1, auxfiltro);
-                    sentencia.setInt(2, tab);
+                    sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM citas WHERE estatus = ? AND (nombre LIKE ? OR apellidoPaterno LIKE ?)");
+                    sentencia.setInt(1, tab);
+                    sentencia.setString(2, (auxFiltro + "%"));
+                    sentencia.setString(3, (auxFiltro + "%"));
                 } else
                 {
                     //Para el caso de que se entre en la pestaña de todos pero se haga una busqueda
                     if (tab == 0 && filtro != null)
                     {
-                        System.out.println("ENTROOO");
-                        sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',pacientes.apellidoMaterno) AS NombreP,"
-                                + "fechaCita AS fechaC,"
-                                + "horaCita AS horaC,"
-                                + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',usuarios.apellidoMaterno) AS NombreAtiende,"
-                                + "(CASE WHEN  estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita,"
-                                + "servicios.nombre AS servicioN "
-                                + "FROM citas "
-                                + "INNER JOIN pacientes ON pacientes.nombre LIKE ? AND pacientes.id = pacienteId "
-                                + "INNER JOIN usuarios ON usuarios.id = usuarioId "
-                                + "INNER JOIN servicios ON servicios.id = servicioId ");
-                        sentencia.setString(1, auxfiltro);
+                        sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes WHERE nombre LIKE ? OR apellidoPaterno LIKE ?");
+                        sentencia.setString(1, (auxFiltro + "%"));
+                        sentencia.setString(2, (auxFiltro + "%"));
                     } else
                     {
                         //Para el caso de que se entre en la pestaña de todos y no se consulten busquedas
-                        sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',pacientes.apellidoMaterno) AS NombreP,"
-                                + "fechaCita AS fechaC,"
-                                + "horaCita AS horaC,"
-                                + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',usuarios.apellidoMaterno) AS NombreAtiende,"
-                                + "(CASE WHEN  estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita,"
-                                + "servicios.nombre AS servicioN "
-                                + "FROM citas "
-                                + "INNER JOIN pacientes ON pacientes.id = pacienteId "
-                                + "INNER JOIN usuarios ON usuarios.id = usuarioId "
-                                + "INNER JOIN servicios ON servicios.id = servicioId ");
+                        sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusPac FROM pacientes");
                     }
+
                 }
+
             }
+
             resultado = sentencia.executeQuery();
             if (checkResultSet(resultado))
             {
                 return resultado;
-            } else
-            {
-
             }
             dbCon.close();
         } catch (SQLException e)
         {
             System.out.println("Error en obtener el ResultSet de Citas: " + e);
         }
-
         return null;
     }
 
@@ -685,8 +648,6 @@ public class MetodosBD
         return total;
     }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     //metodo para obtener los servicios disponibles
     public static void mostrarServiciosDisponibles(RSComboBox combo)
     {
@@ -732,40 +693,6 @@ public class MetodosBD
         {
             System.out.println("Error en obtener el ResultSet de Usuarios: " + e);
         }
-=======
-=======
->>>>>>> Stashed changes
-    public static ResultSet listarComboBoxReg(String tipo)
-    {
-        try
-        {
-            dbCon = ConectaBD.ConectaBD();
-            switch (tipo)
-            {
-                case "Pacientes":
-                    sentencia = dbCon.prepareStatement("SELECT CONCAT(id,'.- ',nombre,' ',apellidoPaterno,' ',apellidoMaterno) as NombrePa FROM pacientes");
-                    break;
-                case "Servicios":
-                    sentencia = dbCon.prepareStatement("SELECT CONCAT(id,'.- ',nombre) AS NombreServ FROM servicios");
-                    break;
-                case "Atendera":
-                    sentencia = dbCon.prepareCall("SELECT CONCAT (id,'.- ',nombre,' ',apellidoPaterno,' ',apellidoMaterno) AS NombreAtend FROM usuarios");
-                    break;
-            }
-            resultado = sentencia.executeQuery();
-            if (checkResultSet(resultado))
-            {
-                return resultado;
-            }
-        } catch (SQLException e)
-        {
-            System.out.println("Error al obtener el resultset para llenar combobox" + e);
-        }
-        return null;
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     }
 
     //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-PARTE USUARIOS *-*-*-*-*-*-*-*-*-*-**-*-*-**-*-*-*-*-
