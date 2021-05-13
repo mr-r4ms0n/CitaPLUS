@@ -16,13 +16,36 @@ public class Citas extends javax.swing.JPanel
 {
 
     public static int tabSelecc = 1;
-    
+
     /**
      * Creates new form citas
      */
     public Citas()
     {
         initComponents();
+        actualizarNumCitas();
+    }
+
+    public static void actualizarNumCitas()
+    {
+        int proximas = MetodosBD.contarCitas(1);
+        int atendidas = MetodosBD.contarCitas(2);
+        int canceladas = MetodosBD.contarCitas(3);
+
+        if (proximas != -1)
+        {
+            tabProximas.setText("Proximas (" + proximas + ")");
+        }
+
+        if (atendidas != -1)
+        {
+            tabAtendidas.setText("Atendidas (" + atendidas + ")");
+        }
+
+        if (canceladas != -1)
+        {
+            tabCanceladas.setText("Canceladas (" + canceladas + ")");
+        }
     }
 
     /**
@@ -149,8 +172,8 @@ public class Citas extends javax.swing.JPanel
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tabCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tabTodas, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 562, Short.MAX_VALUE)))
+                        .addComponent(tabTodas, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -178,7 +201,7 @@ public class Citas extends javax.swing.JPanel
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tablaContenidoCitas21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tablaContenidoCitas21, javax.swing.GroupLayout.DEFAULT_SIZE, 1101, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -202,7 +225,10 @@ public class Citas extends javax.swing.JPanel
             tabAtendidas.setSelected(false);
             tabProximas.setSelected(true);
         }
-       tablaContenidoCitas21.actualizarTitulo(1);
+
+        tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);
+        tablaContenidoCitas21.actualizarTitulo(1);
+
     }//GEN-LAST:event_tabProximasActionPerformed
 
     private void tabAtendidasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabAtendidasActionPerformed
@@ -216,6 +242,7 @@ public class Citas extends javax.swing.JPanel
             tabProximas.setSelected(false);
             tabAtendidas.setSelected(true);
         }
+        tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);
         tablaContenidoCitas21.actualizarTitulo(2);
     }//GEN-LAST:event_tabAtendidasActionPerformed
 
@@ -230,7 +257,9 @@ public class Citas extends javax.swing.JPanel
             tabAtendidas.setSelected(false);
             tabCanceladas.setSelected(true);
         }
+        tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);
         tablaContenidoCitas21.actualizarTitulo(3);
+
     }//GEN-LAST:event_tabCanceladasActionPerformed
 
     private void tabTodasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabTodasActionPerformed
@@ -244,6 +273,7 @@ public class Citas extends javax.swing.JPanel
             tabCanceladas.setSelected(false);
             tabTodas.setSelected(true);
         }
+        tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);
         tablaContenidoCitas21.actualizarTitulo(0);
     }//GEN-LAST:event_tabTodasActionPerformed
 
@@ -257,10 +287,10 @@ public class Citas extends javax.swing.JPanel
     private javax.swing.JPanel jPanel2;
     private newscomponents.RSButtonIcon_new rSButtonIcon_new1;
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon1;
-    private newscomponents.RSButtonIcon_new tabAtendidas;
-    private newscomponents.RSButtonIcon_new tabCanceladas;
-    private newscomponents.RSButtonIcon_new tabProximas;
-    private newscomponents.RSButtonIcon_new tabTodas;
+    private static newscomponents.RSButtonIcon_new tabAtendidas;
+    private static newscomponents.RSButtonIcon_new tabCanceladas;
+    private static newscomponents.RSButtonIcon_new tabProximas;
+    private static newscomponents.RSButtonIcon_new tabTodas;
     public static paneles.TablaContenidoCitas tablaContenidoCitas21;
     // End of variables declaration//GEN-END:variables
 }

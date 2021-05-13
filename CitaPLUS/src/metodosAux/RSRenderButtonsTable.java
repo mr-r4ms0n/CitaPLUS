@@ -37,7 +37,7 @@ public class RSRenderButtonsTable extends JPanel {
                 b.setToolTipText("Ver información");
             }
             if (a.toString().equals("Editar")) {
-                b.setBackground(new Color(0, 78, 203));
+                b.setBackground(new Color(26,117,159));
                 b.setIcons(ValoresEnum.ICONS.EDIT);
                 b.setToolTipText("Editar información");
             }
