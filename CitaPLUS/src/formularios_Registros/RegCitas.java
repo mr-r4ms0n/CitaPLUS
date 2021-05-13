@@ -445,7 +445,7 @@ public class RegCitas extends javax.swing.JDialog
             Object[] datosUpdate =
             {
                 
-            }
+            };
         }
         
     }//GEN-LAST:event_btnRegistarActionPerformed

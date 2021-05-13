@@ -23,6 +23,29 @@ public class Citas extends javax.swing.JPanel
     public Citas()
     {
         initComponents();
+        actualizarNumCitas();
+    }
+    
+    public static void actualizarNumCitas()
+    {
+        int proximas = MetodosBD.contarCitas(1);
+        int atendidas = MetodosBD.contarCitas(2);
+        int canceladas = MetodosBD.contarCitas(3);
+
+        if (proximas != -1)
+        {
+            tabProximas.setText("Proximas (" + proximas + ")");
+        }
+
+        if (atendidas != -1)
+        {
+            tabAtendidas.setText("Atendidas (" + atendidas + ")");
+        }
+
+        if (canceladas != -1)
+        {
+            tabCanceladas.setText("Canceladas (" + canceladas + ")");
+        }
     }
 
     /**
@@ -202,6 +225,7 @@ public class Citas extends javax.swing.JPanel
             tabAtendidas.setSelected(false);
             tabProximas.setSelected(true);
         }
+        tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);
        tablaContenidoCitas21.actualizarTitulo(1);
     }//GEN-LAST:event_tabProximasActionPerformed
 
@@ -216,6 +240,7 @@ public class Citas extends javax.swing.JPanel
             tabProximas.setSelected(false);
             tabAtendidas.setSelected(true);
         }
+        tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);
         tablaContenidoCitas21.actualizarTitulo(2);
     }//GEN-LAST:event_tabAtendidasActionPerformed
 
@@ -230,6 +255,7 @@ public class Citas extends javax.swing.JPanel
             tabAtendidas.setSelected(false);
             tabCanceladas.setSelected(true);
         }
+        tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);
         tablaContenidoCitas21.actualizarTitulo(3);
     }//GEN-LAST:event_tabCanceladasActionPerformed
 
@@ -244,6 +270,7 @@ public class Citas extends javax.swing.JPanel
             tabCanceladas.setSelected(false);
             tabTodas.setSelected(true);
         }
+        tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);
         tablaContenidoCitas21.actualizarTitulo(0);
     }//GEN-LAST:event_tabTodasActionPerformed
 
@@ -257,10 +284,10 @@ public class Citas extends javax.swing.JPanel
     private javax.swing.JPanel jPanel2;
     private newscomponents.RSButtonIcon_new rSButtonIcon_new1;
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon1;
-    private newscomponents.RSButtonIcon_new tabAtendidas;
-    private newscomponents.RSButtonIcon_new tabCanceladas;
-    private newscomponents.RSButtonIcon_new tabProximas;
-    private newscomponents.RSButtonIcon_new tabTodas;
+    private static newscomponents.RSButtonIcon_new tabAtendidas;
+    private static newscomponents.RSButtonIcon_new tabCanceladas;
+    private static newscomponents.RSButtonIcon_new tabProximas;
+    private static newscomponents.RSButtonIcon_new tabTodas;
     public static paneles.TablaContenidoCitas tablaContenidoCitas21;
     // End of variables declaration//GEN-END:variables
 }

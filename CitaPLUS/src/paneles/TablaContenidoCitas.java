@@ -30,7 +30,7 @@ public class TablaContenidoCitas extends javax.swing.JPanel
     public TablaContenidoCitas()
     {
         initComponents();
-        listarCita(tblCitas, 1, jTBuscarCita.getText().trim());
+        listarCitas(tblCitas, 1, jTBuscarCita.getText().trim());
         jScrollPane1.getViewport().setBackground(Color.WHITE);
     }
 
@@ -43,7 +43,7 @@ public class TablaContenidoCitas extends javax.swing.JPanel
      * @param filtro Nombre de un paciente en especifico (Para busqueda filtrada
      * y puede ser null)
      */
-    public static void listarCita(RSTableMetroCustom tabla, int tab, String filtro)
+    public static void listarCitas(RSTableMetroCustom tabla, int tab, String filtro)
     {
         if (filtro == null)
         {
@@ -51,14 +51,14 @@ public class TablaContenidoCitas extends javax.swing.JPanel
         }
         String[] columnas =
         {
-            "id", "accion", "nombre", "apellidoPaterno", "apellidoMaterno", "sexo", "telefonoP", "correo", "estatusPac"
+            "id", "accion", "NombreP", "fechaC", "horaC", "nombreAtiende", "estatusCita", "servicioN"
         };
-        MetodosAux.listarTablas(MetodosBD.rsListarPacientes(tab, filtro), tabla, columnas);
+        MetodosAux.listarTablas(MetodosBD.rsListarCitas(tab, filtro), tabla, columnas);
 
         //Definimos la posicion donde estara la columna que contendra los botones
         TableColumn column = tabla.getColumnModel().getColumn(1);
         column.setCellRenderer(new RSButtonsRenderer());
-        String classname = "paneles.TablaContenidoPacientes";
+        String classname = "paneles.TablaContenidoCitas";
         String metodoVer = "viewInfo";
         String metodoEditar = "editInfo";
         Object[] params =
@@ -95,7 +95,7 @@ public class TablaContenidoCitas extends javax.swing.JPanel
                 TituloActual.setIcons(ValoresEnum.ICONS.REMOVE_CIRCLE);
                 break;
             case 0:
-                TituloActual.setText("Todas atendias");
+                TituloActual.setText("Todas las Citas");
                 TituloActual.setForeground(SysConfigs.cl_todos);
                 TituloActual.setIcons(ValoresEnum.ICONS.REORDER);
                 break;
@@ -132,20 +132,20 @@ public class TablaContenidoCitas extends javax.swing.JPanel
         tblCitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String []
             {
-                "id", "Accion", "Paciente", "Fecha cita", "Hora cita", "Atiende", "Estatus", "Fecha registró", "Usuario registró"
+                "id", "Accion", "Paciente", "Fecha cita", "Hora cita", "Atiende", "Estatus", "Servicio"
             }
         )
         {
             boolean[] canEdit = new boolean []
             {
-                false, true, false, false, false, false, false, false, false
+                false, true, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex)
@@ -182,7 +182,7 @@ public class TablaContenidoCitas extends javax.swing.JPanel
         TituloActual.setSizeIcon(30.0F);
 
         jTBuscarCita.setForeground(new java.awt.Color(26, 117, 159));
-        jTBuscarCita.setToolTipText("Buscar por nombre o apellido paterno");
+        jTBuscarCita.setToolTipText("Buscar citas por nombre.");
         jTBuscarCita.setColorIcon(new java.awt.Color(26, 117, 159));
         jTBuscarCita.setColorMaterial(new java.awt.Color(26, 117, 159));
         jTBuscarCita.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
@@ -240,7 +240,7 @@ public class TablaContenidoCitas extends javax.swing.JPanel
     private void jTBuscarCitaKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTBuscarCitaKeyReleased
     {//GEN-HEADEREND:event_jTBuscarCitaKeyReleased
         System.out.println(jTBuscarCita.getText().trim());
-        listarCita(tblCitas, Pacientes.tabSelecc, jTBuscarCita.getText().trim());
+        listarCitas(tblCitas, Citas.tabSelecc, jTBuscarCita.getText().trim());
     }//GEN-LAST:event_jTBuscarCitaKeyReleased
 
 
