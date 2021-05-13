@@ -5,9 +5,11 @@
  */
 package formularios_Registros;
 
+import RSMaterialComponent.RSComboBox;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import metodosBD.MetodosBD;
 import rojeru_san.complementos.RSUtilities;
 
 
@@ -21,6 +23,12 @@ public class RegCitas extends javax.swing.JDialog
     public RegCitas()
     {
         initComponents();
+        
+        //Cargar Pacientes En el ComboBox
+        MetodosBD.mostrarPacientes(CPaciente);
+        MetodosBD.mostrarServiciosDisponibles(Cservicio);
+        MetodosBD.mostrarUsuarios(CAtendera);
+        
         setModal(true);
         setLocationRelativeTo(null);
         RSUtilities.setOpaqueWindow(this, false);
@@ -42,8 +50,11 @@ public class RegCitas extends javax.swing.JDialog
         this.error_servicio.setForeground(Color.white);
         this.error_atendera.setForeground(Color.white);
         this.hora.setSelectedIndex(0);
+        this.CPaciente.setSelectedIndex(0);
+        this.CAtendera.setSelectedIndex(0);
+        this.Cservicio.setSelectedIndex(0);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,7 +67,7 @@ public class RegCitas extends javax.swing.JDialog
 
         pnlFondo = new javax.swing.JPanel();
         rSPanelBorder1 = new RSMaterialComponent.RSPanelBorder();
-        Paciente = new RSMaterialComponent.RSComboBox();
+        CPaciente = new RSMaterialComponent.RSComboBox();
         jLabel8 = new javax.swing.JLabel();
         error_cliente = new javax.swing.JLabel();
         btnRegistar = new newscomponents.RSButtonIcon_new();
@@ -84,24 +95,25 @@ public class RegCitas extends javax.swing.JDialog
         rSPanelBorder1.setBackground(new java.awt.Color(255, 255, 255));
         rSPanelBorder1.setBgBorder(new java.awt.Color(68, 165, 160));
 
-        Paciente.setColorArrow(new java.awt.Color(68, 165, 160));
-        Paciente.setColorBorde(new java.awt.Color(68, 165, 160));
-        Paciente.setColorFondo(new java.awt.Color(68, 165, 160));
-        Paciente.setColorSeleccion(new java.awt.Color(68, 165, 160));
-        Paciente.setDisabledIdex("0");
-        Paciente.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        Paciente.addItemListener(new java.awt.event.ItemListener()
+        CPaciente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
+        CPaciente.setColorArrow(new java.awt.Color(68, 165, 160));
+        CPaciente.setColorBorde(new java.awt.Color(68, 165, 160));
+        CPaciente.setColorFondo(new java.awt.Color(68, 165, 160));
+        CPaciente.setColorSeleccion(new java.awt.Color(68, 165, 160));
+        CPaciente.setDisabledIdex("0");
+        CPaciente.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        CPaciente.addItemListener(new java.awt.event.ItemListener()
         {
             public void itemStateChanged(java.awt.event.ItemEvent evt)
             {
-                PacienteItemStateChanged(evt);
+                CPacienteItemStateChanged(evt);
             }
         });
-        Paciente.addActionListener(new java.awt.event.ActionListener()
+        CPaciente.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                PacienteActionPerformed(evt);
+                CPacienteActionPerformed(evt);
             }
         });
 
@@ -165,6 +177,7 @@ public class RegCitas extends javax.swing.JDialog
         error_servicio.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         error_servicio.setText("Etiqueta de Error");
 
+        Cservicio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         Cservicio.setColorArrow(new java.awt.Color(68, 165, 160));
         Cservicio.setColorBorde(new java.awt.Color(68, 165, 160));
         Cservicio.setColorFondo(new java.awt.Color(68, 165, 160));
@@ -192,6 +205,7 @@ public class RegCitas extends javax.swing.JDialog
         error_atendera.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         error_atendera.setText("Etiqueta de Error");
 
+        CAtendera.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         CAtendera.setColorArrow(new java.awt.Color(68, 165, 160));
         CAtendera.setColorBorde(new java.awt.Color(68, 165, 160));
         CAtendera.setColorFondo(new java.awt.Color(68, 165, 160));
@@ -275,7 +289,7 @@ public class RegCitas extends javax.swing.JDialog
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(Paciente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CPaciente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, rSPanelBorder1Layout.createSequentialGroup()
                                 .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -321,7 +335,7 @@ public class RegCitas extends javax.swing.JDialog
                 .addGap(11, 11, 11)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(error_cliente)
                 .addGap(18, 18, 18)
@@ -394,10 +408,10 @@ public class RegCitas extends javax.swing.JDialog
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PacienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_PacienteActionPerformed
-    {//GEN-HEADEREND:event_PacienteActionPerformed
+    private void CPacienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CPacienteActionPerformed
+    {//GEN-HEADEREND:event_CPacienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PacienteActionPerformed
+    }//GEN-LAST:event_CPacienteActionPerformed
 
     private void btnRegistarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRegistarActionPerformed
     {//GEN-HEADEREND:event_btnRegistarActionPerformed
@@ -410,12 +424,10 @@ public class RegCitas extends javax.swing.JDialog
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-    private void PacienteItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_PacienteItemStateChanged
-    {//GEN-HEADEREND:event_PacienteItemStateChanged
-        
-        
-        
-    }//GEN-LAST:event_PacienteItemStateChanged
+    private void CPacienteItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CPacienteItemStateChanged
+    {//GEN-HEADEREND:event_CPacienteItemStateChanged
+
+    }//GEN-LAST:event_CPacienteItemStateChanged
 
     private void horaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_horaItemStateChanged
     {//GEN-HEADEREND:event_horaItemStateChanged
@@ -499,8 +511,8 @@ public class RegCitas extends javax.swing.JDialog
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private RSMaterialComponent.RSComboBox CAtendera;
+    private RSMaterialComponent.RSComboBox CPaciente;
     private RSMaterialComponent.RSComboBox Cservicio;
-    private RSMaterialComponent.RSComboBox Paciente;
     private RSMaterialComponent.RSButtonIconOne btnCerrar;
     private newscomponents.RSButtonIcon_new btnRegistar;
     private javax.swing.JLabel error_atendera;

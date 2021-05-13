@@ -93,7 +93,7 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="Paciente" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="CPaciente" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel11" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
@@ -156,7 +156,7 @@
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Paciente" min="-2" pref="47" max="-2" attributes="0"/>
+                      <Component id="CPaciente" min="-2" pref="47" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="error_cliente" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -209,10 +209,12 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="RSMaterialComponent.RSComboBox" name="Paciente">
+            <Component class="RSMaterialComponent.RSComboBox" name="CPaciente">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="&lt;Seleccionar&gt;"/>
+                  </StringArray>
                 </Property>
                 <Property name="colorArrow" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="a0" green="a5" red="44" type="rgb"/>
@@ -232,8 +234,8 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="PacienteItemStateChanged"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PacienteActionPerformed"/>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CPacienteItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CPacienteActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
@@ -385,7 +387,9 @@
             <Component class="RSMaterialComponent.RSComboBox" name="Cservicio">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="&lt;Seleccionar&gt;"/>
+                  </StringArray>
                 </Property>
                 <Property name="colorArrow" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="a0" green="a5" red="44" type="rgb"/>
@@ -428,7 +432,9 @@
             <Component class="RSMaterialComponent.RSComboBox" name="CAtendera">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="&lt;Seleccionar&gt;"/>
+                  </StringArray>
                 </Property>
                 <Property name="colorArrow" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="a0" green="a5" red="44" type="rgb"/>
