@@ -18,12 +18,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -150,10 +150,18 @@ public class MetodosAux
                 {
                     sentencia.setBinaryStream((i + 1), (InputStream) datos[i]);
                 }
+                if (datos[i] instanceof java.sql.Date)
+                {
+                    sentencia.setDate((i + 1), (java.sql.Date) datos[i]);
+                }
+                if (datos[i] instanceof java.sql.Time)
+                {
+                    sentencia.setTime((i + 1), (java.sql.Time) datos[i]);
+                }
             }
         } catch (SQLException ex)
         {
-            Logger.getLogger(MetodosAux.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error al generar insercion: "+ex);
         }
         return sentencia;
     }
@@ -217,7 +225,7 @@ public class MetodosAux
         }
         return resultado;
     }
-    
+
     public static boolean validarFormuText(JTextArea field, JLabel error, String tipo)
     {
         boolean resultado = false;
@@ -309,7 +317,6 @@ public class MetodosAux
     /**
      * Método auxiliar encargado de mostrar una alerta personalizada
      *
-     * @param jf jframe raiz donde se va a mostrar la alerta
      * @param titulo titulo que recibira
      * @param msg mensaje que recibira
      * @param type tipo de ventana
@@ -322,11 +329,36 @@ public class MetodosAux
         arr.add("tipo", type);
         new Alerta(MenuUsuario.vtn, true, arr).setVisible(true);
     }
-    
-    public static String ObtenerFechaMySQL (Date fecha)
+
+    /**
+     * Método auxiliar encargado de convertir la fecha de tipo date a String
+     *
+     * @param fecha
+     * @return
+     */
+    public static String ObtenerFechaMySQL(Date fecha)
     {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        String date = formato.format(fecha);
-        return date;
+        return formato.format(fecha);
+    }
+
+    /**
+     * Método auxiliar encargado de convertir la hora de tipo String a Time
+     *
+     * @param hora
+     * @return
+     */
+    public static Time ObtenerHoraMySQL(String hora)
+    {
+        try
+        {
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm"); // 12 hour format
+            Date d1 = format.parse(hora);
+            return new Time(d1.getTime());
+        } catch (ParseException ex)
+        {
+            System.out.println("Error al convertir la hora: " + ex);
+        }
+        return null;
     }
 }

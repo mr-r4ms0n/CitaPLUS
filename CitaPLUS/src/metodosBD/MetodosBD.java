@@ -433,29 +433,34 @@ public class MetodosBD
             System.out.println("Error en obtener el ResultSet de Pacientes: " + e);
         }
     }
-    
-    
-    //metodo para buscar por nombre y obtener id
+
+    /**
+     * Metoco para buscar el id del paciente usando el nombre completo
+     *
+     * @param nombre
+     * @return
+     */
     public static int buscarPacienteNombre(String nombre)
     {
-        String SSQL = "SELECT id FROM pacientes WHERE " +nombre+ "= 'juan'";
         try
         {
             dbCon = ConectaBD.ConectaBD();
-            PreparedStatement pst = dbCon.prepareStatement(SSQL);
+            //Concatenamos el nombre mas apellidos para que extraiga exactamente el deseado
+            sentencia = dbCon.prepareStatement("SELECT id FROM pacientes WHERE CONCAT(nombre,' ',apellidoPaterno,' ',apellidoMaterno) = ?");
+            sentencia.setString(1, nombre);
             //compilando
-            ResultSet resultado = pst.executeQuery();
+            resultado = sentencia.executeQuery();
+            if (resultado.next())
+            {
+                return resultado.getInt("id");
+            }
             
-            System.out.println("Este es mi id " + resultado.getString("id"));
-            return Integer.parseInt(resultado.getString("id"));
-        } catch (Exception e)
+        } catch (NumberFormatException | SQLException e)
         {
-            
             System.out.println("Error en obtener el id del paciente: " + e);
         }
-        return -999;
+        return -1;
     }
-    
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-PARTE CITAS *-*-*-*-*-*-*-*-*-*-**-*-*-**-*-*-*-*-
@@ -540,7 +545,7 @@ public class MetodosBD
     {
         String columnas[] =
         {
-            "pacienteId", "nombrenombrePaciente", "fecha", "hora", "estatusCitasId", "usuarioId", "servicioId", "fechaRegistro"
+            "pacienteId", "fechaRegistro", "fechaCita", "horaCita", "usuarioId", "servicioId"
         };
         try
         {
@@ -559,7 +564,6 @@ public class MetodosBD
         }
         return false;
     }
-    
 
     /**
      * Método que lista la tabla de citas tomando como parametro el tipo de tab
@@ -593,7 +597,7 @@ public class MetodosBD
                 sentencia.setInt(1, tab);
             } else
             {
-                String auxfiltro = "%"+filtro+"%";
+                String auxfiltro = "%" + filtro + "%";
                 //Fase de pruebas
                 if (filtro != null && (tab == 1 || tab == 2 || tab == 3))
                 {
@@ -733,7 +737,6 @@ public class MetodosBD
         }
     }
 
-    
     //Muestra todos los usuarios Activos
     public static void mostrarUsuarios(RSComboBox combo)
     {
@@ -997,6 +1000,34 @@ public class MetodosBD
 
         return null;
     }
+    
+    /**
+     * Metoco para buscar el id del paciente usando el nombre completo
+     *
+     * @param nombre
+     * @return
+     */
+    public static int buscarUsuarioNombre(String nombre)
+    {
+        try
+        {
+            dbCon = ConectaBD.ConectaBD();
+            //Concatenamos el nombre mas apellidos para que extraiga exactamente el deseado
+            sentencia = dbCon.prepareStatement("SELECT id FROM usuarios WHERE CONCAT(nombre,' ',apellidoPaterno,' ',apellidoMaterno) = ?");
+            sentencia.setString(1, nombre);
+            //compilando
+            resultado = sentencia.executeQuery();
+            if (resultado.next())
+            {
+                return resultado.getInt("id");
+            }
+            
+        } catch (NumberFormatException | SQLException e)
+        {
+            System.out.println("Error en obtener el id del usuario: " + e);
+        }
+        return -1;
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-Parte de servicios*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-//
@@ -1204,6 +1235,34 @@ public class MetodosBD
         }
 
         return null;
+    }
+    
+    /**
+     * Metoco para buscar el id del paciente usando el nombre completo
+     *
+     * @param nombre
+     * @return
+     */
+    public static int buscarServicioNombre(String nombre)
+    {
+        try
+        {
+            dbCon = ConectaBD.ConectaBD();
+            //Concatenamos el nombre mas apellidos para que extraiga exactamente el deseado
+            sentencia = dbCon.prepareStatement("SELECT id FROM servicios WHERE nombre = ?");
+            sentencia.setString(1, nombre);
+            //compilando
+            resultado = sentencia.executeQuery();
+            if (resultado.next())
+            {
+                return resultado.getInt("id");
+            }
+            
+        } catch (NumberFormatException | SQLException e)
+        {
+            System.out.println("Error en obtener el id del servicio: " + e);
+        }
+        return -1;
     }
 
 }

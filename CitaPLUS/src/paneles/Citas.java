@@ -225,7 +225,7 @@ public class Citas extends javax.swing.JPanel
             tabAtendidas.setSelected(false);
             tabProximas.setSelected(true);
         }
-        tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);
+       tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);
        tablaContenidoCitas21.actualizarTitulo(1);
     }//GEN-LAST:event_tabProximasActionPerformed
 

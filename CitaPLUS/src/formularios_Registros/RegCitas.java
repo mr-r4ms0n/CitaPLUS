@@ -8,8 +8,13 @@ package formularios_Registros;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.sql.Date;
+import java.sql.Time;
 import metodosAux.MetodosAux;
 import metodosBD.MetodosBD;
+import paneles.Citas;
+import static paneles.Citas.tabSelecc;
+import static paneles.Citas.tablaContenidoCitas21;
 import rojeru_san.complementos.RSUtilities;
 
 /**
@@ -438,16 +443,35 @@ public class RegCitas extends javax.swing.JDialog
         serviceCorrect = MetodosAux.validarBox(Cservicio, error_servicio, "required");
         horaCorrect = MetodosAux.validarBox(CHora, error_hora, "required");
         atenderaCorrect = MetodosAux.validarBox(CAtendera, error_atendera, "required");
-        String fecha = MetodosAux.ObtenerFechaMySQL(CFecha.getDate());
 
         if (atenderaCorrect && pacientCorrect && serviceCorrect && horaCorrect)
         {
-            System.out.println(CPaciente.getSelectedItem().toString());
-            MetodosBD.buscarPacienteNombre(CPaciente.getSelectedItem().toString());
-            Object[] datosUpdate =
+            int pacienteId = MetodosBD.buscarPacienteNombre(CPaciente.getSelectedItem().toString());
+            String fechaRegistro = MetodosAux.getFecha();
+            Date fechaCita = new Date(CFecha.getDate().getTime());
+            Time horaCita = MetodosAux.ObtenerHoraMySQL(CHora.getSelectedItem().toString());
+            int usuarioId = MetodosBD.buscarUsuarioNombre(CAtendera.getSelectedItem().toString());
+            int servicioId = MetodosBD.buscarServicioNombre(Cservicio.getSelectedItem().toString());
+            Object[] datosInsert =
             {
-                
+                pacienteId,
+                fechaRegistro,
+                fechaCita,
+                horaCita,
+                usuarioId,
+                servicioId
             };
+            boolean insercionCorr = MetodosBD.insertarCita(datosInsert);
+            if (insercionCorr)
+            {
+                MetodosAux.mostrarAlerta("Muy bien hecho", "Cita Registrada con Exito", 1);
+                dispose();
+                tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);
+                Citas.actualizarNumCitas();
+            }else
+            {
+                MetodosAux.mostrarAlerta("Error", "Ocurro un error al insertar la Cita", 2);
+            }
         }
     }//GEN-LAST:event_btnRegistarActionPerformed
 
