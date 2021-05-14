@@ -46,7 +46,7 @@ public class ConectaBD
             //Por si la contraseña no es la mia es la de david
             if (con == null)
             {
-                pass = "";
+                pass = "123456";
                 try
                 {
                     con = DriverManager.getConnection("jdbc:mysql://localhost/citaplus", usuario, pass);

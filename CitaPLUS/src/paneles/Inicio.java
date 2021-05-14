@@ -27,24 +27,77 @@ public class Inicio extends javax.swing.JPanel
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
+
+        rSPanelBorder1 = new RSMaterialComponent.RSPanelBorder();
+        labelIcon1 = new necesario.LabelIcon();
+        rSPanelBorderGradient1 = new RSMaterialComponent.RSPanelBorderGradient();
 
         setBackground(new java.awt.Color(255, 255, 255));
+
+        rSPanelBorder1.setBackground(new java.awt.Color(255, 255, 255));
+        rSPanelBorder1.setRound(10);
+
+        labelIcon1.setBackground(new java.awt.Color(255, 255, 255));
+        labelIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RECEIPT);
+        labelIcon1.setRound(10);
+
+        javax.swing.GroupLayout rSPanelBorder1Layout = new javax.swing.GroupLayout(rSPanelBorder1);
+        rSPanelBorder1.setLayout(rSPanelBorder1Layout);
+        rSPanelBorder1Layout.setHorizontalGroup(
+            rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rSPanelBorder1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(256, Short.MAX_VALUE))
+        );
+        rSPanelBorder1Layout.setVerticalGroup(
+            rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rSPanelBorder1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(105, Short.MAX_VALUE))
+        );
+
+        rSPanelBorderGradient1.setRound(10);
+
+        javax.swing.GroupLayout rSPanelBorderGradient1Layout = new javax.swing.GroupLayout(rSPanelBorderGradient1);
+        rSPanelBorderGradient1.setLayout(rSPanelBorderGradient1Layout);
+        rSPanelBorderGradient1Layout.setHorizontalGroup(
+            rSPanelBorderGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        rSPanelBorderGradient1Layout.setVerticalGroup(
+            rSPanelBorderGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 165, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1034, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(rSPanelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rSPanelBorderGradient1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(700, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 613, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rSPanelBorder1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rSPanelBorderGradient1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(253, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private necesario.LabelIcon labelIcon1;
+    private RSMaterialComponent.RSPanelBorder rSPanelBorder1;
+    private RSMaterialComponent.RSPanelBorderGradient rSPanelBorderGradient1;
     // End of variables declaration//GEN-END:variables
 }
