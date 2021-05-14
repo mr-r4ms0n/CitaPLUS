@@ -592,10 +592,10 @@ public class MetodosBD
             if (tab != 0 && filtro.equals(""))
             {
                 //Para el caso de que se seleccione proximas, atendidas o canceladas y no se haga busqueda
-                sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',pacientes.apellidoMaterno) AS NombreP,"
+                sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP,"
                         + "fechaCita AS fechaC,"
                         + "horaCita AS horaC,"
-                        + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',usuarios.apellidoMaterno) AS NombreAtiende,"
+                        + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreAtiende,"
                         + "(CASE WHEN  estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita,"
                         + "servicios.nombre AS servicioN "
                         + "FROM citas "
@@ -611,10 +611,10 @@ public class MetodosBD
                 if (filtro != null && (tab == 1 || tab == 2 || tab == 3))
                 {
                     //Para el caso de que se seleccione activos o inactivos y se haga una busqueda
-                    sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',pacientes.apellidoMaterno) AS NombreP,"
+                    sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP,"
                             + "fechaCita AS fechaC,"
                             + "horaCita AS horaC,"
-                            + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',usuarios.apellidoMaterno) AS NombreAtiende,"
+                            + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreAtiende,"
                             + "(CASE WHEN  estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita,"
                             + "servicios.nombre AS servicioN "
                             + "FROM citas "
@@ -630,10 +630,10 @@ public class MetodosBD
                     if (tab == 0 && filtro != null)
                     {
                         System.out.println("ENTROOO");
-                        sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',pacientes.apellidoMaterno) AS NombreP,"
+                        sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP,"
                                 + "fechaCita AS fechaC,"
                                 + "horaCita AS horaC,"
-                                + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',usuarios.apellidoMaterno) AS NombreAtiende,"
+                                + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreAtiende,"
                                 + "(CASE WHEN  estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita,"
                                 + "servicios.nombre AS servicioN "
                                 + "FROM citas "
@@ -644,10 +644,10 @@ public class MetodosBD
                     } else
                     {
                         //Para el caso de que se entre en la pestaña de todos y no se consulten busquedas
-                        sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',pacientes.apellidoMaterno) AS NombreP,"
+                        sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP,"
                                 + "fechaCita AS fechaC,"
                                 + "horaCita AS horaC,"
-                                + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',usuarios.apellidoMaterno) AS NombreAtiende,"
+                                + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreAtiende,"
                                 + "(CASE WHEN  estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita,"
                                 + "servicios.nombre AS servicioN "
                                 + "FROM citas "
