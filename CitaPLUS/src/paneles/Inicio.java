@@ -31,16 +31,33 @@ public class Inicio extends javax.swing.JPanel
 
         rSPanelBorder1 = new RSMaterialComponent.RSPanelBorder();
         labelIcon1 = new necesario.LabelIcon();
+        jLabel1 = new javax.swing.JLabel();
+        rSProgressBarSinText1 = new rojerusan.componentes.RSProgressBarSinText();
         rSPanelBorderGradient1 = new RSMaterialComponent.RSPanelBorderGradient();
+        rSPanelBorder5 = new RSMaterialComponent.RSPanelBorder();
+        labelIcon5 = new necesario.LabelIcon();
+        jLabel5 = new javax.swing.JLabel();
+        rSProgressBarSinText3 = new rojerusan.componentes.RSProgressBarSinText();
+        rSPanelBorder6 = new RSMaterialComponent.RSPanelBorder();
+        labelIcon6 = new necesario.LabelIcon();
+        jLabel6 = new javax.swing.JLabel();
+        rSProgressBarSinText2 = new rojerusan.componentes.RSProgressBarSinText();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         rSPanelBorder1.setBackground(new java.awt.Color(255, 255, 255));
+        rSPanelBorder1.setBgBorder(new java.awt.Color(204, 182, 128));
         rSPanelBorder1.setRound(10);
 
         labelIcon1.setBackground(new java.awt.Color(255, 255, 255));
-        labelIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RECEIPT);
+        labelIcon1.setForeground(new java.awt.Color(204, 182, 128));
+        labelIcon1.setToolTipText("");
+        labelIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ACCESS_TIME);
         labelIcon1.setRound(10);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 182, 128));
+        jLabel1.setText("Citas Proximas");
 
         javax.swing.GroupLayout rSPanelBorder1Layout = new javax.swing.GroupLayout(rSPanelBorder1);
         rSPanelBorder1.setLayout(rSPanelBorder1Layout);
@@ -48,28 +65,113 @@ public class Inicio extends javax.swing.JPanel
             rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addComponent(labelIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(rSProgressBarSinText1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         rSPanelBorder1Layout.setVerticalGroup(
             rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelIcon1, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rSProgressBarSinText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        rSPanelBorderGradient1.setBgShade(new java.awt.Color(204, 182, 128));
+        rSPanelBorderGradient1.setColorPrimario(new java.awt.Color(204, 182, 128));
         rSPanelBorderGradient1.setRound(10);
 
         javax.swing.GroupLayout rSPanelBorderGradient1Layout = new javax.swing.GroupLayout(rSPanelBorderGradient1);
         rSPanelBorderGradient1.setLayout(rSPanelBorderGradient1Layout);
         rSPanelBorderGradient1Layout.setHorizontalGroup(
             rSPanelBorderGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 322, Short.MAX_VALUE)
         );
         rSPanelBorderGradient1Layout.setVerticalGroup(
             rSPanelBorderGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 165, Short.MAX_VALUE)
+        );
+
+        rSPanelBorder5.setBackground(new java.awt.Color(255, 255, 255));
+        rSPanelBorder5.setBgBorder(new java.awt.Color(255, 51, 51));
+        rSPanelBorder5.setRound(10);
+
+        labelIcon5.setBackground(new java.awt.Color(255, 255, 255));
+        labelIcon5.setForeground(new java.awt.Color(255, 51, 51));
+        labelIcon5.setToolTipText("");
+        labelIcon5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.REMOVE_CIRCLE);
+        labelIcon5.setRound(10);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel5.setText("Citas Canceladas");
+
+        javax.swing.GroupLayout rSPanelBorder5Layout = new javax.swing.GroupLayout(rSPanelBorder5);
+        rSPanelBorder5.setLayout(rSPanelBorder5Layout);
+        rSPanelBorder5Layout.setHorizontalGroup(
+            rSPanelBorder5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rSPanelBorder5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelIcon5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(rSProgressBarSinText3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        rSPanelBorder5Layout.setVerticalGroup(
+            rSPanelBorder5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rSPanelBorder5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(rSPanelBorder5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelIcon5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rSProgressBarSinText3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
+        );
+
+        rSPanelBorder6.setBackground(new java.awt.Color(255, 255, 255));
+        rSPanelBorder6.setBgBorder(new java.awt.Color(51, 153, 0));
+        rSPanelBorder6.setRound(10);
+
+        labelIcon6.setBackground(new java.awt.Color(255, 255, 255));
+        labelIcon6.setForeground(new java.awt.Color(51, 153, 0));
+        labelIcon6.setToolTipText("");
+        labelIcon6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CHECK_BOX);
+        labelIcon6.setRound(10);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(51, 153, 0));
+        jLabel6.setText("Citas Atendidas");
+
+        javax.swing.GroupLayout rSPanelBorder6Layout = new javax.swing.GroupLayout(rSPanelBorder6);
+        rSPanelBorder6.setLayout(rSPanelBorder6Layout);
+        rSPanelBorder6Layout.setHorizontalGroup(
+            rSPanelBorder6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rSPanelBorder6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelIcon6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(rSProgressBarSinText2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        rSPanelBorder6Layout.setVerticalGroup(
+            rSPanelBorder6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rSPanelBorder6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(rSPanelBorder6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelIcon6, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rSProgressBarSinText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -78,26 +180,50 @@ public class Inicio extends javax.swing.JPanel
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(rSPanelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rSPanelBorderGradient1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(700, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(rSPanelBorder1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(rSPanelBorder6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(rSPanelBorder5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rSPanelBorderGradient1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rSPanelBorder1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(rSPanelBorder5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rSPanelBorder6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rSPanelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
                 .addComponent(rSPanelBorderGradient1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addContainerGap(227, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private necesario.LabelIcon labelIcon1;
+    private necesario.LabelIcon labelIcon3;
+    private necesario.LabelIcon labelIcon4;
+    private necesario.LabelIcon labelIcon5;
+    private necesario.LabelIcon labelIcon6;
     private RSMaterialComponent.RSPanelBorder rSPanelBorder1;
+    private RSMaterialComponent.RSPanelBorder rSPanelBorder3;
+    private RSMaterialComponent.RSPanelBorder rSPanelBorder4;
+    private RSMaterialComponent.RSPanelBorder rSPanelBorder5;
+    private RSMaterialComponent.RSPanelBorder rSPanelBorder6;
     private RSMaterialComponent.RSPanelBorderGradient rSPanelBorderGradient1;
+    private rojerusan.componentes.RSProgressBarSinText rSProgressBarSinText1;
+    private rojerusan.componentes.RSProgressBarSinText rSProgressBarSinText2;
+    private rojerusan.componentes.RSProgressBarSinText rSProgressBarSinText3;
     // End of variables declaration//GEN-END:variables
 }
