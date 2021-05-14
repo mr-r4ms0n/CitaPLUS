@@ -86,18 +86,18 @@
                                   <Component id="jLabel10" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                      <Component id="error_cliente" min="-2" pref="296" max="-2" attributes="0"/>
+                                      <Component id="error_paciente" min="-2" pref="296" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="Paciente" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="CMPaciente" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel11" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
-                                          <Component id="Cservicio" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
+                                          <Component id="CMServicio" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                               <Component id="error_servicio" min="-2" pref="296" max="-2" attributes="0"/>
@@ -105,7 +105,7 @@
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="CAtendera" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
+                                          <Component id="CMAtendera" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
                                           <Component id="jLabel12" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
@@ -124,7 +124,7 @@
                                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="fecha" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="CLMFecha" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -134,7 +134,7 @@
                                       <Component id="error_hora" min="-2" pref="296" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="hora" max="32767" attributes="0"/>
+                                      <Component id="CMHora" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -143,7 +143,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
-                      <Component id="btnRegistar" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnModificar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="rSPanelMaterialGradient1" alignment="1" max="32767" attributes="0"/>
@@ -156,16 +156,16 @@
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Paciente" min="-2" pref="47" max="-2" attributes="0"/>
+                      <Component id="CMPaciente" min="-2" pref="47" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="error_cliente" min="-2" max="-2" attributes="0"/>
+                      <Component id="error_paciente" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="fecha" min="-2" max="-2" attributes="0"/>
+                                  <Component id="CLMFecha" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="76" pref="76" max="-2" attributes="0"/>
@@ -178,7 +178,7 @@
                                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="hora" alignment="1" min="-2" pref="47" max="-2" attributes="0"/>
+                                  <Component id="CMHora" alignment="1" min="-2" pref="47" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="error_hora" min="-2" pref="20" max="-2" attributes="0"/>
@@ -189,27 +189,27 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Cservicio" min="-2" pref="47" max="-2" attributes="0"/>
+                              <Component id="CMServicio" min="-2" pref="47" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="error_servicio" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="CAtendera" min="-2" pref="47" max="-2" attributes="0"/>
+                              <Component id="CMAtendera" min="-2" pref="47" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="error_atendera" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="btnRegistar" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnModificar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="RSMaterialComponent.RSComboBox" name="Paciente">
+            <Component class="RSMaterialComponent.RSComboBox" name="CMPaciente">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
@@ -232,8 +232,8 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="PacienteItemStateChanged"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PacienteActionPerformed"/>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CMPacienteItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CMPacienteActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
@@ -244,7 +244,7 @@
                 <Property name="text" type="java.lang.String" value="Fecha cita*"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="error_cliente">
+            <Component class="javax.swing.JLabel" name="error_paciente">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI Semibold" size="14" style="1"/>
@@ -252,7 +252,7 @@
                 <Property name="text" type="java.lang.String" value="Etiqueta de Error"/>
               </Properties>
             </Component>
-            <Component class="newscomponents.RSButtonIcon_new" name="btnRegistar">
+            <Component class="newscomponents.RSButtonIcon_new" name="btnModificar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="a0" green="a5" red="44" type="rgb"/>
@@ -269,7 +269,7 @@
                 <Property name="round" type="int" value="20"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
@@ -288,7 +288,7 @@
                 <Property name="text" type="java.lang.String" value="Etiqueta de Error"/>
               </Properties>
             </Component>
-            <Component class="RSMaterialComponent.RSComboBox" name="hora">
+            <Component class="RSMaterialComponent.RSComboBox" name="CMHora">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="35">
@@ -347,11 +347,11 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="horaItemStateChanged"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="horaActionPerformed"/>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CMHoraItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CMHoraActionPerformed"/>
               </Events>
             </Component>
-            <Component class="newscomponents.RSDateChooserModern" name="fecha">
+            <Component class="newscomponents.RSDateChooserModern" name="CLMFecha">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="9f" green="75" red="1a" type="rgb"/>
@@ -382,7 +382,7 @@
                 <Property name="text" type="java.lang.String" value="Etiqueta de Error"/>
               </Properties>
             </Component>
-            <Component class="RSMaterialComponent.RSComboBox" name="Cservicio">
+            <Component class="RSMaterialComponent.RSComboBox" name="CMServicio">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
@@ -405,8 +405,8 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CservicioItemStateChanged"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CservicioActionPerformed"/>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CMServicioItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CMServicioActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel11">
@@ -425,7 +425,7 @@
                 <Property name="text" type="java.lang.String" value="Etiqueta de Error"/>
               </Properties>
             </Component>
-            <Component class="RSMaterialComponent.RSComboBox" name="CAtendera">
+            <Component class="RSMaterialComponent.RSComboBox" name="CMAtendera">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
@@ -448,8 +448,8 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CAtenderaItemStateChanged"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CAtenderaActionPerformed"/>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CMAtenderaItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CMAtenderaActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">

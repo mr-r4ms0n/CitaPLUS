@@ -13,9 +13,11 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metodosAux.MetodosAux;
@@ -474,7 +476,7 @@ public class MetodosBD
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-PARTE CITAS *-*-*-*-*-*-*-*-*-*-**-*-*-**-*-*-*-*-
     /**
-     * Método que obtiene unicamente los datos de una cita
+     * Método que obtiene unicamente los datos de una cita para su edicion
      *
      * @param citasId
      * @return
@@ -484,61 +486,27 @@ public class MetodosBD
         try
         {
             dbCon = ConectaBD.ConectaBD();
-            sentencia = dbCon.prepareStatement("SELECT * FROM citas WHERE id = ?");
+            sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP, fechaCita AS fechaC, time_format(horaCita, \"%H:%i\") AS horaC, CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreAtiende, (CASE WHEN estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita, servicios.nombre AS servicioN, (CASE WHEN usuarioEdito is NULL THEN 'Sin Registro' WHEN usuarioEdito IS NOT NULL THEN CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) END) AS nombreEdito, IFNULL(fechaEdito,'Sin Registro') AS FechaEdito FROM citas INNER JOIN pacientes ON pacientes.id = pacienteId INNER JOIN usuarios ON usuarios.id = usuarioId INNER JOIN servicios ON servicios.id = servicioId WHERE citas.id = ?");
             sentencia.setString(1, citasId);
             resultado = sentencia.executeQuery();
             if (resultado.next())
             {
                 RSObjectArray arreglo = new RSObjectArray();
                 arreglo.add("id", resultado.getInt("id"));
-                arreglo.add("fecha", resultado.getString("fecha"));
-                arreglo.add("hora", resultado.getString("hora"));
-                arreglo.add("fechaRegistro", resultado.getString("fechaRegistro"));
-                arreglo.add("usuarioId", resultado.getString("usuarioId"));
-
-                arreglo.add("fechaCancelo", resultado.getString("fechaCancelo"));
-                arreglo.add("usuarioEdito", resultado.getString("usuarioEdito"));
-
-                arreglo.add("pacienteId", resultado.getString("pacienteId"));
-                arreglo.add("nombrenombrePaciente", resultado.getString("nombrenombrePaciente"));
-                arreglo.add("usuarioAtiende", resultado.getString("usuarioAtiende"));
-                arreglo.add("estatusCitasId", resultado.getString("estatusCitasId"));
+                arreglo.add("nombrePaciente", resultado.getString("NombreP"));
+                arreglo.add("fechaCita", resultado.getDate("fechaC"));
+                arreglo.add("horaCita", resultado.getString("horaC"));
+                arreglo.add("nombreUsuario", resultado.getString("NombreAtiende"));
+                arreglo.add("estatusCita", resultado.getString("estatusCita"));
+                arreglo.add("nombreServicio", resultado.getString("servicioN"));
+                arreglo.add("usuarioEdito", resultado.getString("NombreEdito"));
+                arreglo.add("fechaEdito", resultado.getString("FechaEdito"));
                 return arreglo;
             }
             dbCon.close();
         } catch (SQLException e)
         {
-            System.err.println("Error en obtener citas de tipo sql: " + e);
-        }
-
-        return null;
-    }
-
-    public static RSObjectArray setCitas(String citasId)
-    {
-        try
-        {
-            dbCon = ConectaBD.ConectaBD();
-            sentencia = dbCon.prepareStatement("SELECT * FROM citas WHERE id = ?");
-            sentencia.setString(1, citasId);
-            resultado = sentencia.executeQuery();
-            if (resultado.next())
-            {
-                RSObjectArray arreglo = new RSObjectArray();
-                arreglo.add("id", resultado.getInt("id"));
-                arreglo.add("fecha", resultado.getString("fecha"));
-                arreglo.add("hora", resultado.getString("hora"));
-                arreglo.add("estatusCitasId", resultado.getString("estatusCitasId"));
-
-                arreglo.add("pacienteId", resultado.getString("pacienteId"));
-                arreglo.add("nombrenombrePaciente", resultado.getString("nombrenombrePaciente"));
-                arreglo.add("usuarioAtiende", resultado.getString("usuarioAtiende"));
-                return arreglo;
-            }
-            dbCon.close();
-        } catch (SQLException e)
-        {
-            System.err.println("Error em obtener pacientes de sql: " + e);
+            System.err.println("Error en obtener la cita de forma individual de tipo sql: " + e);
         }
 
         return null;
@@ -716,10 +684,39 @@ public class MetodosBD
                 dbCon.close();
             } catch (SQLException ex)
             {
-                Logger.getLogger(MetodosBD.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Error al cerrar la conexion en el metodo de contar citas" + ex);
             }
         }
         return total;
+    }
+
+    public static boolean actualizarCita(Object[] datos, int id)
+    {
+        try
+        {
+            dbCon = ConectaBD.ConectaBD();
+            sentencia = dbCon.prepareStatement("UPDATE citas SET pacienteId =?,fechaCita=?,horaCita=?,usuarioId=?,servicioId=?,usuarioEdito=?,fechaEdito=? WHERE id = ?");
+            sentencia.setInt(1, (int) datos[0]);
+            sentencia.setDate(2, (Date) datos[1]);
+            sentencia.setTime(3, (Time) datos[2]);
+            sentencia.setInt(4, (int) datos[3]);
+            sentencia.setInt(5, (int) datos[4]);
+            sentencia.setInt(6, (int) datos[5]);
+            sentencia.setString(7, datos[6].toString());
+            sentencia.setInt(8, id);
+            int rs = sentencia.executeUpdate();
+
+            if (rs > 0)
+            {
+                return true;
+            }
+
+            dbCon.close();
+        } catch (SQLException e)
+        {
+            System.err.println("Error al actualizar citas de tipo sql: " + e);
+        }
+        return false;
     }
 
     //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-PARTE USUARIOS *-*-*-*-*-*-*-*-*-*-**-*-*-**-*-*-*-*-

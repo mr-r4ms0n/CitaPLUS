@@ -8,7 +8,6 @@ package interfaces;
 import java.awt.Image;
 import java.awt.Shape;
 import java.awt.Toolkit;
-import java.awt.Window;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;

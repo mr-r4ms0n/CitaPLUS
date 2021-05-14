@@ -104,12 +104,12 @@ public class TablaContenidoCitas extends javax.swing.JPanel
 
     public void viewInfo(Object value)
     {
-        new InfoCitas(null, true, MetodosBD.getPaciente(value.toString())).setVisible(true);
+        new InfoCitas(null, true, MetodosBD.getCitas(value.toString())).setVisible(true);
     }
 
     public void editInfo(Object value)
     {
-        new EditCita(MetodosBD.getPaciente(value.toString())).setVisible(true);
+        new EditCita(MetodosBD.getCitas(value.toString())).setVisible(true);
     }
 
     /**

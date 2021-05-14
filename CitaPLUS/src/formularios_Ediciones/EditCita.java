@@ -5,13 +5,19 @@
  */
 package formularios_Ediciones;
 
-import formularios_Registros.*;
+import interfaces.MenuUsuario;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.sql.Date;
+import java.sql.Time;
+import metodosAux.MetodosAux;
 import metodosAux.RSObjectArray;
+import metodosBD.MetodosBD;
+import paneles.Citas;
+import static paneles.Citas.tabSelecc;
+import static paneles.Citas.tablaContenidoCitas21;
 import rojeru_san.complementos.RSUtilities;
-
 
 /**
  *
@@ -20,8 +26,18 @@ import rojeru_san.complementos.RSUtilities;
 public class EditCita extends javax.swing.JDialog
 {
 
+    boolean pacientCorrect = true;
+    boolean serviceCorrect = true;
+    boolean horaCorrect = true;
+    boolean atenderaCorrect = true;
+
+    int id;
+
     public EditCita(RSObjectArray datos)
     {
+        MetodosBD.mostrarDatosCombo(CMPaciente,"pacientes");
+        MetodosBD.mostrarDatosCombo(CMServicio,"servicios");
+        MetodosBD.mostrarDatosCombo(CMAtendera,"usuarios");
         initComponents();
         setModal(true);
         setLocationRelativeTo(null);
@@ -30,11 +46,19 @@ public class EditCita extends javax.swing.JDialog
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
         setShape(forma);
         iniCampos();
+        //Rellenamos los campos
+        id = (int) datos.getValue("id");
+        CMPaciente.setSelectedItem(datos.getValue("NombrePaciente"));
+        java.util.Date newDate = (java.sql.Date) datos.getValue("fechaCita");
+        CLMFecha.setDate(newDate);
+        CMHora.setSelectedItem(datos.getValue("horaCita"));
+        CMAtendera.setSelectedItem(datos.getValue("nombreUsuario"));
+        CMServicio.setSelectedItem("nombreServicio");
     }
 
     private EditCita()
     {
-        
+
     }
 
     /**
@@ -43,12 +67,12 @@ public class EditCita extends javax.swing.JDialog
      */
     public void iniCampos()
     {
-        this.error_cliente.setForeground(Color.white);
+        this.error_paciente.setForeground(Color.white);
         this.error_fecha.setForeground(Color.white);
         this.error_hora.setForeground(Color.white);
         this.error_servicio.setForeground(Color.white);
         this.error_atendera.setForeground(Color.white);
-        this.hora.setSelectedIndex(0);
+        this.CMHora.setSelectedIndex(0);
     }
 
     /**
@@ -63,21 +87,21 @@ public class EditCita extends javax.swing.JDialog
 
         pnlFondo = new javax.swing.JPanel();
         rSPanelBorder1 = new RSMaterialComponent.RSPanelBorder();
-        Paciente = new RSMaterialComponent.RSComboBox();
+        CMPaciente = new RSMaterialComponent.RSComboBox();
         jLabel8 = new javax.swing.JLabel();
-        error_cliente = new javax.swing.JLabel();
-        btnRegistar = new newscomponents.RSButtonIcon_new();
+        error_paciente = new javax.swing.JLabel();
+        btnModificar = new newscomponents.RSButtonIcon_new();
         jLabel9 = new javax.swing.JLabel();
         error_hora = new javax.swing.JLabel();
-        hora = new RSMaterialComponent.RSComboBox();
-        fecha = new newscomponents.RSDateChooserModern();
+        CMHora = new RSMaterialComponent.RSComboBox();
+        CLMFecha = new newscomponents.RSDateChooserModern();
         jLabel10 = new javax.swing.JLabel();
         error_fecha = new javax.swing.JLabel();
         error_servicio = new javax.swing.JLabel();
-        Cservicio = new RSMaterialComponent.RSComboBox();
+        CMServicio = new RSMaterialComponent.RSComboBox();
         jLabel11 = new javax.swing.JLabel();
         error_atendera = new javax.swing.JLabel();
-        CAtendera = new RSMaterialComponent.RSComboBox();
+        CMAtendera = new RSMaterialComponent.RSComboBox();
         jLabel12 = new javax.swing.JLabel();
         rSPanelMaterialGradient1 = new RSMaterialComponent.RSPanelMaterialGradient();
         btnCerrar = new RSMaterialComponent.RSButtonIconOne();
@@ -91,45 +115,45 @@ public class EditCita extends javax.swing.JDialog
         rSPanelBorder1.setBackground(new java.awt.Color(255, 255, 255));
         rSPanelBorder1.setBgBorder(new java.awt.Color(26, 117, 159));
 
-        Paciente.setColorArrow(new java.awt.Color(26, 117, 159));
-        Paciente.setColorBorde(new java.awt.Color(26, 117, 159));
-        Paciente.setColorFondo(new java.awt.Color(26, 117, 159));
-        Paciente.setColorSeleccion(new java.awt.Color(26, 117, 159));
-        Paciente.setDisabledIdex("0");
-        Paciente.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        Paciente.addItemListener(new java.awt.event.ItemListener()
+        CMPaciente.setColorArrow(new java.awt.Color(26, 117, 159));
+        CMPaciente.setColorBorde(new java.awt.Color(26, 117, 159));
+        CMPaciente.setColorFondo(new java.awt.Color(26, 117, 159));
+        CMPaciente.setColorSeleccion(new java.awt.Color(26, 117, 159));
+        CMPaciente.setDisabledIdex("0");
+        CMPaciente.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        CMPaciente.addItemListener(new java.awt.event.ItemListener()
         {
             public void itemStateChanged(java.awt.event.ItemEvent evt)
             {
-                PacienteItemStateChanged(evt);
+                CMPacienteItemStateChanged(evt);
             }
         });
-        Paciente.addActionListener(new java.awt.event.ActionListener()
+        CMPaciente.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                PacienteActionPerformed(evt);
+                CMPacienteActionPerformed(evt);
             }
         });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel8.setText("Fecha cita*");
 
-        error_cliente.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        error_cliente.setText("Etiqueta de Error");
+        error_paciente.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        error_paciente.setText("Etiqueta de Error");
 
-        btnRegistar.setBackground(new java.awt.Color(68, 165, 160));
-        btnRegistar.setText("Guardar Cambios");
-        btnRegistar.setBackgroundHover(new java.awt.Color(57, 140, 136));
-        btnRegistar.setEnabled(false);
-        btnRegistar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnRegistar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CHECK);
-        btnRegistar.setRound(20);
-        btnRegistar.addActionListener(new java.awt.event.ActionListener()
+        btnModificar.setBackground(new java.awt.Color(68, 165, 160));
+        btnModificar.setText("Guardar Cambios");
+        btnModificar.setBackgroundHover(new java.awt.Color(57, 140, 136));
+        btnModificar.setEnabled(false);
+        btnModificar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnModificar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CHECK);
+        btnModificar.setRound(20);
+        btnModificar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                btnRegistarActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
 
@@ -139,29 +163,29 @@ public class EditCita extends javax.swing.JDialog
         error_hora.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         error_hora.setText("Etiqueta de Error");
 
-        hora.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "07:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30" }));
-        hora.setColorArrow(new java.awt.Color(26, 117, 159));
-        hora.setColorBorde(new java.awt.Color(26, 117, 159));
-        hora.setColorFondo(new java.awt.Color(26, 117, 159));
-        hora.setColorSeleccion(new java.awt.Color(26, 117, 159));
-        hora.setDisabledIdex("0");
-        hora.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        hora.addItemListener(new java.awt.event.ItemListener()
+        CMHora.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "07:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30" }));
+        CMHora.setColorArrow(new java.awt.Color(26, 117, 159));
+        CMHora.setColorBorde(new java.awt.Color(26, 117, 159));
+        CMHora.setColorFondo(new java.awt.Color(26, 117, 159));
+        CMHora.setColorSeleccion(new java.awt.Color(26, 117, 159));
+        CMHora.setDisabledIdex("0");
+        CMHora.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        CMHora.addItemListener(new java.awt.event.ItemListener()
         {
             public void itemStateChanged(java.awt.event.ItemEvent evt)
             {
-                horaItemStateChanged(evt);
+                CMHoraItemStateChanged(evt);
             }
         });
-        hora.addActionListener(new java.awt.event.ActionListener()
+        CMHora.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                horaActionPerformed(evt);
+                CMHoraActionPerformed(evt);
             }
         });
 
-        fecha.setBackground(new java.awt.Color(26, 117, 159));
+        CLMFecha.setBackground(new java.awt.Color(26, 117, 159));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel10.setText("Paciente*");
@@ -172,24 +196,24 @@ public class EditCita extends javax.swing.JDialog
         error_servicio.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         error_servicio.setText("Etiqueta de Error");
 
-        Cservicio.setColorArrow(new java.awt.Color(26, 117, 159));
-        Cservicio.setColorBorde(new java.awt.Color(26, 117, 159));
-        Cservicio.setColorFondo(new java.awt.Color(26, 117, 159));
-        Cservicio.setColorSeleccion(new java.awt.Color(26, 117, 159));
-        Cservicio.setDisabledIdex("0");
-        Cservicio.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        Cservicio.addItemListener(new java.awt.event.ItemListener()
+        CMServicio.setColorArrow(new java.awt.Color(26, 117, 159));
+        CMServicio.setColorBorde(new java.awt.Color(26, 117, 159));
+        CMServicio.setColorFondo(new java.awt.Color(26, 117, 159));
+        CMServicio.setColorSeleccion(new java.awt.Color(26, 117, 159));
+        CMServicio.setDisabledIdex("0");
+        CMServicio.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        CMServicio.addItemListener(new java.awt.event.ItemListener()
         {
             public void itemStateChanged(java.awt.event.ItemEvent evt)
             {
-                CservicioItemStateChanged(evt);
+                CMServicioItemStateChanged(evt);
             }
         });
-        Cservicio.addActionListener(new java.awt.event.ActionListener()
+        CMServicio.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                CservicioActionPerformed(evt);
+                CMServicioActionPerformed(evt);
             }
         });
 
@@ -199,24 +223,24 @@ public class EditCita extends javax.swing.JDialog
         error_atendera.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         error_atendera.setText("Etiqueta de Error");
 
-        CAtendera.setColorArrow(new java.awt.Color(26, 117, 159));
-        CAtendera.setColorBorde(new java.awt.Color(26, 117, 159));
-        CAtendera.setColorFondo(new java.awt.Color(26, 117, 159));
-        CAtendera.setColorSeleccion(new java.awt.Color(26, 117, 159));
-        CAtendera.setDisabledIdex("0");
-        CAtendera.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        CAtendera.addItemListener(new java.awt.event.ItemListener()
+        CMAtendera.setColorArrow(new java.awt.Color(26, 117, 159));
+        CMAtendera.setColorBorde(new java.awt.Color(26, 117, 159));
+        CMAtendera.setColorFondo(new java.awt.Color(26, 117, 159));
+        CMAtendera.setColorSeleccion(new java.awt.Color(26, 117, 159));
+        CMAtendera.setDisabledIdex("0");
+        CMAtendera.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        CMAtendera.addItemListener(new java.awt.event.ItemListener()
         {
             public void itemStateChanged(java.awt.event.ItemEvent evt)
             {
-                CAtenderaItemStateChanged(evt);
+                CMAtenderaItemStateChanged(evt);
             }
         });
-        CAtendera.addActionListener(new java.awt.event.ActionListener()
+        CMAtendera.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                CAtenderaActionPerformed(evt);
+                CMAtenderaActionPerformed(evt);
             }
         });
 
@@ -281,21 +305,21 @@ public class EditCita extends javax.swing.JDialog
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(error_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(error_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(Paciente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CMPaciente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, rSPanelBorder1Layout.createSequentialGroup()
                                 .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Cservicio, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CMServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
                                         .addComponent(error_servicio, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(CAtendera, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CMAtendera, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
@@ -308,7 +332,7 @@ public class EditCita extends javax.swing.JDialog
                                 .addComponent(error_fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(2, 2, 2))
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(fecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CLMFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -316,11 +340,11 @@ public class EditCita extends javax.swing.JDialog
                                 .addGap(10, 10, 10)
                                 .addComponent(error_hora, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                                .addComponent(hora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CMHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())))))
             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                 .addGap(199, 199, 199)
-                .addComponent(btnRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(rSPanelMaterialGradient1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -331,16 +355,16 @@ public class EditCita extends javax.swing.JDialog
                 .addGap(11, 11, 11)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CMPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(error_cliente)
+                .addComponent(error_paciente)
                 .addGap(18, 18, 18)
                 .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                             .addComponent(jLabel8)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CLMFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                             .addGap(76, 76, 76)
                             .addComponent(error_fecha)))
@@ -349,7 +373,7 @@ public class EditCita extends javax.swing.JDialog
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(48, 48, 48))
-                            .addComponent(hora, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CMHora, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(error_hora, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
@@ -357,17 +381,17 @@ public class EditCita extends javax.swing.JDialog
                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Cservicio, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CMServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(error_servicio))
                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CAtendera, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CMAtendera, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(error_atendera)))
                 .addGap(36, 36, 36)
-                .addComponent(btnRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -404,58 +428,95 @@ public class EditCita extends javax.swing.JDialog
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PacienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_PacienteActionPerformed
-    {//GEN-HEADEREND:event_PacienteActionPerformed
+    private void CMPacienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CMPacienteActionPerformed
+    {//GEN-HEADEREND:event_CMPacienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PacienteActionPerformed
+    }//GEN-LAST:event_CMPacienteActionPerformed
 
-    private void btnRegistarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRegistarActionPerformed
-    {//GEN-HEADEREND:event_btnRegistarActionPerformed
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnModificarActionPerformed
+    {//GEN-HEADEREND:event_btnModificarActionPerformed
+        pacientCorrect = MetodosAux.validarBox(CMPaciente, error_paciente, "required");
+        serviceCorrect = MetodosAux.validarBox(CMServicio, error_servicio, "required");
+        horaCorrect = MetodosAux.validarBox(CMHora, error_hora, "required");
+        atenderaCorrect = MetodosAux.validarBox(CMAtendera, error_atendera, "required");
 
-        
-    }//GEN-LAST:event_btnRegistarActionPerformed
+        if (atenderaCorrect && pacientCorrect && serviceCorrect && horaCorrect)
+        {
+            int pacienteId = MetodosBD.buscarPacienteNombre(CMPaciente.getSelectedItem().toString());
+            String fechaRegistro = MetodosAux.getFecha();
+            Date fechaCita = new Date(CLMFecha.getDate().getTime());
+            Time horaCita = MetodosAux.ObtenerHoraMySQL(CMHora.getSelectedItem().toString());
+            int usuarioId = MetodosBD.buscarUsuarioNombre(CMAtendera.getSelectedItem().toString());
+            int servicioId = MetodosBD.buscarServicioNombre(CMServicio.getSelectedItem().toString());
+            int usuarioEditoId = MenuUsuario.idUsuario;
+            String fechaEdito = MetodosAux.getFecha();
+            //Como se edito se va a registrar la fecha en que se edito y el usuario que se encargo de realizar la edicion
+            Object[] datosUpdate =
+            {
+                pacienteId,
+                fechaRegistro,
+                fechaCita,
+                horaCita,
+                usuarioId,
+                servicioId,
+                usuarioEditoId,
+                fechaEdito
+            };
+            boolean modificacionCorr = MetodosBD.actualizarCita(datosUpdate, id);
+            if (modificacionCorr)
+            {
+                MetodosAux.mostrarAlerta("Muy bien hecho", "Cita Actualizada con Exito", 1);
+                dispose();
+                tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);
+                Citas.actualizarNumCitas();
+            } else
+            {
+                MetodosAux.mostrarAlerta("Error", "Ocurro un error al Actualizar la Cita", 2);
+            }
+        }
+
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCerrarActionPerformed
     {//GEN-HEADEREND:event_btnCerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-    private void PacienteItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_PacienteItemStateChanged
-    {//GEN-HEADEREND:event_PacienteItemStateChanged
-        
-        
-        
-    }//GEN-LAST:event_PacienteItemStateChanged
+    private void CMPacienteItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CMPacienteItemStateChanged
+    {//GEN-HEADEREND:event_CMPacienteItemStateChanged
 
-    private void horaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_horaItemStateChanged
-    {//GEN-HEADEREND:event_horaItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_horaItemStateChanged
 
-    private void horaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_horaActionPerformed
-    {//GEN-HEADEREND:event_horaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_horaActionPerformed
+    }//GEN-LAST:event_CMPacienteItemStateChanged
 
-    private void CservicioItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CservicioItemStateChanged
-    {//GEN-HEADEREND:event_CservicioItemStateChanged
+    private void CMHoraItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CMHoraItemStateChanged
+    {//GEN-HEADEREND:event_CMHoraItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_CservicioItemStateChanged
+    }//GEN-LAST:event_CMHoraItemStateChanged
 
-    private void CservicioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CservicioActionPerformed
-    {//GEN-HEADEREND:event_CservicioActionPerformed
+    private void CMHoraActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CMHoraActionPerformed
+    {//GEN-HEADEREND:event_CMHoraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CservicioActionPerformed
+    }//GEN-LAST:event_CMHoraActionPerformed
 
-    private void CAtenderaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CAtenderaItemStateChanged
-    {//GEN-HEADEREND:event_CAtenderaItemStateChanged
+    private void CMServicioItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CMServicioItemStateChanged
+    {//GEN-HEADEREND:event_CMServicioItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_CAtenderaItemStateChanged
+    }//GEN-LAST:event_CMServicioItemStateChanged
 
-    private void CAtenderaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CAtenderaActionPerformed
-    {//GEN-HEADEREND:event_CAtenderaActionPerformed
+    private void CMServicioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CMServicioActionPerformed
+    {//GEN-HEADEREND:event_CMServicioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CAtenderaActionPerformed
+    }//GEN-LAST:event_CMServicioActionPerformed
+
+    private void CMAtenderaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CMAtenderaItemStateChanged
+    {//GEN-HEADEREND:event_CMAtenderaItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CMAtenderaItemStateChanged
+
+    private void CMAtenderaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CMAtenderaActionPerformed
+    {//GEN-HEADEREND:event_CMAtenderaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CMAtenderaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -512,18 +573,18 @@ public class EditCita extends javax.swing.JDialog
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private RSMaterialComponent.RSComboBox CAtendera;
-    private RSMaterialComponent.RSComboBox Cservicio;
-    private RSMaterialComponent.RSComboBox Paciente;
+    private newscomponents.RSDateChooserModern CLMFecha;
+    private RSMaterialComponent.RSComboBox CMAtendera;
+    private RSMaterialComponent.RSComboBox CMHora;
+    private RSMaterialComponent.RSComboBox CMPaciente;
+    private RSMaterialComponent.RSComboBox CMServicio;
     private RSMaterialComponent.RSButtonIconOne btnCerrar;
-    private newscomponents.RSButtonIcon_new btnRegistar;
+    private newscomponents.RSButtonIcon_new btnModificar;
     private javax.swing.JLabel error_atendera;
-    private javax.swing.JLabel error_cliente;
     private javax.swing.JLabel error_fecha;
     private javax.swing.JLabel error_hora;
+    private javax.swing.JLabel error_paciente;
     private javax.swing.JLabel error_servicio;
-    private newscomponents.RSDateChooserModern fecha;
-    private RSMaterialComponent.RSComboBox hora;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

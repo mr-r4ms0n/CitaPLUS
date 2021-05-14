@@ -23,7 +23,6 @@ import rojeru_san.complementos.RSUtilities;
  */
 public class RegCitas extends javax.swing.JDialog
 {
-
     //campos necesarios para validar
     boolean pacientCorrect = false;
     boolean serviceCorrect = false;
@@ -38,7 +37,6 @@ public class RegCitas extends javax.swing.JDialog
         MetodosBD.mostrarDatosCombo(CPaciente,"pacientes");
         MetodosBD.mostrarDatosCombo(Cservicio,"servicios");
         MetodosBD.mostrarDatosCombo(CAtendera,"usuarios");
-
         setModal(true);
         setLocationRelativeTo(null);
         RSUtilities.setOpaqueWindow(this, false);
