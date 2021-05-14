@@ -35,9 +35,9 @@ public class RegCitas extends javax.swing.JDialog
         initComponents();
 
         //Cargar Pacientes En el ComboBox
-        MetodosBD.mostrarPacientes(CPaciente);
-        MetodosBD.mostrarServiciosDisponibles(Cservicio);
-        MetodosBD.mostrarUsuarios(CAtendera);
+        MetodosBD.mostrarDatosCombo(CPaciente,"pacientes");
+        MetodosBD.mostrarDatosCombo(Cservicio,"servicios");
+        MetodosBD.mostrarDatosCombo(CAtendera,"usuarios");
 
         setModal(true);
         setLocationRelativeTo(null);

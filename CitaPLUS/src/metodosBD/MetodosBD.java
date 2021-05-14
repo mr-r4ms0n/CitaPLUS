@@ -406,31 +406,40 @@ public class MetodosBD
     }
 
     /**
-     * Método que te muestra todos los pacientes
+     * Método que te muestra los datos para rellenar algun combo solicitado
      *
-     * @param RSComboBox Es para llenar el campo
+     * @param combo componente a rellenar
+     * @param tipo tipo de combo que se desea rellenar
      */
-    public static void mostrarPacientes(RSComboBox combo)
+    public static void mostrarDatosCombo(RSComboBox combo, String tipo)
     {
         //Consulta SQL
-        String SSQL = "SELECT * FROM pacientes WHERE estatus=1";
         try
         {
             //Conectar BD
             dbCon = ConectaBD.ConectaBD();
+            sentencia = dbCon.prepareStatement("SELECT * FROM " + tipo + " WHERE estatus = ?");
+            sentencia.setInt(1, 1);
             //Preparando consulta
-            PreparedStatement pst = dbCon.prepareStatement(SSQL);
             //compilando
-            ResultSet resultado = pst.executeQuery();
-            while (resultado.next())
+            resultado = sentencia.executeQuery();
+            if (tipo.equals("pacientes") || tipo.equals("usuarios"))
             {
-                combo.addItem(resultado.getString("nombre") + " " + resultado.getString("apellidoPaterno") + " " + resultado.getString("apellidoMaterno"));
+                while (resultado.next())
+                {
+                    combo.addItem(resultado.getString("nombre") + " " + resultado.getString("apellidoPaterno") + " " + resultado.getString("apellidoMaterno"));
+                }
+            } else
+            {
+                while (resultado.next())
+                {
+                    combo.addItem(resultado.getString("nombre"));
+                }
             }
-
             dbCon.close();
         } catch (SQLException e)
         {
-            System.out.println("Error en obtener el ResultSet de Pacientes: " + e);
+            System.out.println("Error al llenar combobox de registrar citas: " + e);
         }
     }
 
@@ -454,7 +463,7 @@ public class MetodosBD
             {
                 return resultado.getInt("id");
             }
-            
+
         } catch (NumberFormatException | SQLException e)
         {
             System.out.println("Error en obtener el id del paciente: " + e);
@@ -713,54 +722,6 @@ public class MetodosBD
         return total;
     }
 
-    //metodo para obtener los servicios disponibles
-    public static void mostrarServiciosDisponibles(RSComboBox combo)
-    {
-        //Consulta SQL
-        String SSQL = " select * from servicios where estatus = 1";
-        try
-        {
-            //Conectar BD
-            dbCon = ConectaBD.ConectaBD();
-            //Preparando consulta
-            PreparedStatement pst = dbCon.prepareStatement(SSQL);
-            //compilando
-            ResultSet resultado = pst.executeQuery();
-            while (resultado.next())
-            {
-                combo.addItem(resultado.getString("nombre"));
-            }
-            dbCon.close();
-        } catch (SQLException e)
-        {
-            System.out.println("Error en obtener el ResultSet de Servicios: " + e);
-        }
-    }
-
-    //Muestra todos los usuarios Activos
-    public static void mostrarUsuarios(RSComboBox combo)
-    {
-        //Consulta SQL
-        String SSQL = "SELECT * FROM usuarios WHERE estatus = 1";
-        try
-        {
-            //Conectar BD
-            dbCon = ConectaBD.ConectaBD();
-            //Preparando consulta
-            PreparedStatement pst = dbCon.prepareStatement(SSQL);
-            //compilando
-            ResultSet resultado = pst.executeQuery();
-            while (resultado.next())
-            {
-                combo.addItem(resultado.getString("nombre") + " " + resultado.getString("apellidoPaterno") + " " + resultado.getString("apellidoMaterno"));
-            }
-            dbCon.close();
-        } catch (SQLException e)
-        {
-            System.out.println("Error en obtener el ResultSet de Usuarios: " + e);
-        }
-    }
-
     //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-PARTE USUARIOS *-*-*-*-*-*-*-*-*-*-**-*-*-**-*-*-*-*-
     public static ResultSet rsListarUsuarios(int tab, String filtro)
     {
@@ -1000,7 +961,7 @@ public class MetodosBD
 
         return null;
     }
-    
+
     /**
      * Metoco para buscar el id del paciente usando el nombre completo
      *
@@ -1021,7 +982,7 @@ public class MetodosBD
             {
                 return resultado.getInt("id");
             }
-            
+
         } catch (NumberFormatException | SQLException e)
         {
             System.out.println("Error en obtener el id del usuario: " + e);
@@ -1236,7 +1197,7 @@ public class MetodosBD
 
         return null;
     }
-    
+
     /**
      * Metoco para buscar el id del paciente usando el nombre completo
      *
@@ -1257,7 +1218,7 @@ public class MetodosBD
             {
                 return resultado.getInt("id");
             }
-            
+
         } catch (NumberFormatException | SQLException e)
         {
             System.out.println("Error en obtener el id del servicio: " + e);
