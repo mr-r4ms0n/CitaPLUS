@@ -12,29 +12,28 @@ import metodosAux.MetodosAux;
 import metodosBD.MetodosBD;
 import rojeru_san.complementos.RSUtilities;
 
-
 /**
  *
  * @author David Vergara
  */
 public class RegCitas extends javax.swing.JDialog
 {
-    
+
     //campos necesarios para validar
     boolean pacientCorrect = false;
     boolean serviceCorrect = false;
     boolean horaCorrect = false;
     boolean atenderaCorrect = false;
-    
+
     public RegCitas()
     {
         initComponents();
-        
+
         //Cargar Pacientes En el ComboBox
         MetodosBD.mostrarPacientes(CPaciente);
         MetodosBD.mostrarServiciosDisponibles(Cservicio);
         MetodosBD.mostrarUsuarios(CAtendera);
-        
+
         setModal(true);
         setLocationRelativeTo(null);
         RSUtilities.setOpaqueWindow(this, false);
@@ -59,7 +58,8 @@ public class RegCitas extends javax.swing.JDialog
         this.CPaciente.setSelectedIndex(0);
         this.CAtendera.setSelectedIndex(0);
         this.Cservicio.setSelectedIndex(0);
-    }     
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -439,15 +439,16 @@ public class RegCitas extends javax.swing.JDialog
         horaCorrect = MetodosAux.validarBox(CHora, error_hora, "required");
         atenderaCorrect = MetodosAux.validarBox(CAtendera, error_atendera, "required");
         String fecha = MetodosAux.ObtenerFechaMySQL(CFecha.getDate());
-        
+
         if (atenderaCorrect && pacientCorrect && serviceCorrect && horaCorrect)
         {
+            System.out.println(CPaciente.getSelectedItem().toString());
+            MetodosBD.buscarPacienteNombre(CPaciente.getSelectedItem().toString());
             Object[] datosUpdate =
             {
                 
             };
         }
-        
     }//GEN-LAST:event_btnRegistarActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCerrarActionPerformed
@@ -457,17 +458,20 @@ public class RegCitas extends javax.swing.JDialog
 
     private void CPacienteItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CPacienteItemStateChanged
     {//GEN-HEADEREND:event_CPacienteItemStateChanged
-
-        //aqui va el codigo para validar
-        
+        pacientCorrect = true;
+        if (atenderaCorrect && pacientCorrect && serviceCorrect && horaCorrect)
+        {
+            btnRegistar.setEnabled(true);
+        }
     }//GEN-LAST:event_CPacienteItemStateChanged
 
     private void CHoraItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CHoraItemStateChanged
     {//GEN-HEADEREND:event_CHoraItemStateChanged
-        // TODO add your handling code here:
-        
-        //codigo para validar
-        
+        horaCorrect = true;
+        if (atenderaCorrect && pacientCorrect && serviceCorrect && horaCorrect)
+        {
+            btnRegistar.setEnabled(true);
+        }
     }//GEN-LAST:event_CHoraItemStateChanged
 
     private void CHoraActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CHoraActionPerformed
@@ -477,9 +481,13 @@ public class RegCitas extends javax.swing.JDialog
 
     private void CservicioItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CservicioItemStateChanged
     {//GEN-HEADEREND:event_CservicioItemStateChanged
-        // TODO add your handling code here:
-        //Codigo para validar
-        
+        serviceCorrect = true;
+        if (atenderaCorrect && pacientCorrect && serviceCorrect && horaCorrect)
+        {
+            btnRegistar.setEnabled(true);
+
+        }
+
     }//GEN-LAST:event_CservicioItemStateChanged
 
     private void CservicioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CservicioActionPerformed
@@ -489,7 +497,11 @@ public class RegCitas extends javax.swing.JDialog
 
     private void CAtenderaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CAtenderaItemStateChanged
     {//GEN-HEADEREND:event_CAtenderaItemStateChanged
-      
+        atenderaCorrect = true;
+        if (atenderaCorrect && pacientCorrect && serviceCorrect && horaCorrect)
+        {
+            btnRegistar.setEnabled(true);
+        }
     }//GEN-LAST:event_CAtenderaItemStateChanged
 
     private void CAtenderaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CAtenderaActionPerformed

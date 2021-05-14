@@ -179,7 +179,6 @@ public class MetodosBD
         {
             System.err.println("Error en obtener pacientes de tipo sql: " + e);
         }
-
         return null;
     }
 
@@ -434,6 +433,29 @@ public class MetodosBD
             System.out.println("Error en obtener el ResultSet de Pacientes: " + e);
         }
     }
+    
+    
+    //metodo para buscar por nombre y obtener id
+    public static int buscarPacienteNombre(String nombre)
+    {
+        String SSQL = "SELECT id FROM pacientes WHERE " +nombre+ "= 'juan'";
+        try
+        {
+            dbCon = ConectaBD.ConectaBD();
+            PreparedStatement pst = dbCon.prepareStatement(SSQL);
+            //compilando
+            ResultSet resultado = pst.executeQuery();
+            
+            System.out.println("Este es mi id " + resultado.getString("id"));
+            return Integer.parseInt(resultado.getString("id"));
+        } catch (Exception e)
+        {
+            
+            System.out.println("Error en obtener el id del paciente: " + e);
+        }
+        return -999;
+    }
+    
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-PARTE CITAS *-*-*-*-*-*-*-*-*-*-**-*-*-**-*-*-*-*-
@@ -537,6 +559,7 @@ public class MetodosBD
         }
         return false;
     }
+    
 
     /**
      * Método que lista la tabla de citas tomando como parametro el tipo de tab
@@ -710,6 +733,8 @@ public class MetodosBD
         }
     }
 
+    
+    //Muestra todos los usuarios Activos
     public static void mostrarUsuarios(RSComboBox combo)
     {
         //Consulta SQL
