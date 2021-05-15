@@ -165,7 +165,7 @@ public class MetodosAux
             }
         } catch (SQLException ex)
         {
-            System.out.println("Error al generar insercion: "+ex);
+            System.out.println("Error al generar insercion: " + ex);
         }
         return sentencia;
     }
@@ -278,8 +278,8 @@ public class MetodosAux
         }
         return resultado;
     }
-    
-     /**
+
+    /**
      * Método usado para validar que el index de un combobox sea distinto de
      * default o 0
      *
@@ -374,7 +374,7 @@ public class MetodosAux
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         return formato.format(fecha);
     }
-    
+
     public static String ToDate(String fecha)
     {
         try
@@ -390,6 +390,24 @@ public class MetodosAux
         }
         return null;
     }
+    
+    public static String ToDate2(String fecha)
+    {
+        try
+        {
+            DateFormat originalFormat = new SimpleDateFormat("yyyy/MM/d");
+            DateFormat targetFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date d1 = originalFormat.parse(fecha);
+            String d2 = targetFormat.format(d1);
+            return d2;
+        } catch (ParseException ex)
+        {
+            Logger.getLogger(MetodosAux.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    
 
     /**
      * Método auxiliar encargado de convertir la hora de tipo String a Time

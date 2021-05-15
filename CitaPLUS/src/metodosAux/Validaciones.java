@@ -6,12 +6,16 @@
 package metodosAux;
 
 import RSMaterialComponent.RSTextFieldOne;
-import java.awt.Component;
-import java.awt.Event;
-import java.awt.TextField;
 import java.awt.event.KeyEvent;
-import javax.swing.InputMap;
-import javax.swing.JComponent;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.KeyStroke;
 
@@ -82,6 +86,12 @@ public class Validaciones
                 break;
             case 2:
                 if (!Character.isDigit(evt.getKeyChar()))
+                {
+                    evt.consume();
+                }
+                break;
+            case 3:
+                if (!Character.isDigit(evt.getKeyChar()) && (evt.getKeyCode() == KeyEvent.VK_SLASH))
                 {
                     evt.consume();
                 }
@@ -182,4 +192,34 @@ public class Validaciones
         return ret;
     }
 
+    public static boolean validarFecha(String entrada, JLabel error)
+    {
+        try
+        {
+            if (entrada.length() == 10)
+            {
+                DateFormat originalFormat = new SimpleDateFormat("yyyy/MM/d");
+                DateFormat targetFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date d1 = originalFormat.parse(entrada);
+                String d2 = targetFormat.format(d1);
+                LocalDate fecha = LocalDate.parse(d2, DateTimeFormatter.ISO_LOCAL_DATE);
+                System.out.println("Fecha correcta!!");
+                System.out.println("Dia: " + fecha.getDayOfMonth());
+                System.out.println("Mes: " + fecha.getMonthValue());
+                System.out.println("Año: " + fecha.getYear());
+                error.setForeground(SysConfigs.bg_white);
+                return true;
+            }
+
+        } catch (DateTimeParseException ex)
+        {
+            System.out.println("ERROR. No se pudo crear FECHA con esa entrada.");
+        } catch (ParseException ex)
+        {
+            System.out.println("Error al parsear");
+        }
+        error.setForeground(SysConfigs.bg_danger);
+        error.setText("Formato o fecha incorrecta");
+        return false;
+    }
 }

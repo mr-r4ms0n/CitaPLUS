@@ -699,7 +699,7 @@ public class MetodosBD
             dbCon = ConectaBD.ConectaBD();
             sentencia = dbCon.prepareStatement("UPDATE citas SET pacienteId =?,fechaCita=?,horaCita=?,usuarioId=?,servicioId=?,usuarioEdito=?,fechaEdito=? WHERE id = ?");
             sentencia.setInt(1, (int) datos[0]);
-            sentencia.setDate(2, (Date) datos[1]);
+            sentencia.setString(2, datos[1].toString());
             sentencia.setTime(3, (Time) datos[2]);
             sentencia.setInt(4, (int) datos[3]);
             sentencia.setInt(5, (int) datos[4]);

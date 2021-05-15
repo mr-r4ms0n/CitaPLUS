@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.sql.Time;
 import metodosAux.MetodosAux;
 import metodosAux.RSObjectArray;
+import metodosAux.Validaciones;
 import metodosBD.MetodosBD;
 import paneles.Citas;
 import static paneles.Citas.tabSelecc;
@@ -25,15 +26,15 @@ import rojeru_san.complementos.RSUtilities;
  */
 public class EditCita extends javax.swing.JDialog
 {
-
+    
     boolean pacientCorrect = true;
     boolean serviceCorrect = true;
     boolean horaCorrect = true;
     boolean atenderaCorrect = true;
     boolean fechaCorrect = true;
-
+    
     int id;
-
+    
     public EditCita(RSObjectArray datos)
     {
         
@@ -44,11 +45,11 @@ public class EditCita extends javax.swing.JDialog
         RSUtilities.setOpacityComponent(pnlFondo, 150);
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
         setShape(forma);
-        MetodosBD.mostrarDatosCombo(CMPaciente,"pacientes");
-        MetodosBD.mostrarDatosCombo(CMServicio,"servicios");
-        MetodosBD.mostrarDatosCombo(CMAtendera,"usuarios");
+        MetodosBD.mostrarDatosCombo(CMPaciente, "pacientes");
+        MetodosBD.mostrarDatosCombo(CMServicio, "servicios");
+        MetodosBD.mostrarDatosCombo(CMAtendera, "usuarios");
         iniCampos();
-        
+
         //Rellenamos los campos
         id = (int) datos.getValue("id");
         CMPaciente.setSelectedItem(datos.getValue("nombrePaciente"));
@@ -57,10 +58,10 @@ public class EditCita extends javax.swing.JDialog
         CMServicio.setSelectedItem(datos.getValue("nombreServicio"));
         CMFecha.setText(MetodosAux.ToDate(datos.getValue("fechaCita").toString()));
     }
-
+    
     private EditCita()
     {
-
+        
     }
 
     /**
@@ -300,8 +301,19 @@ public class EditCita extends javax.swing.JDialog
         );
 
         CMFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(26, 117, 159), 2));
-        CMFecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy/MM/d"))));
+        CMFecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy/MM/dd"))));
         CMFecha.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        CMFecha.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyReleased(java.awt.event.KeyEvent evt)
+            {
+                CMFechaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                CMFechaKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout rSPanelBorder1Layout = new javax.swing.GroupLayout(rSPanelBorder1);
         rSPanelBorder1.setLayout(rSPanelBorder1Layout);
@@ -443,13 +455,12 @@ public class EditCita extends javax.swing.JDialog
         serviceCorrect = MetodosAux.validarBox(CMServicio, error_servicio, "required");
         horaCorrect = MetodosAux.validarBox(CMHora, error_hora, "required");
         atenderaCorrect = MetodosAux.validarBox(CMAtendera, error_atendera, "required");
-        //fechaCorrect = MetodosAux.validarFormatted(jFormattedTextField1, error_hora, "required");
-
-        if (atenderaCorrect && pacientCorrect && serviceCorrect && horaCorrect)
+        
+        
+        if (atenderaCorrect && pacientCorrect && serviceCorrect && horaCorrect && fechaCorrect)
         {
             int pacienteId = MetodosBD.buscarPacienteNombre(CMPaciente.getSelectedItem().toString());
-            String fechaRegistro = MetodosAux.getFecha();
-            //java.util.Date fechaCita = MetodosAux.ToDate(jFormattedTextField1.getText());
+            String fechaCita = MetodosAux.ToDate2(CMFecha.getText());
             Time horaCita = MetodosAux.ObtenerHoraMySQL(CMHora.getSelectedItem().toString());
             int usuarioId = MetodosBD.buscarUsuarioNombre(CMAtendera.getSelectedItem().toString());
             int servicioId = MetodosBD.buscarServicioNombre(CMServicio.getSelectedItem().toString());
@@ -459,8 +470,7 @@ public class EditCita extends javax.swing.JDialog
             Object[] datosUpdate =
             {
                 pacienteId,
-                fechaRegistro,
-                //fechaCita,
+                fechaCita,
                 horaCita,
                 usuarioId,
                 servicioId,
@@ -489,23 +499,25 @@ public class EditCita extends javax.swing.JDialog
 
     private void CMPacienteItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CMPacienteItemStateChanged
     {//GEN-HEADEREND:event_CMPacienteItemStateChanged
-
-
+        pacientCorrect = MetodosAux.validarBox(CMPaciente, error_paciente, "required");
+        btnModificar.setEnabled((pacientCorrect && fechaCorrect && horaCorrect && serviceCorrect && atenderaCorrect));
     }//GEN-LAST:event_CMPacienteItemStateChanged
 
     private void CMHoraItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CMHoraItemStateChanged
     {//GEN-HEADEREND:event_CMHoraItemStateChanged
-        // TODO add your handling code here:
+        horaCorrect = MetodosAux.validarBox(CMHora, error_hora, "required");
+        btnModificar.setEnabled((pacientCorrect && fechaCorrect && horaCorrect && serviceCorrect && atenderaCorrect));
     }//GEN-LAST:event_CMHoraItemStateChanged
 
     private void CMHoraActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CMHoraActionPerformed
     {//GEN-HEADEREND:event_CMHoraActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_CMHoraActionPerformed
 
     private void CMServicioItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CMServicioItemStateChanged
     {//GEN-HEADEREND:event_CMServicioItemStateChanged
-        // TODO add your handling code here:
+        serviceCorrect = MetodosAux.validarBox(CMServicio, error_servicio, "required");
+        btnModificar.setEnabled((pacientCorrect && fechaCorrect && horaCorrect && serviceCorrect && atenderaCorrect));
     }//GEN-LAST:event_CMServicioItemStateChanged
 
     private void CMServicioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CMServicioActionPerformed
@@ -515,13 +527,30 @@ public class EditCita extends javax.swing.JDialog
 
     private void CMAtenderaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CMAtenderaItemStateChanged
     {//GEN-HEADEREND:event_CMAtenderaItemStateChanged
-        // TODO add your handling code here:
+        atenderaCorrect = MetodosAux.validarBox(CMAtendera, error_atendera, "required");
+        btnModificar.setEnabled((pacientCorrect && fechaCorrect && horaCorrect && serviceCorrect && atenderaCorrect));
     }//GEN-LAST:event_CMAtenderaItemStateChanged
 
     private void CMAtenderaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CMAtenderaActionPerformed
     {//GEN-HEADEREND:event_CMAtenderaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CMAtenderaActionPerformed
+
+    private void CMFechaKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_CMFechaKeyReleased
+    {//GEN-HEADEREND:event_CMFechaKeyReleased
+        fechaCorrect = Validaciones.validarFecha(CMFecha.getText(), error_fecha);
+        btnModificar.setEnabled((pacientCorrect && fechaCorrect && horaCorrect && serviceCorrect && atenderaCorrect));
+    }//GEN-LAST:event_CMFechaKeyReleased
+
+    private void CMFechaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_CMFechaKeyTyped
+    {//GEN-HEADEREND:event_CMFechaKeyTyped
+        Validaciones.entradaLetrasNum(evt, 3);
+        if (CMFecha.getText().length() == 10)
+        {
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_CMFechaKeyTyped
 
     /**
      * @param args the command line arguments
