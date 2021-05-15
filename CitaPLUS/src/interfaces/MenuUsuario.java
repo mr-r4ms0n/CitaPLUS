@@ -364,19 +364,7 @@ public class MenuUsuario extends javax.swing.JFrame
         pnlSlider.setBackground(new java.awt.Color(255, 255, 255));
 
         pnlInicio.setName("pnlInicio"); // NOI18N
-
-        javax.swing.GroupLayout pnlInicioLayout = new javax.swing.GroupLayout(pnlInicio);
-        pnlInicio.setLayout(pnlInicioLayout);
-        pnlInicioLayout.setHorizontalGroup(
-            pnlInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1180, Short.MAX_VALUE)
-        );
-        pnlInicioLayout.setVerticalGroup(
-            pnlInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 838, Short.MAX_VALUE)
-        );
-
-        pnlSlider.add(pnlInicio, "card5");
+        pnlSlider.add(pnlInicio, "card6");
 
         pnlCitas.setName("pnlCitas"); // NOI18N
         pnlSlider.add(pnlCitas, "card2");

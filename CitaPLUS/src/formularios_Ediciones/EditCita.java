@@ -30,6 +30,7 @@ public class EditCita extends javax.swing.JDialog
     boolean serviceCorrect = true;
     boolean horaCorrect = true;
     boolean atenderaCorrect = true;
+    boolean fechaCorrect = true;
 
     int id;
 
@@ -54,7 +55,7 @@ public class EditCita extends javax.swing.JDialog
         CMHora.setSelectedItem(datos.getValue("horaCita"));
         CMAtendera.setSelectedItem(datos.getValue("nombreUsuario"));
         CMServicio.setSelectedItem(datos.getValue("nombreServicio"));
-        CLMFecha.setDate((java.util.Date) datos.getValue("fechaCita"));
+        CMFecha.setText(MetodosAux.ToDate(datos.getValue("fechaCita").toString()));
     }
 
     private EditCita()
@@ -98,7 +99,6 @@ public class EditCita extends javax.swing.JDialog
         jLabel9 = new javax.swing.JLabel();
         error_hora = new javax.swing.JLabel();
         CMHora = new RSMaterialComponent.RSComboBox();
-        CLMFecha = new newscomponents.RSDateChooserModern();
         jLabel10 = new javax.swing.JLabel();
         error_fecha = new javax.swing.JLabel();
         error_servicio = new javax.swing.JLabel();
@@ -110,6 +110,7 @@ public class EditCita extends javax.swing.JDialog
         rSPanelMaterialGradient1 = new RSMaterialComponent.RSPanelMaterialGradient();
         btnCerrar = new RSMaterialComponent.RSButtonIconOne();
         jLabel1 = new javax.swing.JLabel();
+        CMFecha = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -189,9 +190,6 @@ public class EditCita extends javax.swing.JDialog
                 CMHoraActionPerformed(evt);
             }
         });
-
-        CLMFecha.setBackground(new java.awt.Color(26, 117, 159));
-        CLMFecha.setFormatDate("yyyy-MM-dd");
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel10.setText("Paciente*");
@@ -301,6 +299,10 @@ public class EditCita extends javax.swing.JDialog
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
+        CMFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(26, 117, 159), 2));
+        CMFecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy/MM/d"))));
+        CMFecha.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+
         javax.swing.GroupLayout rSPanelBorder1Layout = new javax.swing.GroupLayout(rSPanelBorder1);
         rSPanelBorder1.setLayout(rSPanelBorder1Layout);
         rSPanelBorder1Layout.setHorizontalGroup(
@@ -334,13 +336,11 @@ public class EditCita extends javax.swing.JDialog
                                         .addComponent(error_atendera, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 14, Short.MAX_VALUE))
                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, rSPanelBorder1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(error_fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(2, 2, 2))
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CLMFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(CMFecha, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(error_fecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -368,22 +368,18 @@ public class EditCita extends javax.swing.JDialog
                 .addComponent(error_paciente)
                 .addGap(18, 18, 18)
                 .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(CLMFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                            .addGap(76, 76, 76)
-                            .addComponent(error_fecha)))
                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
-                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelBorder1Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(48, 48, 48))
-                            .addComponent(CMHora, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(error_hora, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CMFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(rSPanelBorder1Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(48, 48, 48))
+                    .addComponent(CMHora, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(error_hora, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(error_fecha))
                 .addGap(18, 18, 18)
                 .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rSPanelBorder1Layout.createSequentialGroup()
@@ -447,12 +443,13 @@ public class EditCita extends javax.swing.JDialog
         serviceCorrect = MetodosAux.validarBox(CMServicio, error_servicio, "required");
         horaCorrect = MetodosAux.validarBox(CMHora, error_hora, "required");
         atenderaCorrect = MetodosAux.validarBox(CMAtendera, error_atendera, "required");
+        //fechaCorrect = MetodosAux.validarFormatted(jFormattedTextField1, error_hora, "required");
 
         if (atenderaCorrect && pacientCorrect && serviceCorrect && horaCorrect)
         {
             int pacienteId = MetodosBD.buscarPacienteNombre(CMPaciente.getSelectedItem().toString());
             String fechaRegistro = MetodosAux.getFecha();
-            Date fechaCita = new Date(CLMFecha.getDate().getTime());
+            //java.util.Date fechaCita = MetodosAux.ToDate(jFormattedTextField1.getText());
             Time horaCita = MetodosAux.ObtenerHoraMySQL(CMHora.getSelectedItem().toString());
             int usuarioId = MetodosBD.buscarUsuarioNombre(CMAtendera.getSelectedItem().toString());
             int servicioId = MetodosBD.buscarServicioNombre(CMServicio.getSelectedItem().toString());
@@ -463,7 +460,7 @@ public class EditCita extends javax.swing.JDialog
             {
                 pacienteId,
                 fechaRegistro,
-                fechaCita,
+                //fechaCita,
                 horaCita,
                 usuarioId,
                 servicioId,
@@ -581,8 +578,8 @@ public class EditCita extends javax.swing.JDialog
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private newscomponents.RSDateChooserModern CLMFecha;
     private RSMaterialComponent.RSComboBox CMAtendera;
+    private javax.swing.JFormattedTextField CMFecha;
     private RSMaterialComponent.RSComboBox CMHora;
     private RSMaterialComponent.RSComboBox CMPaciente;
     private RSMaterialComponent.RSComboBox CMServicio;

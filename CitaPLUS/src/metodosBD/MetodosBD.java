@@ -425,7 +425,7 @@ public class MetodosBD
             //Preparando consulta
             //compilando
             resultado = sentencia.executeQuery();
-            
+
             if (tipo.equals("pacientes") || tipo.equals("usuarios"))
             {
                 while (resultado.next())
@@ -503,7 +503,6 @@ public class MetodosBD
                 arreglo.add("nombreServicio", resultado.getString("servicioN"));
                 arreglo.add("usuarioEdito", resultado.getString("NombreEdito"));
                 arreglo.add("fechaEdito", resultado.getString("FechaEdito"));
-                System.out.println(arreglo.getAll());
                 return arreglo;
             }
             dbCon.close();
@@ -565,7 +564,7 @@ public class MetodosBD
                 //Para el caso de que se seleccione proximas, atendidas o canceladas y no se haga busqueda
                 sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP,"
                         + "fechaCita AS fechaC,"
-                        + "horaCita AS horaC,"
+                        + "time_format(horaCita, \"%H:%i\") AS horaC,"
                         + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreAtiende,"
                         + "(CASE WHEN  estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita,"
                         + "servicios.nombre AS servicioN "
@@ -584,7 +583,7 @@ public class MetodosBD
                     //Para el caso de que se seleccione activos o inactivos y se haga una busqueda
                     sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP,"
                             + "fechaCita AS fechaC,"
-                            + "horaCita AS horaC,"
+                            + "time_format(horaCita, \"%H:%i\") AS horaC,"
                             + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreAtiende,"
                             + "(CASE WHEN  estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita,"
                             + "servicios.nombre AS servicioN "
@@ -603,7 +602,7 @@ public class MetodosBD
                         System.out.println("ENTROOO");
                         sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP,"
                                 + "fechaCita AS fechaC,"
-                                + "horaCita AS horaC,"
+                                + "time_format(horaCita, \"%H:%i\") AS horaC,"
                                 + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreAtiende,"
                                 + "(CASE WHEN  estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita,"
                                 + "servicios.nombre AS servicioN "
@@ -617,7 +616,7 @@ public class MetodosBD
                         //Para el caso de que se entre en la pestaña de todos y no se consulten busquedas
                         sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP,"
                                 + "fechaCita AS fechaC,"
-                                + "horaCita AS horaC,"
+                                + "time_format(horaCita, \"%H:%i\") AS horaC,"
                                 + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreAtiende,"
                                 + "(CASE WHEN  estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita,"
                                 + "servicios.nombre AS servicioN "

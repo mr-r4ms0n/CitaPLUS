@@ -19,13 +19,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -274,6 +278,35 @@ public class MetodosAux
         }
         return resultado;
     }
+    
+     /**
+     * Método usado para validar que el index de un combobox sea distinto de
+     * default o 0
+     *
+     * @param field combobox a evaluar
+     * @param error label donde se mostrara el error en dado caso de existir
+     * @param tipo tipo de validacion que se requiere
+     * @return
+     */
+    public static boolean validarFormatted(JFormattedTextField field, JLabel error, String tipo)
+    {
+        boolean resultado = false;
+        switch (tipo)
+        {
+            case "required":
+                if (field.getText().isEmpty())
+                {
+                    error.setText("Este campo es requerido");
+                    error.setForeground(SysConfigs.bg_danger);
+                } else
+                {
+                    error.setForeground(SysConfigs.bg_white);
+                    resultado = true;
+                }
+                break;
+        }
+        return resultado;
+    }
 
     public static String getFoto(JDialog jd)
     {
@@ -340,6 +373,22 @@ public class MetodosAux
     {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         return formato.format(fecha);
+    }
+    
+    public static String ToDate(String fecha)
+    {
+        try
+        {
+            DateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd");
+            DateFormat targetFormat = new SimpleDateFormat("yyyy/MM/d");
+            Date d1 = originalFormat.parse(fecha);
+            String d2 = targetFormat.format(d1);
+            return d2;
+        } catch (ParseException ex)
+        {
+            Logger.getLogger(MetodosAux.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     /**
