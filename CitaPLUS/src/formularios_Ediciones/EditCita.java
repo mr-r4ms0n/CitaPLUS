@@ -35,9 +35,7 @@ public class EditCita extends javax.swing.JDialog
 
     public EditCita(RSObjectArray datos)
     {
-        MetodosBD.mostrarDatosCombo(CMPaciente,"pacientes");
-        MetodosBD.mostrarDatosCombo(CMServicio,"servicios");
-        MetodosBD.mostrarDatosCombo(CMAtendera,"usuarios");
+        
         initComponents();
         setModal(true);
         setLocationRelativeTo(null);
@@ -45,15 +43,18 @@ public class EditCita extends javax.swing.JDialog
         RSUtilities.setOpacityComponent(pnlFondo, 150);
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30);
         setShape(forma);
+        MetodosBD.mostrarDatosCombo(CMPaciente,"pacientes");
+        MetodosBD.mostrarDatosCombo(CMServicio,"servicios");
+        MetodosBD.mostrarDatosCombo(CMAtendera,"usuarios");
         iniCampos();
+        
         //Rellenamos los campos
         id = (int) datos.getValue("id");
-        CMPaciente.setSelectedItem(datos.getValue("NombrePaciente"));
-        java.util.Date newDate = (java.sql.Date) datos.getValue("fechaCita");
-        CLMFecha.setDate(newDate);
+        CMPaciente.setSelectedItem(datos.getValue("nombrePaciente"));
         CMHora.setSelectedItem(datos.getValue("horaCita"));
         CMAtendera.setSelectedItem(datos.getValue("nombreUsuario"));
-        CMServicio.setSelectedItem("nombreServicio");
+        CMServicio.setSelectedItem(datos.getValue("nombreServicio"));
+        CLMFecha.setDate((java.util.Date) datos.getValue("fechaCita"));
     }
 
     private EditCita()
@@ -73,6 +74,9 @@ public class EditCita extends javax.swing.JDialog
         this.error_servicio.setForeground(Color.white);
         this.error_atendera.setForeground(Color.white);
         this.CMHora.setSelectedIndex(0);
+        this.CMPaciente.setSelectedIndex(0);
+        this.CMAtendera.setSelectedIndex(0);
+        this.CMServicio.setSelectedIndex(0);
     }
 
     /**
@@ -115,6 +119,7 @@ public class EditCita extends javax.swing.JDialog
         rSPanelBorder1.setBackground(new java.awt.Color(255, 255, 255));
         rSPanelBorder1.setBgBorder(new java.awt.Color(26, 117, 159));
 
+        CMPaciente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         CMPaciente.setColorArrow(new java.awt.Color(26, 117, 159));
         CMPaciente.setColorBorde(new java.awt.Color(26, 117, 159));
         CMPaciente.setColorFondo(new java.awt.Color(26, 117, 159));
@@ -186,6 +191,7 @@ public class EditCita extends javax.swing.JDialog
         });
 
         CLMFecha.setBackground(new java.awt.Color(26, 117, 159));
+        CLMFecha.setFormatDate("yyyy-MM-dd");
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel10.setText("Paciente*");
@@ -196,6 +202,7 @@ public class EditCita extends javax.swing.JDialog
         error_servicio.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         error_servicio.setText("Etiqueta de Error");
 
+        CMServicio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         CMServicio.setColorArrow(new java.awt.Color(26, 117, 159));
         CMServicio.setColorBorde(new java.awt.Color(26, 117, 159));
         CMServicio.setColorFondo(new java.awt.Color(26, 117, 159));
@@ -223,6 +230,7 @@ public class EditCita extends javax.swing.JDialog
         error_atendera.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         error_atendera.setText("Etiqueta de Error");
 
+        CMAtendera.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         CMAtendera.setColorArrow(new java.awt.Color(26, 117, 159));
         CMAtendera.setColorBorde(new java.awt.Color(26, 117, 159));
         CMAtendera.setColorFondo(new java.awt.Color(26, 117, 159));

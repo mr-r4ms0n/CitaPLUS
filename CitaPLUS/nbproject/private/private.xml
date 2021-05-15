@@ -7,6 +7,7 @@
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/formularios_Registros/RegCitas.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/paneles/Citas.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/formularios_Ediciones/EditCita.java</file>
+<<<<<<< Updated upstream
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/formularios_Ediciones/EditPacientes.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/paneles/Inicio.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/metodosAux/MetodosAux.java</file>
@@ -15,6 +16,13 @@
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/metodosBD/MetodosBD.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/paneles/AcercaDe.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/metodosAux/RSObjectArray.java</file>
+=======
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/formularios_Detalles/InfoCitas.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/formularios_Ediciones/EditPacientes.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/metodosAux/MetodosAux.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/paneles/TablaContenidoCitas.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/metodosBD/MetodosBD.java</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>

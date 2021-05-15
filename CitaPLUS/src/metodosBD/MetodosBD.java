@@ -425,6 +425,7 @@ public class MetodosBD
             //Preparando consulta
             //compilando
             resultado = sentencia.executeQuery();
+            
             if (tipo.equals("pacientes") || tipo.equals("usuarios"))
             {
                 while (resultado.next())
@@ -438,6 +439,7 @@ public class MetodosBD
                     combo.addItem(resultado.getString("nombre"));
                 }
             }
+
             dbCon.close();
         } catch (SQLException e)
         {
@@ -501,6 +503,7 @@ public class MetodosBD
                 arreglo.add("nombreServicio", resultado.getString("servicioN"));
                 arreglo.add("usuarioEdito", resultado.getString("NombreEdito"));
                 arreglo.add("fechaEdito", resultado.getString("FechaEdito"));
+                System.out.println(arreglo.getAll());
                 return arreglo;
             }
             dbCon.close();

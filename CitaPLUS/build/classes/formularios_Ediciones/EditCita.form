@@ -212,7 +212,9 @@
             <Component class="RSMaterialComponent.RSComboBox" name="CMPaciente">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="&lt;Seleccionar&gt;"/>
+                  </StringArray>
                 </Property>
                 <Property name="colorArrow" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="9f" green="75" red="1a" type="rgb"/>
@@ -356,6 +358,7 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="9f" green="75" red="1a" type="rgb"/>
                 </Property>
+                <Property name="formatDate" type="java.lang.String" value="yyyy-MM-dd"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
@@ -385,7 +388,9 @@
             <Component class="RSMaterialComponent.RSComboBox" name="CMServicio">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="&lt;Seleccionar&gt;"/>
+                  </StringArray>
                 </Property>
                 <Property name="colorArrow" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="9f" green="75" red="1a" type="rgb"/>
@@ -428,7 +433,9 @@
             <Component class="RSMaterialComponent.RSComboBox" name="CMAtendera">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="&lt;Seleccionar&gt;"/>
+                  </StringArray>
                 </Property>
                 <Property name="colorArrow" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="9f" green="75" red="1a" type="rgb"/>
