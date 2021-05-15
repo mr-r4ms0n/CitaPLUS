@@ -31,17 +31,25 @@ public class Inicio extends javax.swing.JPanel
 
         rSPanelBorder1 = new RSMaterialComponent.RSPanelBorder();
         labelIcon1 = new necesario.LabelIcon();
-        jLabel1 = new javax.swing.JLabel();
-        rSProgressBarSinText1 = new rojerusan.componentes.RSProgressBarSinText();
-        rSPanelBorderGradient1 = new RSMaterialComponent.RSPanelBorderGradient();
+        cantiProximas = new javax.swing.JLabel();
+        ProgressProximas = new rojerusan.componentes.RSProgressBarSinText();
+        lbNumeroP = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        PorcentajeProximas = new javax.swing.JLabel();
         rSPanelBorder5 = new RSMaterialComponent.RSPanelBorder();
         labelIcon5 = new necesario.LabelIcon();
         jLabel5 = new javax.swing.JLabel();
-        rSProgressBarSinText3 = new rojerusan.componentes.RSProgressBarSinText();
+        ProgressCanceladas = new rojerusan.componentes.RSProgressBarSinText();
+        lbNumeroC = new javax.swing.JLabel();
+        cantiCanceladas = new javax.swing.JLabel();
+        PorcentajeCanceladas = new javax.swing.JLabel();
         rSPanelBorder6 = new RSMaterialComponent.RSPanelBorder();
         labelIcon6 = new necesario.LabelIcon();
         jLabel6 = new javax.swing.JLabel();
-        rSProgressBarSinText2 = new rojerusan.componentes.RSProgressBarSinText();
+        ProgressAtentidas = new rojerusan.componentes.RSProgressBarSinText();
+        lbNumeroA = new javax.swing.JLabel();
+        cantiAtendidas = new javax.swing.JLabel();
+        PorcentajeAtendidas = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -55,47 +63,65 @@ public class Inicio extends javax.swing.JPanel
         labelIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ACCESS_TIME);
         labelIcon1.setRound(10);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 182, 128));
-        jLabel1.setText("Citas Proximas");
+        cantiProximas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cantiProximas.setForeground(new java.awt.Color(204, 182, 128));
+        cantiProximas.setText("2/10");
+
+        ProgressProximas.setForeground(new java.awt.Color(204, 182, 128));
+        ProgressProximas.setColorBorde(new java.awt.Color(204, 182, 128));
+        ProgressProximas.setColorForeground(new java.awt.Color(204, 182, 128));
+        ProgressProximas.setGrosorBorde(5);
+
+        lbNumeroP.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbNumeroP.setForeground(new java.awt.Color(204, 182, 128));
+        lbNumeroP.setText("0");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 182, 128));
+        jLabel2.setText("Citas Proximas");
+
+        PorcentajeProximas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        PorcentajeProximas.setForeground(new java.awt.Color(204, 182, 128));
+        PorcentajeProximas.setText("20%");
 
         javax.swing.GroupLayout rSPanelBorder1Layout = new javax.swing.GroupLayout(rSPanelBorder1);
         rSPanelBorder1.setLayout(rSPanelBorder1Layout);
         rSPanelBorder1Layout.setHorizontalGroup(
             rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ProgressProximas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(rSPanelBorder1Layout.createSequentialGroup()
+                        .addComponent(cantiProximas, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(PorcentajeProximas))
+                    .addGroup(rSPanelBorder1Layout.createSequentialGroup()
+                        .addComponent(labelIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbNumeroP, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
-            .addComponent(rSProgressBarSinText1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         rSPanelBorder1Layout.setVerticalGroup(
             rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelBorder1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelIcon1, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rSProgressBarSinText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(rSPanelBorder1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbNumeroP)))
+                .addGap(18, 18, 18)
+                .addComponent(ProgressProximas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(rSPanelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cantiProximas)
+                    .addComponent(PorcentajeProximas))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        rSPanelBorderGradient1.setBgShade(new java.awt.Color(204, 182, 128));
-        rSPanelBorderGradient1.setColorPrimario(new java.awt.Color(204, 182, 128));
-        rSPanelBorderGradient1.setRound(10);
-
-        javax.swing.GroupLayout rSPanelBorderGradient1Layout = new javax.swing.GroupLayout(rSPanelBorderGradient1);
-        rSPanelBorderGradient1.setLayout(rSPanelBorderGradient1Layout);
-        rSPanelBorderGradient1Layout.setHorizontalGroup(
-            rSPanelBorderGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 322, Short.MAX_VALUE)
-        );
-        rSPanelBorderGradient1Layout.setVerticalGroup(
-            rSPanelBorderGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 165, Short.MAX_VALUE)
         );
 
         rSPanelBorder5.setBackground(new java.awt.Color(255, 255, 255));
@@ -112,28 +138,60 @@ public class Inicio extends javax.swing.JPanel
         jLabel5.setForeground(new java.awt.Color(255, 51, 51));
         jLabel5.setText("Citas Canceladas");
 
+        ProgressCanceladas.setForeground(new java.awt.Color(255, 51, 51));
+        ProgressCanceladas.setColorBorde(new java.awt.Color(255, 51, 51));
+        ProgressCanceladas.setColorForeground(new java.awt.Color(255, 51, 51));
+        ProgressCanceladas.setGrosorBorde(5);
+
+        lbNumeroC.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbNumeroC.setForeground(new java.awt.Color(255, 51, 51));
+        lbNumeroC.setText("0");
+
+        cantiCanceladas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cantiCanceladas.setForeground(new java.awt.Color(255, 51, 51));
+        cantiCanceladas.setText("1/10");
+
+        PorcentajeCanceladas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        PorcentajeCanceladas.setForeground(new java.awt.Color(255, 51, 51));
+        PorcentajeCanceladas.setText("10%");
+
         javax.swing.GroupLayout rSPanelBorder5Layout = new javax.swing.GroupLayout(rSPanelBorder5);
         rSPanelBorder5.setLayout(rSPanelBorder5Layout);
         rSPanelBorder5Layout.setHorizontalGroup(
             rSPanelBorder5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ProgressCanceladas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(rSPanelBorder5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelIcon5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                .addGroup(rSPanelBorder5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(rSPanelBorder5Layout.createSequentialGroup()
+                        .addComponent(cantiCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(PorcentajeCanceladas))
+                    .addGroup(rSPanelBorder5Layout.createSequentialGroup()
+                        .addComponent(labelIcon5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(rSPanelBorder5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                            .addComponent(lbNumeroC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))))
                 .addContainerGap())
-            .addComponent(rSProgressBarSinText3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         rSPanelBorder5Layout.setVerticalGroup(
             rSPanelBorder5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelBorder5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(rSPanelBorder5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelIcon5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rSProgressBarSinText3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGroup(rSPanelBorder5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelIcon5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(rSPanelBorder5Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(8, 8, 8)
+                        .addComponent(lbNumeroC)))
+                .addGap(18, 18, 18)
+                .addComponent(ProgressCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(rSPanelBorder5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cantiCanceladas)
+                    .addComponent(PorcentajeCanceladas))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         rSPanelBorder6.setBackground(new java.awt.Color(255, 255, 255));
@@ -150,27 +208,59 @@ public class Inicio extends javax.swing.JPanel
         jLabel6.setForeground(new java.awt.Color(51, 153, 0));
         jLabel6.setText("Citas Atendidas");
 
+        ProgressAtentidas.setForeground(new java.awt.Color(51, 153, 0));
+        ProgressAtentidas.setColorBorde(new java.awt.Color(51, 153, 0));
+        ProgressAtentidas.setColorForeground(new java.awt.Color(51, 153, 0));
+        ProgressAtentidas.setGrosorBorde(5);
+
+        lbNumeroA.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbNumeroA.setForeground(new java.awt.Color(51, 153, 0));
+        lbNumeroA.setText("0");
+
+        cantiAtendidas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cantiAtendidas.setForeground(new java.awt.Color(51, 153, 0));
+        cantiAtendidas.setText("3/10");
+
+        PorcentajeAtendidas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        PorcentajeAtendidas.setForeground(new java.awt.Color(51, 153, 0));
+        PorcentajeAtendidas.setText("30%");
+
         javax.swing.GroupLayout rSPanelBorder6Layout = new javax.swing.GroupLayout(rSPanelBorder6);
         rSPanelBorder6.setLayout(rSPanelBorder6Layout);
         rSPanelBorder6Layout.setHorizontalGroup(
             rSPanelBorder6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ProgressAtentidas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(rSPanelBorder6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelIcon6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                .addGroup(rSPanelBorder6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(rSPanelBorder6Layout.createSequentialGroup()
+                        .addComponent(cantiAtendidas, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(PorcentajeAtendidas))
+                    .addGroup(rSPanelBorder6Layout.createSequentialGroup()
+                        .addComponent(labelIcon6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(rSPanelBorder6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                            .addComponent(lbNumeroA, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))))
                 .addContainerGap())
-            .addComponent(rSProgressBarSinText2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         rSPanelBorder6Layout.setVerticalGroup(
             rSPanelBorder6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelBorder6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(rSPanelBorder6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelIcon6, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rSProgressBarSinText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(rSPanelBorder6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelIcon6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(rSPanelBorder6Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(8, 8, 8)
+                        .addComponent(lbNumeroA)))
+                .addGap(18, 18, 18)
+                .addComponent(ProgressAtentidas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(rSPanelBorder6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cantiAtendidas)
+                    .addComponent(PorcentajeAtendidas))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -180,14 +270,11 @@ public class Inicio extends javax.swing.JPanel
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(rSPanelBorder1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(rSPanelBorder6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(rSPanelBorder5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(rSPanelBorderGradient1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(rSPanelBorder1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(rSPanelBorder6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(rSPanelBorder5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -198,15 +285,22 @@ public class Inicio extends javax.swing.JPanel
                     .addComponent(rSPanelBorder5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(rSPanelBorder6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(rSPanelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(33, 33, 33)
-                .addComponent(rSPanelBorderGradient1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addContainerGap(435, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel PorcentajeAtendidas;
+    private javax.swing.JLabel PorcentajeCanceladas;
+    private javax.swing.JLabel PorcentajeProximas;
+    private rojerusan.componentes.RSProgressBarSinText ProgressAtentidas;
+    private rojerusan.componentes.RSProgressBarSinText ProgressCanceladas;
+    private rojerusan.componentes.RSProgressBarSinText ProgressProximas;
+    private javax.swing.JLabel cantiAtendidas;
+    private javax.swing.JLabel cantiCanceladas;
+    private javax.swing.JLabel cantiProximas;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -216,14 +310,13 @@ public class Inicio extends javax.swing.JPanel
     private necesario.LabelIcon labelIcon4;
     private necesario.LabelIcon labelIcon5;
     private necesario.LabelIcon labelIcon6;
+    private javax.swing.JLabel lbNumeroA;
+    private javax.swing.JLabel lbNumeroC;
+    private javax.swing.JLabel lbNumeroP;
     private RSMaterialComponent.RSPanelBorder rSPanelBorder1;
     private RSMaterialComponent.RSPanelBorder rSPanelBorder3;
     private RSMaterialComponent.RSPanelBorder rSPanelBorder4;
     private RSMaterialComponent.RSPanelBorder rSPanelBorder5;
     private RSMaterialComponent.RSPanelBorder rSPanelBorder6;
-    private RSMaterialComponent.RSPanelBorderGradient rSPanelBorderGradient1;
-    private rojerusan.componentes.RSProgressBarSinText rSProgressBarSinText1;
-    private rojerusan.componentes.RSProgressBarSinText rSProgressBarSinText2;
-    private rojerusan.componentes.RSProgressBarSinText rSProgressBarSinText3;
     // End of variables declaration//GEN-END:variables
 }
