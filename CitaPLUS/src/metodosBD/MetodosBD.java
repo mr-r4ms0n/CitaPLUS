@@ -488,7 +488,26 @@ public class MetodosBD
         try
         {
             dbCon = ConectaBD.ConectaBD();
-            sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP, fechaCita AS fechaC, time_format(horaCita, \"%H:%i\") AS horaC, CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreAtiende, (CASE WHEN estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita, servicios.nombre AS servicioN, (CASE WHEN usuarioEdito is NULL THEN 'Sin Registro' WHEN usuarioEdito IS NOT NULL THEN CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) END) AS nombreEdito, IFNULL(fechaEdito,'Sin Registro') AS FechaEdito FROM citas INNER JOIN pacientes ON pacientes.id = pacienteId INNER JOIN usuarios ON usuarios.id = usuarioId INNER JOIN servicios ON servicios.id = servicioId WHERE citas.id = ?");
+            sentencia = dbCon.prepareStatement("SELECT citas.id,"
+                                               + "CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP, "
+                                               + "fechaCita AS fechaC, "
+                                               + "time_format(horaCita, \"%H:%i\") AS horaC, "
+                                               + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreAtiende, "
+                                               + "(CASE WHEN estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita, "
+                                               + "servicios.nombre AS servicioN, "
+                                               + "IFNULL(fechaEdito,'Sin Registro') AS FechaEdito, "
+                                               + "IFNULL(citas.fechaRegistro,'Sin Registro') AS FechaR, "
+                                               + "IFNULL(citas.fechaCancelo,'Sin Registro') AS FechaCan, "
+                                               + "IFNULL(citas.fechaAtendida,'Sin Registro')AS FechaAtend, "
+                                               + "IFNULL(citas.descripcionCancelo,'Sin Registro')AS DescCancel, "
+                                               + "IFNULL((SELECT CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreCompleto FROM usuarios WHERE usuarios.id = usuarioEdito),'No Registrado') AS NombreEdito, "
+                                               + "IFNULL((SELECT CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreCompleto2 FROM usuarios WHERE usuarios.id = usuarioId),'No Registrado') AS NombreRegistro, "
+                                               + "IFNULL((SELECT CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreCompleto2 FROM usuarios WHERE usuarios.id = usuarioAtiende),'No Registrado') AS NombreAtiende "                      
+                                               + "FROM citas "
+                                               + "INNER JOIN pacientes ON pacientes.id = pacienteId "
+                                               + "INNER JOIN usuarios ON usuarios.id = usuarioId "
+                                               + "INNER JOIN servicios ON servicios.id = servicioId "
+                                               + "WHERE citas.id = ?");
             sentencia.setString(1, citasId);
             resultado = sentencia.executeQuery();
             if (resultado.next())
@@ -501,8 +520,14 @@ public class MetodosBD
                 arreglo.add("nombreUsuario", resultado.getString("NombreAtiende"));
                 arreglo.add("estatusCita", resultado.getString("estatusCita"));
                 arreglo.add("nombreServicio", resultado.getString("servicioN"));
-                arreglo.add("usuarioEdito", resultado.getString("NombreEdito"));
                 arreglo.add("fechaEdito", resultado.getString("FechaEdito"));
+                arreglo.add("fechaRegistro", resultado.getString("FechaR"));
+                arreglo.add("fechaCancelo", resultado.getString("FechaCan"));
+                arreglo.add("fechaAtendida", resultado.getString("FechaAtend"));
+                arreglo.add("descripcionCancelo", resultado.getString("DescCancel"));
+                arreglo.add("usuarioEdito", resultado.getString("NombreEdito"));
+                arreglo.add("usuarioRegistro", resultado.getString("NombreRegistro"));
+                arreglo.add("usuarioAtendio", resultado.getString("NombreAtiende"));
                 return arreglo;
             }
             dbCon.close();
