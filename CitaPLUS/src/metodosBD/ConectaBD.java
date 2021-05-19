@@ -64,13 +64,11 @@ public class ConectaBD
                             con = DriverManager.getConnection("jdbc:mysql://localhost/citaplus", usuario, pass);
                         } catch (SQLException ex)
                         {
-                            //Para tu laptop aqui metele otro 
                             Logger.getLogger(ConectaBD.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                 }
             }
-            // ya quedo xd
         }
         return con;
     }

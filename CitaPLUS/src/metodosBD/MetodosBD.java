@@ -751,28 +751,28 @@ public class MetodosBD
      * @param arr
      * @return 
      */
-    public static boolean actualizarEstatusCita(RSObjectArray arr)
+    public static boolean actualizarEstatusCita(Object arr[])
     {
         try
         {
             dbCon = ConectaBD.ConectaBD();
-            switch ((int) arr.getValue("estatus"))
+            switch ((int) arr[0])
             {
                 //Parte para establecer el estado de atendida a una cita.
                 case 2:
                     sentencia = dbCon.prepareStatement("UPDATE citas SET estatusCitasId = ?,usuarioAtiende = ?,fechaAtendida = ? WHERE id = ?");
-                    sentencia.setInt(1, (int) arr.getValue("estatus"));
-                    sentencia.setInt(2, (int) arr.getValue("usuarioA"));
-                    sentencia.setString(3, arr.getValue("fechaA").toString());
-                    sentencia.setInt(4, (int) arr.getValue("ïd"));
+                    sentencia.setInt(1, (int) arr[0]);
+                    sentencia.setInt(2, (int) arr[1]);
+                    sentencia.setString(3, arr[2].toString());
+                    sentencia.setInt(4, (int) arr[3]);
                     break;
                 //Parte para establecer el estado de cancelada a una cita.
                 case 3:
                     sentencia = dbCon.prepareStatement("UPDATE citas SET estatusCitasId = ?,descripcionCancelo = ?,fechaCancelo=? WHERE id = ?");
-                    sentencia.setInt(1, (int) arr.getValue("estatus"));
-                    sentencia.setString(2, arr.getValue("desc").toString());
-                    sentencia.setString(3, arr.getValue("fechaCancelo").toString());
-                    sentencia.setInt(4, (int) arr.getValue("id"));
+                    sentencia.setInt(1, (int) arr[0]);
+                    sentencia.setString(2, arr[1].toString());
+                    sentencia.setString(3, arr[2].toString());
+                    sentencia.setInt(4, (int) arr[3]);
                     break;
             }
 

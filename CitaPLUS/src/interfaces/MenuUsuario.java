@@ -376,18 +376,6 @@ public class MenuUsuario extends javax.swing.JFrame
         pnlSlider.add(pnlServicios, "card4");
 
         pnlAcercaDe.setName("pnlAcercaDe"); // NOI18N
-
-        javax.swing.GroupLayout pnlAcercaDeLayout = new javax.swing.GroupLayout(pnlAcercaDe);
-        pnlAcercaDe.setLayout(pnlAcercaDeLayout);
-        pnlAcercaDeLayout.setHorizontalGroup(
-            pnlAcercaDeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1180, Short.MAX_VALUE)
-        );
-        pnlAcercaDeLayout.setVerticalGroup(
-            pnlAcercaDeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 838, Short.MAX_VALUE)
-        );
-
         pnlSlider.add(pnlAcercaDe, "card6");
 
         javax.swing.GroupLayout rSPanelMaterial1Layout = new javax.swing.GroupLayout(rSPanelMaterial1);

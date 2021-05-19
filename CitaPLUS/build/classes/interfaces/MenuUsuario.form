@@ -513,7 +513,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Container class="paneles.AcercaDe" name="pnlAcercaDe">
+                <Component class="paneles.AcercaDe" name="pnlAcercaDe">
                   <Properties>
                     <Property name="name" type="java.lang.String" value="pnlAcercaDe" noResource="true"/>
                   </Properties>
@@ -522,20 +522,7 @@
                       <CardConstraints cardName="card6"/>
                     </Constraint>
                   </Constraints>
-
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="1180" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="838" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                  </Layout>
-                </Container>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>

@@ -30,21 +30,191 @@ public class AcercaDe extends javax.swing.JPanel
     private void initComponents()
     {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        rSTextFieldIconTwo1 = new RSMaterialComponent.RSTextFieldIconTwo();
+        rSTextFieldIconTwo2 = new RSMaterialComponent.RSTextFieldIconTwo();
+        rSTextFieldIconTwo3 = new RSMaterialComponent.RSTextFieldIconTwo();
+        rSTextFieldIconTwo5 = new RSMaterialComponent.RSTextFieldIconTwo();
+        rSTextFieldIconTwo6 = new RSMaterialComponent.RSTextFieldIconTwo();
+        rSTextFieldIconTwo7 = new RSMaterialComponent.RSTextFieldIconTwo();
+        jLabel3 = new javax.swing.JLabel();
+        rSTextFieldIconTwo8 = new RSMaterialComponent.RSTextFieldIconTwo();
+        rSTextFieldIconTwo9 = new RSMaterialComponent.RSTextFieldIconTwo();
+
         setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        jLabel1.setText("Datos de la empresa");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        jLabel2.setText("Datos de la empresa desarrolladora");
+
+        jLabel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 0, new java.awt.Color(0, 0, 0)));
+
+        rSTextFieldIconTwo1.setForeground(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo1.setText("Centro de Salud de Palmar Chico");
+        rSTextFieldIconTwo1.setBorderColor(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo1.setColorIcon(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        rSTextFieldIconTwo1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PLACE);
+
+        rSTextFieldIconTwo2.setForeground(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo2.setText("Calle Emiliano Zapata S/N Palmar Chico, 51530");
+        rSTextFieldIconTwo2.setBorderColor(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo2.setColorIcon(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        rSTextFieldIconTwo2.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CHROME_READER_MODE);
+        rSTextFieldIconTwo2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                rSTextFieldIconTwo2ActionPerformed(evt);
+            }
+        });
+
+        rSTextFieldIconTwo3.setForeground(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo3.setText("Sector de la salud");
+        rSTextFieldIconTwo3.setBorderColor(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo3.setColorIcon(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        rSTextFieldIconTwo3.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CLOUD);
+
+        rSTextFieldIconTwo5.setForeground(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo5.setText("H4xor Developers, S.A. de C.V.");
+        rSTextFieldIconTwo5.setBorderColor(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo5.setColorIcon(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        rSTextFieldIconTwo5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PLACE);
+
+        rSTextFieldIconTwo6.setForeground(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo6.setText("Paseo San Carlos 337, Metepec, 52159");
+        rSTextFieldIconTwo6.setBorderColor(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo6.setColorIcon(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        rSTextFieldIconTwo6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CHROME_READER_MODE);
+
+        rSTextFieldIconTwo7.setForeground(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo7.setText("Sector Tecnologico");
+        rSTextFieldIconTwo7.setBorderColor(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo7.setColorIcon(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        rSTextFieldIconTwo7.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CLOUD);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        jLabel3.setText("Desarrolladores");
+
+        rSTextFieldIconTwo8.setForeground(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo8.setText("Mr r4ms0n: Kevin Benitez Valentin");
+        rSTextFieldIconTwo8.setBorderColor(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo8.setColorIcon(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        rSTextFieldIconTwo8.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CODE);
+
+        rSTextFieldIconTwo9.setForeground(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo9.setText("Decks: David Vergara Gomez");
+        rSTextFieldIconTwo9.setBorderColor(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo9.setColorIcon(new java.awt.Color(26, 117, 159));
+        rSTextFieldIconTwo9.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        rSTextFieldIconTwo9.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CODE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1039, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(rSTextFieldIconTwo3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rSTextFieldIconTwo2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(rSTextFieldIconTwo1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(12, 12, 12)))
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rSTextFieldIconTwo6, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(rSTextFieldIconTwo5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(175, 175, 175))
+                            .addComponent(rSTextFieldIconTwo7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(126, 126, 126))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(320, 320, 320)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(rSTextFieldIconTwo9, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rSTextFieldIconTwo8, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 596, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(rSTextFieldIconTwo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(rSTextFieldIconTwo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(rSTextFieldIconTwo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(rSTextFieldIconTwo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(rSTextFieldIconTwo6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(rSTextFieldIconTwo7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rSTextFieldIconTwo8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rSTextFieldIconTwo9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void rSTextFieldIconTwo2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSTextFieldIconTwo2ActionPerformed
+    {//GEN-HEADEREND:event_rSTextFieldIconTwo2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rSTextFieldIconTwo2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
+    private RSMaterialComponent.RSTextFieldIconTwo rSTextFieldIconTwo1;
+    private RSMaterialComponent.RSTextFieldIconTwo rSTextFieldIconTwo2;
+    private RSMaterialComponent.RSTextFieldIconTwo rSTextFieldIconTwo3;
+    private RSMaterialComponent.RSTextFieldIconTwo rSTextFieldIconTwo5;
+    private RSMaterialComponent.RSTextFieldIconTwo rSTextFieldIconTwo6;
+    private RSMaterialComponent.RSTextFieldIconTwo rSTextFieldIconTwo7;
+    private RSMaterialComponent.RSTextFieldIconTwo rSTextFieldIconTwo8;
+    private RSMaterialComponent.RSTextFieldIconTwo rSTextFieldIconTwo9;
     // End of variables declaration//GEN-END:variables
 }

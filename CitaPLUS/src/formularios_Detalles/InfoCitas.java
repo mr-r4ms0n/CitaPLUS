@@ -6,10 +6,15 @@
 package formularios_Detalles;
 
 import alertas.MyJOP;
+import interfaces.MenuUsuario;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 import rojeru_san.complementos.RSUtilities;
 import metodosAux.*;
+import metodosBD.MetodosBD;
+import paneles.Citas;
+import static paneles.Citas.tabSelecc;
+import static paneles.Citas.tablaContenidoCitas21;
 import rojeru_san.complementos.RSEffectFade;
 
 /**
@@ -421,26 +426,66 @@ public class InfoCitas extends javax.swing.JDialog
     {//GEN-HEADEREND:event_btnCancelarCitaActionPerformed
         if (error_Canc)
         {
-            MyJOP.myJOPShowConfirmDialog(null, "Esta seguro que desea cancelar esta cita?");
+            if (MyJOP.myJOPShowConfirmDialog(null, "Esta seguro que desea cancelar esta cita?") == 1)
+            {
+
+                Object arr[] =
+                {
+                    3,
+                    jTextArea1.getText(),
+                    MetodosAux.getFecha(),
+                    arregloDatos.getValue("id")
+                };
+                boolean actualizarCancelar = MetodosBD.actualizarEstatusCita(arr);
+                if (actualizarCancelar)
+                {
+                    MetodosAux.mostrarAlerta("Muy bien hecho", "Cita cancelada con Exito", 1);
+                    dispose();
+                    tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);
+                    Citas.actualizarNumCitas();
+                } else
+                {
+                    MetodosAux.mostrarAlerta("Error", "Ocurro un error al cancelar la Cita", 2);
+                }
+            }
         }
     }//GEN-LAST:event_btnCancelarCitaActionPerformed
 
     private void btnAtenderCitaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAtenderCitaActionPerformed
     {//GEN-HEADEREND:event_btnAtenderCitaActionPerformed
-
-
+        if (MyJOP.myJOPShowConfirmDialog(null, "Esta seguro que desea marcar como atendida esta cita?") == 1)
+        {
+            Object arr[] =
+            {
+                2,
+                MenuUsuario.idUsuario,
+                MetodosAux.getFecha(),
+                arregloDatos.getValue("id")
+            };
+            boolean actualizarCancelar = MetodosBD.actualizarEstatusCita(arr);
+            if (actualizarCancelar)
+            {
+                MetodosAux.mostrarAlerta("Muy bien hecho", "Cita atendida con Exito", 1);
+                dispose();
+                tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);
+                Citas.actualizarNumCitas();
+            } else
+            {
+                MetodosAux.mostrarAlerta("Error", "Ocurro un error al atender la Cita", 2);
+            }
+        }
     }//GEN-LAST:event_btnAtenderCitaActionPerformed
 
     private void jTextArea1KeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextArea1KeyReleased
     {//GEN-HEADEREND:event_jTextArea1KeyReleased
         if (jTextArea1.getText().length() >= 10)
         {
-            error_Canc = false;
+            error_Canc = true;
             lbl_Error_Cancelacion.setForeground(SysConfigs.bg_white);
             btnCancelarCita.setEnabled(true);
         } else
         {
-            error_Canc = true;
+            error_Canc = false;
             lbl_Error_Cancelacion.setForeground(SysConfigs.bg_danger);
             btnCancelarCita.setEnabled(false);
         }
@@ -464,20 +509,28 @@ public class InfoCitas extends javax.swing.JDialog
                 {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(InfoCitas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InfoCitas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(InfoCitas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InfoCitas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(InfoCitas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InfoCitas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(InfoCitas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InfoCitas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
