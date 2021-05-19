@@ -46,15 +46,31 @@ public class ConectaBD
             //Por si la contraseña no es la mia es la de david
             if (con == null)
             {
-                pass = "123456";
+                pass = "";
                 try
                 {
                     con = DriverManager.getConnection("jdbc:mysql://localhost/citaplus", usuario, pass);
                 } catch (SQLException ex)
                 {
+                    //Para tu laptop aqui metele otro 
                     Logger.getLogger(ConectaBD.class.getName()).log(Level.SEVERE, null, ex);
+                } finally
+                {
+                    if (con == null)
+                    {
+                        pass = "123456";
+                        try
+                        {
+                            con = DriverManager.getConnection("jdbc:mysql://localhost/citaplus", usuario, pass);
+                        } catch (SQLException ex)
+                        {
+                            //Para tu laptop aqui metele otro 
+                            Logger.getLogger(ConectaBD.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
                 }
             }
+            // ya quedo xd
         }
         return con;
     }

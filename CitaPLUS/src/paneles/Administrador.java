@@ -45,8 +45,6 @@ public class Administrador extends javax.swing.JPanel
         jLabel3 = new javax.swing.JLabel();
         tabActivos = new newscomponents.RSButtonIcon_new();
         tabActivos1 = new newscomponents.RSButtonIcon_new();
-        editarUsuario = new newscomponents.RSButtonIcon_new();
-        editarPass = new newscomponents.RSButtonIcon_new();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 4, 0, new java.awt.Color(26, 117, 159)));
@@ -142,38 +140,6 @@ public class Administrador extends javax.swing.JPanel
             }
         });
 
-        editarUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        editarUsuario.setBackgroundHover(new java.awt.Color(0, 153, 153));
-        editarUsuario.setForegroundHover(new java.awt.Color(26, 117, 159));
-        editarUsuario.setForegroundIcon(new java.awt.Color(233, 196, 106));
-        editarUsuario.setForegroundText(new java.awt.Color(26, 117, 159));
-        editarUsuario.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.TEXTURE);
-        editarUsuario.setRound(20);
-        editarUsuario.setSelected(true);
-        editarUsuario.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                editarUsuarioActionPerformed(evt);
-            }
-        });
-
-        editarPass.setBackground(new java.awt.Color(255, 255, 255));
-        editarPass.setBackgroundHover(new java.awt.Color(0, 153, 153));
-        editarPass.setForegroundHover(new java.awt.Color(26, 117, 159));
-        editarPass.setForegroundIcon(new java.awt.Color(233, 196, 106));
-        editarPass.setForegroundText(new java.awt.Color(26, 117, 159));
-        editarPass.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.TEXTURE);
-        editarPass.setRound(20);
-        editarPass.setSelected(true);
-        editarPass.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                editarPassActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -186,11 +152,7 @@ public class Administrador extends javax.swing.JPanel
                             .addComponent(JTFContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(JTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(editarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(editarPass, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(297, 297, 297)
                         .addComponent(tabActivos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,23 +171,16 @@ public class Administrador extends javax.swing.JPanel
                 .addGap(84, 84, 84)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(JTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(JTFContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tabActivos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tabActivos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(50, 50, 50))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(editarPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addComponent(JTFContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tabActivos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tabActivos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -282,22 +237,10 @@ public class Administrador extends javax.swing.JPanel
         JTFContraseña.setText(pass);
     }//GEN-LAST:event_tabActivos1ActionPerformed
 
-    private void editarUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_editarUsuarioActionPerformed
-    {//GEN-HEADEREND:event_editarUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editarUsuarioActionPerformed
-
-    private void editarPassActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_editarPassActionPerformed
-    {//GEN-HEADEREND:event_editarPassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editarPassActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private RSMaterialComponent.RSPasswordMaterialIcon JTFContraseña;
     private RSMaterialComponent.RSTextFieldMaterialIcon JTFUsuario;
-    private static newscomponents.RSButtonIcon_new editarPass;
-    private static newscomponents.RSButtonIcon_new editarUsuario;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
