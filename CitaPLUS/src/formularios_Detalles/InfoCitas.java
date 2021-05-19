@@ -5,6 +5,7 @@
  */
 package formularios_Detalles;
 
+import alertas.MyJOP;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 import rojeru_san.complementos.RSUtilities;
@@ -418,7 +419,10 @@ public class InfoCitas extends javax.swing.JDialog
 
     private void btnCancelarCitaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarCitaActionPerformed
     {//GEN-HEADEREND:event_btnCancelarCitaActionPerformed
-        // TODO add your handling code here:
+        if (error_Canc)
+        {
+            MyJOP.myJOPShowConfirmDialog(null, "Esta seguro que desea cancelar esta cita?");
+        }
     }//GEN-LAST:event_btnCancelarCitaActionPerformed
 
     private void btnAtenderCitaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAtenderCitaActionPerformed

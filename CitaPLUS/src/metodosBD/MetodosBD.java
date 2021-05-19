@@ -489,25 +489,25 @@ public class MetodosBD
         {
             dbCon = ConectaBD.ConectaBD();
             sentencia = dbCon.prepareStatement("SELECT citas.id,"
-                                               + "CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP, "
-                                               + "fechaCita AS fechaC, "
-                                               + "time_format(horaCita, \"%H:%i\") AS horaC, "
-                                               + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreAtiende, "
-                                               + "(CASE WHEN estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita, "
-                                               + "servicios.nombre AS servicioN, "
-                                               + "IFNULL(fechaEdito,'Sin Editar') AS FechaEdito, "
-                                               + "IFNULL(citas.fechaRegistro,'Sin Registrar') AS FechaR, "
-                                               + "IFNULL(citas.fechaCancelo,'Sin Cancelar') AS FechaCan, "
-                                               + "IFNULL(citas.fechaAtendida,'Sin Atender')AS FechaAtend, "
-                                               + "IFNULL(citas.descripcionCancelo,'Sin Cancelar')AS DescCancel, "
-                                               + "IFNULL((SELECT CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreCompleto FROM usuarios WHERE usuarios.id = usuarioEdito),'No Registrado') AS NombreEdito, "
-                                               + "IFNULL((SELECT CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreCompleto2 FROM usuarios WHERE usuarios.id = usuarioId),'No Registrado') AS NombreRegistro, "
-                                               + "IFNULL((SELECT CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreCompleto2 FROM usuarios WHERE usuarios.id = usuarioAtiende),'No Registrado') AS NombreAtiende "                      
-                                               + "FROM citas "
-                                               + "INNER JOIN pacientes ON pacientes.id = pacienteId "
-                                               + "INNER JOIN usuarios ON usuarios.id = usuarioId "
-                                               + "INNER JOIN servicios ON servicios.id = servicioId "
-                                               + "WHERE citas.id = ?");
+                    + "CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP, "
+                    + "fechaCita AS fechaC, "
+                    + "time_format(horaCita, \"%H:%i\") AS horaC, "
+                    + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreAtiende, "
+                    + "(CASE WHEN estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita, "
+                    + "servicios.nombre AS servicioN, "
+                    + "IFNULL(fechaEdito,'Sin Editar') AS FechaEdito, "
+                    + "IFNULL(citas.fechaRegistro,'Sin Registrar') AS FechaR, "
+                    + "IFNULL(citas.fechaCancelo,'Sin Cancelar') AS FechaCan, "
+                    + "IFNULL(citas.fechaAtendida,'Sin Atender')AS FechaAtend, "
+                    + "IFNULL(citas.descripcionCancelo,'Sin Cancelar')AS DescCancel, "
+                    + "IFNULL((SELECT CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreCompleto FROM usuarios WHERE usuarios.id = usuarioEdito),'No Registrado') AS NombreEdito, "
+                    + "IFNULL((SELECT CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreCompleto2 FROM usuarios WHERE usuarios.id = usuarioId),'No Registrado') AS NombreRegistro, "
+                    + "IFNULL((SELECT CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreCompleto2 FROM usuarios WHERE usuarios.id = usuarioAtiende),'No Registrado') AS NombreAtiende "
+                    + "FROM citas "
+                    + "INNER JOIN pacientes ON pacientes.id = pacienteId "
+                    + "INNER JOIN usuarios ON usuarios.id = usuarioId "
+                    + "INNER JOIN servicios ON servicios.id = servicioId "
+                    + "WHERE citas.id = ?");
             sentencia.setString(1, citasId);
             resultado = sentencia.executeQuery();
             if (resultado.next())
@@ -742,6 +742,50 @@ public class MetodosBD
         } catch (SQLException e)
         {
             System.err.println("Error al actualizar citas de tipo sql: " + e);
+        }
+        return false;
+    }
+
+    /**
+     * Método para establecer el estatus de una cita como atendida o cancelada
+     * @param arr
+     * @return 
+     */
+    public static boolean actualizarEstatusCita(RSObjectArray arr)
+    {
+        try
+        {
+            dbCon = ConectaBD.ConectaBD();
+            switch ((int) arr.getValue("estatus"))
+            {
+                //Parte para establecer el estado de atendida a una cita.
+                case 2:
+                    sentencia = dbCon.prepareStatement("UPDATE citas SET estatusCitasId = ?,usuarioAtiende = ?,fechaAtendida = ? WHERE id = ?");
+                    sentencia.setInt(1, (int) arr.getValue("estatus"));
+                    sentencia.setInt(2, (int) arr.getValue("usuarioA"));
+                    sentencia.setString(3, arr.getValue("fechaA").toString());
+                    sentencia.setInt(4, (int) arr.getValue("ïd"));
+                    break;
+                //Parte para establecer el estado de cancelada a una cita.
+                case 3:
+                    sentencia = dbCon.prepareStatement("UPDATE citas SET estatusCitasId = ?,descripcionCancelo = ?,fechaCancelo=? WHERE id = ?");
+                    sentencia.setInt(1, (int) arr.getValue("estatus"));
+                    sentencia.setString(2, arr.getValue("desc").toString());
+                    sentencia.setString(3, arr.getValue("fechaCancelo").toString());
+                    sentencia.setInt(4, (int) arr.getValue("id"));
+                    break;
+            }
+
+            int rs = sentencia.executeUpdate();
+            if (rs > 0)
+            {
+                return true;
+            }
+            dbCon.close();
+
+        } catch (SQLException e)
+        {
+            System.err.println("Error al actualizar el status del usuario de tipo sql: " + e);
         }
         return false;
     }
