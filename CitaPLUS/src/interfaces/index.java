@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import seguridad.EncoderA;
+
 /**
  *
  * @author Kevin
@@ -17,6 +19,7 @@ public class index
      */
     public static void main(String[] args)
     {
+        EncoderA.fixKeyLength();
         new InicioSesion().setVisible(true);
     }
     

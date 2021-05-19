@@ -16,12 +16,16 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Base64;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.crypto.BadPaddingException;
@@ -188,22 +192,65 @@ public class EncoderA
         usuario.setText(getAESDec(s.getRs().getValue("1").toString()));
         contra.setText(getAESDec(s.getRs().getValue("2").toString()));
     }
-    
+
     public static String recuperaCred(String n)
     {
         return getAESDec(s.getRs().getValue(n).toString());
     }
-    
+
     public static void reasignaCred(String usuario, String pass)
     {
         File f = new File(KEY_STORE_FILE);
         if (f.delete())
         {
             getAES(usuario, pass);
-        }else
+        } else
         {
             System.out.println("Error al reasignar credenciales");
         }
-        
+    }
+
+    public static void fixKeyLength()
+    {
+        String errorString = "Failed manually overriding key-length permissions.";
+        int newMaxKeyLength;
+        try
+        {
+            if ((newMaxKeyLength = Cipher.getMaxAllowedKeyLength("AES")) < 256)
+            {
+                Class c = Class.forName("javax.crypto.CryptoAllPermissionCollection");
+                Constructor con = c.getDeclaredConstructor();
+                con.setAccessible(true);
+                Object allPermissionCollection = con.newInstance();
+                Field f = c.getDeclaredField("all_allowed");
+                f.setAccessible(true);
+                f.setBoolean(allPermissionCollection, true);
+
+                c = Class.forName("javax.crypto.CryptoPermissions");
+                con = c.getDeclaredConstructor();
+                con.setAccessible(true);
+                Object allPermissions = con.newInstance();
+                f = c.getDeclaredField("perms");
+                f.setAccessible(true);
+                ((Map) f.get(allPermissions)).put("*", allPermissionCollection);
+
+                c = Class.forName("javax.crypto.JceSecurityManager");
+                f = c.getDeclaredField("defaultPolicy");
+                f.setAccessible(true);
+                Field mf = Field.class.getDeclaredField("modifiers");
+                mf.setAccessible(true);
+                mf.setInt(f, f.getModifiers() & ~Modifier.FINAL);
+                f.set(null, allPermissions);
+
+                newMaxKeyLength = Cipher.getMaxAllowedKeyLength("AES");
+            }
+        } catch (Exception e)
+        {
+            throw new RuntimeException(errorString, e);
+        }
+        if (newMaxKeyLength < 256)
+        {
+            throw new RuntimeException(errorString); // hack failed
+        }
     }
 }
