@@ -3,8 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/manue/Videos/CitaPLUS/CitaPLUS/src/metodosBD/ConectaBD.java</file>
-            <file>file:/C:/Users/manue/Videos/CitaPLUS/CitaPLUS/build.xml</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/interfaces/MenuUsuario.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/paneles/Citas.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/paneles/Servicios.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/metodosAux/Validaciones.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/metodosBD/MetodosBD.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/interfaces/index.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/paneles/Pacientes.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/formularios_Registros/RegCitas.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/formularios_Ediciones/EditCita.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/formularios_Detalles/InfoCitas.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/paneles/Inicio.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/metodosAux/MetodosAux.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/CitaPLUS/CitaPLUS/src/paneles/TablaContenidoCitas.java</file>
         </group>
     </open-files>
 </project-private>
