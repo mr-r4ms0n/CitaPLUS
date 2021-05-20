@@ -456,7 +456,6 @@ public class EditCita extends javax.swing.JDialog
         horaCorrect = MetodosAux.validarBox(CMHora, error_hora, "required");
         atenderaCorrect = MetodosAux.validarBox(CMAtendera, error_atendera, "required");
         
-        
         if (atenderaCorrect && pacientCorrect && serviceCorrect && horaCorrect && fechaCorrect)
         {
             int pacienteId = MetodosBD.buscarPacienteNombre(CMPaciente.getSelectedItem().toString());

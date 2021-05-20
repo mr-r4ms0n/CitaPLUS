@@ -16,14 +16,16 @@ import seguridad.EncoderA;
  */
 public class Administrador extends javax.swing.JPanel
 {
-    private final String usu = EncoderA.recuperaCred("1");
-    private final String pass = EncoderA.recuperaCred("2");
+    private final String usu;
+    private final String pass;
     /**
      * Creates new form citas
      */
     public Administrador()
     {
         initComponents();
+        usu = EncoderA.recuperaCred("1");
+        pass = EncoderA.recuperaCred("2");
         EncoderA.recuperaCred(JTFUsuario, JTFContraseña);
     }
 

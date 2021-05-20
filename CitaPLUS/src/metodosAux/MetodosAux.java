@@ -390,7 +390,7 @@ public class MetodosAux
         }
         return null;
     }
-    
+
     public static String ToDate2(String fecha)
     {
         try
@@ -406,8 +406,6 @@ public class MetodosAux
         }
         return null;
     }
-
-    
 
     /**
      * Método auxiliar encargado de convertir la hora de tipo String a Time
@@ -427,5 +425,50 @@ public class MetodosAux
             System.out.println("Error al convertir la hora: " + ex);
         }
         return null;
+    }
+
+    public static boolean compararFechaActual(Date fechaCita, JLabel error)
+    {
+
+        try
+        {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date hoy = dateFormat.parse(getFecha());
+            if (fechaCita.before(hoy))
+            {
+                error.setForeground(SysConfigs.bg_danger);
+                error.setText("Fecha invalida");
+                return false;
+
+            }
+        } catch (ParseException ex)
+        {
+            System.out.println("Error al comparar la fecha de hoy con la de la cita " + ex);
+        }
+        
+        error.setForeground(SysConfigs.bg_white);
+        return true;
+    }
+
+    public static boolean compararFechaActual(String fechaCita, JLabel error)
+    {
+
+        try
+        {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date hoy = dateFormat.parse(getFecha());
+            Date compara = dateFormat.parse(fechaCita);
+            if (compara.before(hoy))
+            {
+                error.setText("Fecha invalida");
+                error.setForeground(SysConfigs.bg_danger);
+                return false;
+            }
+        } catch (ParseException ex)
+        {
+            System.out.println("Error al comparar la fecha de hoy con la de la cita " + ex);
+        }
+        error.setForeground(SysConfigs.bg_white);
+        return true;
     }
 }

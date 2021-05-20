@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import metodosBD.MetodosBD;
 import seguridad.EncoderA;
 
 /**
@@ -20,6 +21,7 @@ public class index
     public static void main(String[] args)
     {
         EncoderA.fixKeyLength();
+        MetodosBD.cancelaCitasAuto();
         new InicioSesion().setVisible(true);
     }
     

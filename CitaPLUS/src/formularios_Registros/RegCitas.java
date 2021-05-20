@@ -11,6 +11,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.sql.Date;
 import java.sql.Time;
 import metodosAux.MetodosAux;
+import metodosAux.SysConfigs;
 import metodosBD.MetodosBD;
 import paneles.Citas;
 import static paneles.Citas.tabSelecc;
@@ -23,20 +24,22 @@ import rojeru_san.complementos.RSUtilities;
  */
 public class RegCitas extends javax.swing.JDialog
 {
+
     //campos necesarios para validar
     boolean pacientCorrect = false;
     boolean serviceCorrect = false;
     boolean horaCorrect = false;
     boolean atenderaCorrect = false;
+    boolean fechaCorrect = false;
 
     public RegCitas()
     {
         initComponents();
 
         //Cargar Pacientes En el ComboBox
-        MetodosBD.mostrarDatosCombo(CPaciente,"pacientes");
-        MetodosBD.mostrarDatosCombo(Cservicio,"servicios");
-        MetodosBD.mostrarDatosCombo(CAtendera,"usuarios");
+        MetodosBD.mostrarDatosCombo(CPaciente, "pacientes");
+        MetodosBD.mostrarDatosCombo(Cservicio, "servicios");
+        MetodosBD.mostrarDatosCombo(CAtendera, "usuarios");
         setModal(true);
         setLocationRelativeTo(null);
         RSUtilities.setOpaqueWindow(this, false);
@@ -441,8 +444,9 @@ public class RegCitas extends javax.swing.JDialog
         serviceCorrect = MetodosAux.validarBox(Cservicio, error_servicio, "required");
         horaCorrect = MetodosAux.validarBox(CHora, error_hora, "required");
         atenderaCorrect = MetodosAux.validarBox(CAtendera, error_atendera, "required");
+        fechaCorrect = MetodosAux.compararFechaActual(new Date(CFecha.getDate().getTime()),error_fecha);
 
-        if (atenderaCorrect && pacientCorrect && serviceCorrect && horaCorrect)
+        if (atenderaCorrect && pacientCorrect && serviceCorrect && horaCorrect && fechaCorrect)
         {
             int pacienteId = MetodosBD.buscarPacienteNombre(CPaciente.getSelectedItem().toString());
             String fechaRegistro = MetodosAux.getFecha();
@@ -466,10 +470,13 @@ public class RegCitas extends javax.swing.JDialog
                 dispose();
                 tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);
                 Citas.actualizarNumCitas();
-            }else
+            } else
             {
                 MetodosAux.mostrarAlerta("Error", "Ocurro un error al insertar la Cita", 2);
             }
+        } else
+        {
+
         }
     }//GEN-LAST:event_btnRegistarActionPerformed
 

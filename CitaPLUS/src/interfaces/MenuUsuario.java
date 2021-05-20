@@ -16,6 +16,14 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
+import metodosBD.MetodosBD;
+import static paneles.Citas.tabSelecc;
+import static paneles.Citas.tablaContenidoCitas21;
+import paneles.Inicio;
+import static paneles.Pacientes.tabSelecc;
+import static paneles.Pacientes.tablaContenidoPacientes2;
+import static paneles.Servicios.tabSelecc;
+import static paneles.Servicios.tablaContenidoServicios1;
 import rojeru_san.complementos.RSEffectFade;
 
 /**
@@ -418,6 +426,9 @@ public class MenuUsuario extends javax.swing.JFrame
             btnServicios.setSelected(false);
             btnAcercaDe.setSelected(false);
 
+            tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, 1, null);
+            tablaContenidoCitas21.actualizarTitulo(1);
+
             pnlSlider.setPanelNormal(pnlCitas);
         }
     }//GEN-LAST:event_btnCitasActionPerformed
@@ -431,7 +442,7 @@ public class MenuUsuario extends javax.swing.JFrame
             btnPacientes.setSelected(false);
             btnServicios.setSelected(false);
             btnAcercaDe.setSelected(false);
-
+            pnlInicio.muestraEstadisticas();
             pnlSlider.setPanelNormal(pnlInicio);
         }
     }//GEN-LAST:event_btnInicioActionPerformed
@@ -446,6 +457,8 @@ public class MenuUsuario extends javax.swing.JFrame
             btnServicios.setSelected(false);
             btnAcercaDe.setSelected(false);
 
+            tablaContenidoPacientes2.listarPacientes(tablaContenidoPacientes2.tblPacientes, 1, null);
+            tablaContenidoPacientes2.actualizarTitulo(1);
             pnlSlider.setPanelNormal(pnlPacientes);
         }
 
@@ -460,6 +473,9 @@ public class MenuUsuario extends javax.swing.JFrame
             btnPacientes.setSelected(false);
             btnInicio.setSelected(false);
             btnAcercaDe.setSelected(false);
+
+            tablaContenidoServicios1.listarServicios(tablaContenidoServicios1.tblServicios, 1, null);
+            tablaContenidoServicios1.actualizarTitulo(1);
 
             pnlSlider.setPanelNormal(pnlServicios);
         }

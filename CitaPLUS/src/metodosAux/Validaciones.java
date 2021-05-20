@@ -208,7 +208,10 @@ public class Validaciones
                 System.out.println("Mes: " + fecha.getMonthValue());
                 System.out.println("Año: " + fecha.getYear());
                 error.setForeground(SysConfigs.bg_white);
-                return true;
+                if (MetodosAux.compararFechaActual(d2, error))
+                {
+                    return true;
+                }
             }
 
         } catch (DateTimeParseException ex)

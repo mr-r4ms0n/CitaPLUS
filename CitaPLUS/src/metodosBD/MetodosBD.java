@@ -18,6 +18,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metodosAux.MetodosAux;
@@ -748,8 +750,9 @@ public class MetodosBD
 
     /**
      * Método para establecer el estatus de una cita como atendida o cancelada
+     *
      * @param arr
-     * @return 
+     * @return
      */
     public static boolean actualizarEstatusCita(Object arr[])
     {
@@ -774,6 +777,13 @@ public class MetodosBD
                     sentencia.setString(3, arr[2].toString());
                     sentencia.setInt(4, (int) arr[3]);
                     break;
+                case 4:
+                    sentencia = dbCon.prepareStatement("UPDATE citas SET estatusCitasId = ?,descripcionCancelo = ?,fechaCancelo=? WHERE id =? ");
+                    sentencia.setInt(1, 3);
+                    sentencia.setString(2, arr[1].toString());
+                    sentencia.setString(3, arr[2].toString());
+                    sentencia.setInt(4, (int) arr[3]);
+                    break;
             }
 
             int rs = sentencia.executeUpdate();
@@ -788,6 +798,43 @@ public class MetodosBD
             System.err.println("Error al actualizar el status del usuario de tipo sql: " + e);
         }
         return false;
+    }
+
+    public static void cancelaCitasAuto()
+    {
+        try
+        {
+            ResultSet arr = rsListarCitas(0, null);
+            while (arr.next())
+            {
+                String fechaCita = arr.getString("fechaC");
+                String fechaActual = MetodosAux.getFecha();
+                if (fechaActual.equals(fechaCita))
+                {
+                    System.out.println("Las fechas son iguales");
+                } else
+                {
+                    SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+                    java.util.Date fechaCitaD = date.parse(fechaCita);
+                    java.util.Date fechaActualD = date.parse(fechaActual);
+                    if (!fechaCitaD.after(fechaActualD)) //Si la fecha de la cita no se encuentra despues de la fecha actual quiere decir que la fecha actual es mayor y la cita ya paso por lo que hay que cancelarla
+                    {
+                        Object arrC[] =
+                        {
+                            4,//Caso donde se entrara en el switch
+                            "Cancelada por inasistencia del paciente", //Motivo de la cancelacion
+                            MetodosAux.getFecha(), //Fecha de la cancelacion
+                            arr.getInt("id"), //El id de la cita que se va a cancelar
+                        };
+                        MetodosBD.actualizarEstatusCita(arrC);
+                        
+                    }
+                }
+            }
+        } catch (SQLException | ParseException e)
+        {
+            System.out.println("Error al cancelar o al parsear fechas a la hora de cancelar citas de forma automatica"+e);
+        }
     }
 
     //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-PARTE USUARIOS *-*-*-*-*-*-*-*-*-*-**-*-*-**-*-*-*-*-
