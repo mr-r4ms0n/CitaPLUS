@@ -24,7 +24,7 @@ import javax.swing.table.TableCellEditor;
 
 /**
  *
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Sammy Guergachi 
  */
 public class RSButtonsAction extends AbstractCellEditor implements TableCellEditor
 {

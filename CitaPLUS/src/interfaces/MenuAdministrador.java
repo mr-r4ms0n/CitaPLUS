@@ -22,9 +22,6 @@ public class MenuAdministrador extends javax.swing.JFrame
     /**
      * Creates new form MenuPrincipal
      *
-     * @param usuario
-     * @param nombre
-     * @param foto
      */
     public MenuAdministrador()
     {

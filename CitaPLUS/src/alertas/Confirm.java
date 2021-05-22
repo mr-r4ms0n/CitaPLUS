@@ -22,6 +22,9 @@ public class Confirm extends java.awt.Dialog
 
     /**
      * Creates new form Alerta
+     * @param parent frame
+     * @param modal true
+     * @param mensaje mensaje que se presentara en la alerta
      */
     public Confirm(java.awt.Frame parent, boolean modal, String mensaje)
     {

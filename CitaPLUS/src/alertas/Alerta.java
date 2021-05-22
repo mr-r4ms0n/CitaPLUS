@@ -24,6 +24,9 @@ public class Alerta extends java.awt.Dialog
 
     /**
      * Creates new form Alerta
+     * @param parent frame a mostrar
+     * @param modal true
+     * @param datos datos a mostrar en la alerta
      */
     public Alerta(java.awt.Frame parent, boolean modal, RSObjectArray datos)
     {

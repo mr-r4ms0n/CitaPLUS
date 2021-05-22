@@ -18,7 +18,7 @@ import javax.swing.table.TableCellRenderer;
 
 /**
  * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Sammy Guergachi
  */
 //Header
 public class StyleHeadTable implements TableCellRenderer {

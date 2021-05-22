@@ -12,7 +12,7 @@ import javax.swing.table.TableCellRenderer;
 
 /**
  * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Sammy Guergachi
  */
 public class RSButtonsRenderer implements TableCellRenderer {
 
