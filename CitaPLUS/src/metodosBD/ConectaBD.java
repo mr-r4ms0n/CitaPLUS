@@ -53,18 +53,35 @@ public class ConectaBD
                 } catch (SQLException ex)
                 {
                     //Para tu laptop aqui metele otro 
-                    Logger.getLogger(ConectaBD.class.getName()).log(Level.SEVERE, null, ex);
+                   // Logger.getLogger(ConectaBD.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("La contraseña de mysql no es vacio, se reintentara");
                 } finally
                 {
+                    //Por si la contraseña es de Leandroidex
                     if (con == null)
                     {
-                        pass = "123456";
+                        pass = "854565";
                         try
                         {
                             con = DriverManager.getConnection("jdbc:mysql://localhost/citaplus", usuario, pass);
                         } catch (SQLException ex)
                         {
-                            Logger.getLogger(ConectaBD.class.getName()).log(Level.SEVERE, null, ex);
+                            //Para tu laptop aqui metele otro 
+                            //Logger.getLogger(ConectaBD.class.getName()).log(Level.SEVERE, null, ex);
+                            System.out.println("La contraseña de mysql no es vacio, se reintentara");
+                        } finally
+                        {
+                            if (con == null)
+                            {
+                                pass = "123456";
+                                try
+                                {
+                                    con = DriverManager.getConnection("jdbc:mysql://localhost/citaplus", usuario, pass);
+                                } catch (SQLException ex)
+                                {
+                                    Logger.getLogger(ConectaBD.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
                         }
                     }
                 }
