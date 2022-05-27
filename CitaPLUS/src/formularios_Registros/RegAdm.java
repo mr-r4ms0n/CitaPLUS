@@ -173,7 +173,7 @@ public class RegAdm extends javax.swing.JDialog
         jLabel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
-        jLabel7.setText("2021 - H4x0r Developers");
+        jLabel7.setText("2022 - Tecnologinc");
 
         jLCorrrecto.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
         jLCorrrecto.setText("Ing");

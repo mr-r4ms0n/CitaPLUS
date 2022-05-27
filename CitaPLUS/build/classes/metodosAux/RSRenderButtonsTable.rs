@@ -1,2 +1,0 @@
-metodosAux.ActionsButtonsTable
-metodosAux.RSRenderButtonsTable

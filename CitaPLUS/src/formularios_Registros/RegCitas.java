@@ -17,6 +17,7 @@ import paneles.Citas;
 import static paneles.Citas.tabSelecc;
 import static paneles.Citas.tablaContenidoCitas21;
 import rojeru_san.complementos.RSUtilities;
+import peticionesHTTPS.POST;
 
 /**
  *
@@ -466,10 +467,12 @@ public class RegCitas extends javax.swing.JDialog
             boolean insercionCorr = MetodosBD.insertarCita(datosInsert);
             if (insercionCorr)
             {
+                POST.mEnviarCorreoAgendarCita(CPaciente.getSelectedItem().toString(), fechaRegistro, CHora.getSelectedItem().toString(), Cservicio.getSelectedItem().toString(), "leandrogomez682@gmail.com");
                 MetodosAux.mostrarAlerta("Muy bien hecho", "Cita Registrada con Exito", 1);
                 dispose();
                 tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);
                 Citas.actualizarNumCitas();
+                
             } else
             {
                 MetodosAux.mostrarAlerta("Error", "Ocurro un error al insertar la Cita", 2);
