@@ -67,8 +67,8 @@ public class InfoUsuarios extends javax.swing.JDialog
                     : (String) arregloDatos.getValue("nombre") + " " + (String) arregloDatos.getValue("apellidoPaterno"));
 
             lblSexo.setText((String) arregloDatos.getValue("sexo"));
-            lblContraseña.setText((String) arregloDatos.getValue("contraseña"));
-            lblUsuario.setText((String) arregloDatos.getValue("usuario"));
+            //lblContraseña.setText((String) arregloDatos.getValue("contraseña"));
+            lblUsuario.setText((String) arregloDatos.getValue("curp"));
             lblEstatus.setText((String) arregloDatos.getValue("estatus"));
 
             //Parte para establecer los colores e interactividad con el boton de deshabilitar
@@ -120,11 +120,9 @@ public class InfoUsuarios extends javax.swing.JDialog
         lblNombre = new javax.swing.JLabel();
         lblSexo = new javax.swing.JLabel();
         rSPanelBorder2 = new RSMaterialComponent.RSPanelBorder();
-        rSLabelTextIcon6 = new RSMaterialComponent.RSLabelTextIcon();
         lblEstatus = new javax.swing.JLabel();
+        rSLabelTextIcon6 = new RSMaterialComponent.RSLabelTextIcon();
         rSPanelBorder3 = new RSMaterialComponent.RSPanelBorder();
-        rSLabelTextIcon8 = new RSMaterialComponent.RSLabelTextIcon();
-        lblContraseña = new javax.swing.JLabel();
         rSPanelBorder4 = new RSMaterialComponent.RSPanelBorder();
         rSLabelTextIcon9 = new RSMaterialComponent.RSLabelTextIcon();
         lblUsuario = new javax.swing.JLabel();
@@ -151,7 +149,7 @@ public class InfoUsuarios extends javax.swing.JDialog
                 btnEstatusActionPerformed(evt);
             }
         });
-        rSPanelBorder1.add(btnEstatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 580, 119, 41));
+        rSPanelBorder1.add(btnEstatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 510, 119, 41));
 
         lblFoto.setBackground(new java.awt.Color(255, 255, 255));
         lblFoto.setBgShade(new java.awt.Color(102, 102, 102));
@@ -178,7 +176,7 @@ public class InfoUsuarios extends javax.swing.JDialog
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        jLabel1.setText("Información del Usuario");
+        jLabel1.setText("Información del Medico");
 
         btnCerrar.setBackground(new java.awt.Color(216, 43, 43));
         btnCerrar.setToolTipText("Cerrar");
@@ -198,7 +196,7 @@ public class InfoUsuarios extends javax.swing.JDialog
         rSPanelBorderGradient1Layout.setHorizontalGroup(
             rSPanelBorderGradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelBorderGradient1Layout.createSequentialGroup()
-                .addContainerGap(195, Short.MAX_VALUE)
+                .addContainerGap(196, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(158, 158, 158)
                 .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -229,73 +227,53 @@ public class InfoUsuarios extends javax.swing.JDialog
         rSPanelBorder2.setBgBorder(new java.awt.Color(204, 182, 128));
         rSPanelBorder2.setBorderTop(false);
 
+        lblEstatus.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        lblEstatus.setForeground(new java.awt.Color(153, 153, 153));
+        lblEstatus.setText("Estatus");
+
         rSLabelTextIcon6.setForeground(new java.awt.Color(51, 51, 51));
         rSLabelTextIcon6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         rSLabelTextIcon6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         rSLabelTextIcon6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RADIO_BUTTON_CHECKED);
         rSLabelTextIcon6.setSizeIcon(30.0F);
 
-        lblEstatus.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        lblEstatus.setForeground(new java.awt.Color(153, 153, 153));
-        lblEstatus.setText("Estatus");
-
         javax.swing.GroupLayout rSPanelBorder2Layout = new javax.swing.GroupLayout(rSPanelBorder2);
         rSPanelBorder2.setLayout(rSPanelBorder2Layout);
         rSPanelBorder2Layout.setHorizontalGroup(
             rSPanelBorder2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelBorder2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(8, 8, 8)
                 .addComponent(rSLabelTextIcon6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(316, Short.MAX_VALUE))
+                .addContainerGap(313, Short.MAX_VALUE))
         );
         rSPanelBorder2Layout.setVerticalGroup(
             rSPanelBorder2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelBorder2Layout.createSequentialGroup()
                 .addGroup(rSPanelBorder2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rSLabelTextIcon6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rSLabelTextIcon6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        rSPanelBorder1.add(rSPanelBorder2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, -1, 50));
+        rSPanelBorder1.add(rSPanelBorder2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 660, 50));
 
         rSPanelBorder3.setBackground(new java.awt.Color(255, 255, 255));
         rSPanelBorder3.setBgBorder(new java.awt.Color(204, 182, 128));
-
-        rSLabelTextIcon8.setForeground(new java.awt.Color(51, 51, 51));
-        rSLabelTextIcon8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        rSLabelTextIcon8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        rSLabelTextIcon8.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.LOCK);
-        rSLabelTextIcon8.setSizeIcon(30.0F);
-
-        lblContraseña.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        lblContraseña.setForeground(new java.awt.Color(153, 153, 153));
-        lblContraseña.setText("Contraseña");
 
         javax.swing.GroupLayout rSPanelBorder3Layout = new javax.swing.GroupLayout(rSPanelBorder3);
         rSPanelBorder3.setLayout(rSPanelBorder3Layout);
         rSPanelBorder3Layout.setHorizontalGroup(
             rSPanelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rSPanelBorder3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(rSLabelTextIcon8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(315, Short.MAX_VALUE))
+            .addGap(0, 660, Short.MAX_VALUE)
         );
         rSPanelBorder3Layout.setVerticalGroup(
             rSPanelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rSPanelBorder3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(rSPanelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSLabelTextIcon8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 10, Short.MAX_VALUE)
         );
 
-        rSPanelBorder1.add(rSPanelBorder3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, -1, 60));
+        rSPanelBorder1.add(rSPanelBorder3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 660, 10));
 
         rSPanelBorder4.setBackground(new java.awt.Color(255, 255, 255));
         rSPanelBorder4.setBgBorder(new java.awt.Color(204, 182, 128));
@@ -309,7 +287,7 @@ public class InfoUsuarios extends javax.swing.JDialog
 
         lblUsuario.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(153, 153, 153));
-        lblUsuario.setText("Usuario");
+        lblUsuario.setText("CURP");
 
         javax.swing.GroupLayout rSPanelBorder4Layout = new javax.swing.GroupLayout(rSPanelBorder4);
         rSPanelBorder4.setLayout(rSPanelBorder4Layout);
@@ -320,7 +298,7 @@ public class InfoUsuarios extends javax.swing.JDialog
                 .addComponent(rSLabelTextIcon9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(316, Short.MAX_VALUE))
+                .addContainerGap(309, Short.MAX_VALUE))
         );
         rSPanelBorder4Layout.setVerticalGroup(
             rSPanelBorder4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,7 +310,7 @@ public class InfoUsuarios extends javax.swing.JDialog
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        rSPanelBorder1.add(rSPanelBorder4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, -1, 60));
+        rSPanelBorder1.add(rSPanelBorder4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 376, 660, 60));
 
         javax.swing.GroupLayout pnlFondoLayout = new javax.swing.GroupLayout(pnlFondo);
         pnlFondo.setLayout(pnlFondoLayout);
@@ -347,7 +325,7 @@ public class InfoUsuarios extends javax.swing.JDialog
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFondoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rSPanelBorder1, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rSPanelBorder1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -462,7 +440,6 @@ public class InfoUsuarios extends javax.swing.JDialog
     private RSMaterialComponent.RSButtonIconOne btnCerrar;
     private newscomponents.RSButtonIcon_new btnEstatus;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblEstatus;
     private RSMaterialComponent.RSPanelMaterialImage lblFoto;
     private javax.swing.JLabel lblNombre;
@@ -470,7 +447,6 @@ public class InfoUsuarios extends javax.swing.JDialog
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel pnlFondo;
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon6;
-    private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon8;
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon9;
     private RSMaterialComponent.RSPanelBorder rSPanelBorder1;
     private RSMaterialComponent.RSPanelBorder rSPanelBorder2;

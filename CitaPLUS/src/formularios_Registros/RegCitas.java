@@ -454,7 +454,7 @@ public class RegCitas extends javax.swing.JDialog
             String fechaRegistro = MetodosAux.getFecha();
             Date fechaCita = new Date(CFecha.getDate().getTime());
             Time horaCita = MetodosAux.ObtenerHoraMySQL(CHora.getSelectedItem().toString());
-            int usuarioId = MetodosBD.buscarUsuarioNombre(CAtendera.getSelectedItem().toString());
+            int usuarioId = MetodosBD.buscarMedicoNombre(CAtendera.getSelectedItem().toString());
             int servicioId = MetodosBD.buscarServicioNombre(Cservicio.getSelectedItem().toString());
             Object[] datosInsert =
             {

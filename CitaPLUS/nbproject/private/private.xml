@@ -3,23 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/paneles/TablaContenidoServicios.java</file>
-            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/seguridad/EncoderA.java</file>
-            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/peticionesHTTPS/POST.java</file>
-            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/interfaces/InicioSesion.java</file>
-            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/interfaces/MenuAdministrador.java</file>
-            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/formularios_Ediciones/EditCita.java</file>
-            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/formularios_Detalles/InfoCitas.java</file>
+            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/metodosAux/Validaciones.java</file>
             <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/metodosBD/MetodosBD.java</file>
-            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/formularios_Registros/RegServicios.java</file>
-            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/formularios_Registros/RegAdm.java</file>
-            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/paneles/Servicios.java</file>
+            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/</file>
+            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/peticionesHTTPS/POST.java</file>
             <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/formularios_Registros/RegCitas.java</file>
-            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/paneles/Usuarios.java</file>
-            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/formularios_Registros/RegPacientes.java</file>
-            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/paneles/Administrador.java</file>
-            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/formularios_Registros/RegSec.java</file>
-            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/interfaces/MenuUsuario.java</file>
+            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/formularios_Registros/RegMedicos.java</file>
+            <file>file:/C:/Users/kenit/Documents/GitHub/CitaPlus/CitaPLUS/CitaPLUS/src/paneles/TablaContenidoUsuarios.java</file>
         </group>
     </open-files>
 </project-private>

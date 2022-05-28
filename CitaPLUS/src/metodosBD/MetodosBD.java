@@ -76,6 +76,7 @@ public class MetodosBD
      * persona [2] = nombre completo de la persona [3] = foto de perfil de la
      * persona
      */
+    /*
     public static Object[] ingresoSys(String usr, String pass)
     {
         Object ret[] = null;
@@ -109,6 +110,7 @@ public class MetodosBD
         }
         return ret;
     }
+    */
 
     /**
      * Método que verifica que el campo que digite el usuario en alguna caja de
@@ -522,7 +524,7 @@ public class MetodosBD
                     + "CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP, "
                     + "fechaCita AS fechaC, "
                     + "time_format(horaCita, \"%H:%i\") AS horaC, "
-                    + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreAtiende, "
+                    + "CONCAT(medicos.nombre,' ',medicos.apellidoPaterno,' ',IF(medicos.apellidoMaterno='No Proporcionado','',medicos.apellidoMaterno)) AS NombreAtiende, "
                     + "(CASE WHEN estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita, "
                     + "servicios.nombre AS servicioN, "
                     + "IFNULL(fechaEdito,'Sin Editar') AS FechaEdito, "
@@ -530,12 +532,12 @@ public class MetodosBD
                     + "IFNULL(citas.fechaCancelo,'Sin Cancelar') AS FechaCan, "
                     + "IFNULL(citas.fechaAtendida,'Sin Atender')AS FechaAtend, "
                     + "IFNULL(citas.descripcionCancelo,'Sin Cancelar')AS DescCancel, "
-                    + "IFNULL((SELECT CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreCompleto FROM usuarios WHERE usuarios.id = usuarioEdito),'No Registrado') AS NombreEdito, "
-                    + "IFNULL((SELECT CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreCompleto2 FROM usuarios WHERE usuarios.id = usuarioId),'No Registrado') AS NombreRegistro, "
-                    + "IFNULL((SELECT CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreCompleto2 FROM usuarios WHERE usuarios.id = usuarioAtiende),'No Registrado') AS NombreAtiende "
+                    + "IFNULL((SELECT CONCAT(medicos.nombre,' ',medicos.apellidoPaterno,' ',IF(medicos.apellidoMaterno='No Proporcionado','',medicos.apellidoMaterno)) AS NombreCompleto FROM medicos WHERE medicos.id = usuarioEdito),'No Registrado') AS NombreEdito, "
+                    + "IFNULL((SELECT CONCAT(medicos.nombre,' ',medicos.apellidoPaterno,' ',IF(medicos.apellidoMaterno='No Proporcionado','',medicos.apellidoMaterno)) AS NombreCompleto2 FROM medicos WHERE medicos.id = usuarioId),'No Registrado') AS NombreRegistro, "
+                    + "IFNULL((SELECT CONCAT(medicos.nombre,' ',medicos.apellidoPaterno,' ',IF(medicos.apellidoMaterno='No Proporcionado','',medicos.apellidoMaterno)) AS NombreCompleto2 FROM medicos WHERE medicos.id = usuarioAtiende),'No Registrado') AS NombreAtiende "
                     + "FROM citas "
                     + "INNER JOIN pacientes ON pacientes.id = pacienteId "
-                    + "INNER JOIN usuarios ON usuarios.id = usuarioId "
+                    + "INNER JOIN medicos ON medicos.id = usuarioId "
                     + "INNER JOIN servicios ON servicios.id = servicioId "
                     + "WHERE citas.id = ?");
             sentencia.setString(1, citasId);
@@ -621,12 +623,12 @@ public class MetodosBD
                 sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP,"
                         + "fechaCita AS fechaC,"
                         + "time_format(horaCita, \"%H:%i\") AS horaC,"
-                        + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreAtiende,"
+                        + "CONCAT(medicos.nombre,' ',medicos.apellidoPaterno,' ',IF(medicos.apellidoMaterno='No Proporcionado','',medicos.apellidoMaterno)) AS NombreAtiende,"
                         + "(CASE WHEN  estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita,"
                         + "servicios.nombre AS servicioN "
                         + "FROM citas "
                         + "INNER JOIN pacientes ON pacientes.id = pacienteId "
-                        + "INNER JOIN usuarios ON usuarios.id = usuarioId "
+                        + "INNER JOIN medicos ON medicos.id = usuarioId "
                         + "INNER JOIN servicios ON servicios.id = servicioId "
                         + "WHERE estatusCitasId = ?");
                 sentencia.setInt(1, tab);
@@ -640,12 +642,12 @@ public class MetodosBD
                     sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP,"
                             + "fechaCita AS fechaC,"
                             + "time_format(horaCita, \"%H:%i\") AS horaC,"
-                            + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreAtiende,"
+                            + "CONCAT(medicos.nombre,' ',medicos.apellidoPaterno,' ',IF(medicos.apellidoMaterno='No Proporcionado','',medicos.apellidoMaterno)) AS NombreAtiende,"
                             + "(CASE WHEN  estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita,"
                             + "servicios.nombre AS servicioN "
                             + "FROM citas "
                             + "INNER JOIN pacientes ON pacientes.nombre LIKE ? AND pacientes.id = pacienteId "
-                            + "INNER JOIN usuarios ON usuarios.id = usuarioId "
+                            + "INNER JOIN medicos ON medicos.id = usuarioId "
                             + "INNER JOIN servicios ON servicios.id = servicioId "
                             + "WHERE estatusCitasId = ?");
                     sentencia.setString(1, auxfiltro);
@@ -659,12 +661,12 @@ public class MetodosBD
                         sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP,"
                                 + "fechaCita AS fechaC,"
                                 + "time_format(horaCita, \"%H:%i\") AS horaC,"
-                                + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreAtiende,"
+                                + "CONCAT(medicos.nombre,' ',medicos.apellidoPaterno,' ',IF(medicos.apellidoMaterno='No Proporcionado','',medicos.apellidoMaterno)) AS NombreAtiende,"
                                 + "(CASE WHEN  estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita,"
                                 + "servicios.nombre AS servicioN "
                                 + "FROM citas "
                                 + "INNER JOIN pacientes ON pacientes.nombre LIKE ? AND pacientes.id = pacienteId "
-                                + "INNER JOIN usuarios ON usuarios.id = usuarioId "
+                                + "INNER JOIN medicos ON medicos.id = usuarioId "
                                 + "INNER JOIN servicios ON servicios.id = servicioId ");
                         sentencia.setString(1, auxfiltro);
                     } else
@@ -673,12 +675,12 @@ public class MetodosBD
                         sentencia = dbCon.prepareStatement("SELECT citas.id,CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP,"
                                 + "fechaCita AS fechaC,"
                                 + "time_format(horaCita, \"%H:%i\") AS horaC,"
-                                + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',IF(usuarios.apellidoMaterno='No Proporcionado','',usuarios.apellidoMaterno)) AS NombreAtiende,"
+                                + "CONCAT(medicos.nombre,' ',medicos.apellidoPaterno,' ',IF(medicos.apellidoMaterno='No Proporcionado','',medicos.apellidoMaterno)) AS NombreAtiende,"
                                 + "(CASE WHEN  estatusCitasId = 1 THEN 'Proxima' WHEN  estatusCitasId = 2 THEN 'Atendida' WHEN  estatusCitasId = 3 THEN 'Cancelada' END) AS estatusCita,"
                                 + "servicios.nombre AS servicioN "
                                 + "FROM citas "
                                 + "INNER JOIN pacientes ON pacientes.id = pacienteId "
-                                + "INNER JOIN usuarios ON usuarios.id = usuarioId "
+                                + "INNER JOIN medicos ON medicos.id = usuarioId "
                                 + "INNER JOIN servicios ON servicios.id = servicioId ");
                     }
                 }
@@ -871,7 +873,7 @@ public class MetodosBD
     }
 
     //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-PARTE USUARIOS *-*-*-*-*-*-*-*-*-*-**-*-*-**-*-*-*-*-
-    public static ResultSet rsListarUsuarios(int tab, String filtro)
+    public static ResultSet rsListarMedicos(int tab, String filtro)
     {
         try
         {
@@ -879,7 +881,7 @@ public class MetodosBD
             if (tab != 0 && filtro.equals(""))
             {
                 //Para el caso de que se seleccione activos o inactivos y no se haga busqueda
-                sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusUsr FROM usuarios WHERE estatus = ?");
+                sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusUsr FROM medicos WHERE estatus = ?");
                 sentencia.setInt(1, tab);
             } else
             {
@@ -887,24 +889,22 @@ public class MetodosBD
                 if (filtro != null && (tab == 1 || tab == 2))
                 {
                     //Para el caso de que se seleccione activos o inactivos y se haga una busqueda
-                    sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusUsr FROM usuarios WHERE estatus = ? AND (nombre LIKE ? OR apellidoPaterno LIKE ? OR usuario LIKE ?)");
+                    sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusUsr FROM medicos WHERE estatus = ? AND (nombre LIKE ? OR apellidoPaterno LIKE ?)");
                     sentencia.setInt(1, tab);
                     sentencia.setString(2, (auxFiltro + "%"));
                     sentencia.setString(3, (auxFiltro + "%"));
-                    sentencia.setString(4, (auxFiltro + "%"));
                 } else
                 {
                     //Para el caso de que se entre en la pestaña de todos pero se haga una busqueda
                     if (tab == 0 && filtro != null)
                     {
-                        sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusUsr FROM usuarios WHERE nombre LIKE ? OR apellidoPaterno LIKE ? OR usuario LIKE ?");
+                        sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusUsr FROM medicos WHERE nombre LIKE ? OR apellidoPaterno LIKE ?");
                         sentencia.setString(1, (auxFiltro + "%"));
                         sentencia.setString(2, (auxFiltro + "%"));
-                        sentencia.setString(3, (auxFiltro + "%"));
                     } else
                     {
                         //Para el caso de que se entre en la pestaña de todos y no se consulten busquedas
-                        sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusUsr FROM usuarios");
+                        sentencia = dbCon.prepareStatement("SELECT *,IF(estatus=1,'Activo','Inactivo') AS estatusUsr FROM medicos");
                     }
 
                 }
@@ -919,7 +919,7 @@ public class MetodosBD
             dbCon.close();
         } catch (SQLException e)
         {
-            System.out.println("Error en obtener el ResultSet de Usuarios: " + e);
+            System.out.println("Error en obtener el ResultSet de Medicos: " + e);
         }
         return null;
     }
@@ -933,12 +933,12 @@ public class MetodosBD
             //Si se selecciona alguna tab (Activos o Inactivos)
             if (tab != 0)
             {
-                sentencia = dbCon.prepareStatement("SELECT COUNT(*)AS total FROM usuarios WHERE estatus = ?");
+                sentencia = dbCon.prepareStatement("SELECT COUNT(*)AS total FROM medicos WHERE estatus = ?");
                 sentencia.setInt(1, tab);
             } else
             {
                 //Si se entra dentro de consulta general es decir sin tab seleccionada
-                sentencia = dbCon.prepareStatement("SELECT COUNT(*)AS total FROM usuarios");
+                sentencia = dbCon.prepareStatement("SELECT COUNT(*)AS total FROM medicos");
             }
             resultado = sentencia.executeQuery();
             if (checkResultSet(resultado))
@@ -950,7 +950,7 @@ public class MetodosBD
             dbCon.close();
         } catch (SQLException e)
         {
-            System.err.println("Error al contar Usuarios: " + e);
+            System.err.println("Error al contar medicos: " + e);
         } finally
         {
             try
@@ -970,7 +970,7 @@ public class MetodosBD
         {
             dbCon = ConectaBD.ConectaBD();
 
-            sentencia = dbCon.prepareStatement("UPDATE usuarios SET estatus = ? WHERE id = ?");
+            sentencia = dbCon.prepareStatement("UPDATE medicos SET estatus = ? WHERE id = ?");
             sentencia.setInt(1, estatus);
             sentencia.setInt(2, id);
             int rs = sentencia.executeUpdate();
@@ -982,42 +982,47 @@ public class MetodosBD
 
         } catch (SQLException e)
         {
-            System.err.println("Error al actualizar el status del usuario de tipo sql: " + e);
+            System.err.println("Error al actualizar el status del medicos de tipo sql: " + e);
         }
         return false;
     }
 
-    public static boolean actualizarUsuario(int id, Object[] datos)
+    public static boolean actualizarMedico(int id, Object[] datos)
     {
         try
         {
-            if (datos[6] instanceof String)
+            if (datos[4] instanceof String)
             {
-                String rutaImagen = datos[6].toString();
+                String rutaImagen = datos[4].toString();
                 System.out.println(rutaImagen);
                 //La transformamos a fichero
                 File fPerf = new File(rutaImagen);
                 //La transformamos a fichero de enteada (binario)
                 FileInputStream fIPerf = new FileInputStream(fPerf);
                 //Reasignamos la foto codificada al arreglo y hacemos la insercion a la BD
-                datos[6] = fIPerf;
+                datos[4] = fIPerf;
             } else
             {
 
-                InputStream myInputStream = new ByteArrayInputStream((byte[]) datos[6]);
-                datos[6] = myInputStream;
+                InputStream myInputStream = new ByteArrayInputStream((byte[]) datos[4]);
+                datos[4] = myInputStream;
 
             }
             dbCon = ConectaBD.ConectaBD();
-            sentencia = dbCon.prepareStatement("UPDATE usuarios SET usuario = ?, nombre =?, apellidoPaterno=?,apellidoMaterno=?,contraseña=?,sexo=?,foto=? WHERE id = ?");
+            sentencia = dbCon.prepareStatement("UPDATE medicos SET nombre =?, apellidoPaterno=?,apellidoMaterno=?,sexo=?,foto=?, curp=? WHERE id = ?");
+            /*nombre.getText().trim(), 0
+                apellidoPaterno.getText().trim(), 1
+                apellidoMat, 2
+                sexo.getSelectedItem().toString(), 3
+                fotoUpdate, 4
+                curp.getText().trim()    5*/
             sentencia.setString(1, datos[0].toString());
             sentencia.setString(2, datos[1].toString());
             sentencia.setString(3, datos[2].toString());
             sentencia.setString(4, datos[3].toString());
-            sentencia.setString(5, datos[4].toString());
+            sentencia.setBinaryStream(5, (InputStream) datos[4]);
             sentencia.setString(6, datos[5].toString());
-            sentencia.setBinaryStream(7, (InputStream) datos[6]);
-            sentencia.setInt(8, id);
+            sentencia.setInt(7, id);
             int rs = sentencia.executeUpdate();
 
             if (rs > 0)
@@ -1028,32 +1033,30 @@ public class MetodosBD
             dbCon.close();
         } catch (FileNotFoundException | SQLException e)
         {
-            System.err.println("Error al actualizar o al cargar la imagen del usuario de tipo sql: " + e);
+            System.err.println("Error al actualizar o al cargar la imagen del medicos de tipo sql: " + e);
         }
         return false;
     }
 
-    public static boolean insertarUsuario(Object[] datos)
+    public static boolean insertarMedico(Object[] datos)
     {
         String columnas[] =
         {
-            "usuario", "nombre", "apellidoPaterno", "apellidoMaterno", "contraseña", "sexo", "foto"
+            "nombre", "apellidoPaterno", "apellidoMaterno", "sexo", "foto", "curp"
         };
         try
         {
             //Vemos que la ruta de la imagen este correcta
-            String rutaImagen = (String) datos[6];
+            String rutaImagen = (String) datos[4];
             System.out.println(rutaImagen);
             //La transformamos a fichero
             File fPerf = new File(rutaImagen);
             //La transformamos a fichero de enteada (binario)
             FileInputStream fIPerf = new FileInputStream(fPerf);
             //Reasignamos la foto codificada al arreglo y hacemos la insercion a la BD
-            datos[6] = fIPerf;
+            datos[4] = fIPerf;
             dbCon = ConectaBD.ConectaBD();
-
-            sentencia = MetodosAux.SQLInserta("usuarios", columnas, datos, dbCon, sentencia);
-
+            sentencia = MetodosAux.SQLInserta("medicos", columnas, datos, dbCon, sentencia);
             int r = sentencia.executeUpdate();
 
             if (r > 0)
@@ -1062,7 +1065,7 @@ public class MetodosBD
             }
         } catch (SQLException e)
         {
-            System.out.println("Error al insertar usuario: " + e.toString());
+            System.out.println("Error al insertar medicos: " + e.toString());
         } catch (FileNotFoundException ex)
         {
             System.out.println("Error al obtener la imagen : " + ex.toString());
@@ -1070,12 +1073,12 @@ public class MetodosBD
         return false;
     }
 
-    public static RSObjectArray getUsuario(String usuarioId)
+    public static RSObjectArray getMedico(String usuarioId)
     {
         try
         {
             dbCon = ConectaBD.ConectaBD();
-            sentencia = dbCon.prepareStatement("SELECT * FROM usuarios WHERE id = ?");
+            sentencia = dbCon.prepareStatement("SELECT * FROM medicos WHERE id = ?");
             sentencia.setString(1, usuarioId);
             resultado = sentencia.executeQuery();
             if (resultado.next())
@@ -1088,41 +1091,40 @@ public class MetodosBD
                 if (imagen1 != null)
                 {
                     arreglo.add("id", resultado.getInt("id"));
-                    arreglo.add("usuario", resultado.getString("usuario"));
                     arreglo.add("nombre", resultado.getString("nombre"));
                     arreglo.add("apellidoPaterno", resultado.getString("apellidoPaterno"));
                     arreglo.add("apellidoMaterno", resultado.getString("apellidoMaterno"));
-                    arreglo.add("contraseña", Encoder.deencode(resultado.getString("contraseña")));
                     int estado = resultado.getInt("estatus");
                     String estadoCad = (estado == 1) ? "Activo" : "Inactivo"; //Para que entiendas por si lees el codigo xd, si el estado es 1 entonces estadocad sera activo, sino sera inactivo.
                     arreglo.add("estatus", estadoCad);
                     arreglo.add("sexo", resultado.getString("sexo"));
                     arreglo.add("foto", imagen1);
+                    arreglo.add("curp", resultado.getString("curp"));
                     return arreglo;
                 }
             }
             dbCon.close();
         } catch (SQLException e)
         {
-            System.err.println("Error en obtener pacientes de tipo sql: " + e);
+            System.err.println("Error en obtener medico de tipo sql: " + e);
         }
 
         return null;
     }
 
     /**
-     * Metoco para buscar el id del paciente usando el nombre completo
+     * Metoco para buscar el id del medico usando el nombre completo
      *
      * @param nombre
      * @return
      */
-    public static int buscarUsuarioNombre(String nombre)
+    public static int buscarMedicoNombre(String nombre)
     {
         try
         {
             dbCon = ConectaBD.ConectaBD();
             //Concatenamos el nombre mas apellidos para que extraiga exactamente el deseado
-            sentencia = dbCon.prepareStatement("SELECT id FROM usuarios WHERE CONCAT(nombre,' ',apellidoPaterno,' ',apellidoMaterno) = ?");
+            sentencia = dbCon.prepareStatement("SELECT id FROM medico WHERE CONCAT(nombre,' ',apellidoPaterno,' ',apellidoMaterno) = ?");
             sentencia.setString(1, nombre);
             //compilando
             resultado = sentencia.executeQuery();
@@ -1133,7 +1135,7 @@ public class MetodosBD
 
         } catch (NumberFormatException | SQLException e)
         {
-            System.out.println("Error en obtener el id del usuario: " + e);
+            System.out.println("Error en obtener el id del medico: " + e);
         }
         return -1;
     }

@@ -34,7 +34,7 @@ import static paneles.Usuarios.tablaContenidoUsuarios2;
  *
  * @author David Vergara
  */
-public class RegUsuarios extends javax.swing.JDialog
+public class RegMedicos extends javax.swing.JDialog
 {
 
     /**
@@ -42,14 +42,13 @@ public class RegUsuarios extends javax.swing.JDialog
      */
     String rutaImgPerfil = "";
 
-    //False campos requeridos, true campos no requeridos
-    boolean contraseñaC = false;
+    //False campos requeridos, true campos no requerido
     boolean nombreC = false;
     boolean apeP = false;
     boolean apeM = true;
-    boolean usuarioC = false;
+    boolean curpC = false;
 
-    public RegUsuarios()
+    public RegMedicos()
     {
         initComponents();
         setModal(true);
@@ -61,7 +60,7 @@ public class RegUsuarios extends javax.swing.JDialog
         iniCampos();
         RSTextFieldOne rs[] =
         {
-            nombre, apellidoMaterno, apellidoPaterno, contraseña, usuario
+            nombre, apellidoMaterno, apellidoPaterno, CURP
         };
         Validaciones.disableCP(rs);
     }
@@ -76,14 +75,12 @@ public class RegUsuarios extends javax.swing.JDialog
         this.error_apellidoPaterno.setForeground(Color.white);
         this.error_apellidoMaterno.setForeground(Color.white);
         this.error_sexo.setForeground(Color.white);
-        this.error_contraseña.setForeground(Color.white);
         this.error_usuario.setForeground(Color.white);
         this.nombre.setText(null);
         this.apellidoPaterno.setText(null);
         this.apellidoMaterno.setText(null);
         this.sexo.setSelectedIndex(0);
-        this.contraseña.setText(null);
-        this.usuario.setText(null);
+        this.CURP.setText(null);
     }
 
     /**
@@ -113,16 +110,13 @@ public class RegUsuarios extends javax.swing.JDialog
         jLabel8 = new javax.swing.JLabel();
         sexo = new RSMaterialComponent.RSComboBox();
         jLabel7 = new javax.swing.JLabel();
-        usuario = new RSMaterialComponent.RSTextFieldOne();
-        jLabel6 = new javax.swing.JLabel();
-        contraseña = new RSMaterialComponent.RSTextFieldOne();
+        CURP = new RSMaterialComponent.RSTextFieldOne();
         btnRegistrar = new newscomponents.RSButtonIcon_new();
         error_nombre = new javax.swing.JLabel();
         error_apellidoPaterno = new javax.swing.JLabel();
         error_sexo = new javax.swing.JLabel();
         error_usuario = new javax.swing.JLabel();
         error_apellidoMaterno = new javax.swing.JLabel();
-        error_contraseña = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -184,7 +178,7 @@ public class RegUsuarios extends javax.swing.JDialog
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Registrar Nuevo Usuario");
+        jLabel1.setText("Registrar Nuevo Medico");
 
         javax.swing.GroupLayout rSPanelBorderGradient1Layout = new javax.swing.GroupLayout(rSPanelBorderGradient1);
         rSPanelBorderGradient1.setLayout(rSPanelBorderGradient1Layout);
@@ -314,50 +308,27 @@ public class RegUsuarios extends javax.swing.JDialog
         rSPanelBorder1.add(sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 430, 330, 40));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        jLabel7.setText("Usuario");
+        jLabel7.setText("CURP");
         rSPanelBorder1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 300, -1));
 
-        usuario.setForeground(new java.awt.Color(51, 51, 51));
-        usuario.setBorderColor(new java.awt.Color(51, 51, 51));
-        usuario.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        usuario.setPhColor(new java.awt.Color(51, 51, 51));
-        usuario.setPlaceholder("Usuario");
-        usuario.setSelectionColor(new java.awt.Color(51, 51, 51));
-        usuario.addKeyListener(new java.awt.event.KeyAdapter()
+        CURP.setForeground(new java.awt.Color(51, 51, 51));
+        CURP.setBorderColor(new java.awt.Color(51, 51, 51));
+        CURP.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        CURP.setPhColor(new java.awt.Color(51, 51, 51));
+        CURP.setPlaceholder("Usuario");
+        CURP.setSelectionColor(new java.awt.Color(51, 51, 51));
+        CURP.addKeyListener(new java.awt.event.KeyAdapter()
         {
             public void keyReleased(java.awt.event.KeyEvent evt)
             {
-                usuarioKeyReleased(evt);
+                CURPKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt)
             {
-                usuarioKeyTyped(evt);
+                CURPKeyTyped(evt);
             }
         });
-        rSPanelBorder1.add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 300, -1));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        jLabel6.setText("Contraseña");
-        rSPanelBorder1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 530, 330, -1));
-
-        contraseña.setForeground(new java.awt.Color(51, 51, 51));
-        contraseña.setBorderColor(new java.awt.Color(51, 51, 51));
-        contraseña.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        contraseña.setPhColor(new java.awt.Color(51, 51, 51));
-        contraseña.setPlaceholder("Contraseña");
-        contraseña.setSelectionColor(new java.awt.Color(51, 51, 51));
-        contraseña.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyReleased(java.awt.event.KeyEvent evt)
-            {
-                contraseñaKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
-                contraseñaKeyTyped(evt);
-            }
-        });
-        rSPanelBorder1.add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 560, 330, -1));
+        rSPanelBorder1.add(CURP, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 300, -1));
 
         btnRegistrar.setBackground(new java.awt.Color(68, 165, 160));
         btnRegistrar.setText("Registar Usuario");
@@ -394,10 +365,6 @@ public class RegUsuarios extends javax.swing.JDialog
         error_apellidoMaterno.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         error_apellidoMaterno.setText("Etiqueta de Error");
         rSPanelBorder1.add(error_apellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 480, 300, -1));
-
-        error_contraseña.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        error_contraseña.setText("Etiqueta de Error");
-        rSPanelBorder1.add(error_contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 610, 330, -1));
 
         javax.swing.GroupLayout pnlFondoLayout = new javax.swing.GroupLayout(pnlFondo);
         pnlFondo.setLayout(pnlFondoLayout);
@@ -441,7 +408,7 @@ public class RegUsuarios extends javax.swing.JDialog
     {//GEN-HEADEREND:event_btnRegistrarActionPerformed
 
         boolean sexoCorrect = MetodosAux.validarBox(sexo, error_sexo, "required");
-        if (nombreC && apeP && apeM && sexoCorrect && contraseñaC && usuarioC)
+        if (nombreC && apeP && apeM && sexoCorrect && curpC)
         {
 
             String rutaImgPerfilRegistro = null;
@@ -449,25 +416,22 @@ public class RegUsuarios extends javax.swing.JDialog
             rutaImgPerfilRegistro = (rutaImgPerfil != "") ? rutaImgPerfil : "./default/" + sexo.getSelectedItem().toString() + ".png";
 
             String apellidoMat = (!apellidoMaterno.getText().trim().equals("")) ? apellidoMaterno.getText().trim() : "No Proporcionado";
-            //String numeroTel = (!contraseña.getText().trim().equals("")) ? contraseña.getText().trim() : "0";
-            //String correoEl = (!usuario.getText().trim().equals("")) ? usuario.getText().trim() : "No Proporcionado";
 
             Object[] datosInsert =
             {
                 //Mandamos la informacion que puede contener vacio segun lo que se tenga almacenado en la caja de texto
-                usuario.getText().trim(),
                 nombre.getText().trim(),
                 apellidoPaterno.getText().trim(),
                 apellidoMat,
-                Encoder.encode(contraseña.getText().trim()),
                 sexo.getSelectedItem().toString(),
-                rutaImgPerfilRegistro
+                rutaImgPerfilRegistro,
+                CURP.getText().trim()
             };
 
-            boolean insercionCorr = MetodosBD.insertarUsuario(datosInsert);
+            boolean insercionCorr = MetodosBD.insertarMedico(datosInsert);
             if (insercionCorr)
             {
-                MetodosAux.mostrarAlerta("Muy bien hecho", "Usuario Registrado con Exito", 1);
+                MetodosAux.mostrarAlerta("Muy bien hecho", "Medico Registrado con Exito", 1);
                 dispose();
                 //Borramos la ruta de la imagen para refrescar
                 rutaImgPerfilRegistro = null;
@@ -477,7 +441,7 @@ public class RegUsuarios extends javax.swing.JDialog
                 Usuarios.actualizarNumUsuarios();
             } else
             {
-                MetodosAux.mostrarAlerta("Error", "Ocurro un error al insertar el Paciente", 2);
+                MetodosAux.mostrarAlerta("Error", "Ocurro un error al insertar el Medico", 2);
             }
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
@@ -516,22 +480,14 @@ public class RegUsuarios extends javax.swing.JDialog
         Validaciones.entradaLetrasNum(evt, 1);
     }//GEN-LAST:event_apellidoMaternoKeyTyped
 
-    private void contraseñaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_contraseñaKeyTyped
-    {//GEN-HEADEREND:event_contraseñaKeyTyped
-        if (contraseña.getText().length() >= 16)
-        {
-            evt.consume();
-        }
-    }//GEN-LAST:event_contraseñaKeyTyped
-
-    private void usuarioKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_usuarioKeyTyped
-    {//GEN-HEADEREND:event_usuarioKeyTyped
-        if (usuario.getText().length() >= 40)
+    private void CURPKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_CURPKeyTyped
+    {//GEN-HEADEREND:event_CURPKeyTyped
+        if (CURP.getText().length() >= 40)
         {
             evt.consume();
         }
         setTransferHandler(null);
-    }//GEN-LAST:event_usuarioKeyTyped
+    }//GEN-LAST:event_CURPKeyTyped
 
     private void nombreKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_nombreKeyReleased
     {//GEN-HEADEREND:event_nombreKeyReleased
@@ -542,7 +498,7 @@ public class RegUsuarios extends javax.swing.JDialog
             error_nombre.setText("Digite mas de 2 digitos");
             nombreC = false;
         }
-        btnRegistrar.setEnabled((apeP == true && nombreC == true && contraseñaC == true && usuarioC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
+        btnRegistrar.setEnabled((apeP == true && nombreC == true && curpC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
     }//GEN-LAST:event_nombreKeyReleased
 
     private void apellidoPaternoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoPaternoKeyReleased
@@ -554,7 +510,7 @@ public class RegUsuarios extends javax.swing.JDialog
             error_apellidoPaterno.setText("Digite mas de 2 digitos");
             apeP = false;
         }
-        btnRegistrar.setEnabled((apeP == true && nombreC == true && contraseñaC == true && usuarioC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
+        btnRegistrar.setEnabled((apeP == true && nombreC == true && curpC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
     }//GEN-LAST:event_apellidoPaternoKeyReleased
 
     private void apellidoMaternoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoMaternoKeyReleased
@@ -575,24 +531,6 @@ public class RegUsuarios extends javax.swing.JDialog
         }
     }//GEN-LAST:event_apellidoMaternoKeyReleased
 
-    private void contraseñaKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_contraseñaKeyReleased
-    {//GEN-HEADEREND:event_contraseñaKeyReleased
-        if (!contraseña.getText().isEmpty() && Validaciones.validarPass(contraseña, error_contraseña) == false)
-        {
-            error_contraseña.setForeground(SysConfigs.bg_danger);
-            contraseñaC = false;
-        } else
-        {
-            if (!contraseña.getText().isEmpty() && Validaciones.validarPass(contraseña, error_contraseña) == true)
-            {
-                error_contraseña.setForeground(SysConfigs.bg_white);
-                error_contraseña.setText("Error en el campo");
-                contraseñaC = true;
-                btnRegistrar.setEnabled((apeP == true && nombreC == true && contraseñaC == true && usuarioC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
-            }
-        }
-    }//GEN-LAST:event_contraseñaKeyReleased
-
     private void btnOpenFotoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnOpenFotoActionPerformed
     {//GEN-HEADEREND:event_btnOpenFotoActionPerformed
         rutaImgPerfil = MetodosAux.getFoto(this);
@@ -610,23 +548,23 @@ public class RegUsuarios extends javax.swing.JDialog
         rutaImgPerfil = "";
     }//GEN-LAST:event_btnRemoveActionPerformed
 
-    private void usuarioKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_usuarioKeyReleased
-    {//GEN-HEADEREND:event_usuarioKeyReleased
-        if (!usuario.getText().isEmpty() && MetodosBD.existeCampoRepet(usuario.getText().trim(), "usuario", "usuarios") == false)
+    private void CURPKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_CURPKeyReleased
+    {//GEN-HEADEREND:event_CURPKeyReleased
+        if (!CURP.getText().isEmpty() && MetodosBD.existeCampoRepet(CURP.getText().trim(), "usuario", "usuarios") == false)
         {
-            usuarioC = true;
+            curpC = true;
             error_usuario.setForeground(SysConfigs.bg_white);
             error_usuario.setText("Error de campo");
-            btnRegistrar.setEnabled((apeP == true && nombreC == true && contraseñaC == true && usuarioC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
+            btnRegistrar.setEnabled((apeP == true && nombreC == true && curpC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
         } else
         {
-            if (MetodosBD.existeCampoRepet(usuario.getText().trim(), "usuario", "usuarios") == true)
+            if (MetodosBD.existeCampoRepet(CURP.getText().trim(), "usuario", "usuarios") == true)
             {
                 error_usuario.setForeground(SysConfigs.bg_danger);
                 error_usuario.setText("Ops, este usuario ya exsite");
             }
         }
-    }//GEN-LAST:event_usuarioKeyReleased
+    }//GEN-LAST:event_CURPKeyReleased
 
     /**
      * @param args the command line arguments
@@ -650,17 +588,21 @@ public class RegUsuarios extends javax.swing.JDialog
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(RegUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(RegUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(RegUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(RegUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -672,23 +614,22 @@ public class RegUsuarios extends javax.swing.JDialog
             @Override
             public void run()
             {
-                new RegUsuarios().setVisible(true);
+                new RegMedicos().setVisible(true);
             }
         });
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private RSMaterialComponent.RSTextFieldOne CURP;
     private RSMaterialComponent.RSTextFieldOne apellidoMaterno;
     private RSMaterialComponent.RSTextFieldOne apellidoPaterno;
     private RSMaterialComponent.RSButtonIconOne btnCerrar;
     private RSMaterialComponent.RSButtonIconOne btnOpenFoto;
     private newscomponents.RSButtonIcon_new btnRegistrar;
     private RSMaterialComponent.RSButtonIconOne btnRemove;
-    private RSMaterialComponent.RSTextFieldOne contraseña;
     private javax.swing.JLabel error_apellidoMaterno;
     private javax.swing.JLabel error_apellidoPaterno;
-    private javax.swing.JLabel error_contraseña;
     private javax.swing.JLabel error_nombre;
     private javax.swing.JLabel error_sexo;
     private javax.swing.JLabel error_usuario;
@@ -696,7 +637,6 @@ public class RegUsuarios extends javax.swing.JDialog
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private RSMaterialComponent.RSPanelBorderImage lblFoto;
@@ -705,6 +645,5 @@ public class RegUsuarios extends javax.swing.JDialog
     private RSMaterialComponent.RSPanelBorder rSPanelBorder1;
     private RSMaterialComponent.RSPanelBorderGradient rSPanelBorderGradient1;
     private RSMaterialComponent.RSComboBox sexo;
-    private RSMaterialComponent.RSTextFieldOne usuario;
     // End of variables declaration//GEN-END:variables
 }

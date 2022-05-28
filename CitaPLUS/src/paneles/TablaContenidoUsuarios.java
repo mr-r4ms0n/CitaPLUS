@@ -9,7 +9,7 @@ import RSMaterialComponent.RSTableMetroCustom;
 import formularios_Detalles.InfoPacientes;
 import formularios_Detalles.InfoUsuarios;
 import formularios_Ediciones.EditPacientes;
-import formularios_Ediciones.EditUsuarios;
+import formularios_Ediciones.EditMedicos;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
@@ -54,9 +54,9 @@ public class TablaContenidoUsuarios extends javax.swing.JPanel
         }
         String[] columnas =
         {
-            "id", "accion", "usuario" ,"nombre", "apellidoPaterno", "apellidoMaterno", "estatusUsr", "sexo"
+            "id", "accion","nombre", "apellidoPaterno", "apellidoMaterno", "estatusUsr", "sexo", "curp"
         };
-        MetodosAux.listarTablas(MetodosBD.rsListarUsuarios(tab, filtro), tabla, columnas);
+        MetodosAux.listarTablas(MetodosBD.rsListarMedicos(tab, filtro), tabla, columnas);
 
         //Definimos la posicion donde estara la columna que contendra los botones
         TableColumn column = tabla.getColumnModel().getColumn(1);
@@ -83,15 +83,15 @@ public class TablaContenidoUsuarios extends javax.swing.JPanel
         switch (tab)
         {
             case 1:
-                JLTitulo.setText("Usuarios Activos");
+                JLTitulo.setText("Medicos Activos");
                 JLTitulo.setForeground(SysConfigs.cl_activos);
                 break;
             case 2:
-                JLTitulo.setText("Usuarios Inactivos");
+                JLTitulo.setText("Medicos Inactivos");
                 JLTitulo.setForeground(SysConfigs.cl_inactivos);
                 break;
             case 0:
-                JLTitulo.setText("Todos los Usuarios");
+                JLTitulo.setText("Todos los Medicos");
                 JLTitulo.setForeground(SysConfigs.cl_todos);
                 break;
 
@@ -100,12 +100,12 @@ public class TablaContenidoUsuarios extends javax.swing.JPanel
 
     public void viewInfo(Object value)
     {
-        new InfoUsuarios(null, true, MetodosBD.getUsuario(value.toString())).setVisible(true);
+        new InfoUsuarios(null, true, MetodosBD.getMedico(value.toString())).setVisible(true);
     }
 
     public void editInfo(Object value)
     {
-        new EditUsuarios(MetodosBD.getUsuario(value.toString())).setVisible(true);
+        new EditMedicos(MetodosBD.getMedico(value.toString())).setVisible(true);
     }
 
     /**
@@ -135,7 +135,7 @@ public class TablaContenidoUsuarios extends javax.swing.JPanel
             },
             new String []
             {
-                "id", "Accion", "Usuario", "Nombre", "Apellido Paterno", "Apellido Materno", "Estatus", "Sexo"
+                "id", "Accion", "Nombre", "Apellido Paterno", "Apellido Materno", "Estatus", "Sexo", "CURP"
             }
         )
         {
@@ -172,7 +172,7 @@ public class TablaContenidoUsuarios extends javax.swing.JPanel
 
         JLTitulo.setForeground(new java.awt.Color(51, 153, 0));
         JLTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        JLTitulo.setText("Usuarios Activos");
+        JLTitulo.setText("Medicos Activos");
         JLTitulo.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
         JLTitulo.setSizeIcon(30.0F);
 
@@ -183,7 +183,7 @@ public class TablaContenidoUsuarios extends javax.swing.JPanel
         jTBuscarUsuario.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         jTBuscarUsuario.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
         jTBuscarUsuario.setPhColor(new java.awt.Color(26, 117, 159));
-        jTBuscarUsuario.setPlaceholder("Buscar usuario");
+        jTBuscarUsuario.setPlaceholder("Buscar medico");
         jTBuscarUsuario.setSelectionColor(new java.awt.Color(26, 117, 159));
         jTBuscarUsuario.addActionListener(new java.awt.event.ActionListener()
         {

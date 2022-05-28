@@ -22,14 +22,13 @@ import metodosBD.MetodosBD;
 import static paneles.Usuarios.tabSelecc;
 import paneles.TablaContenidoUsuarios;
 import paneles.Usuarios;
-import seguridad.Encoder;
 import static paneles.Usuarios.tablaContenidoUsuarios2;
 
 /**
  *
  * @author David Vergara
  */
-public class EditUsuarios extends javax.swing.JDialog
+public class EditMedicos extends javax.swing.JDialog
 {
 
     /**
@@ -40,13 +39,12 @@ public class EditUsuarios extends javax.swing.JDialog
     byte[] imagP;
 
     //False campos requeridos, true campos no requeridos
-    boolean contraseñaC = true;
     boolean nombreC = true;
     boolean apeP = true;
     boolean apeM = true;
-    boolean usuarioC = true;
+    boolean curpC = true;
 
-    public EditUsuarios(RSObjectArray datos)
+    public EditMedicos(RSObjectArray datos)
     {
         initComponents();
         setModal(true);
@@ -58,17 +56,16 @@ public class EditUsuarios extends javax.swing.JDialog
         iniCampos();
         RSTextFieldOne rs[] =
         {
-            nombre, apellidoMaterno, apellidoPaterno, contraseña, usuario
+            nombre, apellidoMaterno, apellidoPaterno, curp
         };
         Validaciones.disableCP(rs);
 
         //Insertamos los datos que se tienen en la base de datos dentro de los campos
         id = Integer.parseInt(datos.getValue("id").toString());
-        usuario.setText((String) datos.getValue("usuario"));
+        curp.setText((String) datos.getValue("curp"));
         nombre.setText((String) datos.getValue("nombre"));
         apellidoPaterno.setText((String) datos.getValue("apellidoPaterno"));
         apellidoMaterno.setText((String) datos.getValue("apellidoMaterno"));
-        contraseña.setText((String) datos.getValue("contraseña"));
         sexo.setSelectedItem(datos.getValue("sexo").toString());
 
         //Transformamos la foto de byte a Image y la seteamos al campo de la foto
@@ -86,7 +83,7 @@ public class EditUsuarios extends javax.swing.JDialog
 
     }
 
-    public EditUsuarios()
+    public EditMedicos()
     {
 
     }
@@ -101,14 +98,12 @@ public class EditUsuarios extends javax.swing.JDialog
         this.error_apellidoPaterno.setForeground(Color.white);
         this.error_apellidoMaterno.setForeground(Color.white);
         this.error_sexo.setForeground(Color.white);
-        this.error_contraseña.setForeground(Color.white);
-        this.error_usuario.setForeground(Color.white);
+        this.error_curp.setForeground(Color.white);
         this.nombre.setText(null);
         this.apellidoPaterno.setText(null);
         this.apellidoMaterno.setText(null);
         this.sexo.setSelectedIndex(0);
-        this.contraseña.setText(null);
-        this.usuario.setText(null);
+        this.curp.setText(null);
     }
 
     /**
@@ -138,16 +133,13 @@ public class EditUsuarios extends javax.swing.JDialog
         jLabel8 = new javax.swing.JLabel();
         sexo = new RSMaterialComponent.RSComboBox();
         jLabel7 = new javax.swing.JLabel();
-        usuario = new RSMaterialComponent.RSTextFieldOne();
-        jLabel6 = new javax.swing.JLabel();
-        contraseña = new RSMaterialComponent.RSTextFieldOne();
+        curp = new RSMaterialComponent.RSTextFieldOne();
         btnRegistrar = new newscomponents.RSButtonIcon_new();
         error_nombre = new javax.swing.JLabel();
         error_apellidoPaterno = new javax.swing.JLabel();
         error_sexo = new javax.swing.JLabel();
-        error_usuario = new javax.swing.JLabel();
+        error_curp = new javax.swing.JLabel();
         error_apellidoMaterno = new javax.swing.JLabel();
-        error_contraseña = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -210,7 +202,7 @@ public class EditUsuarios extends javax.swing.JDialog
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Editar datos del Paciente");
+        jLabel1.setText("Editar datos del Medico");
 
         javax.swing.GroupLayout rSPanelBorderGradient1Layout = new javax.swing.GroupLayout(rSPanelBorderGradient1);
         rSPanelBorderGradient1.setLayout(rSPanelBorderGradient1Layout);
@@ -347,50 +339,27 @@ public class EditUsuarios extends javax.swing.JDialog
         rSPanelBorder1.add(sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 430, 330, 40));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        jLabel7.setText("Usuario");
+        jLabel7.setText("CURP");
         rSPanelBorder1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 300, -1));
 
-        usuario.setForeground(new java.awt.Color(51, 51, 51));
-        usuario.setBorderColor(new java.awt.Color(51, 51, 51));
-        usuario.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        usuario.setPhColor(new java.awt.Color(51, 51, 51));
-        usuario.setPlaceholder("Usuario");
-        usuario.setSelectionColor(new java.awt.Color(51, 51, 51));
-        usuario.addKeyListener(new java.awt.event.KeyAdapter()
+        curp.setForeground(new java.awt.Color(51, 51, 51));
+        curp.setBorderColor(new java.awt.Color(51, 51, 51));
+        curp.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        curp.setPhColor(new java.awt.Color(51, 51, 51));
+        curp.setPlaceholder("CURP");
+        curp.setSelectionColor(new java.awt.Color(51, 51, 51));
+        curp.addKeyListener(new java.awt.event.KeyAdapter()
         {
             public void keyReleased(java.awt.event.KeyEvent evt)
             {
-                usuarioKeyReleased(evt);
+                curpKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt)
             {
-                usuarioKeyTyped(evt);
+                curpKeyTyped(evt);
             }
         });
-        rSPanelBorder1.add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 300, -1));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        jLabel6.setText("Contraseña");
-        rSPanelBorder1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 530, 330, -1));
-
-        contraseña.setForeground(new java.awt.Color(51, 51, 51));
-        contraseña.setBorderColor(new java.awt.Color(51, 51, 51));
-        contraseña.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        contraseña.setPhColor(new java.awt.Color(51, 51, 51));
-        contraseña.setPlaceholder("Contraseña");
-        contraseña.setSelectionColor(new java.awt.Color(51, 51, 51));
-        contraseña.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyReleased(java.awt.event.KeyEvent evt)
-            {
-                contraseñaKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
-                contraseñaKeyTyped(evt);
-            }
-        });
-        rSPanelBorder1.add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 560, 330, -1));
+        rSPanelBorder1.add(curp, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 300, -1));
 
         btnRegistrar.setBackground(new java.awt.Color(26, 117, 159));
         btnRegistrar.setText("Guardar cambios");
@@ -420,17 +389,13 @@ public class EditUsuarios extends javax.swing.JDialog
         error_sexo.setText("Etiqueta de Error");
         rSPanelBorder1.add(error_sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 480, 330, -1));
 
-        error_usuario.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        error_usuario.setText("Etiqueta de Error");
-        rSPanelBorder1.add(error_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 610, 300, -1));
+        error_curp.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        error_curp.setText("Etiqueta de Error");
+        rSPanelBorder1.add(error_curp, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 610, 300, -1));
 
         error_apellidoMaterno.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         error_apellidoMaterno.setText("Etiqueta de Error");
         rSPanelBorder1.add(error_apellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 480, 300, -1));
-
-        error_contraseña.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        error_contraseña.setText("Etiqueta de Error");
-        rSPanelBorder1.add(error_contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 610, 330, -1));
 
         javax.swing.GroupLayout pnlFondoLayout = new javax.swing.GroupLayout(pnlFondo);
         pnlFondo.setLayout(pnlFondoLayout);
@@ -475,7 +440,7 @@ public class EditUsuarios extends javax.swing.JDialog
         String rutaImgPerfilRegistro = null;
         Object fotoUpdate = null;
         boolean sexoCorrect = MetodosAux.validarBox(sexo, error_sexo, "required");
-        if (nombreC && apeP && apeM && sexoCorrect && usuarioC && contraseñaC)
+        if (nombreC && apeP && apeM && sexoCorrect && curpC)
         {
             if (rutaImgPerfil.equals("") && imagP != null)
             {
@@ -491,22 +456,21 @@ public class EditUsuarios extends javax.swing.JDialog
             Object[] datosUpdate =
             {
                 //Mandamos la informacion que puede contener vacio segun lo que se tenga almacenado en la caja de texto
-                usuario.getText().trim(),
                 nombre.getText().trim(),
                 apellidoPaterno.getText().trim(),
                 apellidoMat,
-                Encoder.encode(contraseña.getText().trim()),
                 sexo.getSelectedItem().toString(),
-                fotoUpdate
+                fotoUpdate,
+                curp.getText().trim()
             };
             if (MyJOP.myJOPShowConfirmDialog(null, "¿Estas seguro que deseas realizar esta acción") == 1)
             {
-                boolean insercionCorr = MetodosBD.actualizarUsuario(id, datosUpdate);
+                boolean insercionCorr = MetodosBD.actualizarMedico(id, datosUpdate);
                 System.out.println(insercionCorr);
                 if (insercionCorr)
                 {
                     dispose();
-                    MetodosAux.mostrarAlerta("Muy bien hecho", "Se han actualizado con exito los datos del usuario", 1);
+                    MetodosAux.mostrarAlerta("Muy bien hecho", "Se han actualizado con exito los datos del medico", 1);
                     //Borramos la ruta de la imagen para refrescar
                     rutaImgPerfilRegistro = null;
                     //Actualizamos los usuarios de las tablas
@@ -517,7 +481,7 @@ public class EditUsuarios extends javax.swing.JDialog
                     Usuarios.actualizarNumUsuarios();
                 } else
                 {
-                    MetodosAux.mostrarAlerta("Error", " Ha ocurrido un error al actualizar los datos del paciente", 2);
+                    MetodosAux.mostrarAlerta("Error", " Ha ocurrido un error al actualizar los datos del medico", 2);
                 }
             }
             dispose();
@@ -558,23 +522,14 @@ public class EditUsuarios extends javax.swing.JDialog
         Validaciones.entradaLetrasNum(evt, 1);
     }//GEN-LAST:event_apellidoMaternoKeyTyped
 
-    private void contraseñaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_contraseñaKeyTyped
-    {//GEN-HEADEREND:event_contraseñaKeyTyped
-        if (contraseña.getText().length() >= 16)
-        {
-            evt.consume();
-        }
-
-    }//GEN-LAST:event_contraseñaKeyTyped
-
-    private void usuarioKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_usuarioKeyTyped
-    {//GEN-HEADEREND:event_usuarioKeyTyped
-        if (usuario.getText().length() >= 40)
+    private void curpKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_curpKeyTyped
+    {//GEN-HEADEREND:event_curpKeyTyped
+        if (curp.getText().length() >= 40)
         {
             evt.consume();
         }
         setTransferHandler(null);
-    }//GEN-LAST:event_usuarioKeyTyped
+    }//GEN-LAST:event_curpKeyTyped
 
     private void nombreKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_nombreKeyReleased
     {//GEN-HEADEREND:event_nombreKeyReleased
@@ -585,7 +540,7 @@ public class EditUsuarios extends javax.swing.JDialog
             error_nombre.setText("Digite mas de 2 digitos");
             nombreC = false;
         }
-        btnRegistrar.setEnabled((apeP == true && nombreC == true && contraseñaC == true && usuarioC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
+        btnRegistrar.setEnabled((apeP == true && nombreC == true && curpC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
     }//GEN-LAST:event_nombreKeyReleased
 
     private void apellidoPaternoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoPaternoKeyReleased
@@ -598,7 +553,7 @@ public class EditUsuarios extends javax.swing.JDialog
             apeP = false;
 
         }
-        btnRegistrar.setEnabled((apeP == true && nombreC == true && contraseñaC == true && usuarioC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
+        btnRegistrar.setEnabled((apeP == true && nombreC == true && curpC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
     }//GEN-LAST:event_apellidoPaternoKeyReleased
 
     private void apellidoMaternoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_apellidoMaternoKeyReleased
@@ -617,28 +572,10 @@ public class EditUsuarios extends javax.swing.JDialog
                 error_apellidoMaterno.setText("Error en el campo");
                 apeM = true;
                 System.out.println("Nombre boolean: " + nombreC + "ApellidoPaterno: " + apeP + "Sexo: " + sexo.getSelectedIndex());
-                btnRegistrar.setEnabled((apeP == true && nombreC == true && contraseñaC == true && usuarioC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
+                btnRegistrar.setEnabled((apeP == true && nombreC == true && curpC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
             }
         }
     }//GEN-LAST:event_apellidoMaternoKeyReleased
-
-    private void contraseñaKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_contraseñaKeyReleased
-    {//GEN-HEADEREND:event_contraseñaKeyReleased
-        if (contraseña.getText().isEmpty() || Validaciones.validarPass(contraseña, error_contraseña) == false)
-        {
-            error_contraseña.setForeground(SysConfigs.bg_danger);
-            contraseñaC = false;
-        } else
-        {
-            if (!contraseña.getText().isEmpty() && Validaciones.validarPass(contraseña, error_contraseña) == true)
-            {
-                error_contraseña.setForeground(SysConfigs.bg_white);
-                error_contraseña.setText("Error en el campo");
-                contraseñaC = true;
-                btnRegistrar.setEnabled((apeP == true && nombreC == true && contraseñaC == true && usuarioC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
-            }
-        }
-    }//GEN-LAST:event_contraseñaKeyReleased
 
     private void btnOpenFotoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnOpenFotoActionPerformed
     {//GEN-HEADEREND:event_btnOpenFotoActionPerformed
@@ -648,7 +585,7 @@ public class EditUsuarios extends javax.swing.JDialog
             lblFoto.setImagen(new ImageIcon(rutaImgPerfil));
         }
         // TODO add your handling code here:
-        btnRegistrar.setEnabled((apeP == true && nombreC == true && contraseñaC == true && usuarioC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
+        btnRegistrar.setEnabled((apeP == true && nombreC == true && curpC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
     }//GEN-LAST:event_btnOpenFotoActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRemoveActionPerformed
@@ -657,26 +594,26 @@ public class EditUsuarios extends javax.swing.JDialog
         lblFoto.setImagen(null);
         rutaImgPerfil = rutaImgPerfil = "./default/" + sexo.getSelectedItem().toString() + ".png";
         imagP = null;
-        btnRegistrar.setEnabled((apeP == true && nombreC == true && contraseñaC == true && usuarioC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
+        btnRegistrar.setEnabled((apeP == true && nombreC == true && curpC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
     }//GEN-LAST:event_btnRemoveActionPerformed
 
-    private void usuarioKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_usuarioKeyReleased
-    {//GEN-HEADEREND:event_usuarioKeyReleased
-        if (!usuario.getText().isEmpty() && MetodosBD.existeCampoRepet(usuario.getText().trim(), "usuario", "usuarios") == false)
+    private void curpKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_curpKeyReleased
+    {//GEN-HEADEREND:event_curpKeyReleased
+        if (!curp.getText().isEmpty() && MetodosBD.existeCampoRepet(curp.getText().trim(), "curp", "medicos") == false)
         {
-            usuarioC = true;
-            error_usuario.setForeground(SysConfigs.bg_white);
-            error_usuario.setText("Error de campo");
-            btnRegistrar.setEnabled((apeP == true && nombreC == true && contraseñaC == true && usuarioC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
+            curpC = true;
+            error_curp.setForeground(SysConfigs.bg_white);
+            error_curp.setText("Error de campo");
+            btnRegistrar.setEnabled((apeP == true && nombreC == true && curpC == true && (sexo.getSelectedIndex() == 1 || sexo.getSelectedIndex() == 2)) ? true : false);
         } else
         {
-            if (MetodosBD.existeCampoRepet(usuario.getText().trim(), "usuario", "usuarios") == true)
+            if (MetodosBD.existeCampoRepet(curp.getText().trim(), "curp", "medicos") == true)
             {
-                error_usuario.setForeground(SysConfigs.bg_danger);
-                error_usuario.setText("Ops, este usuario ya exsite");
+                error_curp.setForeground(SysConfigs.bg_danger);
+                error_curp.setText("Ops, este usuario ya exsite");
             }
         }
-    }//GEN-LAST:event_usuarioKeyReleased
+    }//GEN-LAST:event_curpKeyReleased
 
     private void sexoItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_sexoItemStateChanged
     {//GEN-HEADEREND:event_sexoItemStateChanged
@@ -705,17 +642,25 @@ public class EditUsuarios extends javax.swing.JDialog
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(EditUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(EditUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(EditUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(EditUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -731,7 +676,7 @@ public class EditUsuarios extends javax.swing.JDialog
             @Override
             public void run()
             {
-                new EditUsuarios().setVisible(true);
+                new EditMedicos().setVisible(true);
             }
         });
     }
@@ -744,18 +689,16 @@ public class EditUsuarios extends javax.swing.JDialog
     private RSMaterialComponent.RSButtonIconOne btnOpenFoto;
     private newscomponents.RSButtonIcon_new btnRegistrar;
     private RSMaterialComponent.RSButtonIconOne btnRemove;
-    private RSMaterialComponent.RSTextFieldOne contraseña;
+    private RSMaterialComponent.RSTextFieldOne curp;
     private javax.swing.JLabel error_apellidoMaterno;
     private javax.swing.JLabel error_apellidoPaterno;
-    private javax.swing.JLabel error_contraseña;
+    private javax.swing.JLabel error_curp;
     private javax.swing.JLabel error_nombre;
     private javax.swing.JLabel error_sexo;
-    private javax.swing.JLabel error_usuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private RSMaterialComponent.RSPanelBorderImage lblFoto;
@@ -764,6 +707,5 @@ public class EditUsuarios extends javax.swing.JDialog
     private RSMaterialComponent.RSPanelBorder rSPanelBorder1;
     private RSMaterialComponent.RSPanelBorderGradient rSPanelBorderGradient1;
     private RSMaterialComponent.RSComboBox sexo;
-    private RSMaterialComponent.RSTextFieldOne usuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -64,12 +64,12 @@
               <Table columnCount="8" rowCount="4">
                 <Column editable="false" title="id" type="java.lang.Object"/>
                 <Column editable="true" title="Accion" type="java.lang.Object"/>
-                <Column editable="false" title="Usuario" type="java.lang.Object"/>
                 <Column editable="false" title="Nombre" type="java.lang.Object"/>
                 <Column editable="false" title="Apellido Paterno" type="java.lang.Object"/>
                 <Column editable="false" title="Apellido Materno" type="java.lang.Object"/>
                 <Column editable="false" title="Estatus" type="java.lang.Object"/>
                 <Column editable="false" title="Sexo" type="java.lang.Object"/>
+                <Column editable="false" title="CURP" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="backgoundHead" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -167,7 +167,7 @@
           <Color blue="0" green="99" red="33" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="Usuarios Activos"/>
+        <Property name="text" type="java.lang.String" value="Medicos Activos"/>
         <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
           <Value id="PERSON"/>
         </Property>
@@ -195,7 +195,7 @@
         <Property name="phColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="9f" green="75" red="1a" type="rgb"/>
         </Property>
-        <Property name="placeholder" type="java.lang.String" value="Buscar usuario"/>
+        <Property name="placeholder" type="java.lang.String" value="Buscar medico"/>
         <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="9f" green="75" red="1a" type="rgb"/>
         </Property>

@@ -5,7 +5,7 @@
  */
 package paneles;
 
-import formularios_Registros.RegUsuarios;
+import formularios_Registros.RegMedicos;
 import metodosBD.MetodosBD;
 
 /**
@@ -70,11 +70,11 @@ public class Usuarios extends javax.swing.JPanel
 
         rSLabelTextIcon1.setForeground(new java.awt.Color(144, 224, 239));
         rSLabelTextIcon1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        rSLabelTextIcon1.setText("Usuarios");
+        rSLabelTextIcon1.setText("Medicos");
         rSLabelTextIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
 
         rSButtonIcon_new1.setBackground(new java.awt.Color(255, 102, 102));
-        rSButtonIcon_new1.setText("Nuevo Usuario");
+        rSButtonIcon_new1.setText("Nuevo Medico");
         rSButtonIcon_new1.setBackgroundHover(new java.awt.Color(255, 102, 102));
         rSButtonIcon_new1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON_ADD);
         rSButtonIcon_new1.setRound(20);
@@ -191,7 +191,7 @@ public class Usuarios extends javax.swing.JPanel
 
     private void rSButtonIcon_new1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSButtonIcon_new1ActionPerformed
     {//GEN-HEADEREND:event_rSButtonIcon_new1ActionPerformed
-        new RegUsuarios().setVisible(true);
+        new RegMedicos().setVisible(true);
     }//GEN-LAST:event_rSButtonIcon_new1ActionPerformed
 
     private void tabTodosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabTodosActionPerformed

@@ -463,7 +463,7 @@ public class EditCita extends javax.swing.JDialog
             String pacienteCorreo = MetodosBD.buscarPacienteCorreo(CMPaciente.getSelectedItem().toString());
             String fechaCita = MetodosAux.ToDate2(CMFecha.getText());
             Time horaCita = MetodosAux.ObtenerHoraMySQL(CMHora.getSelectedItem().toString());
-            int usuarioId = MetodosBD.buscarUsuarioNombre(CMAtendera.getSelectedItem().toString());
+            int usuarioId = MetodosBD.buscarMedicoNombre(CMAtendera.getSelectedItem().toString());
             int servicioId = MetodosBD.buscarServicioNombre(CMServicio.getSelectedItem().toString());
             String usuarioEditoId = MenuUsuario.idUsuario;
             String fechaEdito = MetodosAux.getFecha();
