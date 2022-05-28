@@ -9,15 +9,19 @@ import alertas.MyJOP;
 import interfaces.MenuAdministrador;
 import seguridad.EncoderA;
 
-
 /**
  *
  * @author Kevin
  */
 public class Administrador extends javax.swing.JPanel
 {
+
     private final String usu;
     private final String pass;
+    private final String usuSe;
+    private final String passSe;
+    private final String nombreSe;
+
     /**
      * Creates new form citas
      */
@@ -26,7 +30,10 @@ public class Administrador extends javax.swing.JPanel
         initComponents();
         usu = EncoderA.recuperaCred("1");
         pass = EncoderA.recuperaCred("2");
-        EncoderA.recuperaCred(JTFUsuario, JTFContraseña);
+        usuSe = EncoderA.recuperaCred("3");
+        passSe = EncoderA.recuperaCred("4");
+        nombreSe = EncoderA.recuperaCred("5");
+        EncoderA.recuperaCred(JTFUsuario, JTFContraseña, JTFUsuarioSe, JTFContraseñaSe, JTFNombreSe);
     }
 
     /**
@@ -47,6 +54,13 @@ public class Administrador extends javax.swing.JPanel
         jLabel3 = new javax.swing.JLabel();
         tabActivos = new newscomponents.RSButtonIcon_new();
         tabActivos1 = new newscomponents.RSButtonIcon_new();
+        JTFContraseñaSe = new RSMaterialComponent.RSPasswordMaterialIcon();
+        jLabel4 = new javax.swing.JLabel();
+        JTFNombreSe = new RSMaterialComponent.RSTextFieldMaterialIcon();
+        jLabel5 = new javax.swing.JLabel();
+        rSLabelTextIcon2 = new RSMaterialComponent.RSLabelTextIcon();
+        jLabel6 = new javax.swing.JLabel();
+        JTFUsuarioSe = new RSMaterialComponent.RSTextFieldMaterialIcon();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 4, 0, new java.awt.Color(26, 117, 159)));
@@ -142,47 +156,157 @@ public class Administrador extends javax.swing.JPanel
             }
         });
 
+        JTFContraseñaSe.setForeground(new java.awt.Color(255, 51, 51));
+        JTFContraseñaSe.setColorIcon(new java.awt.Color(255, 51, 51));
+        JTFContraseñaSe.setColorMaterial(new java.awt.Color(0, 0, 0));
+        JTFContraseñaSe.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        JTFContraseñaSe.setPhColor(new java.awt.Color(255, 51, 51));
+        JTFContraseñaSe.setPlaceholder("Ingrese contraseña");
+        JTFContraseñaSe.setSelectionColor(new java.awt.Color(0, 0, 0));
+        JTFContraseñaSe.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                JTFContraseñaSeActionPerformed(evt);
+            }
+        });
+        JTFContraseñaSe.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
+                JTFContraseñaSeKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt)
+            {
+                JTFContraseñaSeKeyReleased(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel4.setText("Contraseña*");
+
+        JTFNombreSe.setForeground(new java.awt.Color(255, 51, 51));
+        JTFNombreSe.setColorIcon(new java.awt.Color(255, 51, 51));
+        JTFNombreSe.setColorMaterial(new java.awt.Color(0, 0, 0));
+        JTFNombreSe.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        JTFNombreSe.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PEOPLE);
+        JTFNombreSe.setPhColor(new java.awt.Color(255, 51, 51));
+        JTFNombreSe.setPlaceholder("Ingrese nombre");
+        JTFNombreSe.setSelectionColor(new java.awt.Color(0, 0, 0));
+        JTFNombreSe.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
+                JTFNombreSeKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt)
+            {
+                JTFNombreSeKeyReleased(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel5.setText("Nombre completo");
+
+        rSLabelTextIcon2.setForeground(new java.awt.Color(144, 224, 239));
+        rSLabelTextIcon2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        rSLabelTextIcon2.setText("Credenciales del secretario");
+        rSLabelTextIcon2.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel6.setText("Usuario*");
+
+        JTFUsuarioSe.setForeground(new java.awt.Color(255, 51, 51));
+        JTFUsuarioSe.setColorIcon(new java.awt.Color(255, 51, 51));
+        JTFUsuarioSe.setColorMaterial(new java.awt.Color(0, 0, 0));
+        JTFUsuarioSe.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        JTFUsuarioSe.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PEOPLE);
+        JTFUsuarioSe.setPhColor(new java.awt.Color(255, 51, 51));
+        JTFUsuarioSe.setPlaceholder("Ingrese Usuario");
+        JTFUsuarioSe.setSelectionColor(new java.awt.Color(0, 0, 0));
+        JTFUsuarioSe.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
+                JTFUsuarioSeKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt)
+            {
+                JTFUsuarioSeKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(306, Short.MAX_VALUE)
+                .addComponent(tabActivos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(tabActivos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(296, 296, 296))
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rSLabelTextIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(rSLabelTextIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(JTFContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(406, 406, 406)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JTFContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(297, 297, 297)
-                        .addComponent(tabActivos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(tabActivos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(rSLabelTextIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(305, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(JTFContraseñaSe, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JTFNombreSe, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(JTFUsuarioSe, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(118, 118, 118))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rSLabelTextIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84)
-                .addComponent(jLabel3)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rSLabelTextIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rSLabelTextIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JTFNombreSe, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JTFContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(JTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JTFContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JTFUsuarioSe, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JTFContraseñaSe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tabActivos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tabActivos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
+                .addGap(60, 60, 60))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -199,12 +323,12 @@ public class Administrador extends javax.swing.JPanel
 
     private void JTFUsuarioKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFUsuarioKeyPressed
     {//GEN-HEADEREND:event_JTFUsuarioKeyPressed
-        
+
     }//GEN-LAST:event_JTFUsuarioKeyPressed
 
     private void JTFUsuarioKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFUsuarioKeyReleased
     {//GEN-HEADEREND:event_JTFUsuarioKeyReleased
-        
+
     }//GEN-LAST:event_JTFUsuarioKeyReleased
 
     private void JTFContraseñaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_JTFContraseñaActionPerformed
@@ -214,39 +338,84 @@ public class Administrador extends javax.swing.JPanel
 
     private void JTFContraseñaKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFContraseñaKeyPressed
     {//GEN-HEADEREND:event_JTFContraseñaKeyPressed
-       
+
     }//GEN-LAST:event_JTFContraseñaKeyPressed
 
     private void JTFContraseñaKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFContraseñaKeyReleased
     {//GEN-HEADEREND:event_JTFContraseñaKeyReleased
-        
+
     }//GEN-LAST:event_JTFContraseñaKeyReleased
 
     private void tabActivosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabActivosActionPerformed
     {//GEN-HEADEREND:event_tabActivosActionPerformed
-        if (MyJOP.myJOPShowConfirmDialog(null, "Esta seguro de editar las creedenciales")==1)
+        if (MyJOP.myJOPShowConfirmDialog(null, "Esta seguro de editar las creedenciales") == 1)
         {
-            EncoderA.reasignaCred(JTFUsuario.getText().trim(), JTFContraseña.getText().trim());
-            EncoderA.recuperaCred(JTFUsuario, JTFContraseña);
+            EncoderA.reasignaCred(JTFUsuario.getText().trim(), JTFContraseña.getText().trim(), JTFUsuarioSe.getText().trim(), JTFContraseñaSe.getText().trim(), JTFNombreSe.getText().trim());
+            EncoderA.recuperaCred(JTFUsuario, JTFContraseña, JTFUsuarioSe, JTFContraseñaSe, JTFNombreSe);
             MyJOP.myJOPShowMessageDialog(null, "Se cerrara la sesión actual");
             MenuAdministrador.cerrar();
-        } 
+        }
     }//GEN-LAST:event_tabActivosActionPerformed
 
     private void tabActivos1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tabActivos1ActionPerformed
     {//GEN-HEADEREND:event_tabActivos1ActionPerformed
         JTFUsuario.setText(usu);
         JTFContraseña.setText(pass);
+        JTFUsuarioSe.setText(usuSe);
+        JTFContraseñaSe.setText(passSe);
+        JTFNombreSe.setText(nombreSe);
     }//GEN-LAST:event_tabActivos1ActionPerformed
+
+    private void JTFContraseñaSeActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_JTFContraseñaSeActionPerformed
+    {//GEN-HEADEREND:event_JTFContraseñaSeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFContraseñaSeActionPerformed
+
+    private void JTFContraseñaSeKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFContraseñaSeKeyPressed
+    {//GEN-HEADEREND:event_JTFContraseñaSeKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFContraseñaSeKeyPressed
+
+    private void JTFContraseñaSeKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFContraseñaSeKeyReleased
+    {//GEN-HEADEREND:event_JTFContraseñaSeKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFContraseñaSeKeyReleased
+
+    private void JTFNombreSeKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFNombreSeKeyPressed
+    {//GEN-HEADEREND:event_JTFNombreSeKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFNombreSeKeyPressed
+
+    private void JTFNombreSeKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFNombreSeKeyReleased
+    {//GEN-HEADEREND:event_JTFNombreSeKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFNombreSeKeyReleased
+
+    private void JTFUsuarioSeKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFUsuarioSeKeyPressed
+    {//GEN-HEADEREND:event_JTFUsuarioSeKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFUsuarioSeKeyPressed
+
+    private void JTFUsuarioSeKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFUsuarioSeKeyReleased
+    {//GEN-HEADEREND:event_JTFUsuarioSeKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFUsuarioSeKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private RSMaterialComponent.RSPasswordMaterialIcon JTFContraseña;
+    private RSMaterialComponent.RSPasswordMaterialIcon JTFContraseñaSe;
+    private RSMaterialComponent.RSTextFieldMaterialIcon JTFNombreSe;
     private RSMaterialComponent.RSTextFieldMaterialIcon JTFUsuario;
+    private RSMaterialComponent.RSTextFieldMaterialIcon JTFUsuarioSe;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon1;
+    private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon2;
     private static newscomponents.RSButtonIcon_new tabActivos;
     private static newscomponents.RSButtonIcon_new tabActivos1;
     // End of variables declaration//GEN-END:variables

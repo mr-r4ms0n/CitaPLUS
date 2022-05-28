@@ -121,7 +121,7 @@ public class TablaContenidoServicios extends javax.swing.JPanel
             },
             new String []
             {
-                "Id", "Acción", "Nombre", "Descripción", "Estatus", "Usuario registró", "Fecha registró"
+                "Id", "Acción", "Nombre", "Descripción", "Estatus", "Secretario registró", "Fecha registró"
             }
         )
         {

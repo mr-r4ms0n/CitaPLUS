@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfaces;
+package formularios_Registros;
 
-import formularios_Registros.RegAdm;
-import formularios_Registros.RegSec;
+import interfaces.*;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.Toolkit;
@@ -16,23 +15,26 @@ import java.io.File;
 import metodosBD.MetodosBD;
 import rojeru_san.complementos.RSEffectFade;
 import seguridad.Encoder;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import seguridad.EncoderA;
 
 /**
  *
  * @author Kevin
  */
-public class InicioSesion extends javax.swing.JFrame
+public class RegSec extends javax.swing.JDialog
 {
 
-    int tipoSesion = 1;
+    //int tipoSesion = 1;
 
     /**
      * Creates new form InicioSesion
      */
-    public InicioSesion()
+    public RegSec()
     {
         initComponents();
+        setModal(true);
         //setIconImage(new ImageIcon(getClass().getResource("../imagenes/citasplus.png")).getImage());
         setIconImage(Toolkit.getDefaultToolkit().getImage("citasplus.png"));
         setLocationRelativeTo(null);
@@ -40,7 +42,6 @@ public class InicioSesion extends javax.swing.JFrame
         setShape(forma);
         RSEffectFade.setFadeWindowIn(this, 30, 0.1f);
         iniciarLabels();
-        verificaFile();
     }
 
     public void iniciarLabels()
@@ -48,17 +49,7 @@ public class InicioSesion extends javax.swing.JFrame
         jLErrorUsuario.setText(null);
         jLErrorContra.setText(null);
         jLCorrrecto.setText(null);
-    }
-
-    public void verificaFile()
-    {
-        File f = new File("props.dat");
-        if (!f.exists())
-        {
-            new RegAdm().setVisible(true);
-            //Colocar ventana tambien para registro de secretario
-            new RegSec().setVisible(true);
-        }
+        jLErrorNombre.setText(null);
     }
 
     /**
@@ -80,12 +71,13 @@ public class InicioSesion extends javax.swing.JFrame
         JTFContraseña = new RSMaterialComponent.RSPasswordMaterialIcon();
         jLErrorUsuario = new javax.swing.JLabel();
         jLErrorContra = new javax.swing.JLabel();
-        rSButtonIcon_new1 = new newscomponents.RSButtonIcon_new();
-        rSButtonIcon_new3 = new newscomponents.RSButtonIcon_new();
+        btnreg = new newscomponents.RSButtonIcon_new();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLCorrrecto = new javax.swing.JLabel();
-        rSSwitch1 = new RSMaterialComponent.RSSwitch();
+        rSButtonIcon_new3 = new newscomponents.RSButtonIcon_new();
+        JTFUsuario1 = new RSMaterialComponent.RSTextFieldMaterialIcon();
+        jLErrorNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -101,14 +93,15 @@ public class InicioSesion extends javax.swing.JFrame
         rSPanelMaterial1.setRound(20);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        jLabel1.setText("Cita PLUS");
+        jLabel1.setText("Bienvenido a Cita PLUS");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 153, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Inicio de sesión");
+        jLabel2.setText("Como es la primera vez que usas el sistema, necesitas definir un secretario");
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/doctor.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/secretary.png"))); // NOI18N
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         JTFUsuario.setForeground(new java.awt.Color(0, 0, 0));
@@ -151,6 +144,10 @@ public class InicioSesion extends javax.swing.JFrame
             {
                 JTFContraseñaKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt)
+            {
+                JTFContraseñaKeyReleased(evt);
+            }
         });
 
         jLErrorUsuario.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
@@ -161,19 +158,28 @@ public class InicioSesion extends javax.swing.JFrame
         jLErrorContra.setForeground(new java.awt.Color(255, 51, 51));
         jLErrorContra.setText("Este campo se requiere.");
 
-        rSButtonIcon_new1.setBackground(new java.awt.Color(72, 202, 228));
-        rSButtonIcon_new1.setText("Ingresar");
-        rSButtonIcon_new1.setBackgroundHover(new java.awt.Color(171, 229, 240));
-        rSButtonIcon_new1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        rSButtonIcon_new1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ARROW_FORWARD);
-        rSButtonIcon_new1.setRound(10);
-        rSButtonIcon_new1.addActionListener(new java.awt.event.ActionListener()
+        btnreg.setBackground(new java.awt.Color(72, 202, 228));
+        btnreg.setText("Activar");
+        btnreg.setBackgroundHover(new java.awt.Color(171, 229, 240));
+        btnreg.setEnabled(false);
+        btnreg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnreg.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ARROW_FORWARD);
+        btnreg.setRound(10);
+        btnreg.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                rSButtonIcon_new1ActionPerformed(evt);
+                btnregActionPerformed(evt);
             }
         });
+
+        jLabel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
+        jLabel7.setText("2022 - Tecnologinc");
+
+        jLCorrrecto.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
+        jLCorrrecto.setText("Ing");
 
         rSButtonIcon_new3.setBackground(new java.awt.Color(255, 51, 51));
         rSButtonIcon_new3.setText("Salir");
@@ -189,24 +195,29 @@ public class InicioSesion extends javax.swing.JFrame
             }
         });
 
-        jLabel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
-        jLabel7.setText("2022 - Tecnologinc");
-
-        jLCorrrecto.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
-        jLCorrrecto.setText("Ing");
-
-        rSSwitch1.setActivado(false);
-        rSSwitch1.setBgOff(new java.awt.Color(72, 202, 228));
-        rSSwitch1.setBgOn(new java.awt.Color(255, 51, 51));
-        rSSwitch1.addMouseListener(new java.awt.event.MouseAdapter()
+        JTFUsuario1.setForeground(new java.awt.Color(0, 0, 0));
+        JTFUsuario1.setColorIcon(new java.awt.Color(0, 0, 0));
+        JTFUsuario1.setColorMaterial(new java.awt.Color(0, 0, 0));
+        JTFUsuario1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        JTFUsuario1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PEOPLE);
+        JTFUsuario1.setPhColor(new java.awt.Color(0, 0, 0));
+        JTFUsuario1.setPlaceholder("Ingrese Nombre Completo");
+        JTFUsuario1.setSelectionColor(new java.awt.Color(0, 0, 0));
+        JTFUsuario1.addKeyListener(new java.awt.event.KeyAdapter()
         {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
+            public void keyPressed(java.awt.event.KeyEvent evt)
             {
-                rSSwitch1MouseClicked(evt);
+                JTFUsuario1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt)
+            {
+                JTFUsuario1KeyReleased(evt);
             }
         });
+
+        jLErrorNombre.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        jLErrorNombre.setForeground(new java.awt.Color(255, 51, 51));
+        jLErrorNombre.setText("Este campo se requiere.");
 
         javax.swing.GroupLayout rSPanelMaterial1Layout = new javax.swing.GroupLayout(rSPanelMaterial1);
         rSPanelMaterial1.setLayout(rSPanelMaterial1Layout);
@@ -218,36 +229,37 @@ public class InicioSesion extends javax.swing.JFrame
                         .addContainerGap()
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
                         .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
-                                .addGap(211, 211, 211)
-                                .addComponent(jLabel1))
-                            .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
-                                            .addComponent(rSButtonIcon_new1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(26, 26, 26)
-                                            .addComponent(rSSwitch1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(rSButtonIcon_new3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
-                                .addGap(138, 138, 138)
-                                .addComponent(jLCorrrecto, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
+                                    .addComponent(btnreg, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(rSButtonIcon_new3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
+                                    .addGap(108, 108, 108)
+                                    .addComponent(jLCorrrecto, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 18, Short.MAX_VALUE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelMaterial1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLErrorContra, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLErrorUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JTFUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JTFContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(134, 134, 134))
+                .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelMaterial1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(137, 137, 137))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelMaterial1Layout.createSequentialGroup()
+                        .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLErrorNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTFUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLErrorContra, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLErrorUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JTFUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(JTFContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(135, 135, 135))))
         );
         rSPanelMaterial1Layout.setVerticalGroup(
             rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,7 +270,11 @@ public class InicioSesion extends javax.swing.JFrame
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(JTFUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLErrorNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(JTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLErrorUsuario)
@@ -266,15 +282,13 @@ public class InicioSesion extends javax.swing.JFrame
                 .addComponent(JTFContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLErrorContra)
-                .addGap(43, 43, 43)
-                .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(rSButtonIcon_new1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(rSButtonIcon_new3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(rSSwitch1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(rSPanelMaterial1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnreg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rSButtonIcon_new3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLCorrrecto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
@@ -312,60 +326,18 @@ public class InicioSesion extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rSButtonIcon_new3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSButtonIcon_new3ActionPerformed
-    {//GEN-HEADEREND:event_rSButtonIcon_new3ActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_rSButtonIcon_new3ActionPerformed
+    private void btnregActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnregActionPerformed
+    {//GEN-HEADEREND:event_btnregActionPerformed
 
-    private void rSButtonIcon_new1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSButtonIcon_new1ActionPerformed
-    {//GEN-HEADEREND:event_rSButtonIcon_new1ActionPerformed
-
-        if (JTFUsuario.getText().isEmpty())
+        boolean creado = EncoderA.creaSecre(JTFUsuario.getText().trim(), JTFContraseña.getText().trim(), JTFUsuario1.getText().trim());
+        if (creado)
         {
-            jLErrorUsuario.setText("Este campo es requerido");
+            dispose();
+            System.out.println("Secre insertado y guardado");
         }
-        if (JTFContraseña.getText().isEmpty())
-        {
-            jLErrorContra.setText("Este campo es requerido");
-        }
+       
 
-        if (!JTFUsuario.getText().isEmpty() && !JTFContraseña.getText().isEmpty())
-        {
-            if (!rSSwitch1.isActivado())
-            {
-                Object resultados[] = EncoderA.verificaSecre(JTFUsuario.getText().trim(), JTFContraseña.getText().trim());
-                if (resultados != null)
-                {
-                    if ((boolean) resultados[0])
-                    {
-                        new MenuUsuario((String) resultados[2], (String) resultados[1]).setVisible(true);
-                        dispose();
-                    }
-                } else
-                {
-                    jLCorrrecto.setForeground(Color.RED);
-                    jLCorrrecto.setText("Las credenciales son incorrectas");
-                    JTFUsuario.setText(null);
-                    JTFContraseña.setText(null);
-                }
-            } else
-            {
-                if (EncoderA.verificaAdm(JTFUsuario.getText(), JTFContraseña.getText()))
-                {
-                    new MenuAdministrador().setVisible(true);
-                    dispose();
-                } else
-                {
-                    jLCorrrecto.setForeground(Color.RED);
-                    jLCorrrecto.setText("Las credenciales son incorrectas");
-                    JTFUsuario.setText(null);
-                    JTFContraseña.setText(null);
-                    
-                }
-            }
-
-        }
-    }//GEN-LAST:event_rSButtonIcon_new1ActionPerformed
+    }//GEN-LAST:event_btnregActionPerformed
 
     private void JTFContraseñaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_JTFContraseñaActionPerformed
     {//GEN-HEADEREND:event_JTFContraseñaActionPerformed
@@ -378,8 +350,8 @@ public class InicioSesion extends javax.swing.JFrame
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER)
         {
-            rSButtonIcon_new1.requestFocus();
-            rSButtonIcon_new1.doClick();
+            btnreg.requestFocus();
+            btnreg.doClick();
         }
 
     }//GEN-LAST:event_JTFContraseñaKeyPressed
@@ -394,21 +366,45 @@ public class InicioSesion extends javax.swing.JFrame
 
     }//GEN-LAST:event_JTFUsuarioKeyPressed
 
-    private void rSSwitch1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_rSSwitch1MouseClicked
-    {//GEN-HEADEREND:event_rSSwitch1MouseClicked
-        if (rSSwitch1.isActivado())
-        {
-            jLabel2.setText("Inicio de sesión (" + "Administrador" + ")");
-        } else
-        {
-            jLabel2.setText("Inicio de sesión (" + "Usuario" + ")");
-        }
-    }//GEN-LAST:event_rSSwitch1MouseClicked
+    private void rSButtonIcon_new3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rSButtonIcon_new3ActionPerformed
+    {//GEN-HEADEREND:event_rSButtonIcon_new3ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_rSButtonIcon_new3ActionPerformed
 
     private void JTFUsuarioKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFUsuarioKeyReleased
     {//GEN-HEADEREND:event_JTFUsuarioKeyReleased
-        iniciarLabels();
+        if (!JTFUsuario.getText().isEmpty() && !JTFContraseña.getText().isEmpty() && !JTFUsuario1.getText().isEmpty())
+        {
+            btnreg.setEnabled(true);
+        } else
+        {
+            btnreg.setEnabled(false);
+        }
     }//GEN-LAST:event_JTFUsuarioKeyReleased
+
+    private void JTFContraseñaKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFContraseñaKeyReleased
+    {//GEN-HEADEREND:event_JTFContraseñaKeyReleased
+        if (!JTFUsuario.getText().isEmpty() && !JTFContraseña.getText().isEmpty())
+        {
+            btnreg.setEnabled(true);
+        } else
+        {
+            btnreg.setEnabled(false);
+        }
+    }//GEN-LAST:event_JTFContraseñaKeyReleased
+
+    private void JTFUsuario1KeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFUsuario1KeyPressed
+    {//GEN-HEADEREND:event_JTFUsuario1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            JTFUsuario.requestFocus();
+        }
+    }//GEN-LAST:event_JTFUsuario1KeyPressed
+
+    private void JTFUsuario1KeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_JTFUsuario1KeyReleased
+    {//GEN-HEADEREND:event_JTFUsuario1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFUsuario1KeyReleased
 
     /**
      * @param args the command line arguments
@@ -424,7 +420,7 @@ public class InicioSesion extends javax.swing.JFrame
             @Override
             public void run()
             {
-                new InicioSesion().setVisible(true);
+                new RegSec().setVisible(true);
             }
         });
     }
@@ -432,18 +428,19 @@ public class InicioSesion extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private RSMaterialComponent.RSPasswordMaterialIcon JTFContraseña;
     private RSMaterialComponent.RSTextFieldMaterialIcon JTFUsuario;
+    private RSMaterialComponent.RSTextFieldMaterialIcon JTFUsuario1;
+    private newscomponents.RSButtonIcon_new btnreg;
     private javax.swing.JLabel jLCorrrecto;
     private javax.swing.JLabel jLErrorContra;
+    private javax.swing.JLabel jLErrorNombre;
     private javax.swing.JLabel jLErrorUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private newscomponents.RSButtonIcon_new rSButtonIcon_new1;
     private newscomponents.RSButtonIcon_new rSButtonIcon_new3;
     private RSMaterialComponent.RSPanelMaterial rSPanelMaterial1;
     private RSMaterialComponent.RSPanelMaterialImage rSPanelMaterialImage1;
-    private RSMaterialComponent.RSSwitch rSSwitch1;
     // End of variables declaration//GEN-END:variables
 }

@@ -288,7 +288,7 @@ public class MenuAdministrador extends javax.swing.JFrame
             .addGroup(rSPanelMaterial1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(rSPanelMaterial1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 1200, 440));

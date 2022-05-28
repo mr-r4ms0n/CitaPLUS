@@ -53,7 +53,8 @@ public class EncoderA
 
     private static Save s = new Save();
 
-    private static boolean getAES(String data, String data2)
+    //Cifrar datos del administrador
+    private static boolean getAESAdm(String data, String data2)
     {
         SecretKeyFactory secretKeyFactory;
         KeySpec keySpec;
@@ -75,10 +76,12 @@ public class EncoderA
             SecretKeySpec secretKey = new SecretKeySpec(secretKeyTemp.getEncoded(), "AES");
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec);
+            //Para el administrador
             s.getRs().add("1", Base64.getEncoder().encodeToString(cipher.doFinal(data.getBytes("UTF-8"))));
             s.getRs().add("2", Base64.getEncoder().encodeToString(cipher.doFinal(data2.getBytes("UTF-8"))));
             s.getRs().add("sk", secretKeyTemp);
-            makePr();
+            //makePr();
+            //desp();
             return true;
         } catch (UnsupportedEncodingException | InvalidAlgorithmParameterException | InvalidKeyException | NoSuchAlgorithmException | BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException e)
         {
@@ -87,6 +90,45 @@ public class EncoderA
         return false;
     }
 
+    //Cifrar datos del secretario
+    private static boolean getAESSec(String data3, String data4, String data5)
+    {
+        SecretKeyFactory secretKeyFactory;
+        KeySpec keySpec;
+        try
+        {
+            secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512");
+            keySpec = new PBEKeySpec(key.toCharArray(), salt.getBytes(), 65536, 256);
+            secretKeyTemp = secretKeyFactory.generateSecret(keySpec);
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e)
+        {
+            e.printStackTrace();
+        }
+
+        byte[] iv = new byte[16];
+        String er;
+        try
+        {
+            IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
+            SecretKeySpec secretKey = new SecretKeySpec(secretKeyTemp.getEncoded(), "AES");
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec);
+            //Para el secretario
+            s.getRs().add("3", Base64.getEncoder().encodeToString(cipher.doFinal(data3.getBytes("UTF-8"))));
+            s.getRs().add("4", Base64.getEncoder().encodeToString(cipher.doFinal(data4.getBytes("UTF-8"))));
+            //Nombre completo del usuario
+            s.getRs().add("5", data5);
+            makePr();
+            desp();
+            return true;
+        } catch (UnsupportedEncodingException | InvalidAlgorithmParameterException | InvalidKeyException | NoSuchAlgorithmException | BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException e)
+        {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    //Metodo para descifrar cualquier cosa del arreglo
     private static String getAESDec(String data)
     {
         byte[] iv = new byte[16];
@@ -104,6 +146,7 @@ public class EncoderA
         return null;
     }
 
+    //Cargar y crear archivo en dado caso de que no exista
     private static void makePr()
     {
         File f = new File(KEY_STORE_FILE);
@@ -145,10 +188,15 @@ public class EncoderA
      * Método encargado de desplegar los valores del admin este método se
      * mantendra durante la fase de desarrollo nadamas.
      */
-    public void desp()
+    public static void desp()
     {
+        //Parte para el administrador
         System.out.println(s.getRs().getValue("1").toString());
         System.out.println(s.getRs().getValue("2").toString());
+        //Parte para el secretario
+        System.out.println(s.getRs().getValue("3").toString());
+        System.out.println(s.getRs().getValue("4").toString());
+        System.out.println(s.getRs().getValue("5").toString());
     }
 
     /**
@@ -178,32 +226,53 @@ public class EncoderA
      */
     public static boolean verificaAdm(String s1, String s2)
     {
+        //Carga del archivo
         makePr();
         return ((s1.equals(getAESDec(s.getRs().getValue("1").toString()))) && (s2.equals(getAESDec(s.getRs().getValue("2").toString()))));
     }
 
-    public static boolean creaAdm(String s1, String s2)
+    public static Object[] verificaSecre(String s3, String s4)
     {
-        return getAES(s1, s2);
+        //Carga del archivo
+        makePr();
+        Object arr[] = new Object[3];
+        arr[0] = (s3.equals(getAESDec(s.getRs().getValue("3").toString()))) && (s4.equals(getAESDec(s.getRs().getValue("4").toString())));
+        arr[1] = s.getRs().getValue("5").toString();
+        arr[2] = getAESDec(s.getRs().getValue("3").toString());
+        return arr;
     }
 
-    public static void recuperaCred(RSTextFieldMaterialIcon usuario, RSPasswordMaterialIcon contra)
+    public static boolean creaAdm(String s1, String s2)
     {
-        usuario.setText(getAESDec(s.getRs().getValue("1").toString()));
-        contra.setText(getAESDec(s.getRs().getValue("2").toString()));
+        return getAESAdm(s1, s2);
+    }
+
+    public static boolean creaSecre(String s1, String s2, String s3)
+    {
+        return getAESSec(s1, s2, s3);
+    }
+
+    public static void recuperaCred(RSTextFieldMaterialIcon usuarioAdm, RSPasswordMaterialIcon contraAdm, RSTextFieldMaterialIcon usuarioSec, RSPasswordMaterialIcon contraSec, RSTextFieldMaterialIcon nombreSec)
+    {
+        usuarioAdm.setText(getAESDec(s.getRs().getValue("1").toString()));
+        contraAdm.setText(getAESDec(s.getRs().getValue("2").toString()));
+        usuarioSec.setText(getAESDec(s.getRs().getValue("3").toString()));
+        contraSec.setText(getAESDec(s.getRs().getValue("4").toString()));
+        nombreSec.setText(s.getRs().getValue("5").toString());
     }
 
     public static String recuperaCred(String n)
     {
-        return getAESDec(s.getRs().getValue(n).toString());
+        return (n == "5" ? s.getRs().toString(): getAESDec(s.getRs().getValue(n).toString()));
     }
 
-    public static void reasignaCred(String usuario, String pass)
+    public static void reasignaCred(String usuario, String pass, String usuarioS, String passS, String nombreS)
     {
         File f = new File(KEY_STORE_FILE);
         if (f.delete())
         {
-            getAES(usuario, pass);
+            getAESAdm(usuario, pass);
+            getAESSec(usuarioS, passS, nombreS);
         } else
         {
             System.out.println("Error al reasignar credenciales");

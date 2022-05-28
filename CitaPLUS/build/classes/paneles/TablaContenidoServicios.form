@@ -67,7 +67,7 @@
                 <Column editable="false" title="Nombre" type="java.lang.Object"/>
                 <Column editable="false" title="Descripci&#xf3;n" type="java.lang.Object"/>
                 <Column editable="false" title="Estatus" type="java.lang.Object"/>
-                <Column editable="false" title="Usuario registr&#xf3;" type="java.lang.Object"/>
+                <Column editable="false" title="Secretario registr&#xf3;" type="java.lang.Object"/>
                 <Column editable="false" title="Fecha registr&#xf3;" type="java.lang.Object"/>
               </Table>
             </Property>

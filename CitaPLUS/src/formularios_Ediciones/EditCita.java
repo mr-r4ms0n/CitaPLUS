@@ -465,7 +465,7 @@ public class EditCita extends javax.swing.JDialog
             Time horaCita = MetodosAux.ObtenerHoraMySQL(CMHora.getSelectedItem().toString());
             int usuarioId = MetodosBD.buscarUsuarioNombre(CMAtendera.getSelectedItem().toString());
             int servicioId = MetodosBD.buscarServicioNombre(CMServicio.getSelectedItem().toString());
-            int usuarioEditoId = MenuUsuario.idUsuario;
+            String usuarioEditoId = MenuUsuario.idUsuario;
             String fechaEdito = MetodosAux.getFecha();
             //Como se edito se va a registrar la fecha en que se edito y el usuario que se encargo de realizar la edicion
             Object[] datosUpdate =

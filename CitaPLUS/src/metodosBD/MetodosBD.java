@@ -476,7 +476,7 @@ public class MetodosBD
         }
         return -1;
     }
-    
+
     /**
      * Metoco para buscar el correo del paciente usando el nombre completo
      *
@@ -834,35 +834,39 @@ public class MetodosBD
         try
         {
             ResultSet arr = rsListarCitas(0, null);
-            while (arr.next())
+            if (arr != null)
             {
-                String fechaCita = arr.getString("fechaC");
-                String fechaActual = MetodosAux.getFecha();
-                if (fechaActual.equals(fechaCita))
+                while (arr.next())
                 {
-                    System.out.println("Las fechas son iguales");
-                } else
-                {
-                    SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-                    java.util.Date fechaCitaD = date.parse(fechaCita);
-                    java.util.Date fechaActualD = date.parse(fechaActual);
-                    if (!fechaCitaD.after(fechaActualD)) //Si la fecha de la cita no se encuentra despues de la fecha actual quiere decir que la fecha actual es mayor y la cita ya paso por lo que hay que cancelarla
+                    String fechaCita = arr.getString("fechaC");
+                    String fechaActual = MetodosAux.getFecha();
+                    if (fechaActual.equals(fechaCita))
                     {
-                        Object arrC[] =
+                        System.out.println("Las fechas son iguales");
+                    } else
+                    {
+                        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+                        java.util.Date fechaCitaD = date.parse(fechaCita);
+                        java.util.Date fechaActualD = date.parse(fechaActual);
+                        if (!fechaCitaD.after(fechaActualD)) //Si la fecha de la cita no se encuentra despues de la fecha actual quiere decir que la fecha actual es mayor y la cita ya paso por lo que hay que cancelarla
                         {
-                            4,//Caso donde se entrara en el switch
-                            "Cancelada por inasistencia del paciente", //Motivo de la cancelacion
-                            MetodosAux.getFecha(), //Fecha de la cancelacion
-                            arr.getInt("id"), //El id de la cita que se va a cancelar
-                        };
-                        MetodosBD.actualizarEstatusCita(arrC);
-                        
+                            Object arrC[] =
+                            {
+                                4,//Caso donde se entrara en el switch
+                                "Cancelada por inasistencia del paciente", //Motivo de la cancelacion
+                                MetodosAux.getFecha(), //Fecha de la cancelacion
+                                arr.getInt("id"), //El id de la cita que se va a cancelar
+                            };
+                            MetodosBD.actualizarEstatusCita(arrC);
+
+                        }
                     }
                 }
             }
+
         } catch (SQLException | ParseException e)
         {
-            System.out.println("Error al cancelar o al parsear fechas a la hora de cancelar citas de forma automatica"+e);
+            System.out.println("Error al cancelar o al parsear fechas a la hora de cancelar citas de forma automatica" + e);
         }
     }
 
@@ -1144,9 +1148,7 @@ public class MetodosBD
             if (tab != 0 && filtro.equals(""))
             {
                 //Para el caso de que se seleccione activos o inactivos y no se haga busqueda
-                sentencia = dbCon.prepareStatement("SELECT servicios.id,servicios.nombre,servicios.descripcion, IF(servicios.estatus=1,'Activo','Inactivo') AS estatusSer, "
-                        + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',usuarios.apellidoMaterno) AS nombreU,servicios.fechaRegistro "
-                        + "FROM servicios INNER JOIN usuarios ON usuarios.id = servicios.usuarioRegistro AND servicios.estatus = ?");
+                sentencia = dbCon.prepareStatement("SELECT servicios.id,servicios.nombre,servicios.descripcion, IF(servicios.estatus=1,'Activo','Inactivo') AS estatusSer, usuarioRegistro AS nombreU,servicios.fechaRegistro FROM servicios WHERE servicios.estatus = ?");
                 sentencia.setInt(1, tab);
             } else
             {
@@ -1154,9 +1156,7 @@ public class MetodosBD
                 if (filtro != null && (tab == 1 || tab == 2))
                 {
                     //Para el caso de que se seleccione activos o inactivos y se haga una busqueda
-                    sentencia = dbCon.prepareStatement("SELECT servicios.id,servicios.nombre,servicios.descripcion, IF(servicios.estatus=1,'Activo','Inactivo') AS estatusSer, "
-                            + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',usuarios.apellidoMaterno) AS nombreU,servicios.fechaRegistro "
-                            + "FROM servicios INNER JOIN usuarios ON usuarios.id = servicios.usuarioRegistro AND servicios.estatus = ? AND (servicios.nombre LIKE ? OR servicios.descripcion LIKE ?)");
+                    sentencia = dbCon.prepareStatement("SELECT servicios.id,servicios.nombre,servicios.descripcion, IF(servicios.estatus=1,'Activo','Inactivo') AS estatusSer, usuarioRegistro AS nombreU,servicios.fechaRegistro FROM servicios WHERE servicios.estatus = ? AND (servicios.nombre LIKE ? OR servicios.descripcion LIKE ?)");
                     sentencia.setInt(1, tab);
                     sentencia.setString(2, (auxFiltro + "%"));
                     sentencia.setString(3, (auxFiltro + "%"));
@@ -1165,17 +1165,13 @@ public class MetodosBD
                     //Para el caso de que se entre en la pestaña de todos pero se haga una busqueda
                     if (tab == 0 && filtro != null)
                     {
-                        sentencia = dbCon.prepareStatement("SELECT servicios.id,servicios.nombre,servicios.descripcion, IF(servicios.estatus=1,'Activo','Inactivo') AS estatusSer, "
-                                + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',usuarios.apellidoMaterno) AS nombreU,servicios.fechaRegistro "
-                                + "FROM servicios INNER JOIN usuarios ON usuarios.id = servicios.usuarioRegistro AND (servicios.nombre LIKE ? OR servicios.descripcion LIKE ?)");
+                        sentencia = dbCon.prepareStatement("SELECT servicios.id,servicios.nombre,servicios.descripcion, IF(servicios.estatus=1,'Activo','Inactivo') AS estatusSer, usuarioRegistro AS nombreU,servicios.fechaRegistro FROM servicios WHERE (servicios.nombre LIKE ? OR servicios.descripcion LIKE ?)");
                         sentencia.setString(1, (auxFiltro + "%"));
                         sentencia.setString(2, (auxFiltro + "%"));
                     } else
                     {
                         //Para el caso de que se entre en la pestaña de todos y no se consulten busquedas
-                        sentencia = dbCon.prepareStatement("SELECT servicios.id,servicios.nombre,servicios.descripcion, IF(servicios.estatus=1,'Activo','Inactivo') AS estatusSer, "
-                                + "CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',usuarios.apellidoMaterno) AS nombreU,servicios.fechaRegistro "
-                                + "FROM servicios INNER JOIN usuarios ON usuarios.id = servicios.usuarioRegistro");
+                        sentencia = dbCon.prepareStatement("SELECT servicios.id,servicios.nombre,servicios.descripcion, IF(servicios.estatus=1,'Activo','Inactivo') AS estatusSer, usuarioRegistro AS nombreU,servicios.fechaRegistro FROM servicios");
                     }
 
                 }
@@ -1267,7 +1263,7 @@ public class MetodosBD
             sentencia = dbCon.prepareStatement("UPDATE servicios SET nombre = ?, descripcion = ?, usuarioRegistro = ?, fechaRegistro = ? WHERE id = ?");
             sentencia.setString(1, datos[0].toString());
             sentencia.setString(2, datos[1].toString());
-            sentencia.setInt(3, (int) datos[2]);
+            sentencia.setString(3, datos[2].toString());
             sentencia.setString(4, datos[3].toString());
             sentencia.setInt(5, id);
             int rs = sentencia.executeUpdate();
@@ -1315,8 +1311,8 @@ public class MetodosBD
         try
         {
             dbCon = ConectaBD.ConectaBD();
-            sentencia = dbCon.prepareStatement("SELECT CONCAT(usuarios.nombre,' ',usuarios.apellidoPaterno,' ',usuarios.apellidoMaterno) AS nombreUsr, servicios.* "
-                    + "FROM servicios INNER JOIN usuarios ON usuarios.id = servicios.usuarioRegistro AND servicios.id = ?");
+            sentencia = dbCon.prepareStatement("SELECT usuarioRegistro AS nombreUsr, servicios.*"
+                    + "FROM servicios WHERE servicios.id = ?");
 
             sentencia.setString(1, servicioId);
             resultado = sentencia.executeQuery();

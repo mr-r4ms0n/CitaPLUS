@@ -34,7 +34,7 @@ public class MenuUsuario extends javax.swing.JFrame
 {
 
     public static JFrame vtn;
-    public static int idUsuario;
+    public static String idUsuario;
 
     /**
      * Creates new form MenuPrincipal
@@ -43,10 +43,10 @@ public class MenuUsuario extends javax.swing.JFrame
      * @param nombre
      * @param foto
      */
-    public MenuUsuario(String usuario, String nombre, byte[] foto, int idUsuario)
+    public MenuUsuario(String usuario, String nombre)
     {
         initComponents();
-        this.idUsuario = idUsuario;
+        this.idUsuario = nombre;
         setIconImage(Toolkit.getDefaultToolkit().getImage("citasplus.png"));
         vtn = this;
         RSEffectFade.setFadeWindowIn(this, 30, 0.1f);
@@ -56,16 +56,6 @@ public class MenuUsuario extends javax.swing.JFrame
         //Establecemos los campos segun esto corresponda de lo que se encontro registrado en la BD
         jLNombre.setText(nombre);
         jLUsuario.setText(usuario);
-        try
-        {
-            BufferedImage img1;
-            img1 = ImageIO.read(new ByteArrayInputStream(foto));
-            ImageIcon icon1 = new ImageIcon(img1.getScaledInstance(imagenDePerfil.getWidth(), imagenDePerfil.getHeight(), Image.SCALE_DEFAULT));
-            imagenDePerfil.setImagen(icon1);
-        } catch (IOException ex)
-        {
-            System.err.println("Error al insertar la foto desde la base de datos en el panel de edicion de informacion");
-        }
     }
 
     private MenuUsuario()
@@ -123,7 +113,7 @@ public class MenuUsuario extends javax.swing.JFrame
         pnlMenu.setShadowRight(false);
 
         imagenDePerfil.setBackground(new java.awt.Color(255, 255, 255));
-        imagenDePerfil.setImagen(new javax.swing.ImageIcon(getClass().getResource("/imagenes/doctor.png"))); // NOI18N
+        imagenDePerfil.setImagen(new javax.swing.ImageIcon(getClass().getResource("/imagenes/secretary.png"))); // NOI18N
         imagenDePerfil.setShapePanel(rojeru_san.efectos.ValoresEnum.PANEL_FORMA.CIRCLE);
 
         javax.swing.GroupLayout imagenDePerfilLayout = new javax.swing.GroupLayout(imagenDePerfil);
@@ -317,7 +307,7 @@ public class MenuUsuario extends javax.swing.JFrame
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Cita Plus Usuario");
+        jLabel1.setText("Cita Plus Secretario");
 
         rSLabelIcon1.setBackground(new java.awt.Color(255, 255, 255));
         rSLabelIcon1.setForeground(new java.awt.Color(255, 255, 255));
@@ -344,8 +334,8 @@ public class MenuUsuario extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(rSLabelIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1024, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 995, Short.MAX_VALUE)
                 .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -359,7 +349,7 @@ public class MenuUsuario extends javax.swing.JFrame
                     .addGroup(pnlTopBarLayout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 34, Short.MAX_VALUE)))
+                        .addGap(0, 30, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
