@@ -40,7 +40,7 @@ public class RegCitas extends javax.swing.JDialog
         //Cargar Pacientes En el ComboBox
         MetodosBD.mostrarDatosCombo(CPaciente, "pacientes");
         MetodosBD.mostrarDatosCombo(Cservicio, "servicios");
-        MetodosBD.mostrarDatosCombo(CAtendera, "usuarios");
+        MetodosBD.mostrarDatosCombo(CAtendera, "medicos");
         setModal(true);
         setLocationRelativeTo(null);
         RSUtilities.setOpaqueWindow(this, false);
@@ -454,7 +454,7 @@ public class RegCitas extends javax.swing.JDialog
             String fechaRegistro = MetodosAux.getFecha();
             Date fechaCita = new Date(CFecha.getDate().getTime());
             Time horaCita = MetodosAux.ObtenerHoraMySQL(CHora.getSelectedItem().toString());
-            int usuarioId = MetodosBD.buscarMedicoNombre(CAtendera.getSelectedItem().toString());
+            int medicoId = MetodosBD.buscarMedicoNombre(CAtendera.getSelectedItem().toString()); //Este cambiarlo por el nombre del secretario
             int servicioId = MetodosBD.buscarServicioNombre(Cservicio.getSelectedItem().toString());
             Object[] datosInsert =
             {
@@ -462,7 +462,7 @@ public class RegCitas extends javax.swing.JDialog
                 fechaRegistro,
                 fechaCita,
                 horaCita,
-                usuarioId,
+                medicoId,
                 servicioId
             };
             boolean insercionCorr = MetodosBD.insertarCita(datosInsert);

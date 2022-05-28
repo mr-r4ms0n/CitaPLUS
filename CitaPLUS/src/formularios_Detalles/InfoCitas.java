@@ -49,14 +49,24 @@ public class InfoCitas extends javax.swing.JDialog
         lblEstatus.setText(datos.getValue("estatusCita").toString());
         lblNombrePaciente.setText(datos.getValue("nombrePaciente").toString());
         lblNombreServicio.setText(datos.getValue("nombreServicio").toString());
-        lblNombreAtiende.setText(datos.getValue("usuarioAtendio").toString());
+        lblNombreAtiende.setText(datos.getValue("nombreUsuario").toString());
         lblUsuarioRegistro1.setText(datos.getValue("usuarioRegistro").toString());
-        lblUsuarioActualizo.setText(datos.getValue("usuarioEdito").toString());
+        //lblUsuarioActualizo.setText(datos.getValue("usuarioEdito").toString());
         lblFechaRegistro.setText(MetodosAux.ToDate(datos.getValue("fechaRegistro").toString()));
-        lblFechaEdito.setText(datos.getValue("fechaEdito").equals("Sin Editar") ? "Sin Editar" : MetodosAux.ToDate(datos.getValue("fechaEdito").toString()));
+        //lblFechaEdito.setText(datos.getValue("fechaEdito").equals("Sin Editar") ? "Sin Editar" : MetodosAux.ToDate(datos.getValue("fechaEdito").toString()));
         lblFechaCancelo.setText(datos.getValue("fechaCancelo").equals("Sin Cancelar") ? "Sin Cancelar" : MetodosAux.ToDate(datos.getValue("fechaCancelo").toString()));
         lblFechaAtendio.setText(datos.getValue("fechaAtendida").equals("Sin Atender") ? "Sin Atender" : MetodosAux.ToDate(datos.getValue("fechaAtendida").toString()));
         jTextArea1.setText((datos.getValue("descripcionCancelo").toString().equals("Sin Cancelar")) ? "" : datos.getValue("descripcionCancelo").toString());
+        
+               
+         
+               
+        //arreglo.add("", resultado.getString("NombreAtiende"));
+                
+                
+                
+                
+            
 
         //Para habilitar o inhabilitar el boton de cancelar cita
         btnCancelarCita.setVisible((datos.getValue("estatusCita").equals("Proxima")));
@@ -465,7 +475,6 @@ public class InfoCitas extends javax.swing.JDialog
             Object arr[] =
             {
                 2,
-                MenuUsuario.idUsuario,
                 MetodosAux.getFecha(),
                 arregloDatos.getValue("id")
             };

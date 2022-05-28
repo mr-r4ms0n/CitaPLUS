@@ -48,7 +48,7 @@ public class EditCita extends javax.swing.JDialog
         setShape(forma);
         MetodosBD.mostrarDatosCombo(CMPaciente, "pacientes");
         MetodosBD.mostrarDatosCombo(CMServicio, "servicios");
-        MetodosBD.mostrarDatosCombo(CMAtendera, "usuarios");
+        MetodosBD.mostrarDatosCombo(CMAtendera, "medicos");
         iniCampos();
 
         //Rellenamos los campos
@@ -58,6 +58,8 @@ public class EditCita extends javax.swing.JDialog
         CMAtendera.setSelectedItem(datos.getValue("nombreUsuario"));
         CMServicio.setSelectedItem(datos.getValue("nombreServicio"));
         CMFecha.setText(MetodosAux.ToDate(datos.getValue("fechaCita").toString()));
+        //Para inhabilitar que se cambie al paciente, en su lugar se tendra que hacer una cita nueva
+        CMPaciente.setEnabled(false);
     }
 
     private EditCita()
@@ -463,20 +465,16 @@ public class EditCita extends javax.swing.JDialog
             String pacienteCorreo = MetodosBD.buscarPacienteCorreo(CMPaciente.getSelectedItem().toString());
             String fechaCita = MetodosAux.ToDate2(CMFecha.getText());
             Time horaCita = MetodosAux.ObtenerHoraMySQL(CMHora.getSelectedItem().toString());
-            int usuarioId = MetodosBD.buscarMedicoNombre(CMAtendera.getSelectedItem().toString());
+            int medicoId = MetodosBD.buscarMedicoNombre(CMAtendera.getSelectedItem().toString());
             int servicioId = MetodosBD.buscarServicioNombre(CMServicio.getSelectedItem().toString());
-            String usuarioEditoId = MenuUsuario.idUsuario;
-            String fechaEdito = MetodosAux.getFecha();
             //Como se edito se va a registrar la fecha en que se edito y el usuario que se encargo de realizar la edicion
             Object[] datosUpdate =
             {
                 pacienteId,
                 fechaCita,
                 horaCita,
-                usuarioId,
+                medicoId,
                 servicioId,
-                usuarioEditoId,
-                fechaEdito
             };
             boolean modificacionCorr = MetodosBD.actualizarCita(datosUpdate, id);
             if (modificacionCorr)

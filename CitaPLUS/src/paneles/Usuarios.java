@@ -28,9 +28,9 @@ public class Usuarios extends javax.swing.JPanel
 
     public static void actualizarNumUsuarios()
     {
-        int todos = MetodosBD.contarUsuarios(0);
-        int activos = MetodosBD.contarUsuarios(1);
-        int inactivos = MetodosBD.contarUsuarios(2);
+        int todos = MetodosBD.contarMedicos(0);
+        int activos = MetodosBD.contarMedicos(1);
+        int inactivos = MetodosBD.contarMedicos(2);
 
         if (todos != -1)
         {
