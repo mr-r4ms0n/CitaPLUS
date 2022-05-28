@@ -18,6 +18,7 @@ import metodosBD.MetodosBD;
 import paneles.Citas;
 import static paneles.Citas.tabSelecc;
 import static paneles.Citas.tablaContenidoCitas21;
+import peticionesHTTPS.POST;
 import rojeru_san.complementos.RSUtilities;
 
 /**
@@ -26,18 +27,18 @@ import rojeru_san.complementos.RSUtilities;
  */
 public class EditCita extends javax.swing.JDialog
 {
-    
+
     boolean pacientCorrect = true;
     boolean serviceCorrect = true;
     boolean horaCorrect = true;
     boolean atenderaCorrect = true;
     boolean fechaCorrect = true;
-    
+
     int id;
-    
+
     public EditCita(RSObjectArray datos)
     {
-        
+
         initComponents();
         setModal(true);
         setLocationRelativeTo(null);
@@ -58,10 +59,10 @@ public class EditCita extends javax.swing.JDialog
         CMServicio.setSelectedItem(datos.getValue("nombreServicio"));
         CMFecha.setText(MetodosAux.ToDate(datos.getValue("fechaCita").toString()));
     }
-    
+
     private EditCita()
     {
-        
+
     }
 
     /**
@@ -455,10 +456,11 @@ public class EditCita extends javax.swing.JDialog
         serviceCorrect = MetodosAux.validarBox(CMServicio, error_servicio, "required");
         horaCorrect = MetodosAux.validarBox(CMHora, error_hora, "required");
         atenderaCorrect = MetodosAux.validarBox(CMAtendera, error_atendera, "required");
-        
+
         if (atenderaCorrect && pacientCorrect && serviceCorrect && horaCorrect && fechaCorrect)
         {
             int pacienteId = MetodosBD.buscarPacienteNombre(CMPaciente.getSelectedItem().toString());
+            String pacienteCorreo = MetodosBD.buscarPacienteCorreo(CMPaciente.getSelectedItem().toString());
             String fechaCita = MetodosAux.ToDate2(CMFecha.getText());
             Time horaCita = MetodosAux.ObtenerHoraMySQL(CMHora.getSelectedItem().toString());
             int usuarioId = MetodosBD.buscarUsuarioNombre(CMAtendera.getSelectedItem().toString());
@@ -479,6 +481,7 @@ public class EditCita extends javax.swing.JDialog
             boolean modificacionCorr = MetodosBD.actualizarCita(datosUpdate, id);
             if (modificacionCorr)
             {
+                POST.mEnviarCorreoCita("modificar", CMPaciente.getSelectedItem().toString(), fechaCita, CMHora.getSelectedItem().toString(), CMServicio.getSelectedItem().toString(), pacienteCorreo);
                 MetodosAux.mostrarAlerta("Muy bien hecho", "Cita Actualizada con Exito", 1);
                 dispose();
                 tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);
@@ -510,7 +513,7 @@ public class EditCita extends javax.swing.JDialog
 
     private void CMHoraActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CMHoraActionPerformed
     {//GEN-HEADEREND:event_CMHoraActionPerformed
-        
+
     }//GEN-LAST:event_CMHoraActionPerformed
 
     private void CMServicioItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_CMServicioItemStateChanged
@@ -548,7 +551,7 @@ public class EditCita extends javax.swing.JDialog
         {
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_CMFechaKeyTyped
 
     /**

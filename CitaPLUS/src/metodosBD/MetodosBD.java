@@ -476,6 +476,34 @@ public class MetodosBD
         }
         return -1;
     }
+    
+    /**
+     * Metoco para buscar el correo del paciente usando el nombre completo
+     *
+     * @param nombre
+     * @return
+     */
+    public static String buscarPacienteCorreo(String nombre)
+    {
+        try
+        {
+            dbCon = ConectaBD.ConectaBD();
+            //Concatenamos el nombre mas apellidos para que extraiga exactamente el deseado
+            sentencia = dbCon.prepareStatement("SELECT correo FROM pacientes WHERE CONCAT(nombre,' ',apellidoPaterno,' ',apellidoMaterno) = ?");
+            sentencia.setString(1, nombre);
+            //compilando
+            resultado = sentencia.executeQuery();
+            if (resultado.next())
+            {
+                return resultado.getString("correo");
+            }
+
+        } catch (NumberFormatException | SQLException e)
+        {
+            System.out.println("Error en obtener el correo del paciente: " + e);
+        }
+        return null;
+    }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-PARTE CITAS *-*-*-*-*-*-*-*-*-*-**-*-*-**-*-*-*-*-
@@ -490,7 +518,7 @@ public class MetodosBD
         try
         {
             dbCon = ConectaBD.ConectaBD();
-            sentencia = dbCon.prepareStatement("SELECT citas.id,"
+            sentencia = dbCon.prepareStatement("SELECT citas.id, pacientes.correo As correoPaciente,"
                     + "CONCAT(pacientes.nombre,' ',pacientes.apellidoPaterno,' ',IF(pacientes.apellidoMaterno='No Proporcionado','',pacientes.apellidoMaterno)) AS NombreP, "
                     + "fechaCita AS fechaC, "
                     + "time_format(horaCita, \"%H:%i\") AS horaC, "
@@ -530,6 +558,7 @@ public class MetodosBD
                 arreglo.add("usuarioEdito", resultado.getString("NombreEdito"));
                 arreglo.add("usuarioRegistro", resultado.getString("NombreRegistro"));
                 arreglo.add("usuarioAtendio", resultado.getString("NombreAtiende"));
+                arreglo.add("correoPaciente", resultado.getString("correoPaciente"));
                 return arreglo;
             }
             dbCon.close();

@@ -17,14 +17,23 @@ import java.util.logging.Logger;
  */
 public class POST
 {
+    /**
+     * 
+     * @param accion : agendar , cancelar , modificar
+     * @param paciente
+     * @param fecha
+     * @param hora
+     * @param servicio
+     * @param correo 
+     */
 
-    public static void mEnviarCorreoAgendarCita(String paciente,String fecha, String hora,String servicio,String correo)
+    public static void mEnviarCorreoCita(String accion,String paciente,String fecha, String hora,String servicio,String correo)
     {
         Unirest.setTimeouts(0, 0);
         HttpResponse<String> response;
         try
         {
-            response = Unirest.post("https://apis.tecnologinc.com/citasPlus/api/FormEnviarCorreo/agendarCita.php")
+            response = Unirest.post("https://apis.tecnologinc.com/citasPlus/api/FormEnviarCorreo/"+accion+"Cita.php")
                     .field("paciente", paciente)
                     .field("fecha", fecha)
                     .field("hora", hora)

@@ -450,6 +450,7 @@ public class RegCitas extends javax.swing.JDialog
         if (atenderaCorrect && pacientCorrect && serviceCorrect && horaCorrect && fechaCorrect)
         {
             int pacienteId = MetodosBD.buscarPacienteNombre(CPaciente.getSelectedItem().toString());
+            String pacienteCorreo = MetodosBD.buscarPacienteCorreo(CPaciente.getSelectedItem().toString());
             String fechaRegistro = MetodosAux.getFecha();
             Date fechaCita = new Date(CFecha.getDate().getTime());
             Time horaCita = MetodosAux.ObtenerHoraMySQL(CHora.getSelectedItem().toString());
@@ -467,7 +468,7 @@ public class RegCitas extends javax.swing.JDialog
             boolean insercionCorr = MetodosBD.insertarCita(datosInsert);
             if (insercionCorr)
             {
-                POST.mEnviarCorreoAgendarCita(CPaciente.getSelectedItem().toString(), fechaRegistro, CHora.getSelectedItem().toString(), Cservicio.getSelectedItem().toString(), "leandrogomez682@gmail.com");
+                POST.mEnviarCorreoCita("agendar",CPaciente.getSelectedItem().toString(), fechaRegistro, CHora.getSelectedItem().toString(), Cservicio.getSelectedItem().toString(), pacienteCorreo);
                 MetodosAux.mostrarAlerta("Muy bien hecho", "Cita Registrada con Exito", 1);
                 dispose();
                 tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);

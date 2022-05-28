@@ -15,6 +15,7 @@ import metodosBD.MetodosBD;
 import paneles.Citas;
 import static paneles.Citas.tabSelecc;
 import static paneles.Citas.tablaContenidoCitas21;
+import peticionesHTTPS.POST;
 import rojeru_san.complementos.RSEffectFade;
 
 /**
@@ -428,7 +429,12 @@ public class InfoCitas extends javax.swing.JDialog
         {
             if (MyJOP.myJOPShowConfirmDialog(null, "Esta seguro que desea cancelar esta cita?") == 1)
             {
-
+                String vNombrePaciente = arregloDatos.getValue("nombrePaciente").toString();
+                String vFechaCita = arregloDatos.getValue("fechaCita").toString();
+                String vPacienteCorreo = arregloDatos.getValue("correoPaciente").toString();
+                String vHoraCita=arregloDatos.getValue("horaCita").toString();
+                String vServicio = arregloDatos.getValue("nombreServicio").toString();
+                
                 Object arr[] =
                 {
                     3,
@@ -439,6 +445,7 @@ public class InfoCitas extends javax.swing.JDialog
                 boolean actualizarCancelar = MetodosBD.actualizarEstatusCita(arr);
                 if (actualizarCancelar)
                 {
+                    POST.mEnviarCorreoCita("cancelar", vNombrePaciente, vFechaCita, vHoraCita, vServicio, vPacienteCorreo);
                     MetodosAux.mostrarAlerta("Muy bien hecho", "Cita cancelada con Exito", 1);
                     dispose();
                     tablaContenidoCitas21.listarCitas(tablaContenidoCitas21.tblCitas, tabSelecc, null);
