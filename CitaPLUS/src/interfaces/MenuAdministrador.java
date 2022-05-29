@@ -138,7 +138,7 @@ public class MenuAdministrador extends javax.swing.JFrame
         );
 
         btnUsuarios.setBackground(new java.awt.Color(255, 153, 153));
-        btnUsuarios.setText("Usuarios");
+        btnUsuarios.setText("Medicos");
         btnUsuarios.setBackgroundHover(new java.awt.Color(255, 102, 102));
         btnUsuarios.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PEOPLE);
         btnUsuarios.setRound(20);

@@ -263,7 +263,7 @@ public class EncoderA
 
     public static String recuperaCred(String n)
     {
-        return (n == "5" ? s.getRs().toString(): getAESDec(s.getRs().getValue(n).toString()));
+        return (n == "5" ? s.getRs().getValue(n).toString(): getAESDec(s.getRs().getValue(n).toString()));
     }
 
     public static void reasignaCred(String usuario, String pass, String usuarioS, String passS, String nombreS)
