@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `citas` (
   CONSTRAINT `citas_servicioId` FOREIGN KEY (`servicioId`) REFERENCES `servicios` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla citaplus.citas: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla citaplus.citas: ~4 rows (aproximadamente)
 DELETE FROM `citas`;
 INSERT INTO `citas` (`id`, `pacienteId`, `fechaRegistro`, `fechaCita`, `horaCita`, `estatusCitasId`, `medicoId`, `servicioId`, `fechaCancelo`, `descripcionCancelo`, `fechaAtendida`) VALUES
 	(8, 2, '2022-05-28', '2022-05-28', '16:30:04', 3, 8, 2, NULL, NULL, NULL),
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `servicios` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla citaplus.servicios: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla citaplus.servicios: ~2 rows (aproximadamente)
 DELETE FROM `servicios`;
 INSERT INTO `servicios` (`id`, `nombre`, `descripcion`, `estatus`, `usuarioRegistro`, `fechaRegistro`) VALUES
 	(2, 'Agrandamiento del venoso', 'GGG44', 1, 'Julia', '2022-05-28'),
